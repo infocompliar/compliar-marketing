@@ -17,3 +17,37 @@
   updateRequest();
   preferences.hidden = false;
 })();
+
+(() => {
+  const button = document.getElementById("demo-copy");
+  const address = document.getElementById("demo-address");
+  const status = document.getElementById("demo-copy-status");
+  if (!button || !address || !status) return;
+  const text = address.textContent.trim();
+  let timer;
+  function say(message) {
+    // Clear first so a repeat press is announced again.
+    status.textContent = "";
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      status.textContent = message;
+    }, 50);
+  }
+  function selectAddress() {
+    const range = document.createRange();
+    range.selectNodeContents(address);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      say("Email address copied.");
+    } catch (error) {
+      selectAddress();
+      say("Could not copy automatically. The address is selected; copy it now.");
+    }
+  });
+  button.hidden = false;
+})();
