@@ -3695,3 +3695,104 @@ header.nav {
   .screens-desktop { grid-template-columns: minmax(0, 1fr); }
   .screens-phone { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Demo request: visible email fallback for people without a mail app */
+.demo-fallback {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--cream);
+  min-width: 0;
+}
+.contact-card .demo-fallback p {
+  margin-block: 0;
+  font-size: 0.8rem;
+}
+.contact-card .demo-fallback .demo-fallback-address {
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.demo-fallback-address a {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.contact-card .demo-fallback .btn {
+  margin-top: 12px;
+}
+.contact-card .demo-fallback .demo-copy-status {
+  min-height: 1.4em;
+  margin-top: 8px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* "What happens next" sequence on the home and getting-started pages */
+.next-strip {
+  background: var(--cream-2);
+  border-block: 1px solid var(--line);
+}
+.next-strip .eyebrow {
+  color: var(--orange-deep);
+}
+.next-strip h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-top: 8px;
+}
+.next-steps {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.next-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.next-num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.next-note {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.next-note a {
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+@media (max-width: 900px) {
+  .next-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .next-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

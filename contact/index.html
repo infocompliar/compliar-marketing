@@ -6,7 +6,7 @@
     <title>Contact &amp; Demos — Compliar</title>
     <meta
       name="description"
-      content="Book a Compliar demo, ask about a 30-day free trial, discuss plans for your team or ask a question. Contact enquiry@compliar.co.uk."
+      content="Request a Compliar demo, ask about a 30-day free trial, discuss plans for your team or ask a question. Contact enquiry@compliar.co.uk."
     />
     <link rel="canonical" href="https://compliar.co.uk/contact/" />
     <meta name="theme-color" content="#1B2430" />
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Contact &amp; Demos — Compliar" />
     <meta
       property="og:description"
-      content="Book a Compliar demo, ask about a 30-day free trial, discuss plans for your team or ask a question. Contact enquiry@compliar.co.uk."
+      content="Request a Compliar demo, ask about a 30-day free trial, discuss plans for your team or ask a question. Contact enquiry@compliar.co.uk."
     />
     <meta property="og:url" content="https://compliar.co.uk/contact/" />
     <meta property="og:image" content="https://compliar.co.uk/og.png" />
@@ -30,7 +30,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=e8b20ed9cec6" />
+    <link rel="stylesheet" href="/site.css?v=421db8e08b22" />
     <script src="/site.js" defer></script>
     <script src="/contact/demo.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
@@ -68,7 +68,7 @@
             rel="noopener"
             >Sign in</a
           ><a class="btn btn-primary btn-sm" href="/contact/#book-a-demo"
-            >Book a demo</a
+            >Request a demo</a
           >
         </div>
         <details class="mobile-menu">
@@ -82,7 +82,7 @@
               <li><a href="/about/">About</a></li>
               <li><a href="/faqs/">FAQs</a></li>
               <li><a href="/resources/">Resources</a></li>
-              <li><a href="/contact/#book-a-demo">Book a demo</a></li>
+              <li><a href="/contact/#book-a-demo">Request a demo</a></li>
               <li>
                 <a
                   href="https://app.compliar.co.uk"
@@ -121,7 +121,10 @@
                 <span class="mono">01</span>
                 <div>
                   <h3>Start with the enquiry</h3>
-                  <p>Customer requirements, design, take-offs and pricing.</p>
+                  <p>
+                    Customer requirements, design, take-offs and pricing. Design
+                    tools are in beta.
+                  </p>
                 </div>
               </li>
               <li>
@@ -148,12 +151,12 @@
           </div>
           <aside class="contact-card">
             <span class="contact-kicker">MAKE IT PERSONAL</span>
-            <h2 id="book-a-demo">Book a demo.</h2>
+            <h2 id="book-a-demo">Request a demo.</h2>
             <p>
-              Tell us what you want to explore, then email your request. Include
-              your trade, team size and a couple of times that suit you. After
-              your demo we can set you up with a 30-day free trial. No card
-              required.
+              Send us your request by email and we'll reply to arrange a time.
+              Include your trade, team size and a couple of times that suit you.
+              After your demo we can set you up with a 30-day free trial. No
+              card required.
             </p>
             <fieldset class="demo-preferences" hidden>
               <legend>Make the walkthrough relevant to you.</legend>
@@ -217,17 +220,38 @@
             >
             <p class="demo-expectation">
               Opens a draft in your email app. Send it to request a demo; we’ll
-              agree a time by email.
+              reply to arrange a time.
             </p>
-            <p class="contact-email">
-              Or email directly:<br /><a href="mailto:enquiry@compliar.co.uk"
-                >enquiry@compliar.co.uk</a
+            <div class="demo-fallback">
+              <p class="demo-fallback-label">
+                No email app? Send your request to this address:
+              </p>
+              <p class="demo-fallback-address">
+                <a
+                  id="demo-address"
+                  href="mailto:enquiry@compliar.co.uk"
+                  >enquiry@compliar.co.uk</a
+                >
+              </p>
+              <button
+                type="button"
+                id="demo-copy"
+                class="btn btn-ghost-on-cream demo-copy"
+                hidden
               >
-            </p>
+                Copy email address
+              </button>
+              <p
+                id="demo-copy-status"
+                class="demo-copy-status"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </div>
             <div class="contact-divider"></div>
             <h3 id="free-trial">Ask for a demo and a trial</h3>
             <p>
-              Accounts are set up by invitation. Book a demo first and we will
+              Accounts are set up by invitation. Request a demo first and we will
               walk through your own jobs; after your demo we can set you up with
               a 30-day free trial. No card required. Tell us your trade and team
               size and we will take it from there.
