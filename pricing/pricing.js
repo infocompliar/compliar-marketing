@@ -1,6 +1,10 @@
 (() => {
   const format = (amount) =>
-    "£" + amount.toLocaleString("en-GB", { maximumFractionDigits: 2 });
+    "£" +
+    amount.toLocaleString("en-GB", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   const paidMonths = 10;
   const monthsPerYear = 12;
   const billing = document.querySelector(".billing-switch");
