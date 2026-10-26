@@ -6,7 +6,7 @@
     <title>Pricing — Compliar</title>
     <meta
       name="description"
-      content="Compare Lite £35, Office £65 and Design £95 seats. Prices plus VAT per user per month. Mix seats and calculate your team price."
+      content="Lite £35, Office £65 and Design £95 per user per month. Site log book £4 per site per year, or log book only. All prices plus VAT. Calculate your team price."
     />
     <link rel="canonical" href="https://compliar.co.uk/pricing/" />
     <meta name="theme-color" content="#1B2430" />
@@ -15,7 +15,7 @@
     <meta property="og:title" content="Pricing — Compliar" />
     <meta
       property="og:description"
-      content="Compare Lite £35, Office £65 and Design £95 seats. Prices plus VAT per user per month. Mix seats and calculate your team price."
+      content="Lite £35, Office £65 and Design £95 per user per month. Site log book £4 per site per year, or log book only. All prices plus VAT. Calculate your team price."
     />
     <meta property="og:url" content="https://compliar.co.uk/pricing/" />
     <meta property="og:image" content="https://compliar.co.uk/og.png" />
@@ -30,7 +30,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=421db8e08b22" />
+    <link rel="stylesheet" href="/site.css?v=48ad3f6035a4" />
     <script src="/site.js" defer></script>
     <script src="/pricing/pricing.js" defer></script>
     <script type="application/ld+json">
@@ -44,11 +44,65 @@
         "description": "Job management, scheduling, certificates, quoting, invoicing, projects and job costing software for UK fire, security and electrical contractors.",
         "offers": {
           "@type": "AggregateOffer",
-          "lowPrice": "25.00",
-          "highPrice": "50.00",
+          "lowPrice": "4.00",
+          "highPrice": "95.00",
           "priceCurrency": "GBP",
           "offerCount": "4",
-          "description": "Per user per month plus VAT: Lite £35, Office £65, Design £95. Two months free when paid yearly. Request a demo; a 30-day free trial, no card required, can follow."
+          "description": "Plus VAT. Seats per user per month: Lite £35, Office £65, Design £95. Two months free when paid yearly. Site log book £4 per site per year, added to any plan or taken on its own with no seats. Request a demo; a 30-day free trial, no card required, can follow.",
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Lite seat",
+              "priceCurrency": "GBP",
+              "price": "35.00",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "35.00",
+                "priceCurrency": "GBP",
+                "unitText": "per user per month",
+                "valueAddedTaxIncluded": false
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Office seat",
+              "priceCurrency": "GBP",
+              "price": "65.00",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "65.00",
+                "priceCurrency": "GBP",
+                "unitText": "per user per month",
+                "valueAddedTaxIncluded": false
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Design seat",
+              "priceCurrency": "GBP",
+              "price": "95.00",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "95.00",
+                "priceCurrency": "GBP",
+                "unitText": "per user per month",
+                "valueAddedTaxIncluded": false
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Site log book (add to any plan, or log book only)",
+              "priceCurrency": "GBP",
+              "price": "4.00",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "4.00",
+                "priceCurrency": "GBP",
+                "unitText": "per site per year",
+                "valueAddedTaxIncluded": false
+              }
+            }
+          ]
         }
       }
     </script>
@@ -123,7 +177,8 @@
           <p>
             Three seats, one team: Lite for engineers, Office for the office,
             Design for designers. Mix them however you like. No minimum seats.
-            Pay yearly for two months free.
+            Pay yearly for two months free. The site log book is priced
+            separately, per site.
           </p>
         </div>
       </section>
@@ -203,7 +258,7 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     /></svg
-                  >Customers, sites, assets and fire safety logbooks with customised, printable QR codes
+                  >Customers, sites and assets
                 </li>
                 <li>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
@@ -493,6 +548,155 @@
             </div>
           </div>
 
+          <section class="logbook-pricing" id="log-book" aria-labelledby="logbook-price-title">
+            <div class="logbook-pricing-head">
+              <div class="eyebrow">SITE LOG BOOK</div>
+              <h2 id="logbook-price-title">The site log book, priced per site.</h2>
+              <p>
+                The digital fire safety log book is not part of the seat
+                prices. It is £4 + VAT per site per year, and you can add it to
+                any plan. Or take it on its own, with no seats.
+              </p>
+            </div>
+            <div class="price-grid price-grid-pair">
+              <div class="price-card">
+                <div class="price-name">Site log book</div>
+                <div class="price-for">
+                  Add to any plan. The same price whichever seats you have.
+                </div>
+                <div class="price-cta-line">
+                  <span class="plan-amount">£4</span
+                  ><span class="plan-period"> + VAT /site/year</span>
+                </div>
+                <div class="price-cta-sub">
+                  Add to any plan. Charged per site, once a year.
+                </div>
+                <ul class="price-list">
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >A digital fire safety log book for each site you enable it on
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >A customised, printable QR label for each site
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >You can add your own charge for the log book to your customer’s service plan, at a price you set
+                </li>
+                </ul>
+                <a
+                  class="btn btn-ghost-on-cream plan-cta"
+                  href="/contact/#book-a-demo"
+                  aria-label="Request a demo to see the site log book"
+                  >Request a demo</a
+                >
+              </div>
+              <div class="price-card">
+                <div class="price-name">Log book only</div>
+                <div class="price-for">
+                  For people who only want the digital site log book. No seats needed.
+                </div>
+                <div class="price-cta-line">
+                  <span class="plan-amount">£4</span
+                  ><span class="plan-period"> + VAT /site/year</span>
+                </div>
+                <div class="price-cta-sub">
+                  No seats needed. Charged per site, once a year.
+                </div>
+                <ul class="price-list">
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Sites
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >The digital fire safety log book
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >QR labels, printed at home or ordered as stickers
+                </li>
+                <li>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >No seats needed
+                </li>
+                </ul>
+                <a
+                  class="btn btn-ghost-on-cream plan-cta"
+                  href="/contact/#book-a-demo"
+                  aria-label="Request a demo to explore Log book only"
+                  >Request a demo</a
+                >
+              </div>
+            </div>
+            <div class="sticker-box" id="qr-stickers">
+              <div>
+                <h3>QR stickers for your sites.</h3>
+                <p>
+                  Order printed QR stickers for £4 each + VAT, plus flat UK
+                  delivery of £4.95 + VAT per order. Or print your own for free
+                  from the app, in many label sizes from 40 × 30 mm up to A5.
+                </p>
+              </div>
+              <ul class="sticker-sizes" aria-label="Printed sticker sizes">
+                <li>50 × 70 mm</li>
+                <li>50 × 60 mm</li>
+                <li>50 × 40 mm</li>
+                <li>50 × 30 mm</li>
+              </ul>
+            </div>
+          </section>
+
           <section class="onboarding-box" id="onboarding" aria-labelledby="onboarding-title">
             <div>
               <div class="eyebrow">ONBOARDING</div>
@@ -533,7 +737,9 @@
             <h2>Build your team’s plan.</h2>
             <p class="estimator-intro">
               Mix seats across your team: engineers on Lite, the office on
-              Office, a designer on Design. All totals exclude VAT.
+              Office, a designer on Design. Totals cover seats only and
+              exclude VAT. The site log book is £4 + VAT per site per year on
+              top.
             </p>
             <noscript
               ><p>
@@ -604,7 +810,8 @@
             leave at any time.
           </p>
           <p class="price-note">
-            The customer portal is included on every plan.
+            The customer portal is included on every plan. The site log book
+            is £4 + VAT per site per year and can be added to any plan.
           </p>
           <p class="price-note">
             After your demo we can set you up with a 30-day free trial, no card required. Prices are per user per month,
