@@ -3690,7 +3690,15 @@ header.nav {
 .screens img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.08); }
 .screens figcaption { margin-top: 0.5rem; font-size: 0.9rem; }
 .screens-desktop { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.screens-phone { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 240px)); margin-top: 2rem; }
+.screens-phone { display: grid; gap: 1.5rem; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 2rem; }
+@media (max-width: 1000px) { .screens-phone { grid-template-columns: repeat(2, minmax(0, 300px)); } }
+.screens a.shot { display: block; cursor: zoom-in; border-radius: 12px; }
+.screens a.shot:hover img, .screens a.shot:focus-visible img { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18); }
+.shot-viewer { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
+.shot-viewer::backdrop { background: rgba(10, 20, 25, 0.88); }
+.shot-viewer img { display: block; max-width: 96vw; max-height: 90vh; width: auto; height: auto; border-radius: 10px; cursor: zoom-out; }
+.shot-viewer p { color: #fff; text-align: center; margin: 0.5rem 0 0; font-size: 0.95rem; }
+.shot-viewer button { position: fixed; top: 12px; right: 16px; font-size: 2rem; line-height: 1; background: none; border: 0; color: #fff; cursor: pointer; }
 @media (max-width: 720px) {
   .screens-desktop { grid-template-columns: minmax(0, 1fr); }
   .screens-phone { grid-template-columns: repeat(2, minmax(0, 1fr)); }
