@@ -36,3 +36,25 @@
   filters.hidden = false;
   showCategory("all");
 })();
+
+/* Screens gallery: open a screen full size. Without JS the link opens the image itself. */
+(function () {
+  var links = document.querySelectorAll(".screens a.shot");
+  if (!links.length || typeof HTMLDialogElement !== "function") return;
+  var d = document.createElement("dialog");
+  d.className = "shot-viewer";
+  d.innerHTML = '<button type="button" aria-label="Close">\u00d7</button><img alt="" /><p></p>';
+  document.body.appendChild(d);
+  var img = d.querySelector("img"), cap = d.querySelector("p");
+  d.addEventListener("click", function () { d.close(); });
+  links.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var src = a.querySelector("img"), fc = a.closest("figure") && a.closest("figure").querySelector("figcaption");
+      img.src = a.getAttribute("href");
+      img.alt = src ? src.alt : "";
+      cap.textContent = fc ? fc.textContent : "";
+      d.showModal();
+    });
+  });
+})();
