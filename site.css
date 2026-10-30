@@ -3876,3 +3876,176 @@ header.nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ---------- homepage: hero pills and new product sections ---------- */
+.home-hero h1.hero-long {
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+}
+.hero-pills {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero-pills li {
+  padding: 5px 12px;
+  border: 1px solid #3b4b5e;
+  border-radius: 999px;
+  background: #ffffff0d;
+  color: #d7dee7;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.section-lead {
+  max-width: 64ch;
+  margin: -14px 0 32px;
+  color: #536073;
+  font-size: 1.05rem;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.info-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 960px) {
+  .info-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .info-grid-4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.info-card {
+  padding: 22px 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  min-width: 0;
+}
+.info-card h3 {
+  font-family: Inter, system-ui, sans-serif;
+  text-transform: none;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.info-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.info-card ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.home-reports .info-card {
+  background: var(--cream);
+}
+.home-reports .product-points {
+  margin-top: 28px;
+}
+.home-engineers {
+  background: var(--navy);
+  color: #fff;
+}
+.home-engineers .section-heading .eyebrow {
+  color: #f1a675;
+}
+.home-engineers .section-heading h2 {
+  color: #fff;
+}
+.home-engineers .section-lead {
+  color: var(--muted-on-navy);
+}
+.home-engineers .info-card {
+  background: var(--navy-2);
+  border-color: var(--line-on-navy);
+}
+.home-engineers .info-card p {
+  color: #c3ccd8;
+}
+.compliance-note {
+  margin-top: 24px;
+  max-width: 78ch;
+  padding: 16px 18px;
+  border-left: 3px solid var(--orange);
+  background: var(--cream);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.home-office .product-points {
+  margin: 0;
+  max-width: 70ch;
+}
+
+/* ---------- cookie banner ---------- */
+.cookie-banner {
+  position: fixed;
+  left: max(16px, env(safe-area-inset-left, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  padding: 16px 20px;
+  background: var(--navy);
+  color: #fff;
+  border: 1px solid var(--line-on-navy);
+  border-radius: 10px;
+  box-shadow: 0 18px 40px #060c1959;
+}
+.cookie-banner[hidden] {
+  display: none;
+}
+.cookie-banner p {
+  flex: 1 1 320px;
+  color: #d7dee7;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.cookie-banner a {
+  color: #fff;
+}
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cookie-settings-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #d7dee7;
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-align: left;
+}
+.cookie-settings-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.cookie-settings-inline {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--orange-deep);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

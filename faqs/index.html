@@ -3,6 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier "Accept All" choice before the Google tag loads
+      try {
+        if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+      // Conversion trigger function for "Book a demo" clicks/form submits
+      function gtag_report_conversion(url) {
+        var event = window.event;
+        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
+        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+            'value': 1.0,
+            'currency': 'GBP'
+          });
+          return true;
+        }
+        var done = false;
+        var callback = function () {
+          if (done) return;
+          done = true;
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+          'value': 1.0,
+          'currency': 'GBP',
+          'event_callback': callback
+        });
+        // Still open the page if the tag is blocked or slow to reply
+        setTimeout(callback, 1000);
+        return false;
+      }
+    </script>
     <title>FAQs — Compliar</title>
     <meta
       name="description"
@@ -30,8 +91,9 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=48ad3f6035a4" />
+    <link rel="stylesheet" href="/site.css?v=dca9b84f24e7" />
     <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
@@ -67,7 +129,7 @@
             target="_blank"
             rel="noopener"
             >Sign in</a
-          ><a class="btn btn-primary btn-sm" href="/contact/#book-a-demo"
+          ><a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');"
             >Request a demo</a
           >
         </div>
@@ -83,7 +145,7 @@
               <li><a href="/about/">About</a></li>
               <li><a href="/faqs/" aria-current="page">FAQs</a></li>
               <li><a href="/resources/">Resources</a></li>
-              <li><a href="/contact/#book-a-demo">Request a demo</a></li>
+              <li><a href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');">Request a demo</a></li>
               <li>
                 <a
                   href="https://app.compliar.co.uk"
@@ -144,7 +206,7 @@
             <details class="faq-item">
               <summary>How do I get started?</summary>
               <p>
-                <a href="/contact/#book-a-demo">Request a demo</a> and we will walk through your own jobs. If Compliar fits, we set up your account and a 30-day free trial, with no card required. We can also help with set-up and moving your data across if you would like it.
+                <a href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');">Request a demo</a> and we will walk through your own jobs. If Compliar fits, we set up your account and a 30-day free trial, with no card required. We can also help with set-up and moving your data across if you would like it.
               </p>
             </details>
             <details class="faq-item">
@@ -336,7 +398,7 @@
                 (orders of 10 to 1,000, in tens), which you activate onto a site
                 by scanning, or printed stickers made out to a named site at £4
                 each + VAT. Postage is £3.95 + VAT per order for either. There is no self-serve sign-up:
-                <a href="/contact/#book-a-demo">request a demo</a> and Compliar
+                <a href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');">request a demo</a> and Compliar
                 sets up the account. It is for UK sites only and works to
                 British Standards.
                 <a href="/log-book/">More about the log book</a>.
@@ -391,7 +453,7 @@
           <div class="final-ctas">
             <a
               class="btn btn-primary"
-              href="/contact/#book-a-demo"
+              href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');"
               >Request a demo</a
             ><a class="btn btn-ghost-on-navy" href="/getting-started/">How getting started works</a>
           </div>
@@ -450,6 +512,7 @@
             <li><a href="/terms/">Terms of service</a></li>
             <li><a href="/privacy/">Privacy notice</a></li>
             <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>
         <div class="foot-col">

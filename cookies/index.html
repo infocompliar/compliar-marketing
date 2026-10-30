@@ -3,8 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier "Accept All" choice before the Google tag loads
+      try {
+        if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+      // Conversion trigger function for "Book a demo" clicks/form submits
+      function gtag_report_conversion(url) {
+        var event = window.event;
+        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
+        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+            'value': 1.0,
+            'currency': 'GBP'
+          });
+          return true;
+        }
+        var done = false;
+        var callback = function () {
+          if (done) return;
+          done = true;
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+          'value': 1.0,
+          'currency': 'GBP',
+          'event_callback': callback
+        });
+        // Still open the page if the tag is blocked or slow to reply
+        setTimeout(callback, 1000);
+        return false;
+      }
+    </script>
     <title>Cookies — Compliar</title>
-    <meta name="description" content="This website sets no cookies. It uses cookie-free page counting. What the Compliar application stores in your browser and why." />
+    <meta name="description" content="Which cookies compliar.co.uk uses, how to change your choice, and what the Compliar application stores in your browser and why." />
     <link rel="canonical" href="https://compliar.co.uk/cookies/" />
     <meta name="theme-color" content="#1B2430" />
     <meta property="og:type" content="website" />
@@ -12,7 +73,7 @@
     <meta property="og:title" content="Cookies — Compliar" />
     <meta
       property="og:description"
-      content="This website sets no cookies. It uses cookie-free page counting. What the Compliar application stores in your browser and why."
+      content="Which cookies compliar.co.uk uses, how to change your choice, and what the Compliar application stores in your browser and why."
     />
     <meta property="og:url" content="https://compliar.co.uk/cookies/" />
     <meta property="og:image" content="https://compliar.co.uk/og.png" />
@@ -27,8 +88,9 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=48ad3f6035a4" />
+    <link rel="stylesheet" href="/site.css?v=dca9b84f24e7" />
     <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
@@ -64,7 +126,7 @@
             target="_blank"
             rel="noopener"
             >Sign in</a
-          ><a class="btn btn-primary btn-sm" href="/contact/#book-a-demo"
+          ><a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');"
             >Request a demo</a
           >
         </div>
@@ -80,7 +142,7 @@
               <li><a href="/about/">About</a></li>
               <li><a href="/faqs/">FAQs</a></li>
               <li><a href="/resources/">Resources</a></li>
-              <li><a href="/contact/#book-a-demo">Request a demo</a></li>
+              <li><a href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');">Request a demo</a></li>
               <li>
                 <a
                   href="https://app.compliar.co.uk"
@@ -98,25 +160,49 @@
 <section class="page-intro">
   <div class="wrap">
     <div class="eyebrow">Legal · Cookies</div>
-    <h1>No cookies<br />on this site.</h1>
+    <h1>Cookies, and<br />your choice.</h1>
     <p>
-      This website sets no cookies and loads no advertising or tracking scripts. It uses cookie-free page counting. Here
-      is what that means in practice, and what the Compliar application does differently.
+      This website only sets analytics and advertising cookies if you choose &ldquo;Accept All&rdquo;.
+      Here is what each choice means, how to change it, and what the Compliar application stores.
     </p>
   </div>
 </section>
 <section class="band">
   <div class="wrap prose">
-    <p><strong>Last updated:</strong> 22 October 2026.</p>
+    <p><strong>Last updated:</strong> 30 October 2026.</p>
 
     <h2>compliar.co.uk</h2>
     <p>
-      The pages on this site are static. They do not set cookies, do not store anything in your
-      browser and do not include pixels or embedded content that could track you. The pages make
-      two third-party requests: typefaces from Google Fonts, and Cloudflare Web Analytics, which
-      counts page views without cookies, without storing anything in your browser and without
-      tracking you across sites; see our <a href="/privacy/">Privacy notice</a>. If we ever add
-      analytics that uses cookies we will ask for your consent first and update this page.
+      On your first visit a banner asks whether you accept optional cookies. You can change your
+      choice at any time with <button type="button" class="cookie-settings-inline" data-cookie-settings>Cookie settings</button>
+      (also in the footer of every page).
+    </p>
+    <h3>Essential (always on)</h3>
+    <p>
+      We store your cookie choice in your browser's local storage under the name
+      <code>compliar_cookie_consent</code>, so we don't ask again on every page. It is not used
+      for anything else.
+    </p>
+    <h3>Analytics and marketing (only if you choose &ldquo;Accept All&rdquo;)</h3>
+    <p>
+      We use the Google tag for Google Ads to measure which adverts lead to demo requests. If you
+      accept, Google may set cookies such as <code>_gcl_au</code> on compliar.co.uk (kept for up to
+      90 days) and its own cookies on Google domains such as doubleclick.net. Google acts as an
+      independent controller for this data; see
+      <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">how Google uses information from sites that use its services</a>.
+    </p>
+    <p>
+      If you choose &ldquo;Essential Only&rdquo;, or make no choice, no analytics or advertising
+      cookies are set. We use Google Consent Mode, so the Google tag still sends Google limited,
+      cookieless signals (for example that a page was viewed or a demo button was clicked, with
+      your IP address and browser details as part of the request) so that conversions can be
+      modelled in aggregate.
+    </p>
+    <h3>Other third parties</h3>
+    <p>
+      Typefaces load from Google Fonts, and Cloudflare Web Analytics counts page views without
+      cookies, without storing anything in your browser and without tracking you across sites;
+      see our <a href="/privacy/">Privacy notice</a>.
     </p>
 
     <h2>The Compliar application (app.compliar.co.uk)</h2>
@@ -133,8 +219,9 @@
 
     <h2>Managing storage</h2>
     <p>
-      You can clear site data for compliar.co.uk and app.compliar.co.uk in your browser settings at
-      any time. Clearing it signs you out and removes unsent drafts.
+      Use Cookie settings on any page to change your choice on compliar.co.uk. You can also clear
+      site data for compliar.co.uk and app.compliar.co.uk in your browser settings at any time.
+      Clearing it for the application signs you out and removes unsent drafts.
     </p>
 
     <h2>Questions</h2>
@@ -197,6 +284,7 @@
             <li><a href="/terms/">Terms of service</a></li>
             <li><a href="/privacy/">Privacy notice</a></li>
             <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>
         <div class="foot-col">

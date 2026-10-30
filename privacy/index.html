@@ -3,6 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier "Accept All" choice before the Google tag loads
+      try {
+        if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+      // Conversion trigger function for "Book a demo" clicks/form submits
+      function gtag_report_conversion(url) {
+        var event = window.event;
+        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
+        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+            'value': 1.0,
+            'currency': 'GBP'
+          });
+          return true;
+        }
+        var done = false;
+        var callback = function () {
+          if (done) return;
+          done = true;
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+          'value': 1.0,
+          'currency': 'GBP',
+          'event_callback': callback
+        });
+        // Still open the page if the tag is blocked or slow to reply
+        setTimeout(callback, 1000);
+        return false;
+      }
+    </script>
     <title>Privacy notice — Compliar</title>
     <meta name="description" content="How Compliar Ltd collects and uses personal data on this website, for enquiries and in the Compliar application, and your rights." />
     <link rel="canonical" href="https://compliar.co.uk/privacy/" />
@@ -27,8 +88,9 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=48ad3f6035a4" />
+    <link rel="stylesheet" href="/site.css?v=dca9b84f24e7" />
     <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
@@ -64,7 +126,7 @@
             target="_blank"
             rel="noopener"
             >Sign in</a
-          ><a class="btn btn-primary btn-sm" href="/contact/#book-a-demo"
+          ><a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');"
             >Request a demo</a
           >
         </div>
@@ -80,7 +142,7 @@
               <li><a href="/about/">About</a></li>
               <li><a href="/faqs/">FAQs</a></li>
               <li><a href="/resources/">Resources</a></li>
-              <li><a href="/contact/#book-a-demo">Request a demo</a></li>
+              <li><a href="/contact?subject=Demo+request" onclick="return gtag_report_conversion('/contact?subject=Demo+request');">Request a demo</a></li>
               <li>
                 <a
                   href="https://app.compliar.co.uk"
@@ -107,7 +169,7 @@
 </section>
 <section class="band">
   <div class="wrap prose">
-    <p><strong>Last updated:</strong> 22 October 2026.</p>
+    <p><strong>Last updated:</strong> 30 October 2026.</p>
 
     <h2>Who we are</h2>
     <p>
@@ -124,8 +186,15 @@
 
     <h2>This website</h2>
     <p>
-      The website is a set of static pages. It does not set cookies, does not run advertising scripts, and does
-      not ask you to create an account. We use Cloudflare Web Analytics to count page views: it
+      The website is a set of static pages and does not ask you to create an account. We use the
+      Google tag for Google Ads to measure which of our adverts lead to demo requests. Advertising
+      and analytics cookies are only set if you choose &ldquo;Accept All&rdquo; in the cookie
+      banner (lawful basis: consent, which you can withdraw at any time with Cookie settings in the
+      footer). If you choose &ldquo;Essential Only&rdquo;, Google still receives limited cookieless
+      signals, such as a page view or demo-button click with your IP address and browser details,
+      which it uses to model conversions in aggregate (lawful basis: our legitimate interest in
+      measuring our advertising). Google acts as an independent controller for this data; our
+      <a href="/cookies/">Cookies page</a> has the details. We use Cloudflare Web Analytics to count page views: it
       sets no cookies, stores nothing in your browser and does not fingerprint or track you across
       sites. Cloudflare receives your IP address and browser details to count the visit and gives
       us totals only (pages viewed, referring sites, country and device type). The typefaces are loaded from
@@ -274,6 +343,7 @@
             <li><a href="/terms/">Terms of service</a></li>
             <li><a href="/privacy/">Privacy notice</a></li>
             <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>
         <div class="foot-col">
