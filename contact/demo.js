@@ -51,3 +51,24 @@
   });
   button.hidden = false;
 })();
+
+// Arriving from a "Book a demo" button (/contact?subject=Demo+request):
+// jump to the request card, and count a Google Ads conversion only when the
+// visitor actually starts a demo request (email, copy address or trial email).
+(() => {
+  const params = new URLSearchParams(location.search);
+  const card = document.getElementById("book-a-demo");
+  if (card && params.has("subject") && !location.hash) {
+    card.scrollIntoView();
+  }
+  function convert() {
+    if (typeof gtag_report_conversion === "function") gtag_report_conversion();
+  }
+  const targets = [
+    document.getElementById("demo-email"),
+    document.getElementById("demo-address"),
+    document.getElementById("demo-copy"),
+    document.querySelector('a[href^="mailto:enquiry@compliar.co.uk?subject=Compliar%20demo%20and%20free%20trial"]'),
+  ];
+  targets.forEach((el) => el && el.addEventListener("click", convert));
+})();

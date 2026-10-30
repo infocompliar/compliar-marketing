@@ -3,12 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Compliar — Fire, Security &amp; Electrical Contractor Software
-    </title>
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier "Accept All" choice before the Google tag loads
+      try {
+        if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+      // Conversion trigger function for "Book a demo" clicks/form submits
+      function gtag_report_conversion(url) {
+        var event = window.event;
+        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
+        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+            'value': 1.0,
+            'currency': 'GBP'
+          });
+          return true;
+        }
+        var done = false;
+        var callback = function () {
+          if (done) return;
+          done = true;
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
+          'value': 1.0,
+          'currency': 'GBP',
+          'event_callback': callback
+        });
+        // Still open the page if the tag is blocked or slow to reply
+        setTimeout(callback, 1000);
+        return false;
+      }
+    </script>
+    <title>Compliar | Fire, Security &amp; Electrical Field Service Software</title>
     <meta
       name="description"
-      content="From first enquiry to final handover: design, take-offs, pricing, RAMS, site work, certificates and fire safety logbooks in one app. Request a demo to see Compliar on your own jobs."
+      content="All-in-one compliance, planned maintenance, and field app for UK fire, security, and electrical contractors. Book a demo today."
     />
     <link rel="canonical" href="https://compliar.co.uk/" />
     <meta name="theme-color" content="#1B2430" />
@@ -16,11 +75,11 @@
     <meta property="og:site_name" content="Compliar" />
     <meta
       property="og:title"
-      content="Compliar — Fire, Security &amp; Electrical Contractor Software"
+      content="Compliar | Fire, Security &amp; Electrical Field Service Software"
     />
     <meta
       property="og:description"
-      content="From first enquiry to final handover: design, take-offs, pricing, RAMS, site work, certificates and fire safety logbooks in one app. Request a demo to see Compliar on your own jobs."
+      content="All-in-one compliance, planned maintenance, and field app for UK fire, security, and electrical contractors. Book a demo today."
     />
     <meta property="og:url" content="https://compliar.co.uk/" />
     <meta property="og:image" content="https://compliar.co.uk/og.png" />
@@ -35,8 +94,9 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=48ad3f6035a4" />
+    <link rel="stylesheet" href="/site.css?v=dca9b84f24e7" />
     <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
     <script src="/home.js" defer></script>
     <script type="application/ld+json">
       {
@@ -92,7 +152,7 @@
             target="_blank"
             rel="noopener"
             >Sign in</a
-          ><a class="btn btn-primary btn-sm" href="/contact/#book-a-demo"
+          ><a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request"
             >Request a demo</a
           >
         </div>
@@ -108,7 +168,7 @@
               <li><a href="/about/">About</a></li>
               <li><a href="/faqs/">FAQs</a></li>
               <li><a href="/resources/">Resources</a></li>
-              <li><a href="/contact/#book-a-demo">Request a demo</a></li>
+              <li><a href="/contact?subject=Demo+request">Request a demo</a></li>
               <li>
                 <a
                   href="https://app.compliar.co.uk"
@@ -127,22 +187,32 @@
         <div class="wrap hero-grid">
           <div>
             <div class="eyebrow">Built for the way you work</div>
-            <h1>
-              From enquiry<br />to handover.<br /><span>All sorted.</span>
+            <h1 class="hero-long">
+              Every site, every test, every report —
+              <span>in one place.</span>
             </h1>
             <p class="hero-sub">
-              A comprehensive management system for the electrical, fire
-              protection &amp; life safety and security industries. Reports,
-              certificates, RAMS, designs, quotes, invoicing, handover files
-              and much more, all in one place.
+              Compliar runs planned maintenance, engineer visits, certificates
+              and invoicing for fire, security and electrical contractors. The
+              office sees the whole picture. Engineers get a fast app that keeps
+              working without signal.
             </p>
+            <ul class="hero-pills" aria-label="Systems Compliar covers">
+              <li>Fire alarm</li>
+              <li>Emergency lighting</li>
+              <li>Extinguishers</li>
+              <li>Intruder</li>
+              <li>CCTV</li>
+              <li>Access control</li>
+              <li>Electrical &amp; PAT</li>
+            </ul>
             <div class="hero-ctas">
               <a
                 class="btn btn-primary"
-                href="/contact/#book-a-demo"
-                >Request a demo</a
-              ><a class="btn btn-ghost-on-navy" href="#how-it-works"
-                >See how it works</a
+                href="/contact?subject=Demo+request"
+                >Book a demo</a
+              ><a class="btn btn-ghost-on-navy" href="#reports"
+                >See the reports</a
               >
             </div>
             <p class="trial-note">
@@ -229,6 +299,194 @@
           </p>
         </div>
       </section>
+
+      <section
+        class="band product-section home-reports"
+        id="reports"
+        aria-labelledby="reports-title"
+      >
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Reporting catalogue</div>
+              <h2 id="reports-title">Four kinds of answer. One place to find them.</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            Every report sits in one searchable catalogue, grouped the way you
+            run the business. Star favourites, filter by date, customer and
+            discipline, drill into the rows behind any number, and download a
+            CSV of exactly what you're looking at.
+          </p>
+          <div class="info-grid info-grid-4">
+            <article class="info-card">
+              <h3>Operations</h3>
+              <ul>
+                <li>Property &amp; task map</li>
+                <li>PM forecast month by month</li>
+                <li>Compliance status &amp; SLA</li>
+                <li>Task completion times</li>
+                <li>Data quality checks</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Finance</h3>
+              <ul>
+                <li>Work in progress (ready to invoice)</li>
+                <li>Profitability &amp; margin</li>
+                <li>Revenue forecast from contracts and accepted quotes</li>
+                <li>Invoicing &amp; cash</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Sales &amp; quoting</h3>
+              <ul>
+                <li>Sales by salesperson</li>
+                <li>Defect quoting (raised vs won)</li>
+                <li>Product &amp; material usage</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Workforce</h3>
+              <ul>
+                <li>Technician activity (visits, time on site, travel)</li>
+                <li>Scheduled value per engineer</li>
+              </ul>
+            </article>
+          </div>
+          <ul class="product-points">
+            <li>Live headline metrics on each card</li>
+            <li>
+              PM and revenue forecasts that flag unpriced or uncontracted work,
+              so numbers are never artificially inflated
+            </li>
+            <li>Instant CSV export of filtered data</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="band home-engineers" aria-labelledby="engineers-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">For engineers · Mobile app</div>
+              <h2 id="engineers-title">A calm app for busy sites.</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            Four tabs — Home, Jobs (with Sites), Time, and Toolbox — plus
+            Countersign for supervisors. Big targets, zero clutter, and works
+            when signal drops in plant rooms or basements.
+          </p>
+          <div class="info-grid">
+            <article class="info-card">
+              <h3>Works without signal</h3>
+              <p>
+                Tap “Save today's work” before entering signal dead-zones. Jobs,
+                sites, assets and guides stay on the device; results sync
+                automatically once reconnected.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Scan, test, move on</h3>
+              <p>
+                Scan asset tags (QR code or barcode). Tap Pass, Fail, or No test
+                with instant autosave.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Defects &amp; parts</h3>
+              <p>
+                Log defects with prepopulated remarks, photos, and parts. Flags
+                quote suggestions directly to the office.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Toolbox</h3>
+              <p>
+                On-demand Library manuals and datasheets, van Stock, kit
+                Requests, Leave, and technician profile.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Office broadcasts</h3>
+              <p>
+                Important announcements pop up in the Toolbox with unread badges
+                until acknowledged.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="band product-section home-disciplines"
+        aria-labelledby="disciplines-title"
+      >
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">Multi-discipline &amp; compliance</div>
+              <h2 id="disciplines-title">One workflow across every system you maintain.</h2>
+            </div>
+          </div>
+          <ul class="standards-grid">
+            <li>
+              <b>Fire alarm</b>
+              <span>BS&nbsp;5839-1 / BS&nbsp;5839-6 design components, zone charts, cause-and-effect matrices, instant inspection records.</span>
+            </li>
+            <li>
+              <b>Emergency lighting</b>
+              <span>Auto-printed or blank FAILED labels, BS&nbsp;5266-1 layout checklists.</span>
+            </li>
+            <li>
+              <b>Extinguishers</b>
+              <span>Tag scanning, service intervals, replacement records.</span>
+            </li>
+            <li>
+              <b>Security (intruder, CCTV, access)</b>
+              <span>PD&nbsp;6662 &amp; BS&nbsp;8243 checklists, defect photos, remedial quotes.</span>
+            </li>
+            <li>
+              <b>Electrical</b>
+              <span>Schedules of test results on mobile and desktop. EICR, EIC and Minor Works forms laid out around BS&nbsp;7671, plus PAT testing with retest scheduling.</span>
+            </li>
+          </ul>
+          <p class="compliance-note">
+            Compliar provides record-keeping and certificate workflows. It
+            doesn't certify work or grant accreditation, and it isn't affiliated
+            with or endorsed by BAFE, NSI, SSAIB or any certification body. Your
+            competent engineers and certification scheme remain responsible for
+            the standard of work and documents issued.
+          </p>
+        </div>
+      </section>
+
+      <section class="band home-office" aria-labelledby="office-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">For the office</div>
+              <h2 id="office-title">Know what needs doing before Monday's meeting.</h2>
+            </div>
+          </div>
+          <ul class="product-points">
+            <li>
+              Opt-in weekly or monthly automated email digests sent to selected
+              office users.
+            </li>
+            <li>
+              Live summary of overdue maintenance visits, unquoted critical
+              defects, and WIP ready to invoice with totals.
+            </li>
+            <li>
+              Announcement history showing delivery and acknowledgment status
+              for every engineer.
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <section class="band band-tight standards-band" aria-labelledby="standards-title">
         <div class="wrap">
           <div class="section-heading">
@@ -1019,7 +1277,7 @@
           <details>
             <summary>How do I get started?</summary>
             <p>
-              <a href="/contact/#book-a-demo">Request a demo</a> and we will walk through your own jobs. If Compliar fits, we set up your account and a 30-day free trial, with no card required. We can also help with set-up and moving your data across if you would like it.
+              <a href="/contact?subject=Demo+request">Request a demo</a> and we will walk through your own jobs. If Compliar fits, we set up your account and a 30-day free trial, with no card required. We can also help with set-up and moving your data across if you would like it.
             </p>
           </details>
         </div>
@@ -1027,14 +1285,14 @@
       <section class="final-cta band">
         <div class="wrap">
           <div class="eyebrow">Your next job starts here</div>
-          <h2>Less paperwork. More progress.</h2>
-          <p>Request a demo and we will walk through your own jobs. After your demo we can set you up with a 30-day free trial. No card required.</p>
+          <h2>See it with your own sites.</h2>
+          <p>A walkthrough with our team, then a free trial on your own data.</p>
           <div class="final-ctas">
             <a
               class="btn btn-primary"
-              href="/contact/#book-a-demo"
-              >Request a demo</a
-            ><a class="btn btn-ghost-on-navy" href="/getting-started/">How getting started works</a>
+              href="/contact?subject=Demo+request"
+              >Book a demo</a
+            >
           </div>
         </div>
       </section>
@@ -1091,6 +1349,7 @@
             <li><a href="/terms/">Terms of service</a></li>
             <li><a href="/privacy/">Privacy notice</a></li>
             <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>
         <div class="foot-col">
