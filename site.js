@@ -1,8 +1,7 @@
 // Preserve links to sections moved off the original homepage.
 const legacySections = {
   features: "/features/",
-  certificates: "/features/#certificates",
-  pricing: "/pricing/",
+  certificates: "/#standards-matrix",
   faq: "/faqs/",
   roadmap: "/about/#roadmap",
 };
@@ -24,7 +23,7 @@ if (menu) {
   });
 }
 
-// Header dropdowns (Disciplines & Trades, Free Tools): click, hover and keyboard.
+// Header dropdowns (Disciplines & Trades, Tools): click, hover and keyboard.
 (() => {
   const toggles = [...document.querySelectorAll(".mega-toggle")];
   if (!toggles.length) return;
@@ -64,7 +63,7 @@ if (menu) {
       if (!item.contains(event.relatedTarget)) set(false);
     });
     panel.addEventListener("click", (event) => {
-      if (event.target.closest("a")) set(false);
+      if (event.target.closest("a, [data-standards-modal-open]")) set(false);
     });
   });
 

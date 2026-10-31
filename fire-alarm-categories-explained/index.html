@@ -14,9 +14,20 @@
         'ad_personalization': 'denied',
         'analytics_storage': 'denied'
       });
-      // Re-apply an earlier "Accept All" choice before the Google tag loads
+      // Re-apply an earlier consent choice before the Google tag loads
       try {
-        if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+        var rawPrefs = localStorage.getItem('compliar_cookie_prefs');
+        if (rawPrefs) {
+          var prefs = JSON.parse(rawPrefs);
+          var adState = prefs.marketing ? 'granted' : 'denied';
+          var anState = prefs.analytics ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            'ad_storage': adState,
+            'ad_user_data': adState,
+            'ad_personalization': adState,
+            'analytics_storage': anState
+          });
+        } else if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
           gtag('consent', 'update', {
             'ad_storage': 'granted',
             'ad_user_data': 'granted',
@@ -181,7 +192,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=5f3e25667e4e" />
+    <link rel="stylesheet" href="/site.css?v=ea771e88deb6" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
@@ -190,161 +201,188 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="/" aria-label="Compliar home"
-          ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#E07B39" /></svg
-          ><span class="brand-text">Compliar</span></a
-        >
+        <a class="brand" href="/" aria-label="Compliar home">
+          <svg class="brand-shield" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+            <path d="M14 2L4 6.2V13.6C4 20.1 8.3 25.6 14 27C19.7 25.6 24 20.1 24 13.6V6.2L14 2Z" fill="#1F2D3D" stroke="#E07B39" stroke-width="1.8"/>
+            <path d="M18.5 8.5H11.5L9 11V17L11.5 19.5H18.5V16.8H12.5L11.3 15.6V12.4L12.5 11.2H18.5V8.5Z" fill="#E07B39"/>
+            <path d="M13.5 14.2L15.2 15.9L19.2 11.9" stroke="#8CE0AB" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="brand-wordmark">
+            <span class="brand-text">Compliar</span>
+            <span class="brand-badge">UK COMPLIANCE</span>
+          </span>
+        </a>
+
         <nav aria-label="Main navigation">
           <ul class="nav-links">
+            <!-- 1. Disciplines & Trades (Strictly grouped by 5 trade sectors A-E) -->
             <li class="has-mega">
               <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
                 Disciplines &amp; Trades <span class="chev" aria-hidden="true">▾</span>
               </button>
-              <div class="mega mega-v3" id="mega-disciplines" hidden>
-                <ul class="disc-grid">
-                  <li>
-                    <a class="disc-item" href="/fire-alarm-certificate-software/">
-                      <div class="disc-top"><strong>Fire Detection &amp; Alarms</strong><span class="std-badge">BS 5839-1 &amp; BS 5839-6</span></div>
-                      <span class="disc-desc">Design, Installation, Commissioning, Verification &amp; Inspection</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Emergency Lighting</strong><span class="std-badge">BS 5266-1</span></div>
-                      <span class="disc-desc">Periodic Inspection, Design &amp; Completion</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/eicr-and-electrical-certificate-software/">
-                      <div class="disc-top"><strong>Electrical Installation (EIC)</strong><span class="std-badge">BS 7671 (A4:2026)</span></div>
-                      <span class="disc-desc">New circuits, consumer units, full installs — separate from inspection</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/eicr-and-electrical-certificate-software/">
-                      <div class="disc-top"><strong>Fixed Wire Testing (EICR)</strong><span class="std-badge">BS 7671 (A4:2026)</span></div>
-                      <span class="disc-desc">Verified A4 inspection schedule, N/V observation codes, PME/PNB options</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/eicr-and-electrical-certificate-software/">
-                      <div class="disc-top"><strong>Minor Electrical Works (MEIWC)</strong><span class="std-badge">BS 7671 (A4:2026)</span></div>
-                      <span class="disc-desc">Additions and alterations without new circuits</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Portable Appliance Testing (PAT)</strong><span class="std-badge">IET Code of Practice 5th Ed</span></div>
-                      <span class="disc-desc">Appliance registers, Code 128 / QR tagging, PASS/FAIL labels</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Fire Extinguishers</strong><span class="std-badge">BS 5306-3 &amp; BS 5306-8</span></div>
-                      <span class="disc-desc">Commissioning, annual &amp; extended servicing</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Intruder &amp; Hold-Up Alarms</strong><span class="std-badge">BS EN 50131 &amp; PD 6662</span></div>
-                      <span class="disc-desc">System proposals, commissioning &amp; maintenance</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>CCTV &amp; Video Surveillance</strong><span class="std-badge">BS EN 62676 &amp; BS 8418</span></div>
-                      <span class="disc-desc">Surveillance schedules and monitored CCTV</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Access Control</strong><span class="std-badge">BS EN 60839-11</span></div>
-                      <span class="disc-desc">Electronic access control inspection &amp; maintenance</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Fire Dampers &amp; AOV Ventilation</strong><span class="std-badge">BS 9999 &amp; BS 7346-8</span></div>
-                      <span class="disc-desc">Smoke control and damper testing records</span>
-                    </a>
-                  </li>
-                </ul>
-                <p class="mega-foot">32 disciplines under one login. <a href="/features/#certificates" style="display:inline;padding:0;margin:0;color:#f1a675">See all certificates &amp; standards ↗</a></p>
+              <div class="mega mega-sectors" id="mega-disciplines" hidden>
+                <div class="sector-mega-grid">
+                  <!-- A. Electrical Installation & Testing -->
+                  <div class="sector-col">
+                    <div class="sector-col-head">
+                      <span class="sector-letter">A</span>
+                      <strong>Electrical Installation &amp; Testing</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EIC</strong> — Electrical Installation Certificate <span class="std-badge">BS 7671:2018+A4:2026</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EICR</strong> — Condition Report / Fixed Wire <span class="std-badge">BS 7671:2018+A4:2026</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>MEIWC</strong> — Minor Electrical Works <span class="std-badge">BS 7671:2018+A4:2026</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>PAT</strong> — In-Service Equipment Testing <span class="std-badge">IET 5th Ed</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>EV Charging</strong> — Chargepoint Installation <span class="std-badge">IET / BS 7671</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Solar PV &amp; Battery Storage</strong> — EESS <span class="std-badge">MCS / BS 7671</span></a></li>
+                    </ul>
+                  </div>
+
+                  <!-- B. Fire Detection & Alarm Systems + C. Emergency Lighting -->
+                  <div class="sector-col">
+                    <div class="sector-col-head">
+                      <span class="sector-letter">B</span>
+                      <strong>Fire Detection &amp; Alarm Systems</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Commercial Fire Alarms</strong> — Design, Commissioning, Acceptance, Modification &amp; Servicing <span class="std-badge">BS 5839-1</span></a></li>
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Domestic Smoke &amp; Heat Alarms</strong> — Grade D/F Installation &amp; Testing <span class="std-badge">BS 5839-6</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Voice Alarm Systems (PA/VA)</strong> — Periodic Servicing &amp; Intelligibility <span class="std-badge">BS 5839-8</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>False Alarm Management</strong> — Cause, Investigation &amp; Audit Reports <span class="std-badge">BS 5839-1 cl 14.22</span></a></li>
+                    </ul>
+
+                    <div class="sector-col-head" style="margin-top:14px">
+                      <span class="sector-letter">C</span>
+                      <strong>Emergency Lighting</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/#standards-matrix"><strong>Periodic Inspection &amp; 3-Hour Discharge Test</strong> — Complete luminaire schedules <span class="std-badge">BS 5266-1 / BS EN 1838</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Completion &amp; Commissioning Certificates</strong> — New design sign-offs <span class="std-badge">BS 5266-1</span></a></li>
+                    </ul>
+                  </div>
+
+                  <!-- D. Security, CCTV & Access Control + E. Passive Fire & Suppression -->
+                  <div class="sector-col">
+                    <div class="sector-col-head">
+                      <span class="sector-letter">D</span>
+                      <strong>Security, CCTV &amp; Access Control</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/#standards-matrix"><strong>Video Surveillance Systems (CCTV)</strong> — Commissioning &amp; Maintenance <span class="std-badge">BS EN 62676 / BS 8418</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Intruder &amp; Hold-Up Alarms</strong> — Grade 2/3/4 Systems <span class="std-badge">BS EN 50131 / PD 6662</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Access Control Systems</strong> — Door Controllers &amp; Readers <span class="std-badge">BS EN 60839</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Automated Gates &amp; Barriers</strong> — Force testing &amp; safety audits <span class="std-badge">DHF TS 011 / BS EN 12453</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Nurse Call &amp; Assistance Alarms</strong> — Call points &amp; overdoors <span class="std-badge">HTM 08-03</span></a></li>
+                    </ul>
+
+                    <div class="sector-col-head" style="margin-top:14px">
+                      <span class="sector-letter">E</span>
+                      <strong>Passive Fire &amp; Suppression</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/#standards-matrix"><strong>Fire Extinguishers</strong> — Commissioning, Annual &amp; Extended Service <span class="std-badge">BS 5306-3 &amp; 8</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Dampers</strong> — Drop testing &amp; ductwork <span class="std-badge">BS 9999</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Dry &amp; Wet Risers</strong> — Visual &amp; pressure testing <span class="std-badge">BS 9990</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Smoke Control &amp; AOV Systems</strong> — Actuation &amp; maintenance <span class="std-badge">BS 7346</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Door Inspection</strong> — 20+ point compliance check <span class="std-badge">BS 8214</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mega-foot-bar">
+                  <span>All 5 trade sectors &amp; 32 certificate workflows included under one login.</span>
+                  <a class="btn btn-primary btn-sm" href="/#standards-matrix">See All Certificates &amp; British Standards →</a>
+                </div>
               </div>
             </li>
+
+            <!-- 2. QR Log Books -->
+            <li><a href="/#logbooks">QR Log Books</a></li>
+
+            <!-- 3. Stickers & Hardware -->
+            <li><a href="/#stickers">Stickers &amp; Hardware</a></li>
+
+            <!-- 4. Tools Dropdown -->
             <li class="has-mega">
               <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-tools">
-                Free Tools <span class="chev" aria-hidden="true">▾</span>
+                Tools <span class="chev" aria-hidden="true">▾</span>
               </button>
               <div class="mega mega-tools" id="mega-tools" hidden>
                 <ul class="disc-grid disc-grid-single">
                   <li>
                     <a class="disc-item" href="/#battery-calculator">
-                      <div class="disc-top"><strong>Standby Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
-                      <span class="disc-desc">Interactive BS 5839-1:2025 Annex E &amp; BS EN 50131 standby battery sizing</span>
+                      <div class="disc-top"><strong>Interactive Demonstration Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
+                      <span class="disc-desc">Illustrative 12V / 24V standby &amp; alarm capacity calculator with copyable summary</span>
                     </a>
                   </li>
                   <li>
-                    <a class="disc-item" href="/fire-alarm-battery-calculator/">
-                      <div class="disc-top"><strong>Full Battery Sizing Guide &amp; Worked Examples</strong><span class="std-badge">Annex E</span></div>
-                      <span class="disc-desc">Standalone calculator page with step-by-step Annex E formulas</span>
+                    <a class="disc-item" href="/#roi-calculator">
+                      <div class="disc-top"><strong>Contractor ROI &amp; Time Savings Estimator</strong><span class="std-badge">UK Trade Model</span></div>
+                      <span class="disc-desc">Estimate monthly admin hours saved, certificate turnaround speed &amp; remedial recovery</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#logbook-demo">
+                      <div class="disc-top"><strong>Live Interactive QR Logbook Demo</strong><span class="std-badge">Live Preview</span></div>
+                      <span class="disc-desc">Explore what building managers and fire officers see when scanning a panel sticker</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#stickers">
+                      <div class="disc-top"><strong>Printable Sticker &amp; Tag Studio</strong><span class="std-badge">300 DPI + Thermal</span></div>
+                      <span class="disc-desc">Preview real Harbourview QR tags, BS 5839-1 false alarm notices &amp; EM failed labels</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li><a href="/#qr-log-books">QR Log Books</a></li>
-            <li><a href="/#sticker-studio">Sticker Studio</a></li>
-            <li><a href="/#field-app">Field Mobile App</a></li>
-            <li><a href="/pricing/">Pricing</a></li>
-            <li><a href="/#our-story">Our Story</a></li>
+
+            <!-- 5. About -->
+            <li><a href="/#about">About</a></li>
+
+            <!-- 6. Pricing / ROI -->
+            <li><a href="/#pricing">Pricing / ROI</a></li>
           </ul>
         </nav>
+
         <div class="nav-cta">
-          <a class="sign-in" href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In</a>
-          <a class="btn btn-primary btn-sm" href="/contact/#book-a-demo">Book a 15-Min Walkthrough</a>
+          <a class="btn btn-ghost-on-navy btn-sm nav-interactive-cta" href="/#logbook-demo">Interactive Demo</a>
+          <a class="btn btn-primary btn-sm" href="/#contact-form">Book a Demo</a>
         </div>
+
         <details class="mobile-menu">
           <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
           <nav aria-label="Mobile navigation">
             <ul>
               <li>
                 <details>
-                  <summary>Disciplines &amp; Trades</summary>
+                  <summary>Disciplines &amp; Trades (A–E)</summary>
                   <ul>
-                      <li><a href="/fire-alarm-certificate-software/">Fire Detection &amp; Alarms <span class="std-badge-inline">BS 5839-1 &amp; BS 5839-6</span></a></li>
-                      <li><a href="/features/#certificates">Emergency Lighting <span class="std-badge-inline">BS 5266-1</span></a></li>
-                      <li><a href="/eicr-and-electrical-certificate-software/">Electrical Installation (EIC) <span class="std-badge-inline">BS 7671 (A4:2026)</span></a></li>
-                      <li><a href="/eicr-and-electrical-certificate-software/">Fixed Wire Testing (EICR) <span class="std-badge-inline">BS 7671 (A4:2026)</span></a></li>
-                      <li><a href="/eicr-and-electrical-certificate-software/">Minor Electrical Works (MEIWC) <span class="std-badge-inline">BS 7671 (A4:2026)</span></a></li>
-                      <li><a href="/features/#certificates">Portable Appliance Testing (PAT) <span class="std-badge-inline">IET Code of Practice 5th Ed</span></a></li>
-                      <li><a href="/features/#certificates">Fire Extinguishers <span class="std-badge-inline">BS 5306-3 &amp; BS 5306-8</span></a></li>
-                      <li><a href="/features/#certificates">Intruder &amp; Hold-Up Alarms <span class="std-badge-inline">BS EN 50131 &amp; PD 6662</span></a></li>
-                      <li><a href="/features/#certificates">CCTV &amp; Video Surveillance <span class="std-badge-inline">BS EN 62676 &amp; BS 8418</span></a></li>
-                      <li><a href="/features/#certificates">Access Control <span class="std-badge-inline">BS EN 60839-11</span></a></li>
-                      <li><a href="/features/#certificates">Fire Dampers &amp; AOV Ventilation <span class="std-badge-inline">BS 9999 &amp; BS 7346-8</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>A. Electrical:</strong> EIC, EICR, MEIWC, PAT, EV, Solar PV <span class="std-badge-inline">BS 7671:2018+A4:2026</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>B. Fire Alarms:</strong> Commercial, Domestic, PA/VA, False Alarms <span class="std-badge-inline">BS 5839-1 / 6 / 8</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>C. Emergency Lighting:</strong> Periodic 3-Hr &amp; Completion <span class="std-badge-inline">BS 5266-1</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>D. Security &amp; Access:</strong> CCTV, Intruder, Access, Gates, Nurse Call <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>E. Passive Fire:</strong> Extinguishers, Dampers, Risers, AOV, Fire Doors <span class="std-badge-inline">BS 5306 / 9999 / 8214</span></a></li>
+                    <li><a href="/#standards-matrix">See All Certificates &amp; British Standards →</a></li>
                   </ul>
                 </details>
               </li>
+              <li><a href="/#logbooks">QR Log Books</a></li>
+              <li><a href="/#stickers">Stickers &amp; Hardware</a></li>
               <li>
                 <details>
-                  <summary>Free Tools</summary>
+                  <summary>Tools</summary>
                   <ul>
-                    <li><a href="/#battery-calculator">Standby Battery Calculator (BS 5839-1)</a></li>
-                    <li><a href="/fire-alarm-battery-calculator/">Full Battery Sizing Guide</a></li>
+                    <li><a href="/#battery-calculator">Interactive Demonstration Battery Calculator</a></li>
+                    <li><a href="/#roi-calculator">Contractor ROI &amp; Time Savings Estimator</a></li>
+                    <li><a href="/#logbook-demo">Live Interactive QR Logbook Demo</a></li>
+                    <li><a href="/#stickers">Printable Sticker &amp; Tag Studio</a></li>
                   </ul>
                 </details>
               </li>
-              <li><a href="/#qr-log-books">QR Log Books</a></li>
-              <li><a href="/#sticker-studio">Sticker Studio</a></li>
-              <li><a href="/#field-app">Field Mobile App</a></li>
-              <li><a href="/pricing/">Pricing</a></li>
-              <li><a href="/#our-story">Our Story</a></li>
-              <li><a href="/features/">All Features</a></li>
-              <li><a href="/faqs/">FAQs</a></li>
-              <li><a href="/resources/">Guides &amp; Resources</a></li>
-              <li><a href="/contact/#book-a-demo">Book a 15-Min Walkthrough</a></li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#pricing">Pricing / ROI</a></li>
+              <li><a href="/#logbook-demo">Interactive Demo</a></li>
+              <li><a href="/#contact-form">Book a Demo</a></li>
               <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
             </ul>
           </nav>

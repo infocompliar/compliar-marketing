@@ -14,9 +14,20 @@
         'ad_personalization': 'denied',
         'analytics_storage': 'denied'
       });
-      // Re-apply an earlier "Accept All" choice before the Google tag loads
+      // Re-apply an earlier consent choice before the Google tag loads
       try {
-        if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+        var rawPrefs = localStorage.getItem('compliar_cookie_prefs');
+        if (rawPrefs) {
+          var prefs = JSON.parse(rawPrefs);
+          var adState = prefs.marketing ? 'granted' : 'denied';
+          var anState = prefs.analytics ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            'ad_storage': adState,
+            'ad_user_data': adState,
+            'ad_personalization': adState,
+            'analytics_storage': anState
+          });
+        } else if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
           gtag('consent', 'update', {
             'ad_storage': 'granted',
             'ad_user_data': 'granted',
@@ -33,53 +44,36 @@
       gtag('js', new Date());
       gtag('config', 'AW-18545152858');
 
-      // Conversion trigger function for "Book a demo" clicks/form submits
+      // Conversion trigger function for "Book a demo" form submits
       function gtag_report_conversion(url) {
-        var event = window.event;
-        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
-        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-            'value': 1.0,
-            'currency': 'GBP'
-          });
-          return true;
-        }
-        var done = false;
         var callback = function () {
-          if (done) return;
-          done = true;
           if (typeof(url) != 'undefined') {
             window.location = url;
           }
         };
         gtag('event', 'conversion', {
           'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-          'value': 1.0,
-          'currency': 'GBP',
           'event_callback': callback
         });
-        // Still open the page if the tag is blocked or slow to reply
-        setTimeout(callback, 1000);
         return false;
       }
     </script>
-    <title>Compliar | Fire, Security &amp; Electrical Field Service Software</title>
+    <title>Compliar | UK Fire, Security &amp; Electrical Field Compliance Software</title>
     <meta
       name="description"
-      content="All-in-one compliance, planned maintenance, and field app for UK fire, security, and electrical contractors. Book a demo today."
+      content="All-in-one compliance, BS 7671 &amp; BS 5839 certificates, digital QR log books, and in-app sticker printing for UK fire, security, and electrical contractors."
     />
     <link rel="canonical" href="https://compliar.co.uk/" />
-    <meta name="theme-color" content="#1B2430" />
+    <meta name="theme-color" content="#141D2A" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Compliar" />
     <meta
       property="og:title"
-      content="Compliar | Fire, Security &amp; Electrical Field Service Software"
+      content="Compliar | UK Fire, Security &amp; Electrical Field Compliance Software"
     />
     <meta
       property="og:description"
-      content="All-in-one compliance, planned maintenance, and field app for UK fire, security, and electrical contractors. Book a demo today."
+      content="All-in-one compliance, BS 7671 &amp; BS 5839 certificates, digital QR log books, and in-app sticker printing for UK fire, security, and electrical contractors."
     />
     <meta property="og:url" content="https://compliar.co.uk/" />
     <meta property="og:image" content="https://compliar.co.uk/og.png" />
@@ -94,7 +88,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=5f3e25667e4e" />
+    <link rel="stylesheet" href="/site.css?v=ea771e88deb6" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
@@ -106,208 +100,237 @@
         "name": "Compliar",
         "url": "https://compliar.co.uk/",
         "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web browser",
-        "description": "Job management, scheduling, certificates, quoting, invoicing, projects and job costing software for UK fire, security and electrical contractors.",
+        "operatingSystem": "Web browser, iOS, Android",
+        "description": "Field compliance, planned maintenance, British Standard certificates, digital QR log books, and sticker printing software for UK fire, security and electrical contractors.",
         "offers": {
           "@type": "AggregateOffer",
           "lowPrice": "4.00",
           "highPrice": "95.00",
           "priceCurrency": "GBP",
           "offerCount": "4",
-          "description": "Per user per month plus VAT: Lite £35, Office £65, Design £95. Two months free when paid yearly. Site log book £4 plus VAT per site per year. Request a demo; a 30-day free trial, no card required, can follow."
+          "description": "Per user per month plus VAT: Lite £35, Office £65, Design £95. Two months free when paid yearly. Site QR log book £4 plus VAT per site per year."
         }
       }
     </script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
-      content="Compliar — software for fire, security and electrical contractors"
+      content="Compliar — software for UK fire, security and electrical contractors"
     />
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- 1. TOP NAVIGATION & HEADER -->
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="/" aria-label="Compliar home"
-          ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#E07B39" /></svg
-          ><span class="brand-text">Compliar</span></a
-        >
+        <a class="brand" href="/" aria-label="Compliar home">
+          <svg class="brand-shield" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+            <path d="M14 2L4 6.2V13.6C4 20.1 8.3 25.6 14 27C19.7 25.6 24 20.1 24 13.6V6.2L14 2Z" fill="#1F2D3D" stroke="#E07B39" stroke-width="1.8"/>
+            <path d="M18.5 8.5H11.5L9 11V17L11.5 19.5H18.5V16.8H12.5L11.3 15.6V12.4L12.5 11.2H18.5V8.5Z" fill="#E07B39"/>
+            <path d="M13.5 14.2L15.2 15.9L19.2 11.9" stroke="#8CE0AB" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="brand-wordmark">
+            <span class="brand-text">Compliar</span>
+            <span class="brand-badge">UK COMPLIANCE</span>
+          </span>
+        </a>
+
         <nav aria-label="Main navigation">
           <ul class="nav-links">
+            <!-- 1. Disciplines & Trades (Strictly grouped by 5 trade sectors A-E) -->
             <li class="has-mega">
               <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
                 Disciplines &amp; Trades <span class="chev" aria-hidden="true">▾</span>
               </button>
-              <div class="mega mega-v3" id="mega-disciplines" hidden>
-                <ul class="disc-grid">
-                  <li>
-                    <a class="disc-item" href="/fire-alarm-certificate-software/">
-                      <div class="disc-top"><strong>Fire Detection &amp; Alarms</strong><span class="std-badge">BS 5839-1 &amp; BS 5839-6</span></div>
-                      <span class="disc-desc">Design, Installation, Commissioning, Verification &amp; Inspection</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Emergency Lighting</strong><span class="std-badge">BS 5266-1</span></div>
-                      <span class="disc-desc">Periodic Inspection, Design &amp; Completion</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/eicr-and-electrical-certificate-software/">
-                      <div class="disc-top"><strong>Electrical Installation (EIC)</strong><span class="std-badge">BS 7671 (A4:2026)</span></div>
-                      <span class="disc-desc">New circuits, consumer units, full installs — separate from inspection</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/eicr-and-electrical-certificate-software/">
-                      <div class="disc-top"><strong>Fixed Wire Testing (EICR)</strong><span class="std-badge">BS 7671 (A4:2026)</span></div>
-                      <span class="disc-desc">Verified A4 inspection schedule, N/V observation codes, PME/PNB options</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/eicr-and-electrical-certificate-software/">
-                      <div class="disc-top"><strong>Minor Electrical Works (MEIWC)</strong><span class="std-badge">BS 7671 (A4:2026)</span></div>
-                      <span class="disc-desc">Additions and alterations without new circuits</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Portable Appliance Testing (PAT)</strong><span class="std-badge">IET Code of Practice 5th Ed</span></div>
-                      <span class="disc-desc">Appliance registers, Code 128 / QR tagging, PASS/FAIL labels</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Fire Extinguishers</strong><span class="std-badge">BS 5306-3 &amp; BS 5306-8</span></div>
-                      <span class="disc-desc">Commissioning, annual &amp; extended servicing</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Intruder &amp; Hold-Up Alarms</strong><span class="std-badge">BS EN 50131 &amp; PD 6662</span></div>
-                      <span class="disc-desc">System proposals, commissioning &amp; maintenance</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>CCTV &amp; Video Surveillance</strong><span class="std-badge">BS EN 62676 &amp; BS 8418</span></div>
-                      <span class="disc-desc">Surveillance schedules and monitored CCTV</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Access Control</strong><span class="std-badge">BS EN 60839-11</span></div>
-                      <span class="disc-desc">Electronic access control inspection &amp; maintenance</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="disc-item" href="/features/#certificates">
-                      <div class="disc-top"><strong>Fire Dampers &amp; AOV Ventilation</strong><span class="std-badge">BS 9999 &amp; BS 7346-8</span></div>
-                      <span class="disc-desc">Smoke control and damper testing records</span>
-                    </a>
-                  </li>
-                </ul>
-                <p class="mega-foot">32 disciplines under one login. <a href="/features/#certificates" style="display:inline;padding:0;margin:0;color:#f1a675">See all certificates &amp; standards ↗</a></p>
+              <div class="mega mega-sectors" id="mega-disciplines" hidden>
+                <div class="sector-mega-grid">
+                  <!-- A. Electrical Installation & Testing -->
+                  <div class="sector-col">
+                    <div class="sector-col-head">
+                      <span class="sector-letter">A</span>
+                      <strong>Electrical Installation &amp; Testing</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EIC</strong> — Electrical Installation Certificate <span class="std-badge">BS 7671:2018+A4:2026</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EICR</strong> — Condition Report / Fixed Wire <span class="std-badge">BS 7671:2018+A4:2026</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>MEIWC</strong> — Minor Electrical Works <span class="std-badge">BS 7671:2018+A4:2026</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>PAT</strong> — In-Service Equipment Testing <span class="std-badge">IET 5th Ed</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>EV Charging</strong> — Chargepoint Installation <span class="std-badge">IET / BS 7671</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Solar PV &amp; Battery Storage</strong> — EESS <span class="std-badge">MCS / BS 7671</span></a></li>
+                    </ul>
+                  </div>
+
+                  <!-- B. Fire Detection & Alarm Systems + C. Emergency Lighting -->
+                  <div class="sector-col">
+                    <div class="sector-col-head">
+                      <span class="sector-letter">B</span>
+                      <strong>Fire Detection &amp; Alarm Systems</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Commercial Fire Alarms</strong> — Design, Commissioning, Acceptance, Modification &amp; Servicing <span class="std-badge">BS 5839-1</span></a></li>
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Domestic Smoke &amp; Heat Alarms</strong> — Grade D/F Installation &amp; Testing <span class="std-badge">BS 5839-6</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Voice Alarm Systems (PA/VA)</strong> — Periodic Servicing &amp; Intelligibility <span class="std-badge">BS 5839-8</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>False Alarm Management</strong> — Cause, Investigation &amp; Audit Reports <span class="std-badge">BS 5839-1 cl 14.22</span></a></li>
+                    </ul>
+
+                    <div class="sector-col-head" style="margin-top:14px">
+                      <span class="sector-letter">C</span>
+                      <strong>Emergency Lighting</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/#standards-matrix"><strong>Periodic Inspection &amp; 3-Hour Discharge Test</strong> — Complete luminaire schedules <span class="std-badge">BS 5266-1 / BS EN 1838</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Completion &amp; Commissioning Certificates</strong> — New design sign-offs <span class="std-badge">BS 5266-1</span></a></li>
+                    </ul>
+                  </div>
+
+                  <!-- D. Security, CCTV & Access Control + E. Passive Fire & Suppression -->
+                  <div class="sector-col">
+                    <div class="sector-col-head">
+                      <span class="sector-letter">D</span>
+                      <strong>Security, CCTV &amp; Access Control</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/#standards-matrix"><strong>Video Surveillance Systems (CCTV)</strong> — Commissioning &amp; Maintenance <span class="std-badge">BS EN 62676 / BS 8418</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Intruder &amp; Hold-Up Alarms</strong> — Grade 2/3/4 Systems <span class="std-badge">BS EN 50131 / PD 6662</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Access Control Systems</strong> — Door Controllers &amp; Readers <span class="std-badge">BS EN 60839</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Automated Gates &amp; Barriers</strong> — Force testing &amp; safety audits <span class="std-badge">DHF TS 011 / BS EN 12453</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Nurse Call &amp; Assistance Alarms</strong> — Call points &amp; overdoors <span class="std-badge">HTM 08-03</span></a></li>
+                    </ul>
+
+                    <div class="sector-col-head" style="margin-top:14px">
+                      <span class="sector-letter">E</span>
+                      <strong>Passive Fire &amp; Suppression</strong>
+                    </div>
+                    <ul class="sector-list">
+                      <li><a href="/#standards-matrix"><strong>Fire Extinguishers</strong> — Commissioning, Annual &amp; Extended Service <span class="std-badge">BS 5306-3 &amp; 8</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Dampers</strong> — Drop testing &amp; ductwork <span class="std-badge">BS 9999</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Dry &amp; Wet Risers</strong> — Visual &amp; pressure testing <span class="std-badge">BS 9990</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Smoke Control &amp; AOV Systems</strong> — Actuation &amp; maintenance <span class="std-badge">BS 7346</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Door Inspection</strong> — 20+ point compliance check <span class="std-badge">BS 8214</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mega-foot-bar">
+                  <span>All 5 trade sectors &amp; 32 certificate workflows included under one login.</span>
+                  <a class="btn btn-primary btn-sm" href="/#standards-matrix" data-standards-modal-open>See All Certificates &amp; British Standards →</a>
+                </div>
               </div>
             </li>
+
+            <!-- 2. QR Log Books -->
+            <li><a href="/#logbooks">QR Log Books</a></li>
+
+            <!-- 3. Stickers & Hardware -->
+            <li><a href="/#stickers">Stickers &amp; Hardware</a></li>
+
+            <!-- 4. Tools Dropdown -->
             <li class="has-mega">
               <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-tools">
-                Free Tools <span class="chev" aria-hidden="true">▾</span>
+                Tools <span class="chev" aria-hidden="true">▾</span>
               </button>
               <div class="mega mega-tools" id="mega-tools" hidden>
                 <ul class="disc-grid disc-grid-single">
                   <li>
                     <a class="disc-item" href="/#battery-calculator">
-                      <div class="disc-top"><strong>Standby Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
-                      <span class="disc-desc">Interactive BS 5839-1:2025 Annex E &amp; BS EN 50131 standby battery sizing</span>
+                      <div class="disc-top"><strong>Interactive Demonstration Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
+                      <span class="disc-desc">Illustrative 12V / 24V standby &amp; alarm capacity calculator with copyable summary</span>
                     </a>
                   </li>
                   <li>
-                    <a class="disc-item" href="/fire-alarm-battery-calculator/">
-                      <div class="disc-top"><strong>Full Battery Sizing Guide &amp; Worked Examples</strong><span class="std-badge">Annex E</span></div>
-                      <span class="disc-desc">Standalone calculator page with step-by-step Annex E formulas</span>
+                    <a class="disc-item" href="/#roi-calculator">
+                      <div class="disc-top"><strong>Contractor ROI &amp; Time Savings Estimator</strong><span class="std-badge">UK Trade Model</span></div>
+                      <span class="disc-desc">Estimate monthly admin hours saved, certificate turnaround speed &amp; remedial recovery</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#logbook-demo">
+                      <div class="disc-top"><strong>Live Interactive QR Logbook Demo</strong><span class="std-badge">Live Preview</span></div>
+                      <span class="disc-desc">Explore what building managers and fire officers see when scanning a panel sticker</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#stickers">
+                      <div class="disc-top"><strong>Printable Sticker &amp; Tag Studio</strong><span class="std-badge">300 DPI + Thermal</span></div>
+                      <span class="disc-desc">Preview real Harbourview QR tags, BS 5839-1 false alarm notices &amp; EM failed labels</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-            <li><a href="/#qr-log-books">QR Log Books</a></li>
-            <li><a href="/#sticker-studio">Sticker Studio</a></li>
-            <li><a href="/#field-app">Field Mobile App</a></li>
-            <li><a href="/pricing/">Pricing</a></li>
-            <li><a href="/#our-story">Our Story</a></li>
+
+            <!-- 5. About -->
+            <li><a href="/#about">About</a></li>
+
+            <!-- 6. Pricing / ROI -->
+            <li><a href="/#pricing">Pricing / ROI</a></li>
           </ul>
         </nav>
+
         <div class="nav-cta">
-          <a class="sign-in" href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In</a>
-          <a class="btn btn-primary btn-sm" href="#demo">Book a 15-Min Walkthrough</a>
+          <a class="btn btn-ghost-on-navy btn-sm nav-interactive-cta" href="/#logbook-demo">Interactive Demo</a>
+          <a class="btn btn-primary btn-sm" href="/#contact-form">Book a Demo</a>
         </div>
+
         <details class="mobile-menu">
           <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
           <nav aria-label="Mobile navigation">
             <ul>
               <li>
                 <details>
-                  <summary>Disciplines &amp; Trades</summary>
+                  <summary>Disciplines &amp; Trades (A–E)</summary>
                   <ul>
-                      <li><a href="/fire-alarm-certificate-software/">Fire Detection &amp; Alarms <span class="std-badge-inline">BS 5839-1 &amp; BS 5839-6</span></a></li>
-                      <li><a href="/features/#certificates">Emergency Lighting <span class="std-badge-inline">BS 5266-1</span></a></li>
-                      <li><a href="/eicr-and-electrical-certificate-software/">Electrical Installation (EIC) <span class="std-badge-inline">BS 7671 (A4:2026)</span></a></li>
-                      <li><a href="/eicr-and-electrical-certificate-software/">Fixed Wire Testing (EICR) <span class="std-badge-inline">BS 7671 (A4:2026)</span></a></li>
-                      <li><a href="/eicr-and-electrical-certificate-software/">Minor Electrical Works (MEIWC) <span class="std-badge-inline">BS 7671 (A4:2026)</span></a></li>
-                      <li><a href="/features/#certificates">Portable Appliance Testing (PAT) <span class="std-badge-inline">IET Code of Practice 5th Ed</span></a></li>
-                      <li><a href="/features/#certificates">Fire Extinguishers <span class="std-badge-inline">BS 5306-3 &amp; BS 5306-8</span></a></li>
-                      <li><a href="/features/#certificates">Intruder &amp; Hold-Up Alarms <span class="std-badge-inline">BS EN 50131 &amp; PD 6662</span></a></li>
-                      <li><a href="/features/#certificates">CCTV &amp; Video Surveillance <span class="std-badge-inline">BS EN 62676 &amp; BS 8418</span></a></li>
-                      <li><a href="/features/#certificates">Access Control <span class="std-badge-inline">BS EN 60839-11</span></a></li>
-                      <li><a href="/features/#certificates">Fire Dampers &amp; AOV Ventilation <span class="std-badge-inline">BS 9999 &amp; BS 7346-8</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>A. Electrical:</strong> EIC, EICR, MEIWC, PAT, EV, Solar PV <span class="std-badge-inline">BS 7671:2018+A4:2026</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>B. Fire Alarms:</strong> Commercial, Domestic, PA/VA, False Alarms <span class="std-badge-inline">BS 5839-1 / 6 / 8</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>C. Emergency Lighting:</strong> Periodic 3-Hr &amp; Completion <span class="std-badge-inline">BS 5266-1</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>D. Security &amp; Access:</strong> CCTV, Intruder, Access, Gates, Nurse Call <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/#standards-matrix"><strong>E. Passive Fire:</strong> Extinguishers, Dampers, Risers, AOV, Fire Doors <span class="std-badge-inline">BS 5306 / 9999 / 8214</span></a></li>
+                    <li><a href="/#standards-matrix">See All Certificates &amp; British Standards →</a></li>
                   </ul>
                 </details>
               </li>
+              <li><a href="/#logbooks">QR Log Books</a></li>
+              <li><a href="/#stickers">Stickers &amp; Hardware</a></li>
               <li>
                 <details>
-                  <summary>Free Tools</summary>
+                  <summary>Tools</summary>
                   <ul>
-                    <li><a href="/#battery-calculator">Standby Battery Calculator (BS 5839-1)</a></li>
-                    <li><a href="/fire-alarm-battery-calculator/">Full Battery Sizing Guide</a></li>
+                    <li><a href="/#battery-calculator">Interactive Demonstration Battery Calculator</a></li>
+                    <li><a href="/#roi-calculator">Contractor ROI &amp; Time Savings Estimator</a></li>
+                    <li><a href="/#logbook-demo">Live Interactive QR Logbook Demo</a></li>
+                    <li><a href="/#stickers">Printable Sticker &amp; Tag Studio</a></li>
                   </ul>
                 </details>
               </li>
-              <li><a href="/#qr-log-books">QR Log Books</a></li>
-              <li><a href="/#sticker-studio">Sticker Studio</a></li>
-              <li><a href="/#field-app">Field Mobile App</a></li>
-              <li><a href="/pricing/">Pricing</a></li>
-              <li><a href="/#our-story">Our Story</a></li>
-              <li><a href="/features/">All Features</a></li>
-              <li><a href="/faqs/">FAQs</a></li>
-              <li><a href="/resources/">Guides &amp; Resources</a></li>
-              <li><a href="#demo">Book a 15-Min Walkthrough</a></li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#pricing">Pricing / ROI</a></li>
+              <li><a href="/#logbook-demo">Interactive Demo</a></li>
+              <li><a href="/#contact-form">Book a Demo</a></li>
               <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
             </ul>
           </nav>
         </details>
       </div>
     </header>
+
     <main id="main">
+      <!-- HERO SECTION -->
       <section class="v2-hero" aria-labelledby="hero-title">
         <div class="wrap v2-hero-grid">
           <div>
-            <span class="v2-pill"><span aria-hidden="true">⚡</span> Built for Fire, Security &amp; Electrical Contractors</span>
+            <span class="v2-pill"><span aria-hidden="true">🛡️</span> Built for UK Fire, Security &amp; Electrical Contractors</span>
             <h1 id="hero-title">
-              Every site, every test, every certificate —
-              <span>connected in one workspace.</span>
+              Field compliance, British Standard certificates &amp; QR log books —
+              <span>engineered for UK trades.</span>
             </h1>
             <p class="v2-sub">
-              Run planned maintenance, engineer field visits, BS-aligned
-              certificates, digital QR log books, and sticker printing across 32
-              disciplines — with a field app that keeps working without signal.
+              Replace fragmented spreadsheets, per-certificate token fees, and missing paper binders. Run planned maintenance, BS 7671 &amp; BS 5839 certificates, digital QR log books, and on-site sticker printing in one authoritative platform.
             </p>
             <div class="v2-ctas">
-              <a class="btn btn-primary" href="#demo">Book a 15-Min Walkthrough</a>
-              <a class="btn btn-ghost-on-navy" href="#battery-calculator">Free BS 5839-1 Battery Calculator ↓</a>
+              <a class="btn btn-primary" href="#contact-form">Book a Demo</a>
+              <a class="btn btn-ghost-on-navy" href="#logbook-demo">Interactive Demo ↓</a>
             </div>
-            <p class="v2-reassure">Free 30-day trial after your walkthrough · No card required · From £35 + VAT /user/month</p>
+            <p class="v2-reassure">Unlimited certificates · Zero token fees · Offline engineer app · From £35 + VAT /user/month</p>
           </div>
           <div class="hero-showcase">
             <figure class="device-frame device-desktop">
@@ -316,12 +339,12 @@
                 <span>app.compliar.co.uk · Harbourview Fire &amp; Security Ltd</span>
                 <span class="device-badge">LIVE WORKSPACE</span>
               </div>
-              <a class="shot" href="/assets/screens/desk-01-dashboard.webp" aria-label="View Compliar desktop dashboard full size">
+              <a class="shot" href="/assets/screens/desk-01-dashboard.webp" aria-label="View Compliar desktop operations dashboard full size">
                 <img
                   src="/assets/screens/desk-01-dashboard.webp"
                   width="1600"
                   height="1000"
-                  alt="Compliar desktop workspace for Harbourview Fire &amp; Security showing compliance status, operations overview, active job cards, open defects, and quotes awaiting approval"
+                  alt="Compliar desktop operations dashboard for Harbourview Fire &amp; Security showing live engineer scheduling, certificate approval queue, and site compliance overview"
                 />
               </a>
             </figure>
@@ -329,15 +352,15 @@
               <div class="hf-card">
                 <span class="hf-dot ok"></span>
                 <div>
-                  <strong>Harbourview Hotel · Fire Alarm PM</strong>
-                  <small>BS 5839-1 · 48 devices tested · Certificate issued</small>
+                  <strong>Harbourview Hotel · BS 5839-1 Service</strong>
+                  <small>48 devices tested · Certificate approved &amp; logged to QR panel tag</small>
                 </div>
               </div>
               <div class="hf-card">
                 <span class="hf-dot due"></span>
                 <div>
-                  <strong>2 Defects Flagged on Site</strong>
-                  <small>Emergency light battery + call point glass · Quote ready</small>
+                  <strong>Same-Day Remedial Quote Dispatched</strong>
+                  <small>Emergency light failed 3hr discharge · Sticker printed on site</small>
                 </div>
               </div>
             </div>
@@ -346,64 +369,607 @@
         <div class="v2-strip">
           <div class="wrap">
             <ul>
-              <li>32 disciplines under one login</li>
-              <li>BS 5839-1:2025, BS 5266-1 &amp; BS 7671 (A4:2026) workflows</li>
-              <li>100% offline-resilient engineer mobile app</li>
-              <li>Built in the UK by a working contractor</li>
+              <li>Strictly organised across 5 UK trade sectors</li>
+              <li>BS 7671:2018+A4:2026, BS 5839-1 &amp; BS 5266-1 workflows</li>
+              <li>In-app Sticker Studio (Brother, Niimbot, Dymo)</li>
+              <li>Founded in the UK by Keiran Sandham</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- 2. INTERACTIVE STANDBY BATTERY CALCULATOR (BS 5839-1:2025 ANNEX E) -->
+      <!-- SECTION 2: DISCIPLINES & STANDARDS TAXONOMY (#standards-matrix) -->
+      <section class="v2-section v2-white" id="standards-matrix" aria-labelledby="standards-title">
+        <div class="wrap">
+          <div class="v2-head v2-head-split">
+            <div>
+              <span class="v2-kicker">Disciplines &amp; British Standards Taxonomy</span>
+              <h2 class="v2-h2" id="standards-title">Every discipline cleanly grouped by trade sector.</h2>
+              <p class="v2-lead">
+                Engineered around real UK contracting divisions — Electrical Installation &amp; Testing (EIC, EICR, MEIWC, PAT) stays strictly in Electrical, while Fire, Emergency Lighting, Security, and Passive Fire each have their own dedicated British Standard schedules.
+              </p>
+            </div>
+            <div class="v2-head-actions">
+              <button type="button" class="btn btn-primary" data-standards-modal-open>
+                See All Certificates &amp; British Standards
+              </button>
+            </div>
+          </div>
+
+          <!-- Sector Filter Bar -->
+          <div class="sector-filter-bar" role="tablist" aria-label="Filter disciplines by trade sector">
+            <button type="button" class="sector-tab active" data-sector-filter="all" role="tab" aria-selected="true">All 5 Trade Sectors (20 Core Workflows)</button>
+            <button type="button" class="sector-tab" data-sector-filter="electrical" role="tab" aria-selected="false">A. Electrical Installation &amp; Testing</button>
+            <button type="button" class="sector-tab" data-sector-filter="fire" role="tab" aria-selected="false">B. Fire Detection &amp; Alarms</button>
+            <button type="button" class="sector-tab" data-sector-filter="emlight" role="tab" aria-selected="false">C. Emergency Lighting</button>
+            <button type="button" class="sector-tab" data-sector-filter="security" role="tab" aria-selected="false">D. Security, CCTV &amp; Access</button>
+            <button type="button" class="sector-tab" data-sector-filter="passive" role="tab" aria-selected="false">E. Passive Fire &amp; Suppression</button>
+          </div>
+
+          <div class="taxonomy-sectors">
+            <!-- Sector A: Electrical Installation & Testing -->
+            <article class="taxonomy-block" data-sector="electrical">
+              <header class="taxonomy-header">
+                <span class="taxonomy-badge">Sector A</span>
+                <div>
+                  <h3>A. Electrical Installation &amp; Testing</h3>
+                  <p>Complete BS 7671:2018+A4:2026 schedules of circuit details, test results, observation codes (C1, C2, C3, FI, N/V), and appliance registers.</p>
+                </div>
+              </header>
+              <div class="taxonomy-cards">
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>EIC</strong><span class="tax-std">BS 7671:2018+A4:2026</span></div>
+                  <p><strong>Electrical Installation Certificate</strong> — New installations, consumer unit upgrades, and circuit additions with design, construction &amp; inspection sign-offs.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>EICR</strong><span class="tax-std">BS 7671:2018+A4:2026</span></div>
+                  <p><strong>Electrical Installation Condition Report / Fixed Wire</strong> — Periodic inspection schedules, C1/C2/C3/FI observations, PME/PNB earthing &amp; distribution boards.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>MEIWC</strong><span class="tax-std">BS 7671:2018+A4:2026</span></div>
+                  <p><strong>Minor Electrical Installation Works Certificate</strong> — Additions and alterations to an existing circuit without a new circuit.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>PAT</strong><span class="tax-std">IET Code of Practice 5th Ed</span></div>
+                  <p><strong>In-Service Inspection &amp; Testing of Electrical Equipment</strong> — Class I / Class II appliance registers, earth continuity, insulation resistance &amp; PASS/FAIL barcode tags.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>EV Charging</strong><span class="tax-std">IET / BS 7671</span></div>
+                  <p><strong>Electric Vehicle Charging Equipment Installation</strong> — O-PEN device verification, DNO notification records, RCD test times &amp; load curtailment checks.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Solar PV &amp; Battery Storage</strong><span class="tax-std">MCS / BS 7671</span></div>
+                  <p><strong>EESS &amp; Grid-Tied Inverter Systems</strong> — DC string open-circuit voltage, short-circuit current, AC isolator verification &amp; G98/G99 commissioning data.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Sector B: Fire Detection & Alarm Systems -->
+            <article class="taxonomy-block" data-sector="fire">
+              <header class="taxonomy-header">
+                <span class="taxonomy-badge">Sector B</span>
+                <div>
+                  <h3>B. Fire Detection &amp; Alarm Systems</h3>
+                  <p>Full Annex G certificates, zone/loop asset matrices, standby battery sizing verification, and clause 14.22 false alarm tracking.</p>
+                </div>
+              </header>
+              <div class="taxonomy-cards">
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Commercial Fire Alarms</strong><span class="tax-std">BS 5839-1</span></div>
+                  <p><strong>Design, Commissioning, Acceptance, Modification &amp; Servicing</strong> — Complete Category L/M/P certificates, cause &amp; effect matrices, and 100% annual device schedules.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Domestic Smoke &amp; Heat Alarms</strong><span class="tax-std">BS 5839-6</span></div>
+                  <p><strong>Grade D/F Installation &amp; Testing</strong> — Landlord, HMO, and residential fire detection commissioning and periodic inspection records.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Voice Alarm Systems (PA/VA)</strong><span class="tax-std">BS 5839-8</span></div>
+                  <p><strong>Periodic Servicing &amp; Intelligibility</strong> — Speech transmission index (STI/STIPA) readings, emergency microphone tests &amp; amplifier changeovers.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>False Alarm Management</strong><span class="tax-std">BS 5839-1 cl 14.22</span></div>
+                  <p><strong>Cause, Investigation &amp; Audit Reports</strong> — Unwanted fire signal (UwFS) root-cause tracking, category logging, and active ARC connection panel notices.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Sector C: Emergency Lighting -->
+            <article class="taxonomy-block" data-sector="emlight">
+              <header class="taxonomy-header">
+                <span class="taxonomy-badge">Sector C</span>
+                <div>
+                  <h3>C. Emergency Lighting</h3>
+                  <p>Monthly functional flick tests, annual 3-hour full discharge schedules, lux level verification, and new design completion sign-offs.</p>
+                </div>
+              </header>
+              <div class="taxonomy-cards">
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Periodic Inspection &amp; 3-Hour Discharge Test</strong><span class="tax-std">BS 5266-1 / BS EN 1838</span></div>
+                  <p><strong>Complete Luminaire Schedules</strong> — Fitting-by-fitting location, maintained/non-maintained mode, battery duration pass/fail &amp; instant FAILED sticker printing.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Completion &amp; Commissioning Certificates</strong><span class="tax-std">BS 5266-1</span></div>
+                  <p><strong>New Design Sign-Offs</strong> — Escape route, open area &amp; high-risk task area illumination declarations and photometric design verification.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Sector D: Security, CCTV & Access Control -->
+            <article class="taxonomy-block" data-sector="security">
+              <header class="taxonomy-header">
+                <span class="taxonomy-badge">Sector D</span>
+                <div>
+                  <h3>D. Security, CCTV &amp; Access Control</h3>
+                  <p>Structured for NSI Gold / Silver and SSAIB audited contractors across intruder, monitored CCTV, access control, gates, and healthcare call systems.</p>
+                </div>
+              </header>
+              <div class="taxonomy-cards">
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Video Surveillance Systems (CCTV)</strong><span class="tax-std">BS EN 62676 / BS 8418</span></div>
+                  <p><strong>Commissioning &amp; Maintenance</strong> — Camera field-of-view schedules, NVR retention checks, detector-activated RVRC signalling &amp; privacy masking audits.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Intruder &amp; Hold-Up Alarms</strong><span class="tax-std">BS EN 50131 / PD 6662</span></div>
+                  <p><strong>Grade 2/3/4 Systems</strong> — Zone walk-test schedules, dual-path signalling verification (URN), power supply load checks &amp; maintenance certificates.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Access Control Systems</strong><span class="tax-std">BS EN 60839</span></div>
+                  <p><strong>Door Controllers &amp; Readers</strong> — Fail-safe fire alarm interface drop-out testing, maglock holding force checks, and break-glass release audits.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Automated Gates &amp; Barriers</strong><span class="tax-std">DHF TS 011 / BS EN 12453</span></div>
+                  <p><strong>Force Testing &amp; Safety Audits</strong> — Closing force measurements, photocell/safety edge actuation, manual release &amp; crush/entrapment risk checks.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Nurse Call &amp; Assistance Alarms</strong><span class="tax-std">HTM 08-03</span></div>
+                  <p><strong>Call Points, Panic Buttons &amp; Overdoors</strong> — Pull-cord, call unit, display panel, and cardiac/emergency override verification for care homes and clinics.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Sector E: Passive Fire & Suppression -->
+            <article class="taxonomy-block" data-sector="passive">
+              <header class="taxonomy-header">
+                <span class="taxonomy-badge">Sector E</span>
+                <div>
+                  <h3>E. Passive Fire &amp; Suppression</h3>
+                  <p>Asset-level extinguisher registers, damper drop-test photos, riser pressure readings, AOV smoke vents, and 20+ point fire door inspections.</p>
+                </div>
+              </header>
+              <div class="taxonomy-cards">
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Fire Extinguishers</strong><span class="tax-std">BS 5306-3 &amp; BS 5306-8</span></div>
+                  <p><strong>Commissioning, Annual &amp; Extended Service</strong> — Weight, pressure gauge, discharge horn, wall bracket, and 5/10-year extended service/overhaul tracking.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Fire Dampers</strong><span class="tax-std">BS 9999</span></div>
+                  <p><strong>Drop Testing &amp; Ductwork Inspection</strong> — Fusible link/motorised actuator release, damper blade closure photos, cleaning &amp; reset confirmation.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Dry &amp; Wet Risers</strong><span class="tax-std">BS 9990</span></div>
+                  <p><strong>Visual &amp; Annual Pressure Testing</strong> — 6-monthly visual cabinet checks and annual 10 bar / 12 bar hydrostatic pressure test certificates.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Smoke Control &amp; AOV Systems</strong><span class="tax-std">BS 7346</span></div>
+                  <p><strong>Routine Actuation &amp; Maintenance</strong> — Automatic opening vents, stairwell smoke shafts, fireman’s override switches &amp; battery backup checks.</p>
+                </div>
+                <div class="tax-card">
+                  <div class="tax-card-top"><strong>Fire Door Inspection</strong><span class="tax-std">BS 8214</span></div>
+                  <p><strong>20+ Point Compliance Check &amp; Gap Gauges</strong> — Head/stile/threshold gap measurements (2–4 mm), intumescent/cold smoke seals, hinges, glazing &amp; self-closers.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: DIGITAL QR LOG BOOKS & LIVE INTERACTIVE DEMO (#logbooks / #logbook-demo) -->
+      <section class="v2-section v2-dark" id="logbooks" aria-labelledby="logbooks-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">Digital QR Log Books · Fire Safety Act Ready</span>
+            <h2 class="v2-h2" id="logbooks-title">Replace missing paper binders with audit-ready Digital QR Log Books.</h2>
+            <p class="v2-lead">
+              Building managers, Responsible Persons, and fire safety inspectors simply scan your branded QR sticker on the fire panel to view weekly tests, service visits, false alarm records, and signed certificates — no app download required.
+            </p>
+          </div>
+
+          <div class="logbook-demo-grid" id="logbook-demo">
+            <!-- Left: Interactive Phone Portal Preview -->
+            <div class="lb-interactive-card">
+              <div class="lb-device-header">
+                <div class="lb-live-badge"><span class="lb-pulse"></span> INTERACTIVE QR LOGBOOK DEMO</div>
+                <span class="mono">compliar.co.uk/log-book/sample/</span>
+              </div>
+
+              <div class="lb-portal-banner">
+                <div class="lb-lighthouse-mini" aria-hidden="true">
+                  <svg width="36" height="36" viewBox="0 0 40 40">
+                    <rect width="40" height="40" rx="8" fill="#10253A"/>
+                    <polygon points="4,10 18,14 18,16 4,20" fill="#46627F" opacity="0.7"/>
+                    <polygon points="36,10 22,14 22,16 36,20" fill="#46627F" opacity="0.7"/>
+                    <polygon points="20,7 16,11 24,11" fill="#FFFFFF"/>
+                    <rect x="17.5" y="11" width="5" height="4" fill="#F5B727"/>
+                    <polygon points="16,15 24,15 26,29 14,29" fill="#FFFFFF"/>
+                    <rect x="16.8" y="18" width="6.4" height="3" fill="#B84218"/>
+                    <rect x="17.2" y="23.5" width="5.6" height="2.8" fill="#B84218"/>
+                    <path d="M7 32 Q11 29.5 15 32 T23 32 T31 32" stroke="#C84B1C" stroke-width="2" fill="none"/>
+                    <path d="M7 35.5 Q11 33 15 35.5 T23 35.5 T31 35.5" stroke="#C84B1C" stroke-width="2" fill="none"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Harbourview Hotel — Main Fire Panel</strong>
+                  <span>Maintained by Harbourview Fire &amp; Security Ltd · 01632 960123</span>
+                </div>
+                <span class="lb-status-pill">COMPLIANT</span>
+              </div>
+
+              <!-- Interactive Tabs -->
+              <div class="lb-tabs" role="tablist" aria-label="Sample digital logbook views">
+                <button type="button" class="lb-tab active" data-lb-tab="visits" role="tab" aria-selected="true">Service &amp; Certs (4)</button>
+                <button type="button" class="lb-tab" data-lb-tab="weekly" role="tab" aria-selected="false">Weekly Bell Tests (12)</button>
+                <button type="button" class="lb-tab" data-lb-tab="falsealarms" role="tab" aria-selected="false">False Alarm Log (1)</button>
+                <button type="button" class="lb-tab" data-lb-tab="siteinfo" role="tab" aria-selected="false">Site &amp; ARC Info</button>
+              </div>
+
+              <!-- Tab Panels -->
+              <div class="lb-panel" data-lb-panel="visits">
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag pass">BS 5839-1 6-Month Service</span>
+                    <strong>Periodic Inspection &amp; Servicing — Zone 1 to 6</strong>
+                    <small>30 Oct 2026 · Engineer: K. Sandham · 48 devices tested (100% pass)</small>
+                  </div>
+                  <a href="/log-book/sample/" class="lb-cert-link">View Cert PDF ↗</a>
+                </div>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag pass">BS 5266-1 Annual Discharge</span>
+                    <strong>Emergency Lighting 3-Hour Duration Test</strong>
+                    <small>30 Oct 2026 · Engineer: K. Sandham · 34 fittings passed, 1 remedial quoted</small>
+                  </div>
+                  <a href="/log-book/sample/" class="lb-cert-link">View Cert PDF ↗</a>
+                </div>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag pass">BS 5306-3 Annual Service</span>
+                    <strong>Portable Fire Extinguishers Annual Inspection</strong>
+                    <small>14 May 2026 · Engineer: D. Reynolds · 18 extinguishers serviced</small>
+                  </div>
+                  <a href="/log-book/sample/" class="lb-cert-link">View Cert PDF ↗</a>
+                </div>
+              </div>
+
+              <div class="lb-panel" data-lb-panel="weekly" hidden>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag ok">Weekly User Test · Clause 20.2</span>
+                    <strong>Call Point MCP-04 (Ground Floor Reception East)</strong>
+                    <small>28 Oct 2026, 09:15 · Sounders verified &amp; ARC put on test · Logged by S. Patel (Duty Manager)</small>
+                  </div>
+                  <span class="lb-badge-ok">PASS</span>
+                </div>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag ok">Weekly User Test · Clause 20.2</span>
+                    <strong>Call Point MCP-03 (First Floor Landing West)</strong>
+                    <small>21 Oct 2026, 09:10 · Sounders &amp; fire door release verified · Logged by S. Patel</small>
+                  </div>
+                  <span class="lb-badge-ok">PASS</span>
+                </div>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag ok">Weekly User Test · Clause 20.2</span>
+                    <strong>Call Point MCP-02 (Kitchen Corridor Exit)</strong>
+                    <small>14 Oct 2026, 09:12 · Sounders verified · Logged by M. Hughes</small>
+                  </div>
+                  <span class="lb-badge-ok">PASS</span>
+                </div>
+              </div>
+
+              <div class="lb-panel" data-lb-panel="falsealarms" hidden>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag warn">BS 5839-1 Clause 14.22 Investigation</span>
+                    <strong>Zone 2 · Detector L1-D14 (First Floor Laundry Steam)</strong>
+                    <small>04 Sep 2026, 14:42 · Cause: Steam from open laundry door. Action: Replaced optical head with multi-sensor heat/optical &amp; updated C&amp;E.</small>
+                  </div>
+                  <span class="lb-badge-ok">RESOLVED</span>
+                </div>
+              </div>
+
+              <div class="lb-panel" data-lb-panel="siteinfo" hidden>
+                <div class="lb-entry">
+                  <div>
+                    <span class="lb-tag">System &amp; ARC Connection Details</span>
+                    <strong>Advanced MxPro 5 (2-Loop Addressable · Category L1)</strong>
+                    <small>ARC: Southern Monitoring · URN / Ref: F-88412 · Out-of-Hours Callout: 01632 960123 · Standby Battery: 2× 12V 17Ah VRLA (Installed Apr 2025)</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="lb-footer-bar">
+                <span>Try clicking the tabs above to inspect the live logbook records.</span>
+                <a href="/log-book/sample/" class="btn btn-ghost-on-navy btn-sm">Open Full Mobile View ↗</a>
+              </div>
+            </div>
+
+            <!-- Right: Scan QR & Key Benefits -->
+            <div class="lb-side-col">
+              <figure class="qr-card" style="margin:0">
+                <div class="qr-card-badge">SCAN WITH YOUR PHONE CAMERA</div>
+                <img src="/assets/logbook-sample-qr.svg" width="200" height="200" alt="QR code that opens the live Harbourview Hotel sample digital fire safety log book" />
+                <p>Scan this QR code with your phone to test the real customer &amp; fire officer portal in your mobile browser.</p>
+                <small><a href="/log-book/sample/">Or click here to open the live sample log book →</a></small>
+              </figure>
+
+              <ul class="v2-points v2-points-on-dark">
+                <li>
+                  <strong>Instant Fire Officer &amp; Auditor Access</strong>
+                  <span>Inspectors scan the panel QR sticker to view signed BS 5839-1, BS 5266-1, and BS 7671 certificates without chasing the facilities manager.</span>
+                </li>
+                <li>
+                  <strong>Client Weekly Test Logging Included</strong>
+                  <span>Premises staff can record weekly call-point tests and monthly emergency light flick tests via a secure PIN — keeping your contract sticky.</span>
+                </li>
+                <li>
+                  <strong>£4 + VAT per site / year</strong>
+                  <span>Add digital QR log books to any Compliar plan or sell them to your maintenance clients as a high-value compliance upgrade.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: REAL COMPLIAR STICKER & HARDWARE STUDIO (#stickers) -->
+      <section class="v2-section" id="stickers" aria-labelledby="stickers-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">Real In-App Sticker &amp; Hardware Studio</span>
+            <h2 class="v2-h2" id="stickers-title">Print compliant panel notices, QR log book tags &amp; defect labels on site.</h2>
+            <p class="v2-lead">
+              Built directly into the Compliar web and mobile apps. Customise label dimensions, company logos, accreditation badges, and brand colours with live contrast checking — then print straight to handheld thermal or full-colour printers.
+            </p>
+          </div>
+
+          <div class="sticker-studio-grid">
+            <!-- 1. BS 5839-1 False Alarm Notice Sticker -->
+            <article class="sticker-card">
+              <div class="sticker-preview-stage">
+                <span class="sticker-dim-pill">90 × 62 mm / 50 × 30 mm · BS 5839-1 cl 14.22</span>
+                <a class="shot sticker-img-wrap" href="/assets/screens/sticker-studio-false-alarm.png" aria-label="Inspect BS 5839-1 False Alarm Notice Sticker Studio dialog full size">
+                  <img
+                    src="/assets/stickers/sticker-false-alarm-notice.png"
+                    width="340"
+                    height="207"
+                    loading="lazy"
+                    alt="BS 5839-1 clause 14.22 False alarm notice sticker with yellow warning triangle: This fire alarm system has an active connection to the fire and rescue service. Contact telephone: 01632 960123"
+                  />
+                </a>
+                <div class="sticker-stage-foot">
+                  <span class="mono">Brother QL / Niimbot Thermal</span>
+                  <a class="shot sticker-dialog-link" href="/assets/screens/sticker-studio-false-alarm.png">View in-app dialog ↗</a>
+                </div>
+              </div>
+              <div class="sticker-card-body">
+                <div class="sticker-meta-row">
+                  <span class="std-pill">BS 5839-1 Clause 14.22</span>
+                  <span class="std-pill">ARC Connected Panels</span>
+                </div>
+                <h3>1. BS 5839-1 False Alarm Notice Sticker</h3>
+                <p>
+                  High-contrast rectangular safety label with bold black outer border, yellow warning hazard triangle, mandatory wording (<em>“False alarm notice — This fire alarm system has an active connection to the fire and rescue service”</em>), and your 24/7 contact telephone number (e.g. <code>0800 123 123</code> or <code>01632 960123</code>).
+                </p>
+                <div class="sticker-card-actions">
+                  <a class="btn btn-ghost-on-cream btn-sm" href="/assets/stickers/false-alarm-notice-bs5839-1-300dpi.svg" download="BS5839-1-False-Alarm-Notice-300DPI.svg">
+                    ⬇ Free 300 DPI Printable Download
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. Standard QR Code Log Book Tag (White 50x70mm / 50x25mm) -->
+            <article class="sticker-card">
+              <div class="sticker-preview-stage">
+                <span class="sticker-dim-pill">50 × 70 mm / 50 × 30 mm / 50 × 25 mm · White Roll</span>
+                <a class="shot sticker-img-wrap" href="/assets/screens/sticker-studio-qr-white.png" aria-label="Inspect White QR Code Log Book Sticker Studio dialog full size">
+                  <img
+                    src="/assets/stickers/sticker-qr-white.png"
+                    width="286"
+                    height="393"
+                    loading="lazy"
+                    alt="Harbourview Fire &amp; Security Ltd white QR Code Log Book sticker showing lighthouse logo, Tel 01632 960123, harbourview-fire.example, Fire Safety Log Book, QR code, and Scan to view the logbook or add an entry"
+                  />
+                </a>
+                <div class="sticker-stage-foot">
+                  <span class="mono">Standard White Vinyl / Thermal</span>
+                  <a class="shot sticker-dialog-link" href="/assets/screens/sticker-studio-qr-white.png">View in-app dialog ↗</a>
+                </div>
+              </div>
+              <div class="sticker-card-body">
+                <div class="sticker-meta-row">
+                  <span class="std-pill">50 × 70 mm / 50 × 25 mm</span>
+                  <span class="std-pill">High-Contrast QR</span>
+                </div>
+                <h3>2. Standard QR Code Log Book Tag (White)</h3>
+                <p>
+                  Clean white label featuring your company emblem (<em>Harbourview Fire &amp; Security Ltd</em> lighthouse badge), contact details (<code>Tel: 01632 960123</code> | <code>harbourview-fire.example</code>), bold <strong>Fire Safety Log Book</strong> title, and centered QR code with <em>“Scan to view the logbook or add an entry”</em>.
+                </p>
+              </div>
+            </article>
+
+            <!-- 3. Custom Branded Colour QR Log Book Tag (#B84218) -->
+            <article class="sticker-card">
+              <div class="sticker-preview-stage" id="branded-sticker-stage">
+                <span class="sticker-dim-pill">50 × 70 mm · Brand Colour (#B84218) + Contrast Check</span>
+                <a class="shot sticker-img-wrap" href="/assets/screens/sticker-studio-qr-brand.png" aria-label="Inspect Custom Branded Colour QR Log Book Sticker Studio dialog full size">
+                  <img
+                    id="branded-sticker-img"
+                    src="/assets/stickers/sticker-qr-brand.png"
+                    width="288"
+                    height="403"
+                    loading="lazy"
+                    alt="Harbourview Fire &amp; Security Ltd custom rust-orange (#B84218) branded QR Log Book sticker with white-backed QR code"
+                  />
+                </a>
+                <div class="sticker-stage-foot">
+                  <div class="sticker-swatch-bar" role="group" aria-label="Preview sticker background colour">
+                    <button type="button" class="st-swatch active" data-sticker-bg="brand" style="background:#B84218" title="Harbourview Brand Rust (#B84218)"></button>
+                    <button type="button" class="st-swatch" data-sticker-bg="white" style="background:#FFFFFF" title="Crisp White"></button>
+                    <span class="st-contrast-note mono" id="st-contrast-note">QR isolated on white square</span>
+                  </div>
+                  <a class="shot sticker-dialog-link" href="/assets/screens/sticker-studio-qr-brand.png">View in-app dialog ↗</a>
+                </div>
+              </div>
+              <div class="sticker-card-body">
+                <div class="sticker-meta-row">
+                  <span class="std-pill">Brother VC-500W Colour</span>
+                  <span class="std-pill">WCAG Contrast Check</span>
+                </div>
+                <h3>3. Custom Branded Colour QR Log Book Tag</h3>
+                <p>
+                  Full-bleed brand colour background (such as Harbourview rust-orange <code>#B84218</code> or deep navy) with automatic contrast ratio checking (warns if text contrast drops below <code>4.5:1</code>) while keeping the QR code isolated on a crisp white square so phone cameras scan first time.
+                </p>
+              </div>
+            </article>
+
+            <!-- 4. Emergency Light "FAILED" Defect Sticker (50x25mm) -->
+            <article class="sticker-card">
+              <div class="sticker-preview-stage">
+                <span class="sticker-dim-pill">50 × 25 mm · Luminaires &amp; Exit Signs</span>
+                <a class="shot sticker-img-wrap" href="/assets/screens/sticker-studio-failed-em.png" aria-label="Inspect Emergency Light FAILED Defect Sticker Studio dialog full size">
+                  <img
+                    src="/assets/stickers/sticker-failed-emergency-light.png"
+                    width="256"
+                    height="126"
+                    loading="lazy"
+                    alt="Emergency Light FAILED 50x25mm sticker with red top banner FAILED Emergency light, Harbourview lighthouse logo, Date line, and Initials line"
+                  />
+                </a>
+                <div class="sticker-stage-foot">
+                  <span class="mono">50 × 25 mm Defect Tag</span>
+                  <a class="shot sticker-dialog-link" href="/assets/screens/sticker-studio-failed-em.png">View in-app dialog ↗</a>
+                </div>
+              </div>
+              <div class="sticker-card-body">
+                <div class="sticker-meta-row">
+                  <span class="std-pill">BS 5266-1 Discharge Test</span>
+                  <span class="std-pill">50 × 25 mm</span>
+                </div>
+                <h3>4. Emergency Light “FAILED” Defect Sticker</h3>
+                <p>
+                  Compact <code>50 × 25 mm</code> luminaire defect label with bold red top banner (<strong>FAILED — Emergency light</strong>), contractor emblem on the left, and clean pen-fill lines for <code>Date ____________</code> and <code>Initials ____________</code> so engineers can mark failed fittings immediately on site.
+                </p>
+              </div>
+            </article>
+
+            <!-- 5. Front-of-Panel Service & Maintenance Sticker -->
+            <article class="sticker-card">
+              <div class="sticker-preview-stage">
+                <span class="sticker-dim-pill">50 × 30 mm / 50 × 40 mm · Front-of-Panel</span>
+                <a class="shot sticker-img-wrap" href="/assets/screens/sticker-studio-panel.png" aria-label="Inspect Front-of-Panel Service Sticker Studio dialog full size">
+                  <img
+                    src="/assets/stickers/sticker-panel-service.png"
+                    width="317"
+                    height="190"
+                    loading="lazy"
+                    alt="Harbourview Fire &amp; Security Ltd front-of-panel service sticker showing lighthouse logo, 01632 960123, harbourview-fire.example, and NSI Gold, NICEIC Approved Contractor, CHAS accreditation row"
+                  />
+                </a>
+                <div class="sticker-stage-foot">
+                  <span class="mono">Panel &amp; Consumer Unit Label</span>
+                  <a class="shot sticker-dialog-link" href="/assets/screens/sticker-studio-panel.png">View in-app dialog ↗</a>
+                </div>
+              </div>
+              <div class="sticker-card-body">
+                <div class="sticker-meta-row">
+                  <span class="std-pill">NSI / NICEIC / BAFE / CHAS</span>
+                  <span class="std-pill">50 × 30 mm</span>
+                </div>
+                <h3>5. Front-of-Panel Service &amp; Maintenance Sticker</h3>
+                <p>
+                  Centered contractor logo, company name (<strong>Harbourview Fire &amp; Security Ltd</strong>), bold callout number (<code>01632 960123</code>), website URL (<code>harbourview-fire.example</code>), and a clean bottom divider displaying your official scheme badges (<strong>NSI Gold</strong>, <strong>NICEIC Approved Contractor</strong>, <strong>CHAS</strong>).
+                </p>
+              </div>
+            </article>
+
+            <!-- 6. Hardware Compatibility Callout Card -->
+            <article class="sticker-card sticker-hardware-card">
+              <div class="hw-badge-top">ZERO VENDOR LOCK-IN · PRINT ON SITE OR ORDER ROLLS</div>
+              <h3>Compatible with the Label Printers Already in Your Vans</h3>
+              <p>
+                Compliar exports exact millimetre-calibrated PDFs and 300 DPI PNGs directly from the mobile and web app — or we can supply weatherproof vinyl rolls printed for your company at <strong>£1 + VAT per sticker</strong>.
+              </p>
+              <ul class="hw-printer-list">
+                <li><strong>Brother VC-500W</strong> — Full-colour ZINK rolls (25 mm &amp; 50 mm continuous) for branded colour QR &amp; panel labels</li>
+                <li><strong>Brother QL Series</strong> — QL-800 / QL-810W / QL-820NWB die-cut &amp; red/black thermal rolls (<code>90 × 62 mm</code>, <code>62 mm</code>)</li>
+                <li><strong>Niimbot Handheld Bluetooth</strong> — B1 / B21 / B3S pocket thermal printers (<code>50 × 70 mm</code>, <code>50 × 30 mm</code>, <code>50 × 25 mm</code>)</li>
+                <li><strong>Dymo &amp; Standard Roll Printers</strong> — LabelWriter 450 / 550 &amp; Zebra thermal transfer rolls</li>
+              </ul>
+              <div class="sticker-card-actions" style="margin-top:auto">
+                <a class="btn btn-primary btn-sm" href="#contact-form">See Sticker Studio in a Demo →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: DEMONSTRATION-ONLY BS 5839-1 BATTERY CALCULATOR (#battery-calculator) -->
       <section class="v2-section v2-white" id="battery-calculator" aria-labelledby="bat-title">
         <div class="wrap">
           <div class="v2-head">
-            <span class="v2-kicker">Free contractor tool · BS 5839-1:2025 Annex E</span>
-            <h2 class="v2-h2" id="bat-title">Standby Battery Size Calculator.</h2>
+            <span class="v2-kicker">Interactive Engineering Utility · BS 5839-1 Standby Sizing</span>
+            <h2 class="v2-h2" id="bat-title">Interactive Demonstration Battery Calculator.</h2>
             <p class="v2-lead">
-              The real compliance calculation engine from Compliar’s servicing
-              and commissioning certificates. Calculate minimum required standby
-              capacity (<code>C<sub>min</sub></code>), check the 20-hour
-              discharge derating factor (<code>D</code>), and get the next
-              standard VRLA battery size up.
+              Explore how Compliar structures standby and alarm load calculations during system design and routine servicing. Adjust system voltage, standby hours, alarm duration, and quiescent/alarm loads below.
+            </p>
+          </div>
+
+          <!-- Mandatory Prominent Demonstration Notice (Above Controls) -->
+          <div class="bat-demo-disclaimer" role="note" aria-label="Demonstration tool disclaimer">
+            <span class="bat-warn-icon" aria-hidden="true">⚠️</span>
+            <p>
+              <strong>Demonstration tool only.</strong> This calculator provides an illustrative estimate and does not verify compliance or determine the correct battery for an installation. Actual selection depends on the system design, equipment data, applicable standards and guidance, and the manufacturer’s instructions. A competent person must verify all calculations and selections before use.
             </p>
           </div>
 
           <div class="bat-card">
             <div class="bat-inputs">
+              <!-- System Voltage Toggle (12V / 24V) -->
               <div class="bat-field">
-                <label id="bat-sys-label">Discipline &amp; system</label>
-                <div class="bat-pills" role="group" aria-labelledby="bat-sys-label">
-                  <button type="button" class="bat-pill active" data-bat-sys="fire">
-                    <strong>Fire Alarm</strong><span>BS 5839-1:2025 Annex E</span>
+                <label id="bat-volt-label">System Voltage</label>
+                <div class="bat-pills" role="group" aria-labelledby="bat-volt-label">
+                  <button type="button" class="bat-pill" data-bat-volt="12">
+                    <strong>12V DC System</strong><span>Single 12V VRLA battery bank</span>
                   </button>
-                  <button type="button" class="bat-pill" data-bat-sys="intruder">
-                    <strong>Intruder Alarm</strong><span>BS EN 50131 / PD 6662</span>
+                  <button type="button" class="bat-pill active" data-bat-volt="24">
+                    <strong>24V DC System</strong><span>2 × 12V VRLA batteries in series</span>
                   </button>
                 </div>
               </div>
 
+              <!-- Standby Duration Presets (24h, 48h, 72h + custom) -->
               <div class="bat-field">
-                <label for="bat-t1">Standby duration (<code>T<sub>1</sub></code>)</label>
+                <label for="bat-t1">Standby Duration (<code>T<sub>1</sub></code>)</label>
                 <div class="bat-presets" role="group" aria-label="Standby duration presets">
-                  <button type="button" class="bat-preset active" data-t1="24">24h · Occupied</button>
-                  <button type="button" class="bat-preset" data-t1="72">72h · Unoccupied</button>
-                  <button type="button" class="bat-preset" data-t1="6">6h · Generator backed</button>
-                  <button type="button" class="bat-preset" data-t1="12">12h · Grade 2 Intruder</button>
+                  <button type="button" class="bat-preset active" data-t1="24">24h Preset</button>
+                  <button type="button" class="bat-preset" data-t1="48">48h Preset</button>
+                  <button type="button" class="bat-preset" data-t1="72">72h Preset</button>
                 </div>
                 <div class="bat-num-wrap">
                   <input type="number" id="bat-t1" min="1" max="168" step="1" value="24" inputmode="decimal" />
-                  <span class="bat-unit">hours</span>
+                  <span class="bat-unit">hours (custom input)</span>
                 </div>
               </div>
 
+              <!-- Alarm Duration Options (15 min, 30 min, 60 min + custom) -->
               <div class="bat-field">
-                <label for="bat-t2">Alarm duration (<code>T<sub>2</sub></code>)</label>
-                <div class="bat-presets" role="group" aria-label="Alarm duration presets">
-                  <button type="button" class="bat-preset active" data-t2="0.5">30 mins (0.5h)</button>
-                  <button type="button" class="bat-preset" data-t2="1">60 mins (1.0h)</button>
-                  <button type="button" class="bat-preset" data-t2="0.07">4 mins (Intruder)</button>
+                <label for="bat-t2">Alarm Duration (<code>T<sub>2</sub></code>)</label>
+                <div class="bat-presets" role="group" aria-label="Alarm duration options">
+                  <button type="button" class="bat-preset" data-t2="0.25">15 min (0.25h)</button>
+                  <button type="button" class="bat-preset active" data-t2="0.5">30 min (0.50h)</button>
+                  <button type="button" class="bat-preset" data-t2="1">60 min (1.00h)</button>
                 </div>
                 <div class="bat-num-wrap">
                   <input type="number" id="bat-t2" min="0.05" max="4" step="0.05" value="0.5" inputmode="decimal" />
@@ -411,415 +977,317 @@
                 </div>
               </div>
 
+              <!-- Quiescent Load (I1) & Full Alarm Load (I2) with A / mA toggles -->
               <div class="bat-row-2">
                 <div class="bat-field">
                   <div class="bat-label-row">
-                    <label for="bat-i1">Standby load (<code>I<sub>1</sub></code>)</label>
-                    <div class="bat-unit-toggle" role="group" aria-label="Standby current unit">
+                    <label for="bat-i1">Quiescent Load (<code>I<sub>1</sub></code>)</label>
+                    <div class="bat-unit-toggle" role="group" aria-label="Quiescent load current unit">
                       <button type="button" class="active" data-i1-unit="mA">mA</button>
                       <button type="button" data-i1-unit="A">A</button>
                     </div>
                   </div>
                   <input type="number" id="bat-i1" min="0" max="50000" step="10" value="180" inputmode="decimal" />
-                  <small class="bat-hint">Quiescent current (panel + detectors + modules)</small>
+                  <small class="bat-hint">Standby panel + loop detectors + interfaces</small>
                 </div>
 
                 <div class="bat-field">
                   <div class="bat-label-row">
-                    <label for="bat-i2">Alarm load (<code>I<sub>2</sub></code>)</label>
-                    <div class="bat-unit-toggle" role="group" aria-label="Alarm current unit">
+                    <label for="bat-i2">Full Alarm Load (<code>I<sub>2</sub></code>)</label>
+                    <div class="bat-unit-toggle" role="group" aria-label="Full alarm load current unit">
                       <button type="button" data-i2-unit="mA">mA</button>
                       <button type="button" class="active" data-i2-unit="A">A</button>
                     </div>
                   </div>
                   <input type="number" id="bat-i2" min="0" max="50000" step="0.05" value="1.2" inputmode="decimal" />
-                  <small class="bat-hint">Full alarm load (sounders + beacons + relays + panel)</small>
+                  <small class="bat-hint">Sounders + VAD beacons + relays + panel in alarm</small>
                 </div>
+              </div>
+
+              <p class="bat-param-note">
+                <strong>Note on preset factors:</strong> Preset aging and derating factors (such as the <code>1.25</code> capacity aging multiplier) are illustrative parameters and are not a substitute for manufacturer data or standard-specific verification (including high-rate discharge derating factors where applicable).
+              </p>
+
+              <!-- Action Buttons -->
+              <div class="bat-action-btns">
+                <button type="button" class="btn btn-primary btn-sm" id="bat-btn-recalc">Recalculate / Update</button>
+                <button type="button" class="btn btn-ghost-on-cream btn-sm" id="bat-btn-reset">Reset to Defaults</button>
+                <button type="button" class="btn btn-ghost-on-cream btn-sm" id="bat-btn-copy">Copy Calculation Summary</button>
+              </div>
+              <div class="bat-copy-toast" id="bat-copy-toast" role="status" aria-live="polite" hidden>
+                ✓ Calculation summary and demonstration notice copied to clipboard.
               </div>
             </div>
 
             <div class="bat-output" aria-live="polite">
               <div class="bat-out-head">
-                <span class="mono">BS 5839-1:2025 ANNEX E RESULT</span>
-                <span class="bat-derate-tag" id="bat-derate-tag">D = 1.75 derating applied</span>
+                <span class="mono">ILLUSTRATIVE CAPACITY ESTIMATE</span>
+                <span class="bat-derate-tag" id="bat-volt-tag">24V System · 1.25 Aging Factor</span>
               </div>
 
               <div class="bat-main-metrics">
                 <div class="bat-metric">
-                  <span>Minimum required capacity (<code>C<sub>min</sub></code>)</span>
-                  <strong id="bat-cmin">6.71 Ah</strong>
+                  <span>Computed Illustrative Capacity (<code>Ah</code>)</span>
+                  <strong id="bat-cmin">6.15 Ah</strong>
+                  <small id="bat-annex-note">Annex E high-rate check (with D=1.75 derating): 6.71 Ah</small>
                 </div>
                 <div class="bat-metric bat-metric-highlight">
-                  <span>Recommended standard VRLA size</span>
-                  <strong id="bat-rec">2 × 12V 7 Ah VRLA Batteries</strong>
-                  <small id="bat-rec-sub">For a 24V fire alarm panel (or 1 × 12V 7 Ah for a 12V system)</small>
+                  <span>Illustrative Battery Pairing Example <em>(Example Only)</em></span>
+                  <strong id="bat-rec">Example only: 2 × 12V 7.0Ah VRLA</strong>
+                  <small id="bat-rec-sub">Other common commercial sizes: 2× 12V 7.0Ah, 2× 12V 12Ah, 2× 12V 17Ah</small>
                 </div>
               </div>
 
               <div class="bat-formula-box">
-                <div class="mono bat-formula-title">Formula &amp; working</div>
+                <div class="mono bat-formula-title">Displayed Formula &amp; Working</div>
                 <p class="mono" id="bat-working">
-                  Cmin = 1.25 × (T1 · I1 + D · I2 · T2) = 1.25 × (24 × 0.180 + 1.75 × 1.200 × 0.50) = 6.71 Ah
+                  Ah = 1.25 × [(I1 × T1) + (I2 × T2)] = 1.25 × [(0.180 A × 24h) + (1.200 A × 0.50h)] = 6.15 Ah
                 </p>
                 <p class="bat-derate-exp" id="bat-derate-exp">
-                  20-hour discharge check: Underrated capacity C1 / 20 = 0.25 A &lt; I2 (1.20 A), so Annex E.1.2 derating factor D = 1.75 is applied, plus the 1.25 (25%) battery ageing allowance.
+                  Illustrative parameters: I1 = 0.180 A (180 mA), T1 = 24h, I2 = 1.200 A, T2 = 0.50h (30 min), aging factor = 1.25.
                 </p>
               </div>
 
-              <div class="bat-sizes-strip" aria-label="Standard commercial VRLA sizes">
-                <span data-size="7" class="selected">7Ah</span>
-                <span data-size="9">9Ah</span>
+              <div class="bat-sizes-strip" aria-label="Illustrative commercial VRLA battery sizes">
+                <span data-size="7" class="selected">7.0Ah</span>
+                <span data-size="9">9.0Ah</span>
                 <span data-size="12">12Ah</span>
                 <span data-size="17">17Ah</span>
                 <span data-size="24">24Ah</span>
                 <span data-size="38">38Ah</span>
                 <span data-size="65">65Ah</span>
-                <span data-size="100">100Ah</span>
-                <span data-size="120">120Ah</span>
               </div>
 
-              <div class="bat-cta-box">
-                <p>Save and attach BS 5839-1 battery calculation sheets directly to design and commissioning packs inside Compliar.</p>
-                <a class="btn btn-primary btn-sm" href="#demo">Book a 15-Min Walkthrough →</a>
+              <!-- Mandatory Prominent Demonstration Notice (Alongside Result) -->
+              <div class="bat-out-disclaimer">
+                <strong>Demonstration tool only.</strong> This calculator provides an illustrative estimate and does not verify compliance or determine the correct battery for an installation. Actual selection depends on the system design, equipment data, applicable standards and guidance, and the manufacturer’s instructions. A competent person must verify all calculations and selections before use.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 3. PRODUCT SCREENSHOTS & REAL WORKFLOWS -->
-      <section class="v2-section v2-dark" id="field-app" aria-labelledby="screens-title">
+      <!-- SECTION 6: GROUNDED ROI & TIME SAVINGS ESTIMATOR (#roi-calculator) -->
+      <section class="v2-section" id="roi-calculator" aria-labelledby="roi-title">
         <div class="wrap">
           <div class="v2-head">
-            <span class="v2-kicker">Real platform · Harbourview Fire &amp; Security</span>
-            <h2 class="v2-h2" id="screens-title">Built for engineers on site and teams in the office.</h2>
+            <span class="v2-kicker">Contractor ROI &amp; Time Savings Estimator</span>
+            <h2 class="v2-h2" id="roi-title">Credible operational time saved across your field &amp; office team.</h2>
             <p class="v2-lead">
-              Authentic screens from the Compliar workspace and mobile field app —
-              no stock mockups. Tap any screen to inspect it full size.
+              Replace evening certificate re-typing, missing defect photos, and 2–4 day office turnaround bottlenecks with one-pass on-site completion.
             </p>
           </div>
 
-          <div class="showcase-phones">
-            <figure class="phone-frame-card">
-              <div class="phone-bezel">
-                <a class="shot" href="/assets/screens/field-02-tasks.webp" aria-label="Open Engineer Field App job visit view full size">
-                  <img
-                    src="/assets/screens/field-02-tasks.webp"
-                    width="960"
-                    height="1634"
-                    loading="lazy"
-                    alt="Compliar mobile engineer app showing active job visits, statuses, and instant offline sync"
-                  />
-                </a>
+          <div class="roi-card">
+            <div class="roi-controls">
+              <div class="roi-field">
+                <label for="roi-engineers">
+                  1. Number of Field Engineers
+                  <output id="roi-engineers-out" for="roi-engineers">5 engineers</output>
+                </label>
+                <input type="range" id="roi-engineers" min="1" max="50" step="1" value="5" />
+                <div class="roi-scale"><span>1 engineer</span><span>25</span><span>50 engineers</span></div>
               </div>
-              <figcaption>
-                <strong>In-Job Visit Strip &amp; Asset Testing</strong>
-                <span>Pass / Fail / No-Test toggles, instant defect logging with photos, and offline storage when signal drops in plant rooms.</span>
-              </figcaption>
-            </figure>
 
-            <figure class="phone-frame-card">
-              <div class="phone-bezel">
-                <a class="shot" href="/assets/screens/field-05-site.webp" aria-label="Open Site Assets and Barcode Scanner view full size">
-                  <img
-                    src="/assets/screens/field-05-site.webp"
-                    width="960"
-                    height="1634"
-                    loading="lazy"
-                    alt="Compliar mobile app showing site access notes, asset registers, and barcode/QR scanning"
-                  />
-                </a>
+              <div class="roi-field">
+                <label for="roi-jobs">
+                  2. Jobs Completed per Engineer / Week
+                  <output id="roi-jobs-out" for="roi-jobs">8 jobs / week</output>
+                </label>
+                <input type="range" id="roi-jobs" min="2" max="20" step="1" value="8" />
+                <div class="roi-scale"><span>2 jobs/wk</span><span>10 jobs/wk</span><span>20 jobs/wk</span></div>
               </div>
-              <figcaption>
-                <strong>Site Equipment, Access &amp; Scanner</strong>
-                <span>Lock onto asset tags with the native camera or a Bluetooth barcode scanner to jump straight to test history.</span>
-              </figcaption>
-            </figure>
 
-            <figure class="phone-frame-card">
-              <div class="phone-bezel">
-                <a class="shot" href="/assets/screens/field-06-logbook-qr.webp" aria-label="Open Mobile QR Log Book &amp; Panel Sticker view full size">
-                  <img
-                    src="/assets/screens/field-06-logbook-qr.webp"
-                    width="960"
-                    height="1634"
-                    loading="lazy"
-                    alt="Compliar mobile app showing a site's digital QR log book, weekly test entries, and sticker printing controls"
-                  />
-                </a>
+              <div class="roi-field">
+                <label for="roi-turnaround">
+                  3. Current Office Certificate Turnaround Time
+                  <output id="roi-turnaround-out" for="roi-turnaround">3 days (vs. Instant)</output>
+                </label>
+                <input type="range" id="roi-turnaround" min="1" max="5" step="1" value="3" />
+                <div class="roi-scale"><span>1 day lag</span><span>2–4 days typical</span><span>5+ days lag</span></div>
               </div>
-              <figcaption>
-                <strong>On-Site QR Log Book &amp; Stickers</strong>
-                <span>View weekly tests, print QR and service stickers on site, and keep compliance records audit-ready.</span>
-              </figcaption>
-            </figure>
 
-            <figure class="phone-frame-card">
-              <div class="phone-bezel">
-                <a class="shot" href="/assets/screens/field-07-rams.webp" aria-label="Open Mobile RAMS &amp; Engineer Toolbox view full size">
-                  <img
-                    src="/assets/screens/field-07-rams.webp"
-                    width="960"
-                    height="1634"
-                    loading="lazy"
-                    alt="Compliar mobile app showing RAMS sign-off, scope of works, emergency contacts, and engineer toolbox"
-                  />
+              <p class="roi-assume">
+                Estimates based on typical UK contractor workflows replacing manual PDF or paper reporting. Results vary by discipline mix.
+              </p>
+            </div>
+
+            <div class="roi-results" aria-live="polite">
+              <div class="roi-stat">
+                <span>Estimated Admin Hours Saved per Engineer / Month</span>
+                <strong>
+                  <b id="roi-per-eng-hours">~15 hrs / engineer / month</b>
+                  <small id="roi-team-hours">(~75 hrs/month across 5 engineers)</small>
+                </strong>
+                <p>Eliminating duplicate certificate typing, manual asset list formatting, and chasing missing site photos.</p>
+              </div>
+
+              <div class="roi-stat">
+                <span>Faster Remedial Quote Turnaround</span>
+                <strong>
+                  <b id="roi-quote-speed">Same-Day Dispatch</b>
+                  <small id="roi-quote-lag">(saves ~3 days vs. current office queue)</small>
+                </strong>
+                <p>Defects flagged by engineers on site flow straight into priced remedial quotes before the customer calls another contractor.</p>
+              </div>
+
+              <div class="roi-stat roi-total">
+                <span>Paperwork &amp; Certificate Processing Cost Reduction</span>
+                <strong>
+                  <b id="roi-admin-saving">~£2,400 / month</b>
+                  <small id="roi-annual-note">Equivalent to ~£28,800/year in reclaimed office &amp; engineer capacity (plus zero per-cert token fees)</small>
+                </strong>
+                <p>Based on <span id="roi-certs-month">168</span> completed jobs/certificates per month across your team.</p>
+              </div>
+
+              <div class="roi-cta">
+                <a class="btn btn-primary" id="roi-cta" href="#contact-form" data-engineers="5">
+                  Book a Demo for Your Team →
                 </a>
               </div>
-              <figcaption>
-                <strong>RAMS Sign-Off &amp; Field Toolbox</strong>
-                <span>Read and sign risk assessments on site, check van stock, and open panel manuals and wiring guides.</span>
-              </figcaption>
-            </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: PRODUCT SCREENSHOTS & WORKFLOW PREVIEW (#screenshots / #field-app) -->
+      <section class="v2-section v2-dark" id="field-app" aria-labelledby="screens-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">Product Screenshots &amp; Workflow Preview</span>
+            <h2 class="v2-h2" id="screens-title">From the plant room to the compliance desk.</h2>
+            <p class="v2-lead">
+              Four connected views built for UK contractors: Desktop Operations Dashboard, Offline Field Engineer App, Digital QR Log Book Portal, and BS 7671 / BS 5839 Certificate Generation. Tap any screen to inspect full size.
+            </p>
           </div>
 
-          <div class="showcase-desks">
+          <div class="showcase-desks" style="margin-top:0;margin-bottom:32px">
             <figure class="desk-frame-card">
-              <div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>Design &amp; Certificate Engine · BS 5839-1 &amp; BS 7671</span></div>
-              <a class="shot" href="/assets/screens/desk-03-design-editor.webp" aria-label="Open Design &amp; Certificate floor plan editor full size">
+              <div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>1. Desktop Operations Dashboard · Scheduling &amp; Certificate Approval Queue</span></div>
+              <a class="shot" href="/assets/screens/desk-01-dashboard.webp" aria-label="Open Desktop Operations Dashboard full size">
+                <img
+                  src="/assets/screens/desk-01-dashboard.webp"
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                  alt="Compliar Desktop Operations Dashboard showing live engineer scheduling, certificate approval queue, and site compliance overview"
+                />
+              </a>
+              <figcaption>
+                <strong>1. Desktop Operations Dashboard</strong>
+                <span>Live engineer scheduling, certificate approval queue, open site defects, and contract compliance overview across every client site.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="desk-frame-card">
+              <div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>4. Certificate &amp; Report Generation · BS 7671 &amp; BS 5839 Multi-Page PDF Engine</span></div>
+              <a class="shot" href="/assets/screens/desk-03-design-editor.webp" aria-label="Open Certificate &amp; Floor Plan Report Generator full size">
                 <img
                   src="/assets/screens/desk-03-design-editor.webp"
                   width="1600"
                   height="1000"
                   loading="lazy"
-                  alt="Compliar floor plan design editor showing fire alarm device placement, zones, and symbol key"
+                  alt="Compliar Certificate and As-Fitted Drawing editor generating BS 5839 and BS 7671 reports"
                 />
               </a>
               <figcaption>
-                <strong>As-Fitted Drawings &amp; BS Certificate Suite</strong>
-                <span>Generate BS 5839-1, BS 5266-1, and BS 7671 (A4:2026) certificates with engineer signatures, observation schedules, and one-click PDF download or email.</span>
+                <strong>4. Certificate &amp; Report Generation</strong>
+                <span>Clean, multi-page BS 7671 (EIC/EICR/MEIWC), BS 5839-1/6, and BS 5266-1 PDF output with full device schedules, floor plan zones, and remedial quotes.</span>
               </figcaption>
             </figure>
+          </div>
 
-            <figure class="desk-frame-card">
-              <div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>Quotes, Defect Remedials &amp; Maintenance Contracts</span></div>
-              <a class="shot" href="/assets/screens/desk-07-quotes.webp" aria-label="Open Quotes and Tenders screen full size">
-                <img
-                  src="/assets/screens/desk-07-quotes.webp"
-                  width="1600"
-                  height="1000"
-                  loading="lazy"
-                  alt="Compliar quotes and remedial proposals list for Harbourview sites"
-                />
-              </a>
+          <div class="showcase-phones">
+            <figure class="phone-frame-card">
+              <div class="phone-bezel">
+                <a class="shot" href="/assets/screens/field-02-tasks.webp" aria-label="Open Field Engineer App offline checklist full size">
+                  <img
+                    src="/assets/screens/field-02-tasks.webp"
+                    width="960"
+                    height="1634"
+                    loading="lazy"
+                    alt="Compliar Field Engineer App showing offline-capable device testing checklist and defect capture"
+                  />
+                </a>
+              </div>
               <figcaption>
-                <strong>Defect Quoting &amp; Recurring Maintenance</strong>
-                <span>Turn site-flagged defects into priced customer quotes, schedule recurring PM visits with tolerance windows, and sync invoices with Xero.</span>
+                <strong>2. Field Engineer App (Offline Checklist)</strong>
+                <span>Offline-capable device testing checklist, Pass / Fail / No-Test toggles, and defect photo capture when signal drops in basements.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="phone-frame-card">
+              <div class="phone-bezel">
+                <a class="shot" href="/assets/screens/field-05-site.webp" aria-label="Open Barcode and QR Asset Scanning screen full size">
+                  <img
+                    src="/assets/screens/field-05-site.webp"
+                    width="960"
+                    height="1634"
+                    loading="lazy"
+                    alt="Compliar mobile app showing barcode and QR asset scanning and site equipment history"
+                  />
+                </a>
+              </div>
+              <figcaption>
+                <strong>Barcode &amp; QR Asset Scanning</strong>
+                <span>Scan detector, extinguisher, or PAT barcode tags via the phone camera or Bluetooth scanner to jump straight to test history.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="phone-frame-card">
+              <div class="phone-bezel">
+                <a class="shot" href="/assets/screens/field-06-logbook-qr.webp" aria-label="Open Digital QR Log Book Portal mobile view full size">
+                  <img
+                    src="/assets/screens/field-06-logbook-qr.webp"
+                    width="960"
+                    height="1634"
+                    loading="lazy"
+                    alt="Compliar Digital QR Log Book mobile portal showing weekly tests, service history, and sticker printing"
+                  />
+                </a>
+              </div>
+              <figcaption>
+                <strong>3. Digital QR Log Book Portal</strong>
+                <span>Mobile-optimised view showing what building managers and fire safety inspectors see when scanning a panel sticker on site.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="phone-frame-card">
+              <div class="phone-bezel">
+                <a class="shot" href="/assets/screens/field-07-rams.webp" aria-label="Open Mobile RAMS and Engineer Sign-off screen full size">
+                  <img
+                    src="/assets/screens/field-07-rams.webp"
+                    width="960"
+                    height="1634"
+                    loading="lazy"
+                    alt="Compliar mobile app showing RAMS sign-off and site safety documentation"
+                  />
+                </a>
+              </div>
+              <figcaption>
+                <strong>On-Site RAMS &amp; Customer Sign-Off</strong>
+                <span>Review site risk assessments, capture engineer and customer signatures, and sync completed certificates back to the office.</span>
               </figcaption>
             </figure>
           </div>
         </div>
       </section>
 
-      <!-- 4. DIGITAL QR LOG BOOKS -->
-      <section class="v2-section v2-white" id="qr-log-books" aria-labelledby="logbooks-title">
-        <div class="wrap v2-split">
-          <div>
-            <span class="v2-kicker">Digital QR log books</span>
-            <h2 class="v2-h2" id="logbooks-title">Ditch the dusty red binder. Upgrade your sites to Digital QR Log Books.</h2>
-            <p class="v2-lead">
-              Side-by-side visibility for your office compliance desk and the
-              public or sign-in phone view when scanning a site’s QR label — no
-              app download required for premises managers or inspecting fire
-              officers.
-            </p>
-            <ul class="v2-points">
-              <li><strong>Audit-Ready 24/7</strong><span>Weekly fire alarm tests, false alarm logs, and issued certificates always on the panel.</span></li>
-              <li><strong>Never Drive Back for a Missing Binder</strong><span>Every service visit, test result, and remedial action is recorded permanently against the site.</span></li>
-              <li><strong>Branded to Your Company</strong><span>Displays your company logo, accreditation badges, and 24/7 emergency call-out number.</span></li>
-            </ul>
-            <p class="v2-note">£4 + VAT per site per year, added to any plan or taken on its own. <a href="/log-book/">Explore digital log books →</a></p>
-          </div>
-          <div class="qr-side-by-side">
-            <figure class="qr-card" style="margin: 0">
-              <div class="qr-card-badge">HARBOURVIEW FIRE &amp; SECURITY LTD</div>
-              <img src="/assets/logbook-sample-qr.svg" width="220" height="220" alt="QR code that opens a live sample digital fire safety log book" />
-              <p>Scan with your phone camera to see the live customer &amp; fire officer log book view.</p>
-              <small>Or <a href="/log-book/sample/">open the sample log book in your browser →</a></small>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. REAL IN-APP STICKERS & HARDWARE SHOWCASE -->
-      <section class="v2-section" id="sticker-studio" aria-labelledby="hardware-title">
-        <div class="wrap">
-          <div class="v2-head">
-            <span class="v2-kicker">Sticker Studio &amp; hardware</span>
-            <h2 class="v2-h2" id="hardware-title">Real in-app compliance stickers, asset tags &amp; panel notices.</h2>
-            <p class="v2-lead">
-              Print straight from Compliar’s Sticker Studio to handheld label
-              printers on site, or order weatherproof vinyl rolls printed for
-              your company.
-            </p>
-          </div>
-
-          <div class="studio-grid">
-            <!-- 1. Digital QR Log Book Stickers -->
-            <article class="studio-card">
-              <div class="studio-preview">
-                <div class="st-qr-label">
-                  <div class="st-qr-head">
-                    <strong>HARBOURVIEW FIRE &amp; SECURITY LTD</strong>
-                    <span>DIGITAL FIRE SAFETY LOG BOOK</span>
-                  </div>
-                  <div class="st-qr-body">
-                    <img src="/assets/logbook-sample-qr.svg" width="76" height="76" alt="" />
-                    <div>
-                      <b>Harbourview Hotel</b>
-                      <small>Scan to view test records &amp; certificates</small>
-                      <small class="mono">24/7: 0800 111 222</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="studio-controls" aria-hidden="true">
-                  <span class="sc-chip active">QR: M</span><span class="sc-chip">L</span><span class="sc-chip">XL</span>
-                  <span class="sc-swatch" style="background:#1b2430" title="Auto-contrast: white text"></span>
-                  <span class="sc-swatch" style="background:#b91c1c"></span>
-                  <span class="sc-chip">50×70mm</span><span class="sc-chip">50×40mm</span>
-                </div>
-              </div>
-              <h3>1. Digital QR Log Book Stickers</h3>
-              <p>
-                Panel and entrance riser stickers with in-app controls for
-                Small–XL QR sizing, brand background colour picker with
-                automatic contrast-tone indicator, and roll presets
-                (<code>50×70mm</code>, <code>50×60mm</code>,
-                <code>50×40mm</code>, <code>50×30mm</code>). One-tap print to
-                Brother VC-500W, Dymo, Zebra or Niimbot, or order bulk vinyl
-                rolls (£1 + VAT each).
-              </p>
-            </article>
-
-            <!-- 2. Weatherproof Panel Service Stickers -->
-            <article class="studio-card">
-              <div class="studio-preview">
-                <div class="st-service-label">
-                  <div class="st-srv-top">
-                    <strong>HARBOURVIEW FIRE &amp; SECURITY LTD</strong>
-                    <span>24/7 CALL-OUT: 0800 111 222</span>
-                  </div>
-                  <div class="st-srv-dates mono">
-                    <div><small>SERVICED</small><b>OCT 2026</b></div>
-                    <div><small>NEXT DUE</small><b>APR 2027</b></div>
-                    <div><small>ENG</small><b>KS</b></div>
-                  </div>
-                  <div class="st-srv-arc mono">ARC: Fire ARC · Ref: F123 · Tel: 0800 111</div>
-                  <div class="st-srv-warn">FALSE ALARM? Confirm before silencing or resetting panel</div>
-                </div>
-              </div>
-              <h3>2. Weatherproof Panel Service Stickers</h3>
-              <p>
-                Branded 50 mm service labels with your 24/7 out-of-hours number,
-                Alarm Receiving Centre line
-                (<code>ARC: Fire ARC · Ref: F123 · Tel: 0800 111</code>), and
-                optional BS 5839 False Alarm Notice strip, with
-                horizontal/vertical auto-orientation.
-              </p>
-            </article>
-
-            <!-- 3. Emergency Light FAILED Warning Labels -->
-            <article class="studio-card">
-              <div class="studio-preview">
-                <div class="st-failed-label">
-                  <div class="st-fail-head">EMERGENCY LIGHTING · BS 5266-1</div>
-                  <div class="st-fail-ban">FAILED TEST — AWAITING REMEDIAL</div>
-                  <div class="st-fail-meta mono">
-                    <span>DATE: 30/10/26</span>
-                    <span>ENG: K.S.</span>
-                  </div>
-                  <div class="st-fail-co">Harbourview Fire &amp; Security Ltd · 0800 111 222</div>
-                </div>
-              </div>
-              <h3>3. Emergency Light FAILED Warning Labels</h3>
-              <p>
-                High-visibility red warning stickers with BS 5266-1 reference,
-                company name, and Date / Engineer Initials sign-off lines.
-                Print on site when a luminaire fails its discharge test, or
-                order pre-printed rolls (£1 + VAT each).
-              </p>
-            </article>
-
-            <!-- 4. Asset Barcode Tags & PAT Result Labels -->
-            <article class="studio-card">
-              <div class="studio-preview">
-                <div class="st-pat-pair">
-                  <div class="st-pat-label pass">
-                    <div class="st-pat-status">PASS</div>
-                    <div class="st-pat-body mono">
-                      <b>AST-0042</b>
-                      <div class="st-code128" aria-hidden="true"></div>
-                      <small>TEST: 30/10/26 · DUE: 30/10/27 · ENG: KS</small>
-                    </div>
-                  </div>
-                  <div class="st-pat-label fail">
-                    <div class="st-pat-status">FAIL</div>
-                    <div class="st-pat-body mono">
-                      <b>AST-0089</b>
-                      <small>DO NOT USE · QUARANTINED · ENG: KS</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h3>4. Asset Barcode Tags &amp; PAT Labels (PASS / FAIL)</h3>
-              <p>
-                Dual-encoded Code 128 barcode + high-density QR code printed on
-                demand after testing, showing Asset ID (<code>AST-0042</code>),
-                Test Date, Retest Due, Engineer Initials, and high-contrast
-                green <strong>PASS</strong> or red <strong>FAIL</strong> status.
-              </p>
-            </article>
-
-            <!-- 5. Scanner Compatibility -->
-            <article class="studio-card">
-              <div class="studio-preview">
-                <div class="st-scanner-vis" aria-hidden="true">
-                  <div class="st-reticle">
-                    <span></span>
-                    <b class="mono">AST-0042 · LOCKED</b>
-                  </div>
-                  <small class="mono">Phone Camera + Bluetooth HID Wedge</small>
-                </div>
-              </div>
-              <h3>5. Camera &amp; Bluetooth Scanner Ready</h3>
-              <p>
-                Scan labels with your engineer’s phone camera or pair a pocket
-                Bluetooth 1D/2D barcode scanner in HID keyboard-wedge mode for
-                rapid back-to-back appliance and detector testing.
-              </p>
-            </article>
-          </div>
-          <p class="v2-note"><a href="/pricing/#log-book">See full sticker &amp; roll pricing →</a></p>
-        </div>
-      </section>
-
-      <!-- 6. RESTORED ABOUT COMPLIAR (FOUNDER STORY) -->
-      <section class="v2-section v2-white" id="our-story" aria-labelledby="story-title">
-        <div class="wrap story-grid">
+      <!-- SECTION 8: FOUNDER-LED "ABOUT US" SECTION (#about) -->
+      <section class="v2-section v2-white" id="about" aria-labelledby="story-title">
+        <div class="wrap story-grid" id="our-story">
           <div class="story-copy">
-            <span class="v2-kicker">Built on Site, Not in a Boardroom</span>
-            <h2 class="v2-h2" id="story-title">Created by an Engineer Who Lived the Problem Every Day.</h2>
+            <span class="v2-kicker">About Us · Authentic UK Trade Roots</span>
+            <h2 class="v2-h2" id="story-title">Founded by Keiran Sandham from Inside the UK Fire, Security &amp; Electrical Trade.</h2>
             <div class="story-prose">
               <p>
-                Compliar started because field service software in the fire,
-                security, and electrical trades felt like it was designed by
-                accountants who had never stepped foot on a plant room riser or
-                tested an emergency light fitting.
+                Compliar was born directly out of the UK fire, security, and electrical contracting industry — not a generalist software studio guessing how site engineering works.
               </p>
               <p>
-                Founded by <strong>Keiran Sandham</strong>, Compliar was built
-                directly from the tools up. After years of chasing lost defect
-                remedials, wrestling with clunky mobile apps that crash when
-                signal drops, and typing the same certificate details three
-                times over, Keiran built Compliar to give independent
-                contractors and busy service desks software they could actually
-                take pride in using.
+                Founded by <strong>Keiran Sandham</strong>, Compliar was engineered to replace fragmented spreadsheets, expensive per-certificate tokens, and generic US job management software with a unified platform that understands <strong>BAFE</strong>, <strong>NSI</strong>, <strong>SSAIB</strong>, <strong>BS 7671</strong>, and <strong>BS 5839</strong> out of the box.
               </p>
               <p>
-                We don't lock you into multi-year contracts, and we don't hide
-                features behind enterprise paywalls. We just build software that
-                keeps you compliant with British Standards, wins you more
-                defect work, and lets your engineers get home on time.
+                Whether your engineers are testing a 4-loop addressable fire panel in a plant room with zero signal, completing a BS 7671:2018+A4:2026 EICR, or printing a replacement QR log book sticker on site, every screen in Compliar is designed to get the certificate signed, the remedial quoted, and the engineer home on time.
               </p>
             </div>
             <div class="founder-card">
@@ -832,125 +1300,186 @@
               />
               <div>
                 <strong>Keiran Sandham</strong>
-                <span>Founder of Compliar · 20+ years in electrical, fire &amp; security</span>
+                <span>Founder of Compliar · 20+ years in UK electrical, fire &amp; security contracting</span>
                 <a href="/about/">Read the full Compliar story →</a>
               </div>
             </div>
           </div>
 
           <div class="story-commitments">
-            <h3>Our Commitments to Contractors</h3>
+            <h3>Why UK Contractors Switch to Compliar</h3>
             <ul class="v2-points">
               <li>
-                <strong>Zero Bureaucracy</strong>
-                <span>UK-based team with direct support from people who actually understand British Standards and site realities.</span>
+                <strong>Zero Per-Certificate Token Fees</strong>
+                <span>Issue unlimited EIC, EICR, MEIWC, PAT, BS 5839-1/6, BS 5266-1, and BS 5306 certificates without buying credit bundles.</span>
               </li>
               <li>
-                <strong>Audit &amp; Inspection Ready</strong>
-                <span>Certificate templates and site records structured for BAFE SP203-1, NSI, SSAIB, and NICEIC inspections from day one.</span>
+                <strong>Structured for BAFE, NSI, SSAIB &amp; NICEIC Audits</strong>
+                <span>Every certificate, asset history, false alarm investigation, and digital QR log book is organised for third-party scheme assessments.</span>
               </li>
               <li>
-                <strong>Continuous Upgrades</strong>
-                <span>Shaped every week by what working engineers and service coordinators ask for — with no multi-year lock-in.</span>
+                <strong>Direct UK Engineering Support</strong>
+                <span>No multi-year contract lock-in and direct support from a UK team that speaks your trade’s language.</span>
               </li>
             </ul>
             <p class="compliance-note" style="margin-top:22px">
-              Compliar provides record-keeping and certificate workflows. It
-              doesn't certify work or grant accreditation, and isn't affiliated
-              with or endorsed by BAFE, NSI, SSAIB, NICEIC or BSI. Your
-              competent engineers and scheme remain responsible for the work and
-              certificates issued.
+              Compliar provides record-keeping and certificate workflows. It doesn't certify work or grant accreditation, and isn't affiliated with or endorsed by BAFE, NSI, SSAIB, NICEIC or BSI. Your competent engineers and scheme remain responsible for the work and certificates issued.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 7. GROUNDED, REALISTIC ROI CALCULATOR -->
-      <section class="v2-section" id="roi" aria-labelledby="roi-title">
+      <!-- SECTION 9: PRICING & ROI SUMMARY (#pricing) -->
+      <section class="v2-section" id="pricing" aria-labelledby="price-title">
         <div class="wrap">
           <div class="v2-head">
-            <span class="v2-kicker">Grounded savings calculator</span>
-            <h2 class="v2-h2" id="roi-title">Practical time and remedial revenue reclaimed each month.</h2>
+            <span class="v2-kicker">Transparent UK Pricing · No Per-Certificate Tokens</span>
+            <h2 class="v2-h2" id="price-title">Mix seat types across your engineers and office desk.</h2>
             <p class="v2-lead">
-              Built on modest, everyday trade numbers — saving 90 minutes of
-              admin per van each week and turning 2 extra flagged defects a
-              month into approved remedial jobs.
+              Every plan includes unlimited certificates across all 5 trade sectors, the offline mobile app, and the in-app Sticker Studio. Two months free on annual billing.
             </p>
           </div>
-          <div class="roi-card">
-            <div class="roi-controls">
-              <div class="roi-field">
-                <label for="roi-engineers">Number of field engineers <output id="roi-engineers-out" for="roi-engineers">3</output></label>
-                <input type="range" id="roi-engineers" min="1" max="25" value="3" />
-              </div>
-              <div class="roi-field">
-                <label for="roi-rate">Hourly charge-out rate <output id="roi-rate-out" for="roi-rate">£45/hr</output></label>
-                <input type="range" id="roi-rate" min="30" max="80" step="5" value="45" />
-              </div>
-              <div class="roi-field">
-                <label for="roi-remedial">Average defect / remedial job value <output id="roi-remedial-out" for="roi-remedial">£180</output></label>
-                <input type="range" id="roi-remedial" min="100" max="500" step="10" value="180" />
-              </div>
-              <p class="roi-assume">
-                Based on modest trade averages (1.5 hrs admin saved per van
-                weekly across 4.2 weeks/month, and 2 extra captured remedials
-                per engineer per month). No wild software claims — just real
-                time saved on site.
-              </p>
-            </div>
-            <div class="roi-results" aria-live="polite">
-              <div class="roi-stat">
-                <span>Estimated monthly reclaimed time</span>
-                <strong><b id="roi-hours">~19 hours / month</b> <small id="roi-time-val">(£851 value)</small></strong>
-                <p>Saving ~90 mins per engineer weekly by eliminating duplicate cert typing and chasing job photos.</p>
-              </div>
-              <div class="roi-stat">
-                <span>Recovered defect revenue</span>
-                <strong><b id="roi-defects">~£1,080</b><small>/month</small></strong>
-                <p>Turning flagged defects like dead batteries and failed fittings into customer quotes before leaving site.</p>
-              </div>
-              <div class="roi-stat roi-total">
-                <span>Combined monthly impact</span>
-                <strong><b id="roi-monthly">~£1,931</b><small>/month</small></strong>
-                <p id="roi-annual-note">Equivalent to ~£23,166 across a 12-month year.</p>
-              </div>
-              <div class="roi-cta">
-                <a class="btn btn-primary" id="roi-cta" href="#demo" data-engineers="3">Book a 15-Min Walkthrough for Your Team →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- 8. PRICING TEASER -->
-      <section class="v2-section v2-white" aria-labelledby="price-title">
-        <div class="wrap">
-          <div class="price-strip">
+          <div class="home-pricing-grid">
+            <article class="hp-card">
+              <span class="hp-tier">Field Engineer Seat</span>
+              <h3>Lite</h3>
+              <div class="hp-price"><strong>£35</strong><span>+ VAT / user / month</span></div>
+              <p>For field engineers completing service visits, asset testing, RAMS sign-off, and certificates on site.</p>
+              <ul>
+                <li>Offline mobile field app</li>
+                <li>All 32 British Standard certificates</li>
+                <li>Barcode &amp; QR asset scanning</li>
+                <li>In-app Sticker Studio printing</li>
+              </ul>
+            </article>
+
+            <article class="hp-card hp-card-featured">
+              <span class="hp-tier">Service Desk &amp; Coordinator</span>
+              <h3>Office</h3>
+              <div class="hp-price"><strong>£65</strong><span>+ VAT / user / month</span></div>
+              <p>Full operations dashboard, PPM scheduling, certificate approval queue, remedial quoting, and Xero sync.</p>
+              <ul>
+                <li>Everything in Lite</li>
+                <li>Live engineer scheduling &amp; dispatch</li>
+                <li>Defect-to-quote remedial engine</li>
+                <li>Client portal &amp; Xero integration</li>
+              </ul>
+            </article>
+
+            <article class="hp-card">
+              <span class="hp-tier">Project &amp; Design Engineers</span>
+              <h3>Design</h3>
+              <div class="hp-price"><strong>£95</strong><span>+ VAT / user / month</span></div>
+              <p>Complete workspace plus floor-plan CAD symbol placement, zone maps, and design packs.</p>
+              <ul>
+                <li>Everything in Office</li>
+                <li>As-fitted floor plan drawing editor</li>
+                <li>Loop, zone &amp; battery calculation packs</li>
+                <li>Full project costing &amp; tenders</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="price-strip" style="margin-top:24px">
             <div>
-              <h2 id="price-title">Simple, transparent pricing from £35 + VAT /user/month.</h2>
-              <p>Mix Lite (£35), Office (£65), and Design (£95) seats across your team — no minimum seats, two months free when paid yearly, and a 3-year price lock for early adopters.</p>
+              <strong>Add Digital QR Log Books at £4 + VAT / site / year</strong>
+              <p style="margin-top:4px">Plus optional pre-printed weatherproof vinyl stickers at £1 + VAT each (or print unlimited labels free on your own printer).</p>
             </div>
-            <a class="btn btn-ghost-on-cream" href="/pricing/">Compare seats &amp; pricing →</a>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a class="btn btn-ghost-on-cream" href="/pricing/">Full Pricing &amp; Seat Calculator →</a>
+              <a class="btn btn-primary" href="#contact-form">Book a Demo</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 9. FUNCTIONAL CONTACT & DEMO REQUEST FORM -->
-      <section class="v2-section v2-dark v2-demo-section" id="demo" aria-labelledby="demo-title">
+      <!-- SECTION 10: REAL WORKING CONTACT & DEMO FORM (#contact-form) -->
+      <section class="v2-section v2-dark v2-demo-section" id="contact-form" aria-labelledby="demo-title">
+        <div id="demo" aria-hidden="true"></div>
         <div class="wrap">
           <div class="v2-head">
-            <span class="v2-kicker">Book a 15-minute walkthrough</span>
-            <h2 class="v2-h2" id="demo-title">See Compliar on your own disciplines.</h2>
+            <span class="v2-kicker">Book a 15-Minute Walkthrough</span>
+            <h2 class="v2-h2" id="demo-title">See Compliar tailored to your disciplines.</h2>
             <p class="v2-lead">
-              Fill in your details below and we’ll prepare a tailored 15-minute
-              walkthrough for your team, followed by a 30-day free trial with no
-              card required.
+              Complete the form below and we’ll be in touch within one business day to arrange your live walkthrough and 30-day free trial (no card required).
             </p>
           </div>
           <div class="demo-wrap" data-demo-form></div>
         </div>
       </section>
     </main>
+
+    <!-- INTERACTIVE MODAL: ALL CERTIFICATES & BRITISH STANDARDS -->
+    <dialog class="standards-modal" id="standards-modal" aria-labelledby="standards-modal-title">
+      <div class="standards-modal-inner">
+        <div class="standards-modal-head">
+          <div>
+            <span class="v2-kicker">Complete UK Compliance Matrix</span>
+            <h2 id="standards-modal-title">All Certificates &amp; British Standards by Trade Sector</h2>
+          </div>
+          <button type="button" class="demo-modal-close" data-standards-modal-close aria-label="Close standards directory">✕</button>
+        </div>
+        <p class="standards-modal-sub">
+          Every certificate below is included with unlimited issuance across Lite, Office, and Design seats. Filter by keyword or standard number:
+        </p>
+        <input type="search" id="standards-search" class="standards-search" placeholder="Search standard or certificate (e.g. BS 7671, EICR, BS 5839-1, PAT, Gate, Damper)…" aria-label="Search certificates and British Standards" />
+        <div class="standards-modal-body" id="standards-modal-list">
+          <div class="sm-sector" data-sm-sector>
+            <h3>A. Electrical Installation &amp; Testing</h3>
+            <ul>
+              <li><strong>EIC – Electrical Installation Certificate</strong> <span>BS 7671:2018+A4:2026</span></li>
+              <li><strong>EICR – Electrical Installation Condition Report / Fixed Wire</strong> <span>BS 7671:2018+A4:2026</span></li>
+              <li><strong>MEIWC – Minor Electrical Installation Works Certificate</strong> <span>BS 7671:2018+A4:2026</span></li>
+              <li><strong>PAT – In-Service Inspection &amp; Testing of Electrical Equipment</strong> <span>IET Code of Practice 5th Ed</span></li>
+              <li><strong>EV Charging – Electric Vehicle Charging Equipment Installation</strong> <span>IET / BS 7671</span></li>
+              <li><strong>Solar PV &amp; Battery Storage – EESS &amp; Grid-Tied Inverter Systems</strong> <span>MCS / BS 7671</span></li>
+            </ul>
+          </div>
+          <div class="sm-sector" data-sm-sector>
+            <h3>B. Fire Detection &amp; Alarm Systems</h3>
+            <ul>
+              <li><strong>Commercial Fire Alarms – Design, Commissioning, Acceptance, Modification &amp; Servicing</strong> <span>BS 5839-1</span></li>
+              <li><strong>Domestic Smoke &amp; Heat Alarms – Grade D/F Installation &amp; Testing</strong> <span>BS 5839-6</span></li>
+              <li><strong>Voice Alarm Systems (PA/VA) – Periodic Servicing &amp; Intelligibility</strong> <span>BS 5839-8</span></li>
+              <li><strong>False Alarm Management – Cause, Investigation &amp; Audit Reports</strong> <span>BS 5839-1 cl 14.22</span></li>
+            </ul>
+          </div>
+          <div class="sm-sector" data-sm-sector>
+            <h3>C. Emergency Lighting</h3>
+            <ul>
+              <li><strong>Periodic Inspection &amp; 3-Hour Discharge Test – Complete luminaire schedules</strong> <span>BS 5266-1 / BS EN 1838</span></li>
+              <li><strong>Completion &amp; Commissioning Certificates – New design sign-offs</strong> <span>BS 5266-1</span></li>
+            </ul>
+          </div>
+          <div class="sm-sector" data-sm-sector>
+            <h3>D. Security, CCTV &amp; Access Control</h3>
+            <ul>
+              <li><strong>Video Surveillance Systems (CCTV) – Commissioning &amp; Maintenance</strong> <span>BS EN 62676 / BS 8418</span></li>
+              <li><strong>Intruder &amp; Hold-Up Alarms – Grade 2/3/4 Systems</strong> <span>BS EN 50131 / PD 6662</span></li>
+              <li><strong>Access Control Systems – Door Controllers &amp; Readers</strong> <span>BS EN 60839</span></li>
+              <li><strong>Automated Gates &amp; Barriers – Force testing &amp; safety audits</strong> <span>DHF TS 011 / BS EN 12453</span></li>
+              <li><strong>Nurse Call &amp; Assistance Alarms – Call points, panic buttons &amp; overdoors</strong> <span>HTM 08-03</span></li>
+            </ul>
+          </div>
+          <div class="sm-sector" data-sm-sector>
+            <h3>E. Passive Fire &amp; Suppression</h3>
+            <ul>
+              <li><strong>Fire Extinguishers – Commissioning, Annual &amp; Extended Service</strong> <span>BS 5306-3 &amp; BS 5306-8</span></li>
+              <li><strong>Fire Dampers – Drop testing &amp; ductwork inspection</strong> <span>BS 9999</span></li>
+              <li><strong>Dry &amp; Wet Risers – Visual &amp; annual pressure testing</strong> <span>BS 9990</span></li>
+              <li><strong>Smoke Control &amp; AOV Systems – Routine actuation &amp; maintenance</strong> <span>BS 7346</span></li>
+              <li><strong>Fire Door Inspection – 20+ point compliance check &amp; gap gauges</strong> <span>BS 8214</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="standards-modal-foot">
+          <span>Want to inspect a sample PDF certificate for your trade?</span>
+          <a class="btn btn-primary btn-sm" href="#contact-form" data-standards-modal-close>Request Sample Certificates in a Demo →</a>
+        </div>
+      </div>
+    </dialog>
+
     <footer>
       <div class="wrap foot-grid">
         <div>
@@ -970,31 +1499,23 @@
         <div class="foot-col">
           <h2>Explore</h2>
           <ul>
-            <li><a href="/getting-started/">Getting started</a></li>
-            <li><a href="/features/">Features</a></li>
-            <li><a href="/log-book/">Log book</a></li>
+            <li><a href="/#standards-matrix">Disciplines &amp; Standards</a></li>
+            <li><a href="/#logbooks">Digital QR Log Books</a></li>
+            <li><a href="/#stickers">Stickers &amp; Hardware</a></li>
             <li><a href="/pricing/">Pricing</a></li>
-            <li><a href="/about/">About</a></li>
+            <li><a href="/#about">About Us</a></li>
             <li><a href="/faqs/">FAQs</a></li>
             <li><a href="/resources/">Resources</a></li>
           </ul>
         </div>
         <div class="foot-col">
-          <h2>Guides &amp; tools</h2>
+          <h2>Interactive Tools</h2>
           <ul>
-            <li>
-              <a href="/fire-alarm-battery-calculator/">Battery calculator</a>
-            </li>
-            <li>
-              <a href="/fire-alarm-certificate-software/"
-                >Fire alarm certificates</a
-              >
-            </li>
-            <li>
-              <a href="/eicr-and-electrical-certificate-software/"
-                >Electrical certificates</a
-              >
-            </li>
+            <li><a href="/#battery-calculator">Demonstration Battery Calculator</a></li>
+            <li><a href="/#roi-calculator">Contractor ROI Estimator</a></li>
+            <li><a href="/#logbook-demo">Live QR Logbook Demo</a></li>
+            <li><a href="/fire-alarm-certificate-software/">Fire Alarm Certificates</a></li>
+            <li><a href="/eicr-and-electrical-certificate-software/">Electrical Certificates</a></li>
           </ul>
         </div>
         <div class="foot-col">
@@ -1003,7 +1524,7 @@
             <li><a href="/privacy/">Privacy Policy</a></li>
             <li><a href="/terms/">Terms &amp; Conditions</a></li>
             <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
-                        <li><a href="/cookies/">Cookies</a></li>
+            <li><a href="/cookies/">Cookies</a></li>
             <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>
@@ -1014,7 +1535,10 @@
               <a href="mailto:enquiry@compliar.co.uk">enquiry@compliar.co.uk</a>
             </li>
             <li>
-              <a href="/contact/">Contact &amp; demos ↗</a>
+              <a href="/#contact-form">Book a Demo ↗</a>
+            </li>
+            <li>
+              <a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Customer Log In ↗</a>
             </li>
           </ul>
         </div>
@@ -1027,6 +1551,6 @@
         >
       </div>
     </footer>
-      <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "abdf47c963bb43d086fd6fa762c45059"}'></script><!-- End Cloudflare Web Analytics -->
-</body>
+    <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "abdf47c963bb43d086fd6fa762c45059"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
 </html>
