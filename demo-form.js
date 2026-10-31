@@ -1,17 +1,14 @@
-// Demo request form: one form, shown in a modal (any [data-demo-open] control)
-// and inline wherever a [data-demo-form] mount exists. Submissions go to the
-// Web3Forms service, which relays them to enquiry@compliar.co.uk. The Google
-// Ads conversion only fires if the visitor accepted analytics & marketing
-// cookies in the cookie banner.
+// Demo request form: embedded on the homepage (#demo) and /contact/ page, plus
+// available as a modal when any [data-demo-open] button is clicked. Submissions
+// go to Web3Forms, which relays them to enquiry@compliar.co.uk. The Google Ads
+// conversion only fires if the visitor accepted analytics & marketing cookies.
 (() => {
   const ENDPOINT = "https://api.web3forms.com/submit";
-  // Public Web3Forms access key (designed to sit in page HTML; restrict it to
-  // compliar.co.uk in the Web3Forms dashboard).
   const ACCESS_KEY = "00a6f18c-3054-40ab-8342-6d7598f91c09";
   const ADS_CONVERSION = "AW-18545152858/mXfZCOGjwq4dENqmgotF";
   const CONSENT_KEY = "compliar_cookie_consent";
   const SIZES = ["1-3", "4-10", "11-25", "25+"];
-  const DISCIPLINES = ["Fire", "Security", "Electrical", "Extinguishers", "Multiple"];
+  const DISCIPLINES = ["Fire", "Security", "Electrical", "Extinguishers"];
   let uid = 0;
 
   function sizeFor(engineers) {
@@ -40,22 +37,26 @@
     const wrap = document.createElement("div");
     wrap.innerHTML = `
       <form class="demo-form" novalidate>
-        ${options.engineers ? `<p class="demo-prefill">Based on your calculator: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}</p>` : ""}
+        <p class="demo-prefill" ${options.engineers ? "" : "hidden"}>${
+          options.engineers
+            ? `Based on your calculator: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}`
+            : ""
+        }</p>
         <div class="grid2">
           <div><label for="df-name-${id}">Name *</label><input id="df-name-${id}" name="name" type="text" autocomplete="name" required /></div>
           <div><label for="df-company-${id}">Company name *</label><input id="df-company-${id}" name="company" type="text" autocomplete="organization" required /></div>
           <div><label for="df-email-${id}">Work email *</label><input id="df-email-${id}" name="email" type="email" autocomplete="email" required /></div>
-          <div><label for="df-phone-${id}">Phone *</label><input id="df-phone-${id}" name="phone" type="tel" autocomplete="tel" required /></div>
+          <div><label for="df-phone-${id}">Phone number *</label><input id="df-phone-${id}" name="phone" type="tel" autocomplete="tel" required /></div>
         </div>
         <div>
-          <label for="df-size-${id}">Team size (field engineers)</label>
+          <label for="df-size-${id}">Number of engineers</label>
           <select id="df-size-${id}" name="team_size">
             <option value="">Choose…</option>
             ${SIZES.map((s) => `<option value="${s}">${s} engineers</option>`).join("")}
           </select>
         </div>
         <fieldset>
-          <legend>Primary disciplines</legend>
+          <legend>Trade disciplines</legend>
           <div class="demo-checks">
             ${DISCIPLINES.map((d) => `<label><input type="checkbox" name="disciplines" value="${d}" /> ${d}</label>`).join("")}
           </div>
@@ -87,7 +88,7 @@
         phone: form.elements.phone.value.trim(),
         team_size: form.elements.team_size.value || "Not specified",
         disciplines: disciplines.join(", ") || "Not specified",
-        engineers_from_calculator: options.engineers ? String(options.engineers) : "",
+        engineers_from_calculator: form.dataset.engineers || (options.engineers ? String(options.engineers) : ""),
         page: location.href,
       };
       button.disabled = true;
@@ -151,6 +152,21 @@
   }
 
   document.addEventListener("click", (event) => {
+    const roiBtn = event.target.closest("#roi-cta");
+    if (roiBtn) {
+      const eng = parseInt(roiBtn.dataset.engineers, 10);
+      const inlineForm = document.querySelector("#demo form.demo-form");
+      if (inlineForm && eng) {
+        inlineForm.elements.team_size.value = sizeFor(eng);
+        inlineForm.dataset.engineers = String(eng);
+        const pre = inlineForm.querySelector(".demo-prefill");
+        if (pre) {
+          pre.textContent = `Based on your calculator: ${eng} field engineer${eng === 1 ? "" : "s"}`;
+          pre.hidden = false;
+        }
+      }
+      return;
+    }
     const opener = event.target.closest("[data-demo-open]");
     if (!opener) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
@@ -163,7 +179,6 @@
     mount.replaceChildren(buildForm());
   });
 
-  // Arriving from a "Book a demo" link to the contact page: show the form.
   const card = document.getElementById("book-a-demo");
   if (card && new URLSearchParams(location.search).has("subject") && !location.hash) {
     card.scrollIntoView();

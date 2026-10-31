@@ -24,37 +24,60 @@ if (menu) {
   });
 }
 
-// Disciplines mega-menu: opens on click, hover (pointer devices) and keyboard.
+// Header dropdowns (Disciplines & Trades, Free Tools): click, hover and keyboard.
 (() => {
-  const toggle = document.querySelector(".mega-toggle");
-  if (!toggle) return;
-  const panel = document.getElementById(toggle.getAttribute("aria-controls"));
-  const item = toggle.closest(".has-mega");
-  if (!panel || !item) return;
+  const toggles = [...document.querySelectorAll(".mega-toggle")];
+  if (!toggles.length) return;
   const hovers = () => window.matchMedia("(hover: hover)").matches;
-  function set(open) {
-    toggle.setAttribute("aria-expanded", String(open));
-    panel.hidden = !open;
+  const entries = toggles
+    .map((toggle) => {
+      const panel = document.getElementById(toggle.getAttribute("aria-controls"));
+      const item = toggle.closest(".has-mega");
+      return panel && item ? { toggle, panel, item } : null;
+    })
+    .filter(Boolean);
+
+  function closeAll(except) {
+    entries.forEach(({ toggle, panel }) => {
+      if (toggle === except) return;
+      toggle.setAttribute("aria-expanded", "false");
+      panel.hidden = true;
+    });
   }
-  let timer;
-  toggle.addEventListener("click", () => set(panel.hidden));
-  item.addEventListener("mouseenter", () => {
-    clearTimeout(timer);
-    if (hovers()) set(true);
+
+  entries.forEach(({ toggle, panel, item }) => {
+    let timer;
+    function set(open) {
+      if (open) closeAll(toggle);
+      toggle.setAttribute("aria-expanded", String(open));
+      panel.hidden = !open;
+    }
+    toggle.addEventListener("click", () => set(panel.hidden));
+    item.addEventListener("mouseenter", () => {
+      clearTimeout(timer);
+      if (hovers()) set(true);
+    });
+    item.addEventListener("mouseleave", () => {
+      if (hovers()) timer = setTimeout(() => set(false), 120);
+    });
+    item.addEventListener("focusout", (event) => {
+      if (!item.contains(event.relatedTarget)) set(false);
+    });
+    panel.addEventListener("click", (event) => {
+      if (event.target.closest("a")) set(false);
+    });
   });
-  item.addEventListener("mouseleave", () => {
-    if (hovers()) timer = setTimeout(() => set(false), 120);
-  });
-  item.addEventListener("focusout", (event) => {
-    if (!item.contains(event.relatedTarget)) set(false);
-  });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !panel.hidden) {
-      set(false);
-      toggle.focus();
+    if (event.key === "Escape") {
+      const openEntry = entries.find(({ panel }) => !panel.hidden);
+      if (openEntry) {
+        closeAll();
+        openEntry.toggle.focus();
+      }
     }
   });
   document.addEventListener("click", (event) => {
-    if (!item.contains(event.target)) set(false);
+    if (!entries.some(({ item }) => item.contains(event.target))) closeAll();
   });
 })();
