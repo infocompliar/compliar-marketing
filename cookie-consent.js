@@ -48,8 +48,8 @@
       demo requests. <a href="/cookies/">Cookie policy</a>
     </p>
     <div class="cookie-actions">
-      <button type="button" class="btn btn-primary btn-sm" data-consent="granted">Accept All</button>
-      <button type="button" class="btn btn-ghost-on-navy btn-sm" data-consent="denied">Essential Only</button>
+      <button type="button" class="btn btn-primary btn-sm" data-consent="granted">Accept</button>
+      <button type="button" class="btn btn-ghost-on-navy btn-sm" data-consent="denied">Decline</button>
     </div>`;
   document.body.appendChild(banner);
 
