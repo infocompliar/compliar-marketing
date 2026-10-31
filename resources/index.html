@@ -215,9 +215,10 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=dca9b84f24e7" />
+    <link rel="stylesheet" href="/site.css?v=f943f50ac908" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
+    <script src="/demo-form.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
@@ -228,56 +229,139 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="/" aria-label="Compliar home"
+        <a class="brand" href="/" aria-label="Compliar, Fire, Security and Electrical Field Operations"
           ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z"
-              fill="#E07B39"
-            /></svg
-          >Compliar</a
+            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#E07B39" /></svg
+          ><span class="brand-text">Compliar<span class="brand-tag">Fire, Security &amp; Electrical Field Operations</span></span></a
         >
         <nav aria-label="Main navigation">
           <ul class="nav-links">
-            <li><a href="/features/">Features</a></li>
-            <li><a href="/log-book/">Log book</a></li>
-            <li><a href="/pricing/">Pricing</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/faqs/">FAQs</a></li>
-            <li><a href="/resources/" aria-current="page">Resources</a></li>
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
+                Disciplines <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega" id="mega-disciplines" hidden>
+                <div class="mega-grid">
+              <div>
+                <h3>Fire &amp; Life Safety</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Fire Detection (BS 5839-1/6)</a></li>
+                  <li><a href="/features/#certificates">Emergency Lighting (BS 5266)</a></li>
+                  <li><a href="/features/#certificates">Extinguishers (BS 5306)</a></li>
+                  <li><a href="/features/#certificates">AOV &amp; Smoke Vents</a></li>
+                  <li><a href="/features/#certificates">Dry Risers</a></li>
+                  <li><a href="/features/#certificates">Sprinklers</a></li>
+                  <li><a href="/features/#certificates">Gas Suppression</a></li>
+                  <li><a href="/features/#certificates">Fire Doors &amp; Passive Fire</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Security &amp; Access</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Intruder &amp; Hold-Up (PD 6662 / EN 50131)</a></li>
+                  <li><a href="/features/#certificates">CCTV</a></li>
+                  <li><a href="/features/#certificates">Access Control</a></li>
+                  <li><a href="/features/#certificates">Automated Gates &amp; Barriers</a></li>
+                  <li><a href="/features/#certificates">Intercoms &amp; Video Entry</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Electrical &amp; Testing</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Fixed Wire Testing (EICR &amp; EIC, BS 7671:2018+A4:2026)</a></li>
+                  <li><a href="/features/#certificates">Minor Works</a></li>
+                  <li><a href="/features/#certificates">PAT Portable Appliance Testing</a></li>
+                  <li><a href="/features/#certificates">EV Chargers</a></li>
+                  <li><a href="/features/#certificates">Solar PV (BS 7671 A4, Section 7.2)</a></li>
+                  <li><a href="/features/#certificates">Electrical Bonding (incl. lightning protection)</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Specialist &amp; Custom</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Nurse Call</a></li>
+                  <li><a href="/features/#certificates">Disabled Refuge (EVC)</a></li>
+                  <li><a href="/features/#certificates">PAVA</a></li>
+                  <li><a href="/features/#certificates">Custom System Builder</a></li>
+                </ul>
+              </div>
+                </div>
+                <p class="mega-foot">32 disciplines, one login. <a href="/features/#certificates" style="display:inline;padding:0;margin:0;color:#f1a675">See every certificate and standard ↗</a></p>
+              </div>
+            </li>
+            <li><a href="/#qr-log-books">Digital QR Log Books</a></li>
+            <li><a href="/#hardware">Hardware &amp; Stickers</a></li>
+            <li><a href="/#platform">Platform</a></li>
+            <li><a href="/pricing/">Pricing &amp; ROI</a></li>
           </ul>
         </nav>
         <div class="nav-cta">
-          <a
-            class="sign-in"
-            href="https://app.compliar.co.uk"
-            target="_blank"
-            rel="noopener"
-            >Sign in</a
-          ><a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request"
-            >Request a demo</a
-          >
+          <a class="sign-in" href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In</a>
+          <a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request" data-demo-open>Book a 15-Min Walkthrough</a>
         </div>
         <details class="mobile-menu">
-          <summary aria-label="Toggle navigation menu">
-            Menu <span aria-hidden="true">☰</span>
-          </summary>
+          <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
           <nav aria-label="Mobile navigation">
             <ul>
-              <li><a href="/features/">Features</a></li>
-              <li><a href="/log-book/">Log book</a></li>
-              <li><a href="/pricing/">Pricing</a></li>
-              <li><a href="/about/">About</a></li>
-              <li><a href="/faqs/">FAQs</a></li>
-              <li><a href="/resources/" aria-current="page">Resources</a></li>
-              <li><a href="/contact?subject=Demo+request">Request a demo</a></li>
               <li>
-                <a
-                  href="https://app.compliar.co.uk"
-                  target="_blank"
-                  rel="noopener"
-                  >Sign in ↗</a
-                >
+                <details>
+                  <summary>Disciplines</summary>
+                  <div>
+                  <details>
+                    <summary>Fire &amp; Life Safety</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Fire Detection (BS 5839-1/6)</a></li>
+                      <li><a href="/features/#certificates">Emergency Lighting (BS 5266)</a></li>
+                      <li><a href="/features/#certificates">Extinguishers (BS 5306)</a></li>
+                      <li><a href="/features/#certificates">AOV &amp; Smoke Vents</a></li>
+                      <li><a href="/features/#certificates">Dry Risers</a></li>
+                      <li><a href="/features/#certificates">Sprinklers</a></li>
+                      <li><a href="/features/#certificates">Gas Suppression</a></li>
+                      <li><a href="/features/#certificates">Fire Doors &amp; Passive Fire</a></li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>Security &amp; Access</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Intruder &amp; Hold-Up (PD 6662 / EN 50131)</a></li>
+                      <li><a href="/features/#certificates">CCTV</a></li>
+                      <li><a href="/features/#certificates">Access Control</a></li>
+                      <li><a href="/features/#certificates">Automated Gates &amp; Barriers</a></li>
+                      <li><a href="/features/#certificates">Intercoms &amp; Video Entry</a></li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>Electrical &amp; Testing</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Fixed Wire Testing (EICR &amp; EIC, BS 7671:2018+A4:2026)</a></li>
+                      <li><a href="/features/#certificates">Minor Works</a></li>
+                      <li><a href="/features/#certificates">PAT Portable Appliance Testing</a></li>
+                      <li><a href="/features/#certificates">EV Chargers</a></li>
+                      <li><a href="/features/#certificates">Solar PV (BS 7671 A4, Section 7.2)</a></li>
+                      <li><a href="/features/#certificates">Electrical Bonding (incl. lightning protection)</a></li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>Specialist &amp; Custom</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Nurse Call</a></li>
+                      <li><a href="/features/#certificates">Disabled Refuge (EVC)</a></li>
+                      <li><a href="/features/#certificates">PAVA</a></li>
+                      <li><a href="/features/#certificates">Custom System Builder</a></li>
+                    </ul>
+                  </details>
+                  </div>
+                </details>
               </li>
+              <li><a href="/#qr-log-books">Digital QR Log Books</a></li>
+              <li><a href="/#hardware">Hardware &amp; Stickers</a></li>
+              <li><a href="/#platform">Platform</a></li>
+              <li><a href="/pricing/">Pricing &amp; ROI</a></li>
+              <li><a href="/features/">Features</a></li>
+              <li><a href="/faqs/">FAQs</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/resources/">Resources</a></li>
+              <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
             </ul>
           </nav>
         </details>
@@ -483,7 +567,7 @@
           <div class="final-ctas">
             <a
               class="btn btn-primary"
-              href="/contact?subject=Demo+request"
+              href="/contact?subject=Demo+request" data-demo-open
               >Request a demo</a
             ><a class="btn btn-ghost-on-navy" href="/getting-started/">How getting started works</a>
           </div>
@@ -539,9 +623,10 @@
         <div class="foot-col">
           <h2>Legal</h2>
           <ul>
-            <li><a href="/terms/">Terms of service</a></li>
-            <li><a href="/privacy/">Privacy notice</a></li>
-            <li><a href="/cookies/">Cookies</a></li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
+                        <li><a href="/cookies/">Cookies</a></li>
             <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>

@@ -94,9 +94,10 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=dca9b84f24e7" />
+    <link rel="stylesheet" href="/site.css?v=f943f50ac908" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
+    <script src="/demo-form.js" defer></script>
     <script src="/home.js" defer></script>
     <script type="application/ld+json">
       {
@@ -127,332 +128,324 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="nav">
       <div class="wrap nav-inner">
-        <a class="brand" href="/" aria-label="Compliar home"
+        <a class="brand" href="/" aria-label="Compliar, Fire, Security and Electrical Field Operations"
           ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z"
-              fill="#E07B39"
-            /></svg
-          >Compliar</a
+            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#E07B39" /></svg
+          ><span class="brand-text">Compliar<span class="brand-tag">Fire, Security &amp; Electrical Field Operations</span></span></a
         >
         <nav aria-label="Main navigation">
           <ul class="nav-links">
-            <li><a href="/features/">Features</a></li>
-            <li><a href="/log-book/">Log book</a></li>
-            <li><a href="/pricing/">Pricing</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/faqs/">FAQs</a></li>
-            <li><a href="/resources/">Resources</a></li>
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
+                Disciplines <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega" id="mega-disciplines" hidden>
+                <div class="mega-grid">
+              <div>
+                <h3>Fire &amp; Life Safety</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Fire Detection (BS 5839-1/6)</a></li>
+                  <li><a href="/features/#certificates">Emergency Lighting (BS 5266)</a></li>
+                  <li><a href="/features/#certificates">Extinguishers (BS 5306)</a></li>
+                  <li><a href="/features/#certificates">AOV &amp; Smoke Vents</a></li>
+                  <li><a href="/features/#certificates">Dry Risers</a></li>
+                  <li><a href="/features/#certificates">Sprinklers</a></li>
+                  <li><a href="/features/#certificates">Gas Suppression</a></li>
+                  <li><a href="/features/#certificates">Fire Doors &amp; Passive Fire</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Security &amp; Access</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Intruder &amp; Hold-Up (PD 6662 / EN 50131)</a></li>
+                  <li><a href="/features/#certificates">CCTV</a></li>
+                  <li><a href="/features/#certificates">Access Control</a></li>
+                  <li><a href="/features/#certificates">Automated Gates &amp; Barriers</a></li>
+                  <li><a href="/features/#certificates">Intercoms &amp; Video Entry</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Electrical &amp; Testing</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Fixed Wire Testing (EICR &amp; EIC, BS 7671:2018+A4:2026)</a></li>
+                  <li><a href="/features/#certificates">Minor Works</a></li>
+                  <li><a href="/features/#certificates">PAT Portable Appliance Testing</a></li>
+                  <li><a href="/features/#certificates">EV Chargers</a></li>
+                  <li><a href="/features/#certificates">Solar PV (BS 7671 A4, Section 7.2)</a></li>
+                  <li><a href="/features/#certificates">Electrical Bonding (incl. lightning protection)</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Specialist &amp; Custom</h3>
+                <ul>
+                  <li><a href="/features/#certificates">Nurse Call</a></li>
+                  <li><a href="/features/#certificates">Disabled Refuge (EVC)</a></li>
+                  <li><a href="/features/#certificates">PAVA</a></li>
+                  <li><a href="/features/#certificates">Custom System Builder</a></li>
+                </ul>
+              </div>
+                </div>
+                <p class="mega-foot">32 disciplines, one login. <a href="/features/#certificates" style="display:inline;padding:0;margin:0;color:#f1a675">See every certificate and standard ↗</a></p>
+              </div>
+            </li>
+            <li><a href="/#qr-log-books">Digital QR Log Books</a></li>
+            <li><a href="/#hardware">Hardware &amp; Stickers</a></li>
+            <li><a href="/#platform">Platform</a></li>
+            <li><a href="/pricing/">Pricing &amp; ROI</a></li>
           </ul>
         </nav>
         <div class="nav-cta">
-          <a
-            class="sign-in"
-            href="https://app.compliar.co.uk"
-            target="_blank"
-            rel="noopener"
-            >Sign in</a
-          ><a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request"
-            >Request a demo</a
-          >
+          <a class="sign-in" href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In</a>
+          <a class="btn btn-primary btn-sm" href="/contact?subject=Demo+request" data-demo-open>Book a 15-Min Walkthrough</a>
         </div>
         <details class="mobile-menu">
-          <summary aria-label="Toggle navigation menu">
-            Menu <span aria-hidden="true">☰</span>
-          </summary>
+          <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
           <nav aria-label="Mobile navigation">
             <ul>
-              <li><a href="/features/">Features</a></li>
-              <li><a href="/log-book/">Log book</a></li>
-              <li><a href="/pricing/">Pricing</a></li>
-              <li><a href="/about/">About</a></li>
-              <li><a href="/faqs/">FAQs</a></li>
-              <li><a href="/resources/">Resources</a></li>
-              <li><a href="/contact?subject=Demo+request">Request a demo</a></li>
               <li>
-                <a
-                  href="https://app.compliar.co.uk"
-                  target="_blank"
-                  rel="noopener"
-                  >Sign in ↗</a
-                >
+                <details>
+                  <summary>Disciplines</summary>
+                  <div>
+                  <details>
+                    <summary>Fire &amp; Life Safety</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Fire Detection (BS 5839-1/6)</a></li>
+                      <li><a href="/features/#certificates">Emergency Lighting (BS 5266)</a></li>
+                      <li><a href="/features/#certificates">Extinguishers (BS 5306)</a></li>
+                      <li><a href="/features/#certificates">AOV &amp; Smoke Vents</a></li>
+                      <li><a href="/features/#certificates">Dry Risers</a></li>
+                      <li><a href="/features/#certificates">Sprinklers</a></li>
+                      <li><a href="/features/#certificates">Gas Suppression</a></li>
+                      <li><a href="/features/#certificates">Fire Doors &amp; Passive Fire</a></li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>Security &amp; Access</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Intruder &amp; Hold-Up (PD 6662 / EN 50131)</a></li>
+                      <li><a href="/features/#certificates">CCTV</a></li>
+                      <li><a href="/features/#certificates">Access Control</a></li>
+                      <li><a href="/features/#certificates">Automated Gates &amp; Barriers</a></li>
+                      <li><a href="/features/#certificates">Intercoms &amp; Video Entry</a></li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>Electrical &amp; Testing</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Fixed Wire Testing (EICR &amp; EIC, BS 7671:2018+A4:2026)</a></li>
+                      <li><a href="/features/#certificates">Minor Works</a></li>
+                      <li><a href="/features/#certificates">PAT Portable Appliance Testing</a></li>
+                      <li><a href="/features/#certificates">EV Chargers</a></li>
+                      <li><a href="/features/#certificates">Solar PV (BS 7671 A4, Section 7.2)</a></li>
+                      <li><a href="/features/#certificates">Electrical Bonding (incl. lightning protection)</a></li>
+                    </ul>
+                  </details>
+                  <details>
+                    <summary>Specialist &amp; Custom</summary>
+                    <ul>
+                      <li><a href="/features/#certificates">Nurse Call</a></li>
+                      <li><a href="/features/#certificates">Disabled Refuge (EVC)</a></li>
+                      <li><a href="/features/#certificates">PAVA</a></li>
+                      <li><a href="/features/#certificates">Custom System Builder</a></li>
+                    </ul>
+                  </details>
+                  </div>
+                </details>
               </li>
+              <li><a href="/#qr-log-books">Digital QR Log Books</a></li>
+              <li><a href="/#hardware">Hardware &amp; Stickers</a></li>
+              <li><a href="/#platform">Platform</a></li>
+              <li><a href="/pricing/">Pricing &amp; ROI</a></li>
+              <li><a href="/features/">Features</a></li>
+              <li><a href="/faqs/">FAQs</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/resources/">Resources</a></li>
+              <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
             </ul>
           </nav>
         </details>
       </div>
     </header>
     <main id="main">
-      <section class="hero home-hero">
-        <div class="wrap hero-grid">
+      <section class="v2-hero" aria-labelledby="hero-title">
+        <div class="wrap v2-hero-grid">
           <div>
-            <div class="eyebrow">Built for the way you work</div>
-            <h1 class="hero-long">
-              Every site, every test, every report —
-              <span>in one place.</span>
+            <span class="v2-pill"><span aria-hidden="true">⚡</span> Less office admin · Fewer missed remedial quotes</span>
+            <h1 id="hero-title">
+              The all-in-one compliance software that helps you
+              <span>win back time and revenue.</span>
             </h1>
-            <p class="hero-sub">
-              Compliar runs planned maintenance, engineer visits, certificates
-              and invoicing for fire, security and electrical contractors. The
-              office sees the whole picture. Engineers get a fast app that keeps
-              working without signal.
+            <p class="v2-sub">
+              Run service visits, pass/fail asset testing, certificates built
+              around the British Standards, and digital log books across 32
+              disciplines, without paper binders or double-handling in the
+              office.
             </p>
-            <ul class="hero-pills" aria-label="Systems Compliar covers">
-              <li>Fire alarm</li>
-              <li>Emergency lighting</li>
-              <li>Extinguishers</li>
-              <li>Intruder</li>
-              <li>CCTV</li>
-              <li>Access control</li>
-              <li>Electrical &amp; PAT</li>
+            <div class="v2-ctas">
+              <a class="btn btn-primary" href="/contact?subject=Demo+request" data-demo-open>Book a 15-Min Walkthrough</a>
+              <a class="btn btn-ghost-on-navy" href="#roi">Calculate Your Savings ↓</a>
+            </div>
+            <p class="v2-reassure">Free 30-day trial after your walkthrough · No card required · From £35 + VAT per user per month</p>
+          </div>
+          <div class="mock" role="img" aria-label="Illustrative Compliar screens: the engineer app on a phone showing a barcode scan, Pass, Fail and No test buttons and a defect photo, beside the desktop operations map and certificate list">
+            <div class="mock-desktop" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i><b>Compliar · Operations</b></div>
+              <div class="mock-body">
+                <div class="mock-map">
+                  <span class="ok" style="left: 18%; top: 34%"></span>
+                  <span class="ok" style="left: 42%; top: 22%"></span>
+                  <span class="due" style="left: 60%; top: 52%"></span>
+                  <span class="ok" style="left: 30%; top: 66%"></span>
+                  <span class="bad" style="left: 76%; top: 30%"></span>
+                  <span class="ok" style="left: 84%; top: 70%"></span>
+                  <span class="due" style="left: 52%; top: 80%"></span>
+                </div>
+                <div class="mock-certs">
+                  <h4>CERTIFICATES</h4>
+                  <div class="cert-row"><strong>Fire alarm service</strong><small>BS 5839-1 · Riverside House</small><em>Generated ✓</em></div>
+                  <div class="cert-row"><strong>Electrical condition report</strong><small>EICR · BS 7671 A4 · Park Street</small><em>Generated ✓</em></div>
+                  <div class="cert-row"><strong>Emergency lighting</strong><small>BS 5266-1 · Westfield Court</small><em>Generated ✓</em></div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-phone" aria-hidden="true">
+              <div class="phone-screen">
+                <h4>RIVERSIDE HOUSE · SERVICE</h4>
+                <div class="scan-box"></div>
+                <div class="asset-name">Smoke detector · Zone 3<small>Tag FA-0142 scanned</small></div>
+                <div class="toggle3"><span class="on-pass">Pass</span><span>Fail</span><span>No test</span></div>
+                <div class="photo-btn"><i></i>Add defect photo</div>
+              </div>
+            </div>
+            <span class="mock-caption">Illustrative screens</span>
+          </div>
+        </div>
+        <div class="v2-strip">
+          <div class="wrap">
+            <ul>
+              <li>32 disciplines, one login</li>
+              <li>Field app works without signal</li>
+              <li>Certificates built around BS 5839, BS 5266, BS 7671 and PD 6662</li>
+              <li>Built in the UK by a working contractor</li>
             </ul>
-            <div class="hero-ctas">
-              <a
-                class="btn btn-primary"
-                href="/contact?subject=Demo+request"
-                >Book a demo</a
-              ><a class="btn btn-ghost-on-navy" href="#reports"
-                >See the reports</a
-              >
+          </div>
+        </div>
+      </section>
+
+      <section class="v2-section" id="roi" aria-labelledby="roi-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">Savings calculator</span>
+            <h2 class="v2-h2" id="roi-title">How much time and money is your business losing each month?</h2>
+          </div>
+          <div class="roi-card">
+            <div class="roi-controls">
+              <div class="roi-field">
+                <label for="roi-engineers">Field engineers <output id="roi-engineers-out" for="roi-engineers">5</output></label>
+                <input type="range" id="roi-engineers" min="1" max="50" value="5" />
+              </div>
+              <div class="roi-field">
+                <label for="roi-jobs">Average monthly service jobs per engineer <output id="roi-jobs-out" for="roi-jobs">25</output></label>
+                <input type="range" id="roi-jobs" min="10" max="60" value="25" />
+              </div>
+              <div class="roi-field">
+                <label for="roi-rate">Cost of an office hour (£)</label>
+                <input type="number" id="roi-rate" min="0" max="200" step="1" value="20" inputmode="numeric" />
+              </div>
+              <p class="roi-assume">
+                <strong>How we estimate this.</strong> Defects: an average £35
+                remedial per job, with 40% captured and quoted on site before
+                the engineer leaves. Admin: 1.5 hours per engineer per working
+                day (20 days a month) spent re-typing test results and paper
+                certificates, valued at your office-hour cost. These are
+                illustrative assumptions, not a guarantee. Your results will
+                depend on your own work.
+              </p>
             </div>
-            <p class="trial-note">
-              Free 30-day trial after your demo · No card required · From £35 + VAT /user/mo · Early adopters: price locked for 3 years
+            <div class="roi-results" aria-live="polite">
+              <div class="roi-stat">
+                <span>Unquoted defects recovered</span>
+                <strong><b id="roi-defects">£1,750</b><small>/month</small></strong>
+                <p>Capturing on-site remedials before engineers leave site.</p>
+              </div>
+              <div class="roi-stat">
+                <span>Office admin hours saved</span>
+                <strong><b id="roi-hours">150</b><small>hrs/month</small></strong>
+                <p>Eliminating re-typing test results and paper certificates.</p>
+              </div>
+              <div class="roi-stat roi-total">
+                <span>Estimated annual bottom-line impact</span>
+                <strong id="roi-annual">£57,000</strong>
+                <p>(Defects recovered + admin hours × office-hour cost) × 12.</p>
+              </div>
+              <div class="roi-cta">
+                <button type="button" class="btn btn-primary" id="roi-cta" data-demo-open data-engineers="5">See How Compliar Does This For Your Team →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="v2-section v2-white" id="qr-log-books" aria-labelledby="logbooks-title">
+        <div class="wrap v2-split">
+          <div>
+            <span class="v2-kicker">Digital QR log books</span>
+            <h2 class="v2-h2" id="logbooks-title">Ditch the dusty red binder. Upgrade your clients to Digital QR Log Books.</h2>
+            <ul class="v2-points">
+              <li><strong>Audit-ready 24/7</strong><span>Fire officers and premises managers can inspect records on their own phone instantly.</span></li>
+              <li><strong>Never drive back to site</strong><span>No lost log books, no disputed visits, no soaked paper sheets.</span></li>
+              <li><strong>Branded to your company</strong><span>Your logo and emergency call-out number displayed prominently on every customer’s panel.</span></li>
+            </ul>
+            <p class="v2-note">£4 + VAT per site per year, added to any plan or taken on its own. <a href="/log-book/">More about log books</a></p>
+          </div>
+          <figure class="qr-card" style="margin: 0">
+            <img src="/assets/logbook-sample-qr.svg" width="230" height="230" alt="QR code that opens a sample digital log book" />
+            <p>Point your phone camera here right now to see the live customer &amp; fire officer experience.</p>
+            <small>Sample data for illustration. Prefer a link? <a href="/log-book/sample/">Open the sample log book</a></small>
+          </figure>
+        </div>
+      </section>
+
+      <section class="v2-section v2-dark" id="disciplines" aria-labelledby="disciplines-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">32 disciplines in one platform</span>
+            <h2 class="v2-h2" id="disciplines-title">Stop paying for 3 different software tools.</h2>
+            <p class="v2-lead">
+              Many contractors run one tool for fire certificates, another for
+              electrical and a third for scheduling. Compliar handles all 32
+              disciplines under one login.
             </p>
           </div>
-          <div
-            class="workspace-preview"
-            role="img"
-            aria-label="Illustrative Compliar workspace showing scheduled jobs, certificates and invoices"
-          >
-            <div class="preview-toolbar">
-              <span class="preview-brand"
-                >COMPLIAR <span>/ Workspace</span></span
-              ><span class="preview-avatar">JD</span>
+          <div class="dtabs">
+            <div role="tablist" aria-label="Disciplines" hidden>
+              <button type="button" role="tab" id="dtab-fire" aria-controls="dpanel-fire">Fire &amp; Life Safety</button>
+              <button type="button" role="tab" id="dtab-elec" aria-controls="dpanel-elec">Electrical &amp; PAT</button>
+              <button type="button" role="tab" id="dtab-sec" aria-controls="dpanel-sec">Security &amp; CCTV</button>
+              <button type="button" role="tab" id="dtab-custom" aria-controls="dpanel-custom">Bespoke Assets</button>
             </div>
-            <div class="preview-body">
-              <div class="preview-heading">
-                <div>
-                  <span class="mono">YOUR WORKDAY, CONNECTED</span>
-                  <h2>A clear view of every job.</h2>
-                </div>
-                <span class="status-dot"></span>
-              </div>
-              <div class="preview-stats">
-                <div><strong>08</strong><span>Jobs today</span></div>
-                <div><strong>3</strong><span>Trades</span></div>
-                <div><strong>03</strong><span>Ready to invoice</span></div>
-              </div>
-              <div class="preview-label">
-                <span>Today's schedule</span
-                ><span class="mono">EXAMPLE VIEW</span>
-              </div>
-              <div class="preview-job">
-                <span class="job-time">09:00</span>
-                <div>
-                  <strong>Fire alarm service</strong
-                  ><span>Riverside House · Planned maintenance</span>
-                </div>
-                <span class="job-status">On site</span>
-              </div>
-              <div class="preview-job">
-                <span class="job-time">11:30</span>
-                <div>
-                  <strong>Electrical inspection</strong
-                  ><span>Park Street · EICR</span>
-                </div>
-                <span class="job-status scheduled">Scheduled</span>
-              </div>
-              <div class="preview-job">
-                <span class="job-time">14:00</span>
-                <div>
-                  <strong>Emergency lighting</strong
-                  ><span>Westfield Court · Routine test</span>
-                </div>
-                <span class="job-status scheduled">Scheduled</span>
-              </div>
-              <div class="preview-flow">
-                <span>Job booked</span><b>→</b><span>Certificate issued</span
-                ><b>→</b><span>Invoice sent</span>
-              </div>
+            <div class="dpanel" id="dpanel-fire">
+              <h3>Fire &amp; Life Safety</h3>
+              <p>Full BS 5839-1:2025 and BS 5839-6 certificate suites, smoke/heat/sounder asset registers, and BS 5266 emergency lighting 3-hour drain tests.</p>
+              <ul class="dchips"><li>Fire Detection</li><li>Emergency Lighting</li><li>Extinguishers</li><li>AOV &amp; Smoke Vents</li><li>Dry Risers</li><li>Sprinklers</li><li>Gas Suppression</li><li>Fire Doors &amp; Passive Fire</li></ul>
             </div>
-            <div class="preview-caption">
-              Illustrative workspace · From enquiry through to handover
+            <div class="dpanel" id="dpanel-elec">
+              <h3>Electrical &amp; PAT</h3>
+              <p>BS 7671:2018+A4:2026 EICR and EIC with all Amendment 4 inspection sections (1.1 to 8.4), N/V options, PME/PNB options, Minor Works, and rapid PAT testing.</p>
+              <ul class="dchips"><li>Fixed Wire Testing (EICR &amp; EIC)</li><li>Minor Works</li><li>PAT Testing</li><li>EV Chargers</li><li>Solar PV (Section 7.2)</li><li>Electrical Bonding</li></ul>
+            </div>
+            <div class="dpanel" id="dpanel-sec">
+              <h3>Security &amp; CCTV</h3>
+              <p>PD 6662 / EN 50131 intruder grading, CCTV camera schedules, access control door checks, and gate safety force-test logging.</p>
+              <ul class="dchips"><li>Intruder &amp; Hold-Up (incl. panic)</li><li>CCTV</li><li>Access Control</li><li>Automated Gates &amp; Barriers</li><li>Intercoms &amp; Video Entry</li></ul>
+            </div>
+            <div class="dpanel" id="dpanel-custom">
+              <h3>Bespoke Assets</h3>
+              <p>Create custom systems and subcategories on the fly for any unique customer specification.</p>
+              <ul class="dchips"><li>Nurse Call</li><li>Disabled Refuge (EVC)</li><li>PAVA</li><li>Custom System Builder</li></ul>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="band band-tight next-strip" aria-labelledby="next-steps-title">
-        <div class="wrap">
-          <div class="eyebrow">From request to trial</div>
-          <h2 id="next-steps-title">What happens next.</h2>
-          <ol class="next-steps">
-            <li><span class="next-num mono" aria-hidden="true">1</span><span>Request a demo.</span></li>
-            <li><span class="next-num mono" aria-hidden="true">2</span><span>We show you Compliar on your own type of job.</span></li>
-            <li><span class="next-num mono" aria-hidden="true">3</span><span>Choose your seats.</span></li>
-            <li><span class="next-num mono" aria-hidden="true">4</span><span>We set up your account and invite you.</span></li>
-            <li><span class="next-num mono" aria-hidden="true">5</span><span>30-day free trial, no card required.</span></li>
-            <li><span class="next-num mono" aria-hidden="true">6</span><span>Subscribe if you want to carry on.</span></li>
-          </ol>
-          <p class="next-note">
-            Want hands-on help getting set up?
-            <a href="/pricing/#onboarding">Onboarding is from £195, quoted individually ↗</a>
-          </p>
-        </div>
-      </section>
-
-      <section
-        class="band product-section home-reports"
-        id="reports"
-        aria-labelledby="reports-title"
-      >
-        <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">Reporting catalogue</div>
-              <h2 id="reports-title">Four kinds of answer. One place to find them.</h2>
-            </div>
-          </div>
-          <p class="section-lead">
-            Every report sits in one searchable catalogue, grouped the way you
-            run the business. Star favourites, filter by date, customer and
-            discipline, drill into the rows behind any number, and download a
-            CSV of exactly what you're looking at.
-          </p>
-          <div class="info-grid info-grid-4">
-            <article class="info-card">
-              <h3>Operations</h3>
-              <ul>
-                <li>Property &amp; task map</li>
-                <li>PM forecast month by month</li>
-                <li>Compliance status &amp; SLA</li>
-                <li>Task completion times</li>
-                <li>Data quality checks</li>
-              </ul>
-            </article>
-            <article class="info-card">
-              <h3>Finance</h3>
-              <ul>
-                <li>Work in progress (ready to invoice)</li>
-                <li>Profitability &amp; margin</li>
-                <li>Revenue forecast from contracts and accepted quotes</li>
-                <li>Invoicing &amp; cash</li>
-              </ul>
-            </article>
-            <article class="info-card">
-              <h3>Sales &amp; quoting</h3>
-              <ul>
-                <li>Sales by salesperson</li>
-                <li>Defect quoting (raised vs won)</li>
-                <li>Product &amp; material usage</li>
-              </ul>
-            </article>
-            <article class="info-card">
-              <h3>Workforce</h3>
-              <ul>
-                <li>Technician activity (visits, time on site, travel)</li>
-                <li>Scheduled value per engineer</li>
-              </ul>
-            </article>
-          </div>
-          <ul class="product-points">
-            <li>Live headline metrics on each card</li>
-            <li>
-              PM and revenue forecasts that flag unpriced or uncontracted work,
-              so numbers are never artificially inflated
-            </li>
-            <li>Instant CSV export of filtered data</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="band home-engineers" aria-labelledby="engineers-title">
-        <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">For engineers · Mobile app</div>
-              <h2 id="engineers-title">A calm app for busy sites.</h2>
-            </div>
-          </div>
-          <p class="section-lead">
-            Four tabs — Home, Jobs (with Sites), Time, and Toolbox — plus
-            Countersign for supervisors. Big targets, zero clutter, and works
-            when signal drops in plant rooms or basements.
-          </p>
-          <div class="info-grid">
-            <article class="info-card">
-              <h3>Works without signal</h3>
-              <p>
-                Tap “Save today's work” before entering signal dead-zones. Jobs,
-                sites, assets and guides stay on the device; results sync
-                automatically once reconnected.
-              </p>
-            </article>
-            <article class="info-card">
-              <h3>Scan, test, move on</h3>
-              <p>
-                Scan asset tags (QR code or barcode). Tap Pass, Fail, or No test
-                with instant autosave.
-              </p>
-            </article>
-            <article class="info-card">
-              <h3>Defects &amp; parts</h3>
-              <p>
-                Log defects with prepopulated remarks, photos, and parts. Flags
-                quote suggestions directly to the office.
-              </p>
-            </article>
-            <article class="info-card">
-              <h3>Toolbox</h3>
-              <p>
-                On-demand Library manuals and datasheets, van Stock, kit
-                Requests, Leave, and technician profile.
-              </p>
-            </article>
-            <article class="info-card">
-              <h3>Office broadcasts</h3>
-              <p>
-                Important announcements pop up in the Toolbox with unread badges
-                until acknowledged.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="band product-section home-disciplines"
-        aria-labelledby="disciplines-title"
-      >
-        <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">Multi-discipline &amp; compliance</div>
-              <h2 id="disciplines-title">One workflow across every system you maintain.</h2>
-            </div>
-          </div>
-          <ul class="standards-grid">
-            <li>
-              <b>Fire alarm</b>
-              <span>BS&nbsp;5839-1 / BS&nbsp;5839-6 design components, zone charts, cause-and-effect matrices, instant inspection records.</span>
-            </li>
-            <li>
-              <b>Emergency lighting</b>
-              <span>Auto-printed or blank FAILED labels, BS&nbsp;5266-1 layout checklists.</span>
-            </li>
-            <li>
-              <b>Extinguishers</b>
-              <span>Tag scanning, service intervals, replacement records.</span>
-            </li>
-            <li>
-              <b>Security (intruder, CCTV, access)</b>
-              <span>PD&nbsp;6662 &amp; BS&nbsp;8243 checklists, defect photos, remedial quotes.</span>
-            </li>
-            <li>
-              <b>Electrical</b>
-              <span>Schedules of test results on mobile and desktop. EICR, EIC and Minor Works forms laid out around BS&nbsp;7671, plus PAT testing with retest scheduling.</span>
-            </li>
-          </ul>
-          <p class="compliance-note">
+          <p class="compliance-note on-dark">
             Compliar provides record-keeping and certificate workflows. It
             doesn't certify work or grant accreditation, and it isn't affiliated
             with or endorsed by BAFE, NSI, SSAIB or any certification body. Your
@@ -462,838 +455,103 @@
         </div>
       </section>
 
-      <section class="band home-office" aria-labelledby="office-title">
+      <section class="v2-section" id="hardware" aria-labelledby="hardware-title">
         <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">For the office</div>
-              <h2 id="office-title">Know what needs doing before Monday's meeting.</h2>
-            </div>
+          <div class="v2-head">
+            <span class="v2-kicker">Hardware &amp; stickers</span>
+            <h2 class="v2-h2" id="hardware-title">Compliant asset tags, panel stickers, and labels, printed in seconds.</h2>
           </div>
-          <ul class="product-points">
-            <li>
-              Opt-in weekly or monthly automated email digests sent to selected
-              office users.
-            </li>
-            <li>
-              Live summary of overdue maintenance visits, unquoted critical
-              defects, and WIP ready to invoice with totals.
-            </li>
-            <li>
-              Announcement history showing delivery and acknowledgment status
-              for every engineer.
-            </li>
-          </ul>
+          <div class="hw-grid">
+            <article class="hw-card">
+              <div class="sticker" aria-hidden="true"><div><b>Your Company Ltd</b>Fire alarm service<div class="row"><span>NEXT DUE</span><span>04/2027</span></div><div class="row"><span>CALL-OUT</span><span>0800 000 000</span></div></div></div>
+              <h3>Custom 50 mm panel stickers</h3>
+              <p>Branded 50 mm wide company service labels with next-due dates and your call-out number.</p>
+            </article>
+            <article class="hw-card">
+              <div class="sticker warn" aria-hidden="true"><div><b>FALSE ALARM?</b>Call before you silence<div class="row" style="justify-content: center"><span>0800 000 000</span></div></div></div>
+              <h3>False alarm notices</h3>
+              <p>Warning notices for fire alarm control panels, printed with your contact number. Bulk-buy at £1 + VAT each, or print your own free from the app.</p>
+            </article>
+            <article class="hw-card">
+              <div class="sticker failed" aria-hidden="true"><div><span>FAILED</span></div></div>
+              <h3>Emergency light FAILED labels</h3>
+              <p>High-contrast yellow and black defect markers, printed or blank, applied immediately when a test fails.</p>
+            </article>
+            <article class="hw-card">
+              <div class="sticker tag" aria-hidden="true"><div><b>PAT · ASSET 0457</b><div class="bars"></div>Next test 04/2027</div></div>
+              <h3>PAT and asset barcode tags</h3>
+              <p>Barcode and QR labels scanned with your phone camera to open the asset and its test history.</p>
+            </article>
+            <article class="hw-card">
+              <div class="sticker" aria-hidden="true"><div><b>Print how you want</b>Brother VC-500W<div class="row"><span>OR</span><span>PRE-PRINTED</span></div></div></div>
+              <h3>Print how you want</h3>
+              <p>Print your own in many label sizes, including Brother VC-500W colour label rolls (our recommended printer), or order pre-printed in bulk.</p>
+            </article>
+          </div>
+          <p class="v2-note"><a href="/pricing/#log-book">See sticker pricing</a></p>
         </div>
       </section>
 
-      <section class="band band-tight standards-band" aria-labelledby="standards-title">
+      <section class="v2-section v2-dark" id="platform" aria-labelledby="platform-title">
         <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">CERTIFICATES &amp; STANDARDS</div>
-              <h2 id="standards-title">Certificates built to follow the standard.</h2>
-            </div>
-            <a class="text-link" href="/features/#certificates"
-              >See certificates &amp; reports ↗</a
-            >
+          <div class="v2-head">
+            <span class="v2-kicker">Platform · Field app</span>
+            <h2 class="v2-h2" id="platform-title">Built for engineers who hate paperwork.</h2>
           </div>
-          <p class="standards-lead">
-            Every certificate template is built around the standard for its
-            discipline, and each one names the standard it follows. Where a
-            trade works to a code of practice or regulation rather than a
-            British Standard, such as the IET Code of Practice for in-service
-            inspection and testing, the template names that instead. Each
-            certificate is stored against the job and site, and downloads as a
-            PDF. The engineer who signs it remains responsible for its content.
-          </p>
-          <details class="standards-group">
-            <summary><h3>Fire protection &amp; life safety</h3><span class="standards-count">21 disciplines</span></summary>
-            <ul class="standards-grid">
-              <li>
-                <b>Fire alarms</b>
-                <span>BS&nbsp;5839-1:2025, BS&nbsp;5839-6 (domestic)</span>
-              </li>
-              <li>
-                <b>Aspirating detection</b>
-                <span>BS&nbsp;5839-1 / BS&nbsp;EN&nbsp;54-20</span>
-              </li>
-              <li>
-                <b>Portable extinguishers</b>
-                <span>BS&nbsp;5306-3</span>
-              </li>
-              <li>
-                <b>Emergency lighting</b>
-                <span>BS&nbsp;5266-1:2025</span>
-              </li>
-              <li>
-                <b>Fire risk assessments</b>
-                <span>Regulatory Reform (Fire Safety) Order 2005, PAS&nbsp;79-1 / 79-2</span>
-              </li>
-              <li>
-                <b>Dry and wet risers</b>
-                <span>BS&nbsp;9990</span>
-              </li>
-              <li>
-                <b>Domestic sprinklers</b>
-                <span>BS&nbsp;9251</span>
-              </li>
-              <li>
-                <b>Private hydrants</b>
-                <span>BS&nbsp;750 / BS&nbsp;9990</span>
-              </li>
-              <li>
-                <b>Gas suppression</b>
-                <span>BS&nbsp;EN&nbsp;15004-1</span>
-              </li>
-              <li>
-                <b>Kitchen suppression</b>
-                <span>BS&nbsp;EN&nbsp;16282 (LPS&nbsp;1223)</span>
-              </li>
-              <li>
-                <b>Evacuation alert systems</b>
-                <span>BS&nbsp;8629:2019+A1:2023</span>
-              </li>
-              <li>
-                <b>Fire doors</b>
-                <span>BS&nbsp;9999 / BS&nbsp;8214</span>
-              </li>
-              <li>
-                <b>Fire dampers</b>
-                <span>BS&nbsp;9999</span>
-              </li>
-              <li>
-                <b>Hose reels</b>
-                <span>BS&nbsp;5306-1 / BS&nbsp;EN&nbsp;671</span>
-              </li>
-              <li>
-                <b>Smoke ventilation</b>
-                <span>BS&nbsp;7346-8 / BS&nbsp;EN&nbsp;12101</span>
-              </li>
-              <li>
-                <b>Commercial sprinklers</b>
-                <span>BS&nbsp;EN&nbsp;12845</span>
-              </li>
-              <li>
-                <b>Fire pumps</b>
-                <span>BS&nbsp;EN&nbsp;12845 / BS&nbsp;9990</span>
-              </li>
-              <li>
-                <b>Fire blankets</b>
-                <span>BS&nbsp;EN&nbsp;1869</span>
-              </li>
-              <li>
-                <b>Voice alarm</b>
-                <span>BS&nbsp;5839-8</span>
-              </li>
-              <li>
-                <b>Emergency voice communication</b>
-                <span>BS&nbsp;5839-9</span>
-              </li>
-              <li>
-                <b>Nurse call</b>
-                <span>HTM&nbsp;08-03</span>
-              </li>
-            </ul>
-          </details>
-          <details class="standards-group">
-            <summary><h3>Electrical</h3><span class="standards-count">5 disciplines</span></summary>
-            <ul class="standards-grid">
-              <li>
-                <b>Electrical installation (EIC, minor works)</b>
-                <span>BS&nbsp;7671 Part&nbsp;6</span>
-              </li>
-              <li>
-                <b>Electrical inspection and testing (EICR)</b>
-                <span>BS&nbsp;7671 Part&nbsp;6</span>
-              </li>
-              <li>
-                <b>Emergency lighting</b>
-                <span>BS&nbsp;5266-1:2025</span>
-              </li>
-              <li>
-                <b>Portable appliance testing</b>
-                <span>IET Code of Practice for in-service inspection and testing</span>
-              </li>
-              <li>
-                <b>EV charge points</b>
-                <span>BS&nbsp;7671 Section&nbsp;722 (IET Code of Practice)</span>
-              </li>
-            </ul>
-          </details>
-          <details class="standards-group">
-            <summary><h3>Security</h3><span class="standards-count">7 disciplines</span></summary>
-            <ul class="standards-grid">
-              <li>
-                <b>Intruder alarms</b>
-                <span>PD&nbsp;6662 / BS&nbsp;EN&nbsp;50131 series, BS&nbsp;9263</span>
-              </li>
-              <li>
-                <b>CCTV</b>
-                <span>BS&nbsp;7958 / BS&nbsp;EN&nbsp;62676-4</span>
-              </li>
-              <li>
-                <b>Access control</b>
-                <span>BS&nbsp;EN&nbsp;60839-11 series</span>
-              </li>
-              <li>
-                <b>Automatic doors</b>
-                <span>BS&nbsp;EN&nbsp;16005 (BS&nbsp;7036)</span>
-              </li>
-              <li>
-                <b>Door entry and intercom</b>
-                <span>BS&nbsp;EN&nbsp;50486</span>
-              </li>
-              <li>
-                <b>Gates and barriers</b>
-                <span>BS&nbsp;EN&nbsp;12453 / BS&nbsp;EN&nbsp;12445</span>
-              </li>
-              <li>
-                <b>Alarm signalling</b>
-                <span>BS&nbsp;EN&nbsp;50136 / BS&nbsp;8473</span>
-              </li>
-            </ul>
-          </details>
-          <p class="standards-switch">
-            Switch whole trades or single disciplines on and off in Settings, so
-            your team only sees what you do.
-          </p>
-          <p class="standards-note">
-            Compliar is independent of BSI. Check each template against the
-            current edition of the standard and your scheme’s requirements.
-          </p>
-        </div>
-      </section>
-      <section class="trade-section" aria-labelledby="trade-title">
-        <div class="wrap">
-          <div class="trade-heading">
-            <div>
-              <div class="eyebrow">YOUR TRADE. YOUR WORKSPACE.</div>
-              <h2 id="trade-title">Built for the work you do.</h2>
-              <p>
-                Design, price, install, test, commission, hand over and
-                maintain.<br />The full job, across every trade.
-              </p>
-            </div>
+          <div class="fa-grid">
+            <article class="fa-card">
+              <h3>Works without signal</h3>
+              <p>Works in basement plant rooms and remote sites. Save the day's work first, then it syncs automatically once reconnected.</p>
+            </article>
+            <article class="fa-card">
+              <h3>Instant asset barcode scanner</h3>
+              <p>Scan an asset tag to jump straight into its test history and the pass/fail screen.</p>
+            </article>
+            <article class="fa-card">
+              <h3>Engineer toolbox</h3>
+              <p>An in-field library of datasheets, panel manuals and wiring guides, plus real-time office broadcasts and push alerts.</p>
+            </article>
           </div>
-          <div class="trade-grid">
-            <a href="/features/#fire-safety" class="trade-card">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 3c1 5-4 5-4 9 0 2 1 3 2 3-1-4 3-5 3-8 4 4 6 6 6 9a7 7 0 0 1-14 0c0-5 4-7 7-13Z"
-                />
-              </svg>
-              <h3>Fire protection and life safety</h3>
-              <span class="trade-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a href="/features/#security" class="trade-card">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                aria-hidden="true"
-              >
-                <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" />
-                <path d="m8 12 3 3 5-6" />
-              </svg>
-              <h3>Security</h3>
-              <span class="trade-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a href="/features/#electrical" class="trade-card">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                aria-hidden="true"
-              >
-                <path d="m14 2-9 12h6l-1 8 9-12h-6l1-8Z" />
-              </svg>
-              <h3>Electrical</h3>
-              <span class="trade-arrow" aria-hidden="true">↗</span>
-            </a>
+          <div class="office-row">
+            <h3>And in the office</h3>
+            <div class="fa-grid">
+              <article class="fa-card">
+                <h3>Office scheduling</h3>
+                <p>Plan maintenance visits and engineer diaries, with overdue work, unquoted defects and work ready to invoice summarised in opt-in weekly or monthly digests.</p>
+              </article>
+              <article class="fa-card">
+                <h3>Xero sync</h3>
+                <p>Invoices link with Xero both ways, and payments come back as soon as they are recorded.</p>
+              </article>
+              <article class="fa-card">
+                <h3>Reporting catalogue</h3>
+                <p>One searchable catalogue across Operations, Finance, Sales &amp; Quoting and Workforce, with CSV export of exactly what you're looking at.</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="band product-section" aria-labelledby="design-title">
-        <div class="wrap product-layout">
-          <div class="product-copy">
-            <div class="eyebrow">01 / PLAN &amp; PRICE</div>
-            <h2 id="design-title">Good work starts<br />with a clear plan.</h2>
-            <p>
-              From the first enquiry to the drawings and quote. Keep the scope,
-              quantities and pricing together, so the team starts with the same
-              picture.
-            </p>
-            <ul class="product-points">
-              <li>Design drawings and take-offs</li>
-              <li>Parts, labour and pricing in one workflow</li>
-              <li>A clear handover from office to site</li>
-            </ul>
-            <a class="text-link" href="/features/#design"
-              >Explore design &amp; estimating ↗</a
-            >
-            <p class="product-plan-note">
-              Take-offs and CAD drawings with a Design seat. Design tools are in beta.
-            </p>
-          </div>
-          <figure class="product-visual drawing-visual">
-            <div class="visual-toolbar">
-              <span>Design / Ground floor</span
-              ><span class="visual-chip">Illustrative view</span>
-            </div>
-            <svg
-              class="floor-plan"
-              viewBox="0 0 520 280"
-              role="img"
-              aria-label="Illustrative floor plan with fire alarm device positions"
-            >
-              <defs>
-                <pattern
-                  id="plan-grid"
-                  width="20"
-                  height="20"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M20 0H0V20"
-                    fill="none"
-                    stroke="#dae1ea"
-                    stroke-width=".6"
-                  />
-                </pattern>
-              </defs>
-              <rect width="520" height="280" fill="url(#plan-grid)" />
-              <g
-                stroke="#53677e"
-                stroke-width="4"
-                fill="#fff"
-                fill-opacity=".65"
-              >
-                <path d="M55 35h410v210H55Z" />
-                <path
-                  d="M210 35v80m0 50v80M340 35v95m0 45v70M55 150h110m90 0h85"
-                />
-              </g>
-              <g font-family="Inter, sans-serif" font-size="11" fill="#627086">
-                <text x="90" y="95">RECEPTION</text>
-                <text x="245" y="95">OFFICE</text>
-                <text x="365" y="95">STORE</text>
-                <text x="93" y="211">WORKSHOP</text>
-                <text x="360" y="211">PLANT</text>
-              </g>
-              <path
-                d="M115 110h160v80h135V110"
-                fill="none"
-                stroke="#c4611f"
-                stroke-width="2"
-                stroke-dasharray="6 5"
-              />
-              <g fill="#fff" stroke="#c4611f" stroke-width="2">
-                <circle cx="115" cy="110" r="10" />
-                <circle cx="275" cy="110" r="10" />
-                <circle cx="410" cy="110" r="10" />
-                <circle cx="275" cy="190" r="10" />
-              </g>
-              <g fill="#c4611f">
-                <circle cx="115" cy="110" r="3" />
-                <circle cx="275" cy="110" r="3" />
-                <circle cx="410" cy="110" r="3" />
-                <circle cx="275" cy="190" r="3" />
-              </g>
-            </svg>
-            <div class="visual-footer">
-              <span><i class="device-dot"></i> Fire alarm devices</span
-              ><strong>Drawing → Take-off → Quote</strong>
-            </div>
-            <figcaption>Illustrative design workflow. Design tools are in beta.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section
-        class="band product-section records-section"
-        aria-labelledby="records-title"
-      >
-        <div class="wrap product-layout product-layout-reverse">
-          <div class="product-copy">
-            <div class="eyebrow">02 / DELIVER &amp; DOCUMENT</div>
-            <h2 id="records-title">Safer work.<br />A proper record.</h2>
-            <p>
-              Give engineers the job details and RAMS, record the work on a
-              phone, then bring the certificates and handover documents
-              together.
-            </p>
-            <ul class="product-points">
-              <li>Risk assessments &amp; method statements</li>
-              <li>Certificates &amp; reports for every discipline we support, across fire, security and electrical</li>
-              <li>Fire risk assessments (FRAs) with built-in risk scoring</li>
-              <li>Zone plans, as-fitted drawings and handover records</li>
-              <li>
-                Fire safety logbooks with customised, printable QR codes
-              </li>
-            </ul>
-            <div class="product-links">
-              <a class="text-link" href="/features/#rams">Explore RAMS ↗</a
-              ><a class="text-link" href="/features/#certificates"
-                >See certificates &amp; reports ↗</a
-              >
-            </div>
-            <p class="product-plan-note">
-              RAMS on every seat. Design drawings with a Design seat.
-            </p>
-          </div>
-          <figure class="product-visual records-visual">
-            <div class="visual-toolbar">
-              <span>Job / Emergency lighting installation</span
-              ><span class="visual-chip">Illustrative view</span>
-            </div>
-            <div class="document-preview">
-              <div class="document-brand">
-                COMPLIAR <span>Job records</span>
-              </div>
-              <div class="document-rule"></div>
-              <span class="mono">HANDOVER RECORD</span>
-              <h3>The details, all together.</h3>
-              <div class="document-row">
-                <span>Risk assessment &amp; method statement</span
-                ><span class="record-check" role="img" aria-label="Included"
-                  >✓</span
-                >
-              </div>
-              <div class="document-row">
-                <span>Installation certificate</span
-                ><span class="record-check" role="img" aria-label="Included"
-                  >✓</span
-                >
-              </div>
-              <div class="document-row">
-                <span>As-fitted drawing</span
-                ><span class="record-check" role="img" aria-label="Included"
-                  >✓</span
-                >
-              </div>
-              <div class="document-row">
-                <span>Fire safety logbook &amp; QR label</span
-                ><span class="record-check" role="img" aria-label="Included"
-                  >✓</span
-                >
-              </div>
-              <div class="document-signoff">
-                <span>From site work</span><span aria-hidden="true">→</span
-                ><strong>To customer handover</strong>
-              </div>
-            </div>
-            <figcaption>
-              Illustrative job records. Availability depends on your seat.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section
-        class="band product-section logbook-section"
-        aria-labelledby="logbook-title"
-      >
-        <div class="wrap product-layout">
-          <div class="product-copy">
-            <div class="eyebrow">03 / HAND OVER &amp; KEEP CONNECTED</div>
-            <h2 id="logbook-title">
-              The fire safety logbook.<br /><span>One scan away.</span>
-            </h2>
-            <p>
-              Fire safety logbooks are part of Compliar and kept by your
-              team in the app. Create a user-customised, printable QR label for
-              the site, so the logbook is easy to find when it’s needed.
-            </p>
-            <ol class="logbook-steps">
-              <li>
-                <span>01</span>
-                <div>
-                  <strong>Customise</strong>
-                  <p>Create the site’s QR code in Compliar.</p>
-                </div>
-              </li>
-              <li>
-                <span>02</span>
-                <div>
-                  <strong>Print &amp; display</strong>
-                  <p>Put the QR code where people can find it.</p>
-                </div>
-              </li>
-              <li>
-                <span>03</span>
-                <div>
-                  <strong>Scan and sign in</strong>
-                  <p>Your team scans it, signs in and opens the site’s logbook.</p>
-                </div>
-              </li>
-            </ol>
-            <a class="text-link" href="/features/#logbooks"
-              >Explore fire safety logbooks ↗</a
-            >
-            <p class="product-plan-note">
-              £4 + VAT per site per year, added to any plan or taken on its own.
-              <a href="/pricing/#log-book">See log book pricing</a>.
-            </p>
-          </div>
-          <figure class="product-visual logbook-visual">
-            <div class="qr-label">
-              <div class="qr-label-brand">
-                COMPLIAR <span>Site records</span>
-              </div>
-              <h3>Fire safety logbook</h3>
-              <p>Riverside House · Example site</p>
-              <img
-                src="/assets/logbook-guide-qr.svg"
-                width="220"
-                height="220"
-                alt="Sample QR code linking to Compliar’s fire safety logbook feature guide"
-              /><strong>Scan for the feature guide</strong>
-              <p>Sample printable label</p>
-            </div>
-            <figcaption>
-              This sample QR opens the feature guide. Site QR codes take your
-              team to a sign-in for that site’s logbook.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="band" id="property-owners" aria-labelledby="property-owners-title">
+      <section class="v2-section" aria-labelledby="price-title">
         <div class="wrap">
-          <div class="section-head">
-            <div class="eyebrow">FOR PROPERTY OWNERS</div>
-            <h2 id="property-owners-title">Looking after properties, not installing fire systems?</h2>
-            <p>
-              Landlords, managing agents, estate agents, developers and
-              housing and facilities teams can take the digital fire log book
-              on its own, with no seats: £4 + VAT per site per year. UK sites
-              only.
-            </p>
-          </div>
-          <div class="more-links">
-            <a href="/log-book/">See the log book for property owners</a>
+          <div class="price-strip">
+            <div>
+              <h2 id="price-title">From £35 + VAT per user per month.</h2>
+              <p>From as little as £1 a day. Mix seats across your team. Early adopters keep their price for 3 years.</p>
+            </div>
+            <a class="btn btn-ghost-on-cream" href="/pricing/">See pricing →</a>
           </div>
         </div>
       </section>
 
-      <section
-        class="band job-journey"
-        id="how-it-works"
-        aria-labelledby="journey-title"
-      >
+      <section class="v2-section v2-dark v2-demo-section" id="demo" aria-labelledby="demo-title">
         <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">SEE THE CONNECTION</div>
-              <h2 id="journey-title">One job. Every stage.</h2>
-            </div>
-            <a class="text-link" href="/getting-started/">Getting started ↗</a>
+          <div class="v2-head">
+            <span class="v2-kicker">Book a walkthrough</span>
+            <h2 class="v2-h2" id="demo-title">See it with your own sites.</h2>
+            <p class="v2-lead">A 15-minute walkthrough with our team, then a free trial on your own data.</p>
           </div>
-          <p class="journey-intro">
-            Follow an example emergency lighting job, from the first call to the
-            final invoice.
-          </p>
-          <div
-            class="journey-tabs"
-            role="tablist"
-            aria-label="Stages of a job"
-            hidden
-          >
-            <button
-              type="button"
-              id="step-enquiry"
-              role="tab"
-              aria-controls="journey-enquiry"
-              data-stage="enquiry"
-            >
-              <span>01</span>Enquiry
-            </button>
-            <button
-              type="button"
-              id="step-quote"
-              role="tab"
-              aria-controls="journey-quote"
-              data-stage="quote"
-            >
-              <span>02</span>Quote
-            </button>
-            <button
-              type="button"
-              id="step-schedule"
-              role="tab"
-              aria-controls="journey-schedule"
-              data-stage="schedule"
-            >
-              <span>03</span>Schedule
-            </button>
-            <button
-              type="button"
-              id="step-site"
-              role="tab"
-              aria-controls="journey-site"
-              data-stage="site"
-            >
-              <span>04</span>Site work
-            </button>
-            <button
-              type="button"
-              id="step-handover"
-              role="tab"
-              aria-controls="journey-handover"
-              data-stage="handover"
-            >
-              <span>05</span>Handover
-            </button>
-            <button
-              type="button"
-              id="step-invoice"
-              role="tab"
-              aria-controls="journey-invoice"
-              data-stage="invoice"
-            >
-              <span>06</span>Invoice
-            </button>
-          </div>
-          <article class="journey-panel" id="journey-enquiry">
-            <div>
-              <span class="eyebrow">01 / ENQUIRY</span>
-              <h3>Start with what the customer needs.</h3>
-              <p>
-                Capture the request, customer and site details. Give the job a
-                clear starting point.
-              </p>
-              <a class="text-link" href="/features/#scheduling"
-                >Explore customers & sites ↗</a
-              >
-            </div>
-            <div class="journey-example">
-              <span class="mono">EXAMPLE JOB / EMERGENCY LIGHTING</span
-              ><strong>A new installation enquiry</strong>
-              <p>
-                Riverside House needs emergency lighting for its ground floor.
-              </p>
-              <span class="journey-stage-label">Enquiry</span>
-            </div>
-          </article>
-          <article class="journey-panel" id="journey-quote">
-            <div>
-              <span class="eyebrow">02 / QUOTE</span>
-              <h3>Turn the scope into priced work.</h3>
-              <p>
-                Use take-offs on a Design seat to price your quantities. Add CAD
-                drawings with a Design seat (Design tools are in beta), then
-                build the quote from the parts and labour the job needs.
-              </p>
-              <a class="text-link" href="/features/#business"
-                >Explore quoting ↗</a
-              >
-            </div>
-            <div class="journey-example">
-              <span class="mono">EXAMPLE JOB / EMERGENCY LIGHTING</span
-              ><strong>Scope, quantities and pricing</strong>
-              <p>
-                Bring the installation requirements together in a clear quote.
-              </p>
-              <span class="journey-stage-label">Quote</span>
-            </div>
-          </article>
-          <article class="journey-panel" id="journey-schedule">
-            <div>
-              <span class="eyebrow">03 / SCHEDULE</span>
-              <h3>Give everyone the same plan.</h3>
-              <p>
-                Book the work and get the job details to your engineers, with
-                the site and customer records close at hand.
-              </p>
-              <a class="text-link" href="/features/#scheduling"
-                >Explore scheduling ↗</a
-              >
-            </div>
-            <div class="journey-example">
-              <span class="mono">EXAMPLE JOB / EMERGENCY LIGHTING</span
-              ><strong>The right job, on the right day</strong>
-              <p>
-                Plan the visit and make the job details available to the team.
-              </p>
-              <span class="journey-stage-label">Schedule</span>
-            </div>
-          </article>
-          <article class="journey-panel" id="journey-site">
-            <div>
-              <span class="eyebrow">04 / SITE WORK</span>
-              <h3>Install, commission and record the work.</h3>
-              <p>
-                Prepare RAMS, then record installation and commissioning work,
-                time, parts and site notes from a phone. Keep the job’s evidence
-                together.
-              </p>
-              <a class="text-link" href="/features/#rams"
-                >Explore RAMS & site work ↗</a
-              >
-            </div>
-            <div class="journey-example">
-              <span class="mono">EXAMPLE JOB / EMERGENCY LIGHTING</span
-              ><strong>RAMS and site records</strong>
-              <p>Hazards, working methods and job notes alongside the work.</p>
-              <span class="journey-stage-label">Site work</span>
-            </div>
-          </article>
-          <article class="journey-panel" id="journey-handover">
-            <div>
-              <span class="eyebrow">05 / HANDOVER</span>
-              <h3>Leave a record worth handing over.</h3>
-              <p>
-                Bring the certificates and drawings together. Add a
-                fire safety logbook with a user-customised, printable QR code.
-              </p>
-              <a class="text-link" href="/features/#packs"
-                >Explore handover ↗</a
-              >
-            </div>
-            <div class="journey-example">
-              <span class="mono">EXAMPLE JOB / EMERGENCY LIGHTING</span
-              ><strong>Certificates, drawings and a logbook</strong>
-              <p>The customer’s records continue beyond the installation.</p>
-              <span class="journey-stage-label">Handover</span>
-            </div>
-          </article>
-          <article class="journey-panel" id="journey-invoice">
-            <div>
-              <span class="eyebrow">06 / INVOICE</span>
-              <h3>Carry the job through to payment.</h3>
-              <p>
-                Raise the invoice and keep credit control connected to the
-                customer and the work. Invoices link with Xero both ways.
-              </p>
-              <a class="text-link" href="/features/#business"
-                >Explore invoicing ↗</a
-              >
-            </div>
-            <div class="journey-example">
-              <span class="mono">EXAMPLE JOB / EMERGENCY LIGHTING</span
-              ><strong>From finished work to invoice</strong>
-              <p>Keep the commercial record alongside the job record.</p>
-              <span class="journey-stage-label">Invoice</span>
-            </div>
-          </article>
-          <p class="journey-aftercare">
-            Keep the job connected after handover with maintenance plans and
-            ongoing site records.
-            <a href="/features/#scheduling"
-              >Explore scheduling &amp; maintenance ↗</a
-            >
-          </p>
-        </div>
-      </section>
-
-      <section class="home-bottom band">
-        <div class="wrap home-bottom-grid">
-          <div>
-            <div class="eyebrow">BUILT FROM EXPERIENCE</div>
-            <h2>20 years in the trade.<br />Still doing the work.</h2>
-            <p>
-              Keiran Sandham’s experience in electrical, fire and security
-              shapes Compliar. He still manages his team’s day-to-day
-              operations, from pricing and design to people and accreditation
-              audits.
-            </p>
-            <div class="founder-signature">
-              <img
-                src="/assets/keiran-sandham.jpg"
-                alt="Keiran Sandham, founder of Compliar"
-                width="56"
-                height="56"
-                loading="lazy"
-                decoding="async"
-                style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none"
-              />
-              <div>
-                <strong>Keiran Sandham</strong>
-                <p>Founder of Compliar</p>
-              </div>
-            </div>
-            <a class="text-link" href="/about/">Read Keiran’s story ↗</a>
-          </div>
-          <div class="pricing-teaser">
-            <span class="mono">FLEXIBLE SEATS. ONE TEAM.</span>
-            <p class="teaser-daily"><strong>From as little as £1 a day.</strong></p>
-            <div class="teaser-price">£35<span> + VAT /user/month</span></div>
-            <p>
-              Start with Lite. Mix Lite, Office and Design to fit the
-              roles in your team.
-            </p>
-            <ul class="product-points">
-              <li>No minimum seats</li>
-              <li>Two months free when paid yearly</li>
-              <li>Early adopters: your price locked for 3 years</li>
-              <li>Free trial after your demo. No card required.</li>
-            </ul>
-            <a class="text-link" href="/pricing/">Build your team’s plan ↗</a>
-          </div>
-        </div>
-      </section>
-      <section class="band home-questions" aria-labelledby="questions-title">
-        <div class="wrap">
-          <div class="section-heading">
-            <div>
-              <div class="eyebrow">BEFORE YOU GET STARTED</div>
-              <h2 id="questions-title">A few things worth knowing.</h2>
-            </div>
-            <a class="text-link" href="/faqs/">All FAQs ↗</a>
-          </div>
-          <details>
-            <summary>Can the office and engineers use different plans?</summary>
-            <p>
-              Yes. Mix Lite, Office and Design seats in one team. Choose
-              the tools each role needs, with no minimum number of seats.
-            </p>
-          </details>
-          <details>
-            <summary>How do the QR code fire safety logbooks work?</summary>
-            <p>
-              The site log book is £4 + VAT per site per year, added to any
-              plan, or taken on its own with no seats. Create a
-              user-customised, printable QR label for the site. When your team
-              scan it, they sign in and open that site’s logbook in the app.
-              The logbook is not part of the customer portal.
-            </p>
-          </details>
-          <details>
-            <summary>How do I get started?</summary>
-            <p>
-              <a href="/contact?subject=Demo+request">Request a demo</a> and we will walk through your own jobs. If Compliar fits, we set up your account and a 30-day free trial, with no card required. We can also help with set-up and moving your data across if you would like it.
-            </p>
-          </details>
-        </div>
-      </section>
-      <section class="final-cta band">
-        <div class="wrap">
-          <div class="eyebrow">Your next job starts here</div>
-          <h2>See it with your own sites.</h2>
-          <p>A walkthrough with our team, then a free trial on your own data.</p>
-          <div class="final-ctas">
-            <a
-              class="btn btn-primary"
-              href="/contact?subject=Demo+request"
-              >Book a demo</a
-            >
-          </div>
+          <div class="demo-wrap" data-demo-form></div>
         </div>
       </section>
     </main>
@@ -1346,9 +604,10 @@
         <div class="foot-col">
           <h2>Legal</h2>
           <ul>
-            <li><a href="/terms/">Terms of service</a></li>
-            <li><a href="/privacy/">Privacy notice</a></li>
-            <li><a href="/cookies/">Cookies</a></li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
+                        <li><a href="/cookies/">Cookies</a></li>
             <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
           </ul>
         </div>
