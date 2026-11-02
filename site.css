@@ -7217,3 +7217,22 @@ header.nav .nav-cta a.btn.btn-primary {
 header.nav .nav-cta a.btn.btn-primary:hover {
   background: #f0a776 !important;
 }
+
+/* Product gallery: three desk screens and two phone screens */
+.showcase-desks-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 1020px) {
+  .showcase-desks-3 {
+    grid-template-columns: 1fr;
+  }
+}
+.showcase-phones-2 {
+  grid-template-columns: repeat(2, minmax(0, 300px));
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .showcase-phones-2 {
+    grid-template-columns: minmax(0, 300px);
+  }
+}
