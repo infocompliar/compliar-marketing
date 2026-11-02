@@ -139,7 +139,7 @@
         showThanks();
       } catch (err) {
         error.textContent =
-          "Sorry, that didn’t send. Please try again, or email enquiry@compliar.co.uk and we’ll reply within one business day.";
+          "Sorry, that didn’t send. Please try again, or email enquiry@compliar.co.uk and we’ll get back to you as soon as possible.";
         error.hidden = false;
         button.disabled = false;
         button.textContent = "Book a Demo Walkthrough";
@@ -151,7 +151,7 @@
       card.className = "demo-thanks";
       card.setAttribute("role", "status");
       card.innerHTML =
-        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Walkthrough Request Received</h3><p>Thank you. We\'ll be in touch within one business day to arrange your walkthrough.</p>';
+        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Walkthrough Request Received</h3><p>Thank you. We\'ll get back to you as soon as possible to arrange your walkthrough.</p>';
       form.replaceWith(card);
     }
     return form;
