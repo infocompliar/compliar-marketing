@@ -43,20 +43,6 @@
     <script>
       gtag('js', new Date());
       gtag('config', 'AW-18545152858');
-
-      // Conversion trigger function for "Book a demo" form submits
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-          'event_callback': callback
-        });
-        return false;
-      }
     </script>
     <title>Compliar | Management Software for Electrical, Fire Protection &amp; Security</title>
     <meta
@@ -89,10 +75,11 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=a4c77ca95e1f" />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
+    <script src="/fire-alarm-battery-calculator/battery.js" defer></script>
     <script src="/roi-calc.js" defer></script>
     <script src="/home.js" defer></script>
     <script type="application/ld+json">
@@ -117,7 +104,7 @@
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
-      content="Compliar — management software for electrical, fire protection and security contractors"
+      content="Compliar — management software for electrical, fire protection and life safety, and security contractors"
     />
   </head>
   <body class="home-page">
@@ -277,9 +264,9 @@
                 <details>
                   <summary>Disciplines &amp; Trades</summary>
                   <ul>
-                    <li><a href="/#standards-matrix"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
                     <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
                   </ul>
                 </details>
@@ -323,7 +310,7 @@
       <section class="v2-hero" aria-labelledby="hero-title">
         <div class="wrap v2-hero-grid">
           <div>
-            <span class="v2-pill">Built for UK electrical, fire protection and security contractors</span>
+            <span class="v2-pill">Built for UK electrical, fire protection and life safety, and security contractors</span>
             <h1 id="hero-title">
               A comprehensive management system for the
               <span>electrical, fire protection and life safety and security industry.</span>
@@ -333,7 +320,7 @@
             </p>
             <div class="v2-ctas">
               <a class="btn btn-primary" href="#contact-form">Book a Demo</a>
-              <a class="btn btn-ghost-on-navy" href="#logbook-demo">Interactive Demo ↓</a>
+              <a class="btn btn-ghost-on-navy" href="#logbook-demo">See the log book working ↓</a>
             </div>
             <p class="v2-reassure">From as little as £1 a day (Lite, billed yearly, plus VAT) · Early adopters lock their price for 3 years · No contract</p>
           </div>
@@ -1062,136 +1049,13 @@
                 <span data-size="24">24Ah</span>
                 <span data-size="38">38Ah</span>
                 <span data-size="65">65Ah</span>
+                <span data-size="100">100Ah</span>
+                <span data-size="120">120Ah</span>
               </div>
 
               <!-- Mandatory Prominent Demonstration Notice (Alongside Result) -->
               <div class="bat-out-disclaimer">
                 <strong>Demonstration tool only.</strong> This calculator provides an illustrative estimate and does not verify compliance or determine the correct battery for an installation. Actual selection depends on the system design, equipment data, applicable standards and guidance, and the manufacturer’s instructions. A competent person must verify all calculations and selections before use.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 6: TIME & COST CALCULATOR (#roi-calculator). Maths in /roi-calc.js -->
-      <section class="v2-section" id="roi-calculator" aria-labelledby="roi-title">
-        <div class="wrap">
-          <div class="v2-head">
-            <span class="v2-kicker">Time &amp; Cost Calculator</span>
-            <h2 class="v2-h2" id="roi-title">Work it out with your own numbers.</h2>
-            <p class="v2-lead">
-              Enter your team size, how many certificates or reports you produce, how long the admin takes you now and how long you expect it to take with Compliar. The calculator does the arithmetic and takes off the Compliar subscription for your seats.
-            </p>
-          </div>
-
-          <div class="roi-card">
-            <form class="roi-controls" id="roi-form" novalidate onsubmit="return false">
-              <div class="roi-field">
-                <label for="roi-engineers">1. Field engineers</label>
-                <input type="number" id="roi-engineers" name="engineers" inputmode="numeric" min="0" max="500" step="1" data-example="5" placeholder="e.g. 5" />
-              </div>
-
-              <div class="roi-field">
-                <label for="roi-office">2. Office / desk users</label>
-                <input type="number" id="roi-office" name="officeUsers" inputmode="numeric" min="0" max="500" step="1" data-example="1" placeholder="e.g. 1" />
-              </div>
-
-              <div class="roi-field">
-                <label for="roi-certs">3. Certificates or reports per engineer per week</label>
-                <input type="number" id="roi-certs" name="certsPerEngineerPerWeek" inputmode="decimal" min="0" max="200" step="0.5" data-example="8" placeholder="e.g. 8" />
-              </div>
-
-              <div class="roi-field">
-                <label for="roi-min-today">4. Minutes of admin per certificate today</label>
-                <input type="number" id="roi-min-today" name="minutesToday" inputmode="decimal" min="0" max="600" step="1" data-example="30" placeholder="e.g. 30" aria-describedby="roi-example-note" />
-              </div>
-
-              <div class="roi-field">
-                <label for="roi-min-compliar">5. Minutes you expect it to take with Compliar (your estimate)</label>
-                <input type="number" id="roi-min-compliar" name="minutesWithCompliar" inputmode="decimal" min="0" max="600" step="1" data-example="15" placeholder="e.g. 15" aria-describedby="roi-example-note" />
-              </div>
-
-              <div class="roi-field">
-                <label for="roi-hourly">6. Hourly cost of that time (£, your figure)</label>
-                <input type="number" id="roi-hourly" name="hourlyCost" inputmode="decimal" min="0" max="1000" step="0.5" data-example="25" placeholder="e.g. 25" aria-describedby="roi-example-note" />
-              </div>
-
-              <fieldset class="roi-field roi-seats">
-                <legend>7. Seats and billing</legend>
-                <div class="roi-seat-row">
-                  <label for="roi-eng-seat">Engineers on</label>
-                  <select id="roi-eng-seat" name="engineerSeat">
-                    <option value="lite" selected>Lite (£35 / month)</option>
-                    <option value="office">Office (£65 / month)</option>
-                    <option value="design">Design (£95 / month)</option>
-                  </select>
-                </div>
-                <div class="roi-seat-row">
-                  <label for="roi-office-seat">Office users on</label>
-                  <select id="roi-office-seat" name="officeSeat">
-                    <option value="lite">Lite (£35 / month)</option>
-                    <option value="office" selected>Office (£65 / month)</option>
-                    <option value="design">Design (£95 / month)</option>
-                  </select>
-                </div>
-                <div class="roi-seat-row">
-                  <label for="roi-billing">Billing</label>
-                  <select id="roi-billing" name="billing">
-                    <option value="monthly" selected>Monthly</option>
-                    <option value="yearly">Yearly (£350 / £650 / £950 per user)</option>
-                  </select>
-                </div>
-              </fieldset>
-
-              <div class="roi-example-row">
-                <button type="button" class="btn btn-ghost-on-cream btn-sm" id="roi-example-btn">Fill in example figures</button>
-                <button type="button" class="roi-clear" id="roi-clear-btn">Clear</button>
-              </div>
-
-              <p class="roi-assume" id="roi-example-note">
-                The fields start blank. The example button fills in illustrative figures, which are not figures we have measured, so replace them with your own. Prices are per user, excluding VAT. A month is taken as 52 weeks ÷ 12. The optional site log book (£4 + VAT per site per year) is not included.
-              </p>
-            </form>
-
-            <div class="roi-results" aria-live="polite" aria-atomic="false">
-              <p class="roi-own-figures"><strong>Your own figures, not a promise or a prediction.</strong></p>
-
-              <div class="roi-stat">
-                <span>Admin time difference per month</span>
-                <strong>
-                  <b id="roi-hours-out">0 hrs</b>
-                  <small id="roi-hours-detail">across 0 certificates</small>
-                </strong>
-              </div>
-
-              <div class="roi-stat">
-                <span>Value of that time at your hourly cost</span>
-                <strong>
-                  <b id="roi-value-out">£0.00 / month</b>
-                </strong>
-              </div>
-
-              <div class="roi-stat">
-                <span>Compliar subscription for your seats</span>
-                <strong>
-                  <b id="roi-sub-out">£0.00 / month</b>
-                  <small id="roi-sub-detail">no seats</small>
-                </strong>
-              </div>
-
-              <div class="roi-stat roi-total">
-                <span>Net, on your figures</span>
-                <strong>
-                  <b id="roi-net-out">£0.00 / month</b>
-                  <small id="roi-net-year">£0.00 / year</small>
-                </strong>
-                <p id="roi-net-note">Value of time minus subscription. This can be negative.</p>
-              </div>
-
-              <div class="roi-cta">
-                <a class="btn btn-primary" id="roi-cta" href="#contact-form" data-engineers="0">
-                  Book a Demo for Your Team →
-                </a>
               </div>
             </div>
           </div>
@@ -1417,6 +1281,132 @@
           </div>
         </div>
       </section>
+
+      <!-- SECTION 6: TIME & COST CALCULATOR (#roi-calculator). Maths in /roi-calc.js -->
+      <section class="v2-section" id="roi-calculator" aria-labelledby="roi-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">Time &amp; Cost Calculator</span>
+            <h2 class="v2-h2" id="roi-title">Work it out with your own numbers.</h2>
+            <p class="v2-lead">
+              Enter your team size, how many certificates or reports you produce, how long the admin takes you now and how long you expect it to take with Compliar. The calculator does the arithmetic and takes off the Compliar subscription for your seats.
+            </p>
+          </div>
+
+          <div class="roi-card">
+            <form class="roi-controls" id="roi-form" novalidate onsubmit="return false">
+              <div class="roi-field">
+                <label for="roi-engineers">1. Field engineers</label>
+                <input type="number" id="roi-engineers" name="engineers" inputmode="numeric" min="0" max="500" step="1" data-example="5" placeholder="e.g. 5" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-office">2. Office / desk users</label>
+                <input type="number" id="roi-office" name="officeUsers" inputmode="numeric" min="0" max="500" step="1" data-example="1" placeholder="e.g. 1" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-certs">3. Certificates or reports per engineer per week</label>
+                <input type="number" id="roi-certs" name="certsPerEngineerPerWeek" inputmode="decimal" min="0" max="200" step="0.5" data-example="8" placeholder="e.g. 8" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-min-today">4. Minutes of admin per certificate today</label>
+                <input type="number" id="roi-min-today" name="minutesToday" inputmode="decimal" min="0" max="600" step="1" data-example="30" placeholder="e.g. 30" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-min-compliar">5. Minutes you expect it to take with Compliar (your estimate)</label>
+                <input type="number" id="roi-min-compliar" name="minutesWithCompliar" inputmode="decimal" min="0" max="600" step="1" data-example="15" placeholder="e.g. 15" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-hourly">6. Hourly cost of that time (£, your figure)</label>
+                <input type="number" id="roi-hourly" name="hourlyCost" inputmode="decimal" min="0" max="1000" step="0.5" data-example="25" placeholder="e.g. 25" aria-describedby="roi-example-note" />
+              </div>
+
+              <fieldset class="roi-field roi-seats">
+                <legend>7. Seats and billing</legend>
+                <div class="roi-seat-row">
+                  <label for="roi-eng-seat">Engineers on</label>
+                  <select id="roi-eng-seat" name="engineerSeat">
+                    <option value="lite" selected>Lite (£35 / month)</option>
+                    <option value="office">Office (£65 / month)</option>
+                    <option value="design">Design (£95 / month)</option>
+                  </select>
+                </div>
+                <div class="roi-seat-row">
+                  <label for="roi-office-seat">Office users on</label>
+                  <select id="roi-office-seat" name="officeSeat">
+                    <option value="lite">Lite (£35 / month)</option>
+                    <option value="office" selected>Office (£65 / month)</option>
+                    <option value="design">Design (£95 / month)</option>
+                  </select>
+                </div>
+                <div class="roi-seat-row">
+                  <label for="roi-billing">Billing</label>
+                  <select id="roi-billing" name="billing">
+                    <option value="monthly" selected>Monthly</option>
+                    <option value="yearly">Yearly (£350 / £650 / £950 per user)</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <div class="roi-example-row">
+                <button type="button" class="btn btn-ghost-on-cream btn-sm" id="roi-example-btn">Fill in example figures</button>
+                <button type="button" class="roi-clear" id="roi-clear-btn">Clear</button>
+              </div>
+
+              <p class="roi-assume" id="roi-example-note">
+                The fields start blank. The example button fills in illustrative figures, which are not figures we have measured, so replace them with your own. Prices are per user, excluding VAT. A month is taken as 52 weeks ÷ 12. The optional site log book (£4 + VAT per site per year) is not included.
+              </p>
+            </form>
+
+            <div class="roi-results" aria-live="polite" aria-atomic="false">
+              <p class="roi-own-figures"><strong>Your own figures, not a promise or a prediction.</strong></p>
+
+              <div class="roi-stat">
+                <span>Admin time difference per month</span>
+                <strong>
+                  <b id="roi-hours-out">0 hrs</b>
+                  <small id="roi-hours-detail">across 0 certificates</small>
+                </strong>
+              </div>
+
+              <div class="roi-stat">
+                <span>Value of that time at your hourly cost</span>
+                <strong>
+                  <b id="roi-value-out">£0.00 / month</b>
+                </strong>
+              </div>
+
+              <div class="roi-stat">
+                <span>Compliar subscription for your seats</span>
+                <strong>
+                  <b id="roi-sub-out">£0.00 / month</b>
+                  <small id="roi-sub-detail">no seats</small>
+                </strong>
+              </div>
+
+              <div class="roi-stat roi-total">
+                <span>Net, on your figures</span>
+                <strong>
+                  <b id="roi-net-out">£0.00 / month</b>
+                  <small id="roi-net-year">£0.00 / year</small>
+                </strong>
+                <p id="roi-net-note">Value of time minus subscription. This can be negative.</p>
+              </div>
+
+              <div class="roi-cta">
+                <a class="btn btn-primary" id="roi-cta" href="#contact-form" data-engineers="0">
+                  Book a Demo for Your Team →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <!-- SECTION 10: REAL WORKING CONTACT & DEMO FORM (#contact-form) -->
       <section class="v2-section v2-dark v2-demo-section" id="contact-form" aria-labelledby="demo-title">

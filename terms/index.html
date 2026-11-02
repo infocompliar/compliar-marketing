@@ -44,39 +44,9 @@
       gtag('js', new Date());
       gtag('config', 'AW-18545152858');
 
-      // Conversion trigger function for "Book a demo" clicks/form submits
-      function gtag_report_conversion(url) {
-        var event = window.event;
-        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
-        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-            'value': 1.0,
-            'currency': 'GBP'
-          });
-          return true;
-        }
-        var done = false;
-        var callback = function () {
-          if (done) return;
-          done = true;
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-          'value': 1.0,
-          'currency': 'GBP',
-          'event_callback': callback
-        });
-        // Still open the page if the tag is blocked or slow to reply
-        setTimeout(callback, 1000);
-        return false;
-      }
     </script>
     <title>Terms of service — Compliar</title>
-    <meta name="description" content="The terms for using the Compliar website, free trials and paid subscriptions, including data processing, liability and professional responsibility." />
+    <meta name="description" content="The terms for using the Compliar website and paid subscriptions, including data processing, liability and professional responsibility." />
     <link rel="canonical" href="https://compliar.co.uk/terms/" />
     <meta name="theme-color" content="#1B2430" />
     <meta property="og:type" content="website" />
@@ -84,7 +54,7 @@
     <meta property="og:title" content="Terms of service — Compliar" />
     <meta
       property="og:description"
-      content="The terms for using the Compliar website, free trials and paid subscriptions, including data processing, liability and professional responsibility."
+      content="The terms for using the Compliar website and paid subscriptions, including data processing, liability and professional responsibility."
     />
     <meta property="og:url" content="https://compliar.co.uk/terms/" />
     <meta property="og:image" content="https://compliar.co.uk/og.png" />
@@ -100,14 +70,14 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=a4c77ca95e1f" />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
-      content="Compliar — management software for electrical, fire protection and security contractors"
+      content="Compliar — management software for electrical, fire protection and life safety, and security contractors"
     />
   </head>
   <body>
@@ -265,9 +235,9 @@
                 <details>
                   <summary>Disciplines &amp; Trades</summary>
                   <ul>
-                    <li><a href="/#standards-matrix"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
                     <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
                   </ul>
                 </details>
@@ -311,7 +281,7 @@
     <div class="eyebrow">Legal · Terms of service</div>
     <h1>The terms we<br />work to.</h1>
     <p>
-      These terms cover use of this website, free trials and paid subscriptions to the Compliar
+      These terms cover use of this website, paid subscriptions to the Compliar
       application. By creating or using a workspace you agree to them on behalf of your company.
     </p>
   </div>
@@ -328,12 +298,9 @@
       supplied to businesses only; it is not for consumers.
     </p>
 
-    <h2>2. Accounts and trials</h2>
+    <h2>2. Accounts</h2>
     <p>
-      Workspaces are created by invitation after you request a demo or trial. A trial lasts 30
-      days, needs no payment card and may be ended by either side at any time. At the end of a
-      trial you can subscribe or ask us to delete the workspace; if we hear nothing, we keep it
-      for 30 days and then delete it. You are responsible for the people you invite, for keeping
+      Workspaces are created by invitation after you book a demo and agree to a subscription. You are responsible for the people you invite, for keeping
       sign-in details confidential and for telling us promptly if an account is compromised.
     </p>
 
@@ -415,7 +382,7 @@
       liable for loss of profit, business, contracts or goodwill, for indirect or consequential
       loss, or for loss arising from reliance on a certificate, report or record you produced
       using the service; and our total liability to you in any 12-month period is limited to the
-      fees you paid for the service in that period (or £1,000 during a free trial).
+      fees you paid for the service in that period.
     </p>
 
     <h2>10. Ending the agreement</h2>

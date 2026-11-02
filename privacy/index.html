@@ -44,36 +44,6 @@
       gtag('js', new Date());
       gtag('config', 'AW-18545152858');
 
-      // Conversion trigger function for "Book a demo" clicks/form submits
-      function gtag_report_conversion(url) {
-        var event = window.event;
-        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
-        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-            'value': 1.0,
-            'currency': 'GBP'
-          });
-          return true;
-        }
-        var done = false;
-        var callback = function () {
-          if (done) return;
-          done = true;
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-          'value': 1.0,
-          'currency': 'GBP',
-          'event_callback': callback
-        });
-        // Still open the page if the tag is blocked or slow to reply
-        setTimeout(callback, 1000);
-        return false;
-      }
     </script>
     <title>Privacy notice — Compliar</title>
     <meta name="description" content="How Compliar Ltd collects and uses personal data on this website, for enquiries and in the Compliar application, and your rights." />
@@ -100,14 +70,14 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=a4c77ca95e1f" />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
     <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
     <meta
       property="og:image:alt"
-      content="Compliar — management software for electrical, fire protection and security contractors"
+      content="Compliar — management software for electrical, fire protection and life safety, and security contractors"
     />
   </head>
   <body>
@@ -265,9 +235,9 @@
                 <details>
                   <summary>Disciplines &amp; Trades</summary>
                   <ul>
-                    <li><a href="/#standards-matrix"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
                     <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
                   </ul>
                 </details>
@@ -312,7 +282,7 @@
     <h1>How we handle<br />your information.</h1>
     <p>
       This notice explains what Compliar Ltd collects when you use this website, enquire about a
-      demo or trial, or use the Compliar application, and the choices you have.
+      demo, or use the Compliar application, and the choices you have.
     </p>
   </div>
 </section>
@@ -355,16 +325,16 @@
       and operation of the service; we do not receive personal data from those logs.
     </p>
 
-    <h2>Enquiries, demos and trials</h2>
+    <h2>Enquiries and demos</h2>
     <p>
       When you email us or fill in the demo request form (on the home page, the contact page or
       the &ldquo;Book a 15-Min Walkthrough&rdquo; pop-up), we receive your name, work email address,
       company name, phone number, team size, the disciplines you work in, and whatever else you
       write. The form is delivered by Web3Forms, a service provider that passes your submission to
       our email; see <a href="https://web3forms.com/privacy" rel="noopener">Web3Forms' privacy policy</a>. We
-      use this to reply, arrange a demo, set up a trial workspace and keep a record of the
+      use this to reply, arrange a demo, set up your workspace and keep a record of the
       conversation. The lawful basis is our legitimate interest in responding to business
-      enquiries and, where you ask for a trial, taking steps at your request before entering a
+      enquiries and, where you ask to subscribe, taking steps at your request before entering a
       contract. We keep enquiry correspondence for up to 24 months after our last contact, or
       for the life of your account if you become a customer. Email is handled through Google
       Workspace.

@@ -91,16 +91,11 @@
   }
 
   // ---- 4. Demonstration-Only BS 5839-1 Battery Calculator -------------------
-  const SIZES = [7, 9, 12, 17, 24, 38, 65, 100, 120];
-  function pickSize(ah) {
-    return SIZES.find((size) => size >= ah) ?? null;
-  }
-
   const batT1 = document.getElementById("bat-t1");
   const batT2 = document.getElementById("bat-t2");
   const batI1 = document.getElementById("bat-i1");
   const batI2 = document.getElementById("bat-i2");
-  if (batT1 && batT2 && batI1 && batI2) {
+  if (batT1 && batT2 && batI1 && batI2 && window.CompliarBattery) {
     let voltage = 24;
     let i1Unit = "mA";
     let i2Unit = "A";
@@ -136,24 +131,24 @@
       const i1A = i1Unit === "mA" ? rawI1 / 1000 : rawI1;
       const i2A = i2Unit === "mA" ? rawI2 / 1000 : rawI2;
 
-      // Base formula required by prompt: Ah = 1.25 * [(I1 * T1) + (I2 * T2)]
-      const baseAh = 1.25 * (i1A * t1h + i2A * t2h);
-      // Annex E high-rate check for reference
-      const d = baseAh / 20 >= i2A ? 1.0 : 1.75;
-      const annexAh = d === 1.0 ? baseAh : 1.25 * (i1A * t1h + 1.75 * i2A * t2h);
-      const size = pickSize(baseAh);
-      const annexSize = pickSize(annexAh);
+      // Same tested maths as the standalone calculator (battery.js): BS 5839-1 Annex E.1,
+      // default de-rating factor 1.75 when the high-rate check applies.
+      const calc = window.CompliarBattery.batterySizing({ i1A, t1h, i2A, t2h });
+      const baseAh = calc.c1;
+      const d = calc.d;
+      const capAh = calc.cmin;
+      const size = calc.size;
 
-      document.getElementById("bat-cmin").textContent = `${baseAh.toFixed(2)} Ah`;
+      document.getElementById("bat-cmin").textContent = `${capAh.toFixed(2)} Ah`;
       const voltTag = document.getElementById("bat-volt-tag");
       if (voltTag) voltTag.textContent = `${voltage}V System · 1.25 Aging Factor`;
 
       const annexNote = document.getElementById("bat-annex-note");
       if (annexNote) {
         annexNote.textContent =
-          d === 1.0
-            ? `With Annex E high-rate check (D = 1.0): ${annexAh.toFixed(2)} Ah`
-            : `If Annex E.1.2 high-rate derating (D = 1.75) applies: ${annexAh.toFixed(2)} Ah (example size: ${annexSize ? formatAhSize(annexSize) : ">120Ah"})`;
+          d === 1
+            ? `High-rate check: de-rating factor D = 1 applies (no extra de-rating).`
+            : `High-rate de-rating applies (D = 1.75). Without it the figure would be ${baseAh.toFixed(2)} Ah.`;
       }
 
       const rec = document.getElementById("bat-rec");
@@ -171,7 +166,10 @@
             : `Illustrative 12V unit (e.g. 1× 12V 7.0Ah, 1× 12V 17Ah). Do not use for final selection.`;
       }
 
-      const formulaStr = `Ah = 1.25 × [(I1 × T1) + (I2 × T2)] = 1.25 × [(${i1A.toFixed(3)} A × ${t1h}h) + (${i2A.toFixed(3)} A × ${t2h}h)] = ${baseAh.toFixed(2)} Ah`;
+      const formulaStr =
+        d === 1
+          ? `Ah = 1.25 × [(I1 × T1) + (I2 × T2)] = 1.25 × [(${i1A.toFixed(3)} A × ${t1h}h) + (${i2A.toFixed(3)} A × ${t2h}h)] = ${capAh.toFixed(2)} Ah`
+          : `Ah = 1.25 × [(I1 × T1) + (D × I2 × T2)], D = 1.75 = 1.25 × [(${i1A.toFixed(3)} A × ${t1h}h) + (1.75 × ${i2A.toFixed(3)} A × ${t2h}h)] = ${capAh.toFixed(2)} Ah`;
       document.getElementById("bat-working").textContent = formulaStr;
 
       document.getElementById("bat-derate-exp").textContent =
@@ -191,7 +189,7 @@
         `Full Alarm Load (I2): ${i2A.toFixed(3)} A (${Math.round(i2A * 1000)} mA)`,
         `Alarm Duration (T2): ${t2h} hours (${Math.round(t2h * 60)} mins)`,
         `Formula: ${formulaStr}`,
-        `Illustrative Capacity Result: ${baseAh.toFixed(2)} Ah`,
+        `Illustrative Capacity Result: ${capAh.toFixed(2)} Ah`,
         `Illustrative Battery Pairing (Example Only): ${size ? `${count} × 12V ${formatAhSize(size)} VRLA` : "Exceeds 120Ah single bank"}`,
         "",
         "DISCLAIMER: Demonstration tool only. This calculator provides an illustrative estimate and does not verify compliance or determine the correct battery for an installation. Actual selection depends on the system design, equipment data, applicable standards and guidance, and the manufacturer’s instructions. A competent person must verify all calculations and selections before use.",
@@ -360,6 +358,9 @@
           const el = field(id);
           if (el && el.dataset.example !== undefined) el.value = el.dataset.example;
         });
+        field("roi-eng-seat").value = "lite";
+        field("roi-office-seat").value = "office";
+        field("roi-billing").value = "monthly";
         updateRoi();
       });
     }
@@ -369,12 +370,25 @@
           const el = field(id);
           if (el) el.value = "";
         });
+        field("roi-eng-seat").value = "lite";
+        field("roi-office-seat").value = "office";
+        field("roi-billing").value = "monthly";
         updateRoi();
       });
     }
 
     roiForm.addEventListener("input", updateRoi);
-    roiForm.addEventListener("change", updateRoi);
+    // When a visitor leaves a field, show the value actually used if it was outside the allowed range.
+    roiForm.addEventListener("change", (event) => {
+      const el = event.target;
+      if (el && el.type === "number" && el.value !== "") {
+        const v = Number(el.value);
+        const lo = el.min !== "" ? Number(el.min) : -Infinity;
+        const hi = el.max !== "" ? Number(el.max) : Infinity;
+        if (Number.isFinite(v) && (v > hi || v < lo)) el.value = String(Math.min(hi, Math.max(lo, v)));
+      }
+      updateRoi();
+    });
     updateRoi();
   }
 

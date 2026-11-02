@@ -4925,6 +4925,7 @@ header.nav .nav-cta .btn-primary:hover {
   border-radius: 10px;
 }
 .qr-card p {
+  color: var(--ink);
   margin-top: 14px;
   font-size: 0.88rem;
   font-weight: 600;
@@ -7386,3 +7387,6 @@ header.nav .nav-cta a.btn.btn-primary:hover {
 
 .roi-example-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:4px 0 8px}
 .roi-clear{background:none;border:0;padding:6px 4px;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer}
+
+/* Light sections: use the deeper orange so small eyebrow text passes contrast */
+.logbook-pricing .eyebrow, .onboarding-box .eyebrow, .coverage-heading .eyebrow { color: #a8480d; }

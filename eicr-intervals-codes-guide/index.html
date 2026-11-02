@@ -44,36 +44,6 @@
       gtag('js', new Date());
       gtag('config', 'AW-18545152858');
 
-      // Conversion trigger function for "Book a demo" clicks/form submits
-      function gtag_report_conversion(url) {
-        var event = window.event;
-        // Let Ctrl/Cmd/Shift/middle clicks open a new tab as normal
-        if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1)) {
-          gtag('event', 'conversion', {
-            'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-            'value': 1.0,
-            'currency': 'GBP'
-          });
-          return true;
-        }
-        var done = false;
-        var callback = function () {
-          if (done) return;
-          done = true;
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18545152858/mXfZCOGjwq4dENqmgotF',
-          'value': 1.0,
-          'currency': 'GBP',
-          'event_callback': callback
-        });
-        // Still open the page if the tag is blocked or slow to reply
-        setTimeout(callback, 1000);
-        return false;
-      }
     </script>
     <title>EICR Guide: Intervals, Codes C1 C2 C3 FI — Compliar</title>
     <meta name="description" content="EICR guide for electricians: inspection intervals by property type, the observation codes C1, C2, C3 and FI, and what makes a report unsatisfactory under BS 7671:2018+A4:2026." />
@@ -89,7 +59,7 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Compliar — management software for electrical, fire protection and security contractors"
+      content="Compliar — management software for electrical, fire protection and life safety, and security contractors"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="EICR Guide: Intervals, Codes C1 C2 C3 FI — Compliar" />
@@ -196,7 +166,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=a4c77ca95e1f" />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
@@ -356,9 +326,9 @@
                 <details>
                   <summary>Disciplines &amp; Trades</summary>
                   <ul>
-                    <li><a href="/#standards-matrix"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
-                    <li><a href="/#standards-matrix"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
                     <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
                   </ul>
                 </details>

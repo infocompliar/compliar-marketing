@@ -190,6 +190,11 @@
     if (roiBtn) {
       const eng = parseInt(roiBtn.dataset.engineers, 10);
       const inlineForm = document.querySelector("#contact-form form.demo-form, #demo form.demo-form");
+      if (inlineForm && !eng) {
+        inlineForm.dataset.engineers = "";
+        const stale = inlineForm.querySelector(".demo-prefill");
+        if (stale) stale.hidden = true;
+      }
       if (inlineForm && eng) {
         inlineForm.elements.team_size.value = sizeFor(eng);
         inlineForm.dataset.engineers = String(eng);
