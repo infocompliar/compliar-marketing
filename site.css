@@ -6472,6 +6472,7 @@ html {
 }
 .taxonomy-sectors {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
 }
 .taxonomy-block {
@@ -6482,6 +6483,7 @@ html {
 }
 .taxonomy-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 14px;
   margin-bottom: 18px;
@@ -6498,6 +6500,10 @@ html {
   font-weight: 600;
   white-space: nowrap;
 }
+.taxonomy-header > div {
+  min-width: 0;
+  flex: 1 1 220px;
+}
 .taxonomy-header h3 {
   font-size: 1.22rem;
   color: var(--ink);
@@ -6510,7 +6516,7 @@ html {
 }
 .taxonomy-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 14px;
 }
 .tax-card {
@@ -6524,6 +6530,7 @@ html {
 }
 .tax-card-top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -6541,7 +6548,7 @@ html {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.68rem;
   font-weight: 600;
-  white-space: nowrap;
+  white-space: normal;
 }
 .tax-card p {
   font-size: 0.84rem;
