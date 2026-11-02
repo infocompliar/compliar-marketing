@@ -52,7 +52,7 @@
       <form class="demo-form" novalidate>
         <p class="demo-prefill" ${options.engineers ? "" : "hidden"}>${
           options.engineers
-            ? `Based on your ROI estimate: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}`
+            ? `From the calculator: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}`
             : ""
         }</p>
         <div class="grid2">
@@ -195,7 +195,7 @@
         inlineForm.dataset.engineers = String(eng);
         const pre = inlineForm.querySelector(".demo-prefill");
         if (pre) {
-          pre.textContent = `Based on your ROI estimate: ${eng} field engineer${eng === 1 ? "" : "s"}`;
+          pre.textContent = `From the calculator: ${eng} field engineer${eng === 1 ? "" : "s"}`;
           pre.hidden = false;
         }
       }

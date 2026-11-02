@@ -293,49 +293,66 @@
     computeBattery();
   }
 
-  // ---- 5. Grounded ROI & Time Savings Estimator -----------------------------
-  const engineers = document.getElementById("roi-engineers");
-  const jobs = document.getElementById("roi-jobs");
-  const turnaround = document.getElementById("roi-turnaround");
-  if (engineers && jobs && turnaround) {
+  // ---- 5. Time & Cost Calculator (maths in /roi-calc.js) --------------------
+  const roiForm = document.getElementById("roi-form");
+  if (roiForm && window.CompliarRoi) {
+    const { calcRoi } = window.CompliarRoi;
+    const field = (id) => document.getElementById(id);
+    const out = (id, text) => {
+      const el = field(id);
+      if (el) el.textContent = text;
+    };
     const money = new Intl.NumberFormat("en-GB", {
       style: "currency",
       currency: "GBP",
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
-    const cta = document.getElementById("roi-cta");
+    const num = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 1 });
+    // Show negatives with a real minus sign so they are not missed.
+    const signedMoney = (n) => (n < 0 ? `\u2212${money.format(-n)}` : money.format(n));
+    const signedNum = (n) => (n < 0 ? `\u2212${num.format(-n)}` : num.format(n));
+    const cta = field("roi-cta");
 
     function updateRoi() {
-      const e = Number(engineers.value);
-      const j = Number(jobs.value);
-      const t = Number(turnaround.value);
+      const r = calcRoi({
+        engineers: field("roi-engineers").value,
+        officeUsers: field("roi-office").value,
+        certsPerEngineerPerWeek: field("roi-certs").value,
+        minutesToday: field("roi-min-today").value,
+        minutesWithCompliar: field("roi-min-compliar").value,
+        hourlyCost: field("roi-hourly").value,
+        engineerSeat: field("roi-eng-seat").value,
+        officeSeat: field("roi-office-seat").value,
+        billing: field("roi-billing").value,
+      });
 
-      // Credible UK contractor metrics: ~26 mins (0.44h) saved per completed job/cert
-      // At 8 jobs/wk * 4.2 wks = ~33.6 jobs/mo -> ~15 hrs saved per engineer/month
-      const perEngHours = Math.max(6, Math.min(28, Math.round(j * 0.44 * 4.2)));
-      const totalHours = perEngHours * e;
-      const totalCerts = Math.round(e * j * 4.2);
-      // Grounded admin + certificate processing cost reduction (~£32/hr blended admin/engineer processing cost)
-      const monthlySaving = Math.round(totalHours * 32);
-      const annualSaving = monthlySaving * 12;
+      out("roi-hours-out", `${signedNum(r.hoursPerMonth)} hrs`);
+      out("roi-hours-detail", `across ${num.format(r.certsPerMonth)} certificates a month`);
+      out("roi-value-out", `${signedMoney(r.valuePerMonth)} / month`);
+      out("roi-sub-out", `${money.format(r.subscriptionPerMonth)} / month`);
+      out(
+        "roi-sub-detail",
+        r.seatLines.length
+          ? r.seatLines.map((l) => `${l.count} \u00d7 ${l.name}`).join(" + ") +
+              (r.inputs.billing === "yearly" ? `, billed yearly (${money.format(r.subscriptionBilledPerYear)} / year)` : ", billed monthly") +
+              ", ex VAT"
+          : "no seats"
+      );
+      out("roi-net-out", `${signedMoney(r.netPerMonth)} / month`);
+      out("roi-net-year", `${signedMoney(r.netPerYear)} / year`);
+      out(
+        "roi-net-note",
+        r.netPerMonth < 0
+          ? "On these figures the subscription costs more than the time difference is worth."
+          : "Value of time minus subscription. This can be negative."
+      );
 
-      document.getElementById("roi-engineers-out").textContent = `${e} engineer${e === 1 ? "" : "s"}`;
-      document.getElementById("roi-jobs-out").textContent = `${j} jobs / week`;
-      document.getElementById("roi-turnaround-out").textContent = `${t} day${t === 1 ? "" : "s"} (vs. Instant)`;
-
-      document.getElementById("roi-per-eng-hours").textContent = `~${perEngHours} hrs / engineer / month`;
-      document.getElementById("roi-team-hours").textContent = `(~${totalHours} hrs/month across ${e} engineer${e === 1 ? "" : "s"})`;
-      document.getElementById("roi-quote-speed").textContent = "Same-Day Dispatch";
-      document.getElementById("roi-quote-lag").textContent = `(eliminates ${t}-day office certificate & quote lag)`;
-      document.getElementById("roi-admin-saving").textContent = `~${money.format(monthlySaving)} / month`;
-      document.getElementById("roi-annual-note").textContent =
-        `Equivalent to ~${money.format(annualSaving)}/year in reclaimed office & engineer capacity (plus zero per-cert token fees)`;
-      document.getElementById("roi-certs-month").textContent = String(totalCerts);
-
-      if (cta) cta.dataset.engineers = String(e);
+      if (cta) cta.dataset.engineers = String(r.inputs.engineers);
     }
 
-    [engineers, jobs, turnaround].forEach((el) => el.addEventListener("input", updateRoi));
+    roiForm.addEventListener("input", updateRoi);
+    roiForm.addEventListener("change", updateRoi);
     updateRoi();
   }
 

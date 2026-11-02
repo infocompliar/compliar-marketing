@@ -89,10 +89,11 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=b7a95b7424fe" />
+    <link rel="stylesheet" href="/site.css?v=5aeb29a02065" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
+    <script src="/roi-calc.js" defer></script>
     <script src="/home.js" defer></script>
     <script type="application/ld+json">
       {
@@ -235,8 +236,8 @@
                   </li>
                   <li>
                     <a class="disc-item" href="/#roi-calculator">
-                      <div class="disc-top"><strong>Contractor ROI &amp; Time Savings Estimator</strong><span class="std-badge">UK Trade Model</span></div>
-                      <span class="disc-desc">Estimate monthly admin hours saved, certificate turnaround speed &amp; remedial recovery</span>
+                      <div class="disc-top"><strong>Time &amp; Cost Calculator</strong><span class="std-badge">Your Figures</span></div>
+                      <span class="disc-desc">Work out admin time and cost from your own numbers, minus the Compliar subscription</span>
                     </a>
                   </li>
                   <li>
@@ -300,7 +301,7 @@
                   <summary>Tools</summary>
                   <ul>
                     <li><a href="/#battery-calculator">Interactive Demonstration Battery Calculator</a></li>
-                    <li><a href="/#roi-calculator">Contractor ROI &amp; Time Savings Estimator</a></li>
+                    <li><a href="/#roi-calculator">Time &amp; Cost Calculator</a></li>
                     <li><a href="/#logbook-demo">Live Interactive QR Logbook Demo</a></li>
                     <li><a href="/#stickers">Printable Sticker &amp; Tag Studio</a></li>
                   </ul>
@@ -1072,77 +1073,114 @@
         </div>
       </section>
 
-      <!-- SECTION 6: GROUNDED ROI & TIME SAVINGS ESTIMATOR (#roi-calculator) -->
+      <!-- SECTION 6: TIME & COST CALCULATOR (#roi-calculator). Maths in /roi-calc.js -->
       <section class="v2-section" id="roi-calculator" aria-labelledby="roi-title">
         <div class="wrap">
           <div class="v2-head">
-            <span class="v2-kicker">Contractor ROI &amp; Time Savings Estimator</span>
-            <h2 class="v2-h2" id="roi-title">Credible operational time saved across your field &amp; office team.</h2>
+            <span class="v2-kicker">Time &amp; Cost Calculator</span>
+            <h2 class="v2-h2" id="roi-title">Work it out with your own numbers.</h2>
             <p class="v2-lead">
-              Replace evening certificate re-typing, missing defect photos, and 2–4 day office turnaround bottlenecks with one-pass on-site completion.
+              Enter your team size, how many certificates or reports you produce, how long the admin takes you now and how long you expect it to take with Compliar. The calculator does the arithmetic and takes off the Compliar subscription for your seats.
             </p>
           </div>
 
           <div class="roi-card">
-            <div class="roi-controls">
+            <form class="roi-controls" id="roi-form" novalidate onsubmit="return false">
               <div class="roi-field">
-                <label for="roi-engineers">
-                  1. Number of Field Engineers
-                  <output id="roi-engineers-out" for="roi-engineers">5 engineers</output>
-                </label>
-                <input type="range" id="roi-engineers" min="1" max="50" step="1" value="5" />
-                <div class="roi-scale"><span>1 engineer</span><span>25</span><span>50 engineers</span></div>
+                <label for="roi-engineers">1. Field engineers</label>
+                <input type="number" id="roi-engineers" name="engineers" inputmode="numeric" min="0" max="500" step="1" value="5" />
               </div>
 
               <div class="roi-field">
-                <label for="roi-jobs">
-                  2. Jobs Completed per Engineer / Week
-                  <output id="roi-jobs-out" for="roi-jobs">8 jobs / week</output>
-                </label>
-                <input type="range" id="roi-jobs" min="2" max="20" step="1" value="8" />
-                <div class="roi-scale"><span>2 jobs/wk</span><span>10 jobs/wk</span><span>20 jobs/wk</span></div>
+                <label for="roi-office">2. Office / desk users</label>
+                <input type="number" id="roi-office" name="officeUsers" inputmode="numeric" min="0" max="500" step="1" value="1" />
               </div>
 
               <div class="roi-field">
-                <label for="roi-turnaround">
-                  3. Current Office Certificate Turnaround Time
-                  <output id="roi-turnaround-out" for="roi-turnaround">3 days (vs. Instant)</output>
-                </label>
-                <input type="range" id="roi-turnaround" min="1" max="5" step="1" value="3" />
-                <div class="roi-scale"><span>1 day lag</span><span>2–4 days typical</span><span>5+ days lag</span></div>
+                <label for="roi-certs">3. Certificates or reports per engineer per week</label>
+                <input type="number" id="roi-certs" name="certsPerEngineerPerWeek" inputmode="decimal" min="0" max="200" step="0.5" value="8" />
               </div>
 
-              <p class="roi-assume">
-                Estimates based on typical UK contractor workflows replacing manual PDF or paper reporting. Results vary by discipline mix.
+              <div class="roi-field">
+                <label for="roi-min-today">4. Minutes of admin per certificate today</label>
+                <input type="number" id="roi-min-today" name="minutesToday" inputmode="decimal" min="0" max="600" step="1" value="30" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-min-compliar">5. Minutes you expect it to take with Compliar (your estimate)</label>
+                <input type="number" id="roi-min-compliar" name="minutesWithCompliar" inputmode="decimal" min="0" max="600" step="1" value="15" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-hourly">6. Hourly cost of that time (£, your figure)</label>
+                <input type="number" id="roi-hourly" name="hourlyCost" inputmode="decimal" min="0" max="1000" step="0.5" value="25" aria-describedby="roi-example-note" />
+              </div>
+
+              <fieldset class="roi-field roi-seats">
+                <legend>7. Seats and billing</legend>
+                <div class="roi-seat-row">
+                  <label for="roi-eng-seat">Engineers on</label>
+                  <select id="roi-eng-seat" name="engineerSeat">
+                    <option value="lite" selected>Lite (£35 / month)</option>
+                    <option value="office">Office (£65 / month)</option>
+                    <option value="design">Design (£95 / month)</option>
+                  </select>
+                </div>
+                <div class="roi-seat-row">
+                  <label for="roi-office-seat">Office users on</label>
+                  <select id="roi-office-seat" name="officeSeat">
+                    <option value="lite">Lite (£35 / month)</option>
+                    <option value="office" selected>Office (£65 / month)</option>
+                    <option value="design">Design (£95 / month)</option>
+                  </select>
+                </div>
+                <div class="roi-seat-row">
+                  <label for="roi-billing">Billing</label>
+                  <select id="roi-billing" name="billing">
+                    <option value="monthly" selected>Monthly</option>
+                    <option value="yearly">Yearly (£350 / £650 / £950 per user)</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <p class="roi-assume" id="roi-example-note">
+                The starting values are examples only, not figures we have measured. Replace them with your own. Prices are per user, excluding VAT. A month is taken as 52 weeks ÷ 12. The optional site log book (£4 + VAT per site per year) is not included.
               </p>
-            </div>
+            </form>
 
-            <div class="roi-results" aria-live="polite">
+            <div class="roi-results" aria-live="polite" aria-atomic="false">
+              <p class="roi-own-figures"><strong>Your own figures, not a promise or a prediction.</strong></p>
+
               <div class="roi-stat">
-                <span>Estimated Admin Hours Saved per Engineer / Month</span>
+                <span>Admin time difference per month</span>
                 <strong>
-                  <b id="roi-per-eng-hours">~15 hrs / engineer / month</b>
-                  <small id="roi-team-hours">(~75 hrs/month across 5 engineers)</small>
+                  <b id="roi-hours-out">0 hrs</b>
+                  <small id="roi-hours-detail">across 0 certificates</small>
                 </strong>
-                <p>Eliminating duplicate certificate typing, manual asset list formatting, and chasing missing site photos.</p>
               </div>
 
               <div class="roi-stat">
-                <span>Faster Remedial Quote Turnaround</span>
+                <span>Value of that time at your hourly cost</span>
                 <strong>
-                  <b id="roi-quote-speed">Same-Day Dispatch</b>
-                  <small id="roi-quote-lag">(saves ~3 days vs. current office queue)</small>
+                  <b id="roi-value-out">£0.00 / month</b>
                 </strong>
-                <p>Defects flagged by engineers on site flow straight into priced remedial quotes before the customer calls another contractor.</p>
+              </div>
+
+              <div class="roi-stat">
+                <span>Compliar subscription for your seats</span>
+                <strong>
+                  <b id="roi-sub-out">£0.00 / month</b>
+                  <small id="roi-sub-detail">no seats</small>
+                </strong>
               </div>
 
               <div class="roi-stat roi-total">
-                <span>Paperwork &amp; Certificate Processing Cost Reduction</span>
+                <span>Net, on your figures</span>
                 <strong>
-                  <b id="roi-admin-saving">~£2,400 / month</b>
-                  <small id="roi-annual-note">Equivalent to ~£28,800/year in reclaimed office &amp; engineer capacity (plus zero per-cert token fees)</small>
+                  <b id="roi-net-out">£0.00 / month</b>
+                  <small id="roi-net-year">£0.00 / year</small>
                 </strong>
-                <p>Based on <span id="roi-certs-month">168</span> completed jobs/certificates per month across your team.</p>
+                <p id="roi-net-note">Value of time minus subscription. This can be negative.</p>
               </div>
 
               <div class="roi-cta">
@@ -1484,7 +1522,7 @@
           <h2>Interactive Tools</h2>
           <ul>
             <li><a href="/#battery-calculator">Demonstration Battery Calculator</a></li>
-            <li><a href="/#roi-calculator">Contractor ROI Estimator</a></li>
+            <li><a href="/#roi-calculator">Time &amp; Cost Calculator</a></li>
             <li><a href="/#logbook-demo">Live QR Logbook Demo</a></li>
             <li><a href="/fire-alarm-certificate-software/">Fire Alarm Certificates</a></li>
             <li><a href="/eicr-and-electrical-certificate-software/">Electrical Certificates</a></li>

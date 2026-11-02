@@ -4763,6 +4763,48 @@ header.nav .nav-cta .btn-primary:hover {
   border-radius: 8px;
   font: inherit;
 }
+.roi-field input[type="number"]:focus-visible,
+.roi-seats select:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+.roi-seats {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.roi-seats legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.roi-seat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+.roi-seat-row label {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.roi-seats select {
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d5d9df;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+}
+.roi-own-figures {
+  font-size: 0.82rem;
+  color: #f1a675;
+}
 .roi-assume {
   font-size: 0.8rem;
   color: #5c6773;
@@ -4792,11 +4834,13 @@ header.nav .nav-cta .btn-primary:hover {
   font-variant-numeric: tabular-nums;
 }
 .roi-stat strong small {
+  display: block;
+  min-height: 2.6em;
+  margin-top: 2px;
   font-size: 0.85rem;
   font-weight: 500;
   color: #a9b6c7;
   letter-spacing: 0;
-  margin-left: 6px;
 }
 .roi-stat p {
   margin-top: 4px;
