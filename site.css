@@ -7383,3 +7383,6 @@ header.nav .nav-cta a.btn.btn-primary:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.roi-example-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:4px 0 8px}
+.roi-clear{background:none;border:0;padding:6px 4px;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer}

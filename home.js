@@ -351,6 +351,28 @@
       if (cta) cta.dataset.engineers = String(r.inputs.engineers);
     }
 
+    const exampleBtn = field("roi-example-btn");
+    const clearBtn = field("roi-clear-btn");
+    const numericIds = ["roi-engineers", "roi-office", "roi-certs", "roi-min-today", "roi-min-compliar", "roi-hourly"];
+    if (exampleBtn) {
+      exampleBtn.addEventListener("click", () => {
+        numericIds.forEach((id) => {
+          const el = field(id);
+          if (el && el.dataset.example !== undefined) el.value = el.dataset.example;
+        });
+        updateRoi();
+      });
+    }
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        numericIds.forEach((id) => {
+          const el = field(id);
+          if (el) el.value = "";
+        });
+        updateRoi();
+      });
+    }
+
     roiForm.addEventListener("input", updateRoi);
     roiForm.addEventListener("change", updateRoi);
     updateRoi();
