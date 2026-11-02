@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier consent choice before the Google tag loads
+      try {
+        var rawPrefs = localStorage.getItem('compliar_cookie_prefs');
+        if (rawPrefs) {
+          var prefs = JSON.parse(rawPrefs);
+          var adState = prefs.marketing ? 'granted' : 'denied';
+          var anState = prefs.analytics ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            'ad_storage': adState,
+            'ad_user_data': adState,
+            'ad_personalization': adState,
+            'analytics_storage': anState
+          });
+        } else if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+    </script>
+    <title>
+      PAT Testing Software | In-Service Inspection Records — Compliar
+    </title>
+    <meta
+      name="description"
+      content="Record PAT in-service inspection and testing on your phone: an asset list per site, pass or fail per appliance, retest dates, defects and a branded PDF report. Request a demo."
+    />
+    <link
+      rel="canonical"
+      href="https://compliar.co.uk/pat-testing-software/"
+    />
+    <meta name="theme-color" content="#1B2430" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%23192c30%22/%3E%3Cg transform=%22translate(64 64) scale(16)%22%3E%3Cpath d=%22M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z%22 fill=%22%23cf6225%22/%3E%3Cpath d=%22M11 10H18V14H11L10 13V11L11 10Z%22 fill=%22%23e6a98a%22/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Compliar" />
+    <meta property="og:title" content="PAT Testing Software | In-Service Inspection Records — Compliar" />
+    <meta property="og:description" content="Record PAT in-service inspection and testing on your phone: an asset list per site, pass or fail per appliance, retest dates, defects and a branded PDF report. Request a demo." />
+    <meta property="og:url" content="https://compliar.co.uk/pat-testing-software/" />
+    <meta property="og:image" content="https://compliar.co.uk/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Compliar — management software for electrical, fire protection and life safety, and security contractors"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
+    <meta name="twitter:title" content="PAT Testing Software | In-Service Inspection Records — Compliar" />
+    <meta name="twitter:description" content="Record PAT in-service inspection and testing on your phone: an asset list per site, pass or fail per appliance, retest dates, defects and a branded PDF report. Request a demo." />
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Compliar",
+        "item": "https://compliar.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PAT testing software",
+        "item": "https://compliar.co.uk/pat-testing-software/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is there a fixed interval for PAT testing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The interval depends on the type of equipment, how it is used and where, and is set from a risk assessment. The IET Code of Practice for In-service Inspection and Testing of Electrical Equipment gives guidance. Always check it for the job in front of you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I record PAT results on my phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The field app runs in your phone's browser with nothing to install, and once your jobs have loaded it keeps working with no signal on site and sends your work when you are back in range."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when an appliance fails?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can raise it as a defect from the failed result, and it can be quoted for repair or replacement, then tracked as an open defect against the site."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is PAT included in every plan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The built-in certificate and report templates are included from the Lite seat at £35 + VAT per user per month, with no per-certificate fees and no contract."
+        }
+      }
+    ]
+  }
+]
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
+    <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
+    <script src="/demo-form.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="/" aria-label="Compliar home">
+          <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#cf6225"/>
+            <path d="M11 10H18V14H11L10 13V11L11 10Z" fill="#e6a98a"/>
+          </svg>
+          <span class="brand-wordmark">
+            <span class="brand-text">Compliar</span>
+            <span class="brand-badge">UK COMPLIANCE</span>
+          </span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <!-- 1. Disciplines & Trades (three disciplines) -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
+                Disciplines &amp; Trades <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-sectors" id="mega-disciplines" hidden>
+                <div class="sector-mega-grid">
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">1</span><strong>Fire Protection &amp; Life Safety</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Fire Detection &amp; Alarm</strong> — Commissioning, servicing &amp; modification <span class="std-badge">BS 5839</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Voice Alarm &amp; Evacuation Alert</strong> — Periodic servicing records</a></li>
+                      <li><a href="/emergency-lighting-testing-guide/"><strong>Emergency Lighting</strong> — Periodic &amp; completion records <span class="std-badge">BS 5266</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Extinguishers &amp; Blankets</strong> — Commissioning &amp; annual service <span class="std-badge">BS 5306-3</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Doors</strong> — Inspection records <span class="std-badge">BS 8214</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Dampers, Risers &amp; Smoke Ventilation</strong> — Test records</a></li>
+                      <li><a href="/#standards-matrix"><strong>Sprinklers &amp; Suppression</strong> — Domestic, commercial, gas &amp; kitchen</a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">2</span><strong>Electrical</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EIC</strong> — Electrical Installation Certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EICR</strong> — Condition Report / Fixed Wire <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>Minor Works</strong> — Minor electrical works certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/pat-testing-software/"><strong>PAT</strong> — In-service equipment testing</a></li>
+                      <li><a href="/#standards-matrix"><strong>EV Charging</strong> — Chargepoint installation records</a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">3</span><strong>Security Systems</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/cctv-commissioning-maintenance-software/"><strong>CCTV</strong> — Commissioning &amp; maintenance <span class="std-badge">BS EN 62676</span></a></li>
+                      <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Intruder &amp; Hold-Up Alarms</strong> — Grades 2 to 4 <span class="std-badge">BS EN 50131 / PD 6662</span></a></li>
+                      <li><a href="/access-control-door-entry-software/"><strong>Access Control &amp; Door Entry</strong> — Controllers, readers &amp; releases</a></li>
+                      <li><a href="/#standards-matrix"><strong>Gates, Barriers &amp; Automatic Doors</strong> — Safety checks</a></li>
+                      <li><a href="/#standards-matrix"><strong>Alarm Signalling &amp; Nurse Call</strong> — Service records</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mega-foot-bar">
+                  <span>32 system types across three disciplines, with over 100 certificate and form templates, under one login. Templates reference the standards; the engineer and scheme remain responsible.</span>
+                  <a class="btn btn-primary btn-sm" href="/#standards-matrix">See All Certificates &amp; Templates →</a>
+                </div>
+              </div>
+            </li>
+
+            <!-- Solutions -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-solutions">
+                Solutions <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-solutions" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/fire-log-book-software/">
+                      <div class="disc-top"><strong>Digital Fire Log Book</strong><span class="std-badge">£4 + VAT / site / year</span></div>
+                      <span class="disc-desc">QR stickers, missed-test alerts and a log-book-only account for anyone with sites</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-maintenance-software/">
+                      <div class="disc-top"><strong>Fire Alarm Maintenance &amp; Compliance</strong></div>
+                      <span class="disc-desc">Maintenance plans, certificates, defects to quotes and an offline field app</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-design-software/">
+                      <div class="disc-top"><strong>Fire Alarm Design</strong><span class="std-badge">Design seat</span></div>
+                      <span class="disc-desc">Zone plans, as-fitted drawings, cable runs and take-offs</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 2. QR Log Books -->
+            <li><a href="/#logbooks">Log Books</a></li>
+
+            <!-- 3. Stickers & Hardware -->
+            <li><a href="/#stickers">Stickers</a></li>
+
+            <!-- 4. Tools Dropdown -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-tools">
+                Tools <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-tools" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/#battery-calculator">
+                      <div class="disc-top"><strong>Interactive Demonstration Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
+                      <span class="disc-desc">Illustrative 12V / 24V standby &amp; alarm capacity calculator with copyable summary</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#roi-calculator">
+                      <div class="disc-top"><strong>Time &amp; Cost Calculator</strong><span class="std-badge">Your Figures</span></div>
+                      <span class="disc-desc">Work out admin time and cost from your own numbers, minus the Compliar subscription</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#logbook-demo">
+                      <div class="disc-top"><strong>Live Interactive QR Logbook Demo</strong><span class="std-badge">Live Preview</span></div>
+                      <span class="disc-desc">See what people with a log book account see when they scan a panel sticker</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#stickers">
+                      <div class="disc-top"><strong>Printable Sticker &amp; Tag Studio</strong><span class="std-badge">300 DPI + Thermal</span></div>
+                      <span class="disc-desc">Preview real Harbourview QR tags, BS 5839-1 false alarm notices &amp; EM failed labels</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 5. About -->
+            <li><a href="/#about">About</a></li>
+
+            <!-- 6. Pricing / ROI -->
+            <li><a href="/#pricing">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-ghost-on-navy btn-sm nav-interactive-cta" href="/#logbook-demo">Interactive Demo</a>
+          <a class="btn btn-primary btn-sm" href="/#contact-form">Book a Demo</a>
+        </div>
+
+        <details class="mobile-menu">
+          <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
+          <nav aria-label="Mobile navigation">
+            <ul>
+              <li>
+                <details>
+                  <summary>Disciplines &amp; Trades</summary>
+                  <ul>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Solutions</summary>
+                  <ul>
+                    <li><a href="/fire-log-book-software/">Digital Fire Log Book</a></li>
+                    <li><a href="/fire-alarm-maintenance-software/">Fire Alarm Maintenance &amp; Compliance</a></li>
+                    <li><a href="/fire-alarm-design-software/">Fire Alarm Design</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/#logbooks">Log Books</a></li>
+              <li><a href="/#stickers">Stickers</a></li>
+              <li>
+                <details>
+                  <summary>Tools</summary>
+                  <ul>
+                    <li><a href="/#battery-calculator">Interactive Demonstration Battery Calculator</a></li>
+                    <li><a href="/#roi-calculator">Time &amp; Cost Calculator</a></li>
+                    <li><a href="/#logbook-demo">Live Interactive QR Logbook Demo</a></li>
+                    <li><a href="/#stickers">Printable Sticker &amp; Tag Studio</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#pricing">Pricing</a></li>
+              <li><a href="/#logbook-demo">Interactive Demo</a></li>
+              <li><a href="/#contact-form">Book a Demo</a></li>
+              <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero sub-hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="crumbs">
+              <a href="/">Compliar</a><i>/</i>PAT testing software
+            </div>
+            <div class="eyebrow">PAT testing</div>
+            <h1>PAT testing <span>software</span></h1>
+            <p class="hero-sub">Compliar keeps PAT (portable appliance testing) records against each site and each appliance. Work down the asset list on your phone, record the result, and send the customer a branded report with the retest dates on it.</p>
+            <div
+              class="calc-badge"
+              style="display: inline-flex; margin-bottom: 22px"
+            >
+              BOOK A DEMO · NO CONTRACT · EARLY ADOPTERS LOCK THEIR PRICE FOR 3 YEARS
+            </div>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="/contact?subject=Demo+request" data-demo-open>Request a demo</a>
+              <a class="btn btn-ghost-on-navy" href="/pricing/">See pricing</a>
+            </div>
+            <div class="standards"><span>IET Code of Practice</span></div>
+          </div>
+          <div class="mock" style="border-color: var(--line-on-navy)">
+            <div class="mock-bar"><span></span><span></span><span></span></div>
+            <div class="mock-body">
+              <div class="doc-row" style="padding-top: 0">
+                <span class="calc-title" style="color: var(--ink)">PAT visit record</span
+                ><span class="doc-amt" style="font-weight: 400; color: var(--muted)">Sample data</span>
+              </div>
+              <div class="doc-row">
+                <span class="doc-tag sales">ASSET</span
+                ><span class="doc-num">Kettle, staff room</span
+                ><span class="doc-amt">PASS</span>
+              </div>
+              <div class="doc-row">
+                <span class="doc-tag sales">ASSET</span
+                ><span class="doc-num">Desktop PC, office 2</span
+                ><span class="doc-amt">PASS</span>
+              </div>
+              <div class="doc-row">
+                <span class="doc-tag sales">ASSET</span
+                ><span class="doc-num">Extension lead, store</span
+                ><span class="doc-amt">FAIL</span>
+              </div>
+              <div class="doc-row">
+                <span class="doc-tag sales">ASSET</span
+                ><span class="doc-num">Floor heater, reception</span
+                ><span class="doc-amt">NO TEST</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="eyebrow">What's included</div>
+            <h2>A record for every appliance, not a loose sheet</h2>
+            <p>Each appliance is an asset held against a site, so its history builds up visit after visit and the next test date is never a guess.</p>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>What is recorded</th><th>Detail</th></tr>
+              </thead>
+              <tbody>
+                <tr><th>Appliance register</th><td>Description and location for each appliance, kept per site and carried from visit to visit.</td></tr>
+                <tr><th>Result per appliance</th><td>Pass, fail or not tested for each item, entered as you work down the list.</td></tr>
+                <tr><th>Dates</th><td>Test date and retest due date, printed on the report in UK date format.</td></tr>
+                <tr><th>Failures</th><td>A failed appliance can be raised as a defect, then quoted or replaced without re-typing it.</td></tr>
+                <tr><th>Sign-off</th><td>Engineer signature and your company details on the branded PDF report.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" style="background: var(--cream-2)">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="eyebrow">On the visit</div>
+            <h2>Built for working through a long list quickly</h2>
+          </div>
+          <div class="card-grid">
+            <div class="roadmap-card">
+              <h4>On site</h4>
+              <p>The field app runs in your phone's browser and keeps working with no signal. Barcode and QR asset scanning is included from the Lite seat, so you can scan an item to find it on the list.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Back at the office</h4>
+              <p>Reports are emailed from the job with a record of what was sent, and a customer portal login can show the customer their reports as soon as they are issued.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Repeat visits</h4>
+              <p>Because appliances stay on the site's asset list, a repeat visit starts from the last one and shows what is due.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="wrap">
+          <div class="prose">
+            <div class="eyebrow" style="color: var(--orange-deep)">Good to know</div>
+            <h2>What PAT testing involves, in short</h2>
+            <p>PAT is the in-service inspection and testing of portable electrical equipment. There is no single legal test interval. How often an item is inspected and tested depends on the type of equipment, how it is used and the environment, so a laptop in an office is treated differently from a power tool on a building site.</p>
+            <p>A visual inspection comes first, because most faults can be seen. Where the equipment type and your risk assessment call for it, electrical tests follow, such as earth continuity and insulation resistance for Class I equipment. Class II (double insulated) equipment is generally tested differently, so record the class against the item.</p>
+            <p>Whatever you decide for a site, the useful thing is a dated record per appliance that shows the result and when it is next due. The IET Code of Practice for In-service Inspection and Testing of Electrical Equipment is the usual reference. Check it, and your own competent-person judgement, for the job in front of you. Compliar keeps the records; it does not decide the test regime for you.</p>
+            <p>
+              The same system covers 32 system types across fire protection and life safety, security and electrical, so one login handles the whole company. See the
+              <a href="/#standards-title">full list of disciplines</a>.
+            </p>
+            <div class="more-links">
+              <a href="/eicr-and-electrical-certificate-software/">EICR &amp; electrical certificates</a>
+              <a href="/features/">All features</a>
+              <a href="/pricing/">Pricing</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band faq" id="faq">
+        <div class="wrap">
+          <div class="section-head center">
+            <div class="eyebrow">FAQ</div>
+            <h2>Common questions</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Is there a fixed interval for PAT testing?</summary>
+              <p>No. The interval depends on the type of equipment, how it is used and where, and is set from a risk assessment. The IET Code of Practice for In-service Inspection and Testing of Electrical Equipment gives guidance. Always check it for the job in front of you.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can I record PAT results on my phone?</summary>
+              <p>Yes. The field app runs in your phone's browser with nothing to install, and once your jobs have loaded it keeps working with no signal on site and sends your work when you are back in range.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What happens when an appliance fails?</summary>
+              <p>You can raise it as a defect from the failed result, and it can be quoted for repair or replacement, then tracked as an open defect against the site.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is PAT included in every plan?</summary>
+              <p>Yes. The built-in certificate and report templates are included from the Lite seat at £35 + VAT per user per month, with no per-certificate fees and no contract.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta band">
+        <div class="wrap">
+          <h2>Run your next PAT visit from your phone</h2>
+          <p>See the PAT report on your own sites in a demo. Onboarding is from £195, quoted individually.</p>
+          <div class="final-ctas">
+            <a class="btn btn-primary" href="/contact?subject=Demo+request" data-demo-open>Request a demo</a>
+            <a class="btn btn-ghost-on-navy" href="/pricing/">See pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap foot-grid">
+        <div>
+          <a class="foot-brand" href="/"
+            ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z"
+                fill="#cf6225"
+              /></svg
+            >Compliar</a
+          >
+          <p class="footer-intro">
+            Less admin. More time for the job.<br />Built for UK electrical, fire protection and life safety, and security contractors.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/getting-started/">Getting started</a></li>
+            <li><a href="/features/">Features</a></li>
+            <li><a href="/fire-log-book-software/">Digital fire log book</a></li>
+            <li><a href="/fire-alarm-maintenance-software/">Fire alarm maintenance</a></li>
+            <li><a href="/fire-alarm-design-software/">Fire alarm design</a></li>
+            <li><a href="/log-book/">Log book</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/faqs/">FAQs</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Guides &amp; tools</h2>
+          <ul>
+            <li>
+              <a href="/fire-alarm-battery-calculator/">Battery calculator</a>
+            </li>
+            <li>
+              <a href="/fire-alarm-certificate-software/"
+                >Fire alarm certificates</a
+              >
+            </li>
+            <li>
+              <a href="/eicr-and-electrical-certificate-software/"
+                >Electrical certificates</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
+                        <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Let's talk</h2>
+          <ul>
+            <li>
+              <a href="mailto:enquiry@compliar.co.uk">enquiry@compliar.co.uk</a>
+            </li>
+            <li>
+              <a href="/contact/">Contact &amp; demos ↗</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap foot-bottom">
+        <span>© 2026 COMPLIAR LTD · Built in the UK</span
+        ><span
+          >COMPLIAR LTD is registered in England and Wales, company number 17519777. Registered
+          office: 11 Wakefield Drive, Endmoor, Kendal, LA8 0BF. ICO registration ZC278853.</span
+        >
+      </div>
+    </footer>
+      <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "abdf47c963bb43d086fd6fa762c45059"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
