@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier consent choice before the Google tag loads
+      try {
+        var rawPrefs = localStorage.getItem('compliar_cookie_prefs');
+        if (rawPrefs) {
+          var prefs = JSON.parse(rawPrefs);
+          var adState = prefs.marketing ? 'granted' : 'denied';
+          var anState = prefs.analytics ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            'ad_storage': adState,
+            'ad_user_data': adState,
+            'ad_personalization': adState,
+            'analytics_storage': anState
+          });
+        } else if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+    </script>
+    <title>Intruder Alarm Battery Calculator | EN 50131 Standby — Compliar</title>
+    <meta name="description" content="Free intruder alarm battery calculator. Enter standby and alarm current, choose Grade 2 or Grade 3 standby time, and get the capacity in Ah and the next standard battery size. Shows the working." />
+    <link rel="canonical" href="https://compliar.co.uk/intruder-alarm-battery-calculator/" />
+    <meta name="theme-color" content="#1B2430" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%23192c30%22/%3E%3Cg transform=%22translate(64 64) scale(16)%22%3E%3Cpath d=%22M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z%22 fill=%22%23cf6225%22/%3E%3Cpath d=%22M11 10H18V14H11L10 13V11L11 10Z%22 fill=%22%23e6a98a%22/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Compliar" />
+    <meta property="og:title" content="Intruder Alarm Battery Calculator | Standby Battery Sizing — Compliar" />
+    <meta property="og:description" content="Free intruder alarm battery calculator. Enter standby and alarm current, choose Grade 2 or Grade 3 standby time, and get the capacity in Ah and the next standard battery size. Shows the working." />
+    <meta property="og:url" content="https://compliar.co.uk/intruder-alarm-battery-calculator/" />
+    <meta property="og:image" content="https://compliar.co.uk/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Compliar — management software for electrical, fire protection and life safety, and security contractors" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
+    <meta name="twitter:title" content="Intruder Alarm Battery Calculator | Standby Battery Sizing — Compliar" />
+    <meta name="twitter:description" content="Free intruder alarm battery calculator. Enter standby and alarm current, choose Grade 2 or Grade 3 standby time, and get the capacity in Ah and the next standard battery size. Shows the working." />
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Compliar",
+        "item": "https://compliar.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Intruder alarm battery calculator",
+        "item": "https://compliar.co.uk/intruder-alarm-battery-calculator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate the battery size for an intruder alarm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the standby current by the standby hours, add the alarm current multiplied by the sounding time in hours, then add a safety margin for battery ageing and temperature. This calculator uses a 25% margin and rounds up to the next common 12V battery size. It shows the working so you can check it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many hours of standby does an intruder alarm battery need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The EN 50131-1 grade sets it. Power supply manufacturers publish 12 hours for Grade 1 and 2, and 30 hours for Grade 3 when a mains failure is reported to the alarm receiving centre, or 60 hours when it is not. Check the grade and the standby time in your own specification and the power supply's data sheet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What current do I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the standby current of the whole system from the manufacturer's data sheets: the control panel, keypads, detectors, expanders, communicator and any power the sounder holds in standby. Use the alarm current with the sounders and strobes sounding. Measured figures are better than data sheet figures where you can take them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the 25% margin from a standard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is a working assumption for battery ageing and cold, and you can change the result by choosing a larger battery. Follow the power supply manufacturer's limits on battery size and charging current, and your design specification."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this instead of a design calculation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is a quick guide for engineers and installers. The design calculation, the manufacturer's current figures and the power supply data sheet take priority."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Compliar cover security contractors?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Compliar is built for security contractors alongside electrical and fire protection, and covers intruder alarm systems. See the intruder alarm grades and maintenance guide for what is checked on a visit."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Intruder alarm battery calculator",
+    "url": "https://compliar.co.uk/intruder-alarm-battery-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "description": "Calculates intruder alarm standby battery capacity in Ah from standby current, alarm current, standby period and sounding time.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Compliar",
+      "url": "https://compliar.co.uk/"
+    }
+  }
+]
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
+    <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
+    <script src="/demo-form.js" defer></script>
+    <style>
+      .calc-card {
+        min-width: 0;
+      }
+      .calc-head,
+      .calc-result {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .calc-row input[type="range"],
+      .calc-row select {
+        min-height: 44px;
+      }
+      .calc-row select {
+        min-width: 0;
+        max-width: 100%;
+      }
+      .calc-context,
+      .calc-scope {
+        color: var(--muted-on-navy);
+        font-size: 0.8rem;
+      }
+      .calc-context {
+        margin-top: 8px;
+      }
+      .calc-scope {
+        margin-top: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="/" aria-label="Compliar home">
+          <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#cf6225"/>
+            <path d="M11 10H18V14H11L10 13V11L11 10Z" fill="#e6a98a"/>
+          </svg>
+          <span class="brand-wordmark">
+            <span class="brand-text">Compliar</span>
+            <span class="brand-badge">UK COMPLIANCE</span>
+          </span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <!-- 1. Disciplines & Trades (three disciplines) -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
+                Disciplines &amp; Trades <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-sectors" id="mega-disciplines" hidden>
+                <div class="sector-mega-grid">
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">1</span><strong>Fire Protection &amp; Life Safety</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Fire Detection &amp; Alarm</strong> — Commissioning, servicing &amp; modification <span class="std-badge">BS 5839</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Voice Alarm &amp; Evacuation Alert</strong> — Periodic servicing records</a></li>
+                      <li><a href="/emergency-lighting-testing-guide/"><strong>Emergency Lighting</strong> — Periodic &amp; completion records <span class="std-badge">BS 5266</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Extinguishers &amp; Blankets</strong> — Commissioning &amp; annual service <span class="std-badge">BS 5306-3</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Doors</strong> — Inspection records <span class="std-badge">BS 8214</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Dampers, Risers &amp; Smoke Ventilation</strong> — Test records</a></li>
+                      <li><a href="/#standards-matrix"><strong>Sprinklers &amp; Suppression</strong> — Domestic, commercial, gas &amp; kitchen</a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">2</span><strong>Electrical</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EIC</strong> — Electrical Installation Certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EICR</strong> — Condition Report / Fixed Wire <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>Minor Works</strong> — Minor electrical works certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/pat-testing-software/"><strong>PAT</strong> — In-service equipment testing</a></li>
+                      <li><a href="/#standards-matrix"><strong>EV Charging</strong> — Chargepoint installation records</a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">3</span><strong>Security Systems</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/cctv-commissioning-maintenance-software/"><strong>CCTV</strong> — Commissioning &amp; maintenance <span class="std-badge">BS EN 62676</span></a></li>
+                      <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Intruder &amp; Hold-Up Alarms</strong> — Grades 2 to 4 <span class="std-badge">BS EN 50131 / PD 6662</span></a></li>
+                      <li><a href="/access-control-door-entry-software/"><strong>Access Control &amp; Door Entry</strong> — Controllers, readers &amp; releases</a></li>
+                      <li><a href="/#standards-matrix"><strong>Gates, Barriers &amp; Automatic Doors</strong> — Safety checks</a></li>
+                      <li><a href="/#standards-matrix"><strong>Alarm Signalling &amp; Nurse Call</strong> — Service records</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mega-foot-bar">
+                  <span>32 system types across three disciplines, with over 100 certificate and form templates, under one login. Templates reference the standards; the engineer and scheme remain responsible.</span>
+                  <a class="btn btn-primary btn-sm" href="/#standards-matrix">See All Certificates &amp; Templates →</a>
+                </div>
+              </div>
+            </li>
+
+            <!-- Solutions -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-solutions">
+                Solutions <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-solutions" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/fire-log-book-software/">
+                      <div class="disc-top"><strong>Digital Fire Log Book</strong><span class="std-badge">£4 + VAT / site / year</span></div>
+                      <span class="disc-desc">QR stickers, missed-test alerts and a log-book-only account for anyone with sites</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-maintenance-software/">
+                      <div class="disc-top"><strong>Fire Alarm Maintenance &amp; Compliance</strong></div>
+                      <span class="disc-desc">Maintenance plans, certificates, defects to quotes and an offline field app</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-design-software/">
+                      <div class="disc-top"><strong>Fire Alarm Design</strong><span class="std-badge">Design seat</span></div>
+                      <span class="disc-desc">Zone plans, as-fitted drawings, cable runs and take-offs</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 2. QR Log Books -->
+            <li><a href="/#logbooks">Log Books</a></li>
+
+            <!-- 3. Stickers & Hardware -->
+            <li><a href="/#stickers">Stickers</a></li>
+
+            <!-- 4. Tools Dropdown -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-tools">
+                Tools <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-tools" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/#battery-calculator">
+                      <div class="disc-top"><strong>Interactive Demonstration Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
+                      <span class="disc-desc">Illustrative 12V / 24V standby &amp; alarm capacity calculator with copyable summary</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#roi-calculator">
+                      <div class="disc-top"><strong>Time &amp; Cost Calculator</strong><span class="std-badge">Your Figures</span></div>
+                      <span class="disc-desc">Work out admin time and cost from your own numbers, minus the Compliar subscription</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#logbook-demo">
+                      <div class="disc-top"><strong>Live Interactive QR Logbook Demo</strong><span class="std-badge">Live Preview</span></div>
+                      <span class="disc-desc">See what people with a log book account see when they scan a panel sticker</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#stickers">
+                      <div class="disc-top"><strong>Printable Sticker &amp; Tag Studio</strong><span class="std-badge">300 DPI + Thermal</span></div>
+                      <span class="disc-desc">Preview real Harbourview QR tags, BS 5839-1 false alarm notices &amp; EM failed labels</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 5. About -->
+            <li><a href="/#about">About</a></li>
+
+            <!-- 6. Pricing / ROI -->
+            <li><a href="/#pricing">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-ghost-on-navy btn-sm nav-interactive-cta" href="/#logbook-demo">Interactive Demo</a>
+          <a class="btn btn-primary btn-sm" href="/#contact-form">Book a Demo</a>
+        </div>
+
+        <details class="mobile-menu">
+          <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
+          <nav aria-label="Mobile navigation">
+            <ul>
+              <li>
+                <details>
+                  <summary>Disciplines &amp; Trades</summary>
+                  <ul>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire alarm, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS 5839 / 5266</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS 7671</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder, access control, gates <span class="std-badge-inline">BS EN 50131 / 62676</span></a></li>
+                    <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Solutions</summary>
+                  <ul>
+                    <li><a href="/fire-log-book-software/">Digital Fire Log Book</a></li>
+                    <li><a href="/fire-alarm-maintenance-software/">Fire Alarm Maintenance &amp; Compliance</a></li>
+                    <li><a href="/fire-alarm-design-software/">Fire Alarm Design</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/#logbooks">Log Books</a></li>
+              <li><a href="/#stickers">Stickers</a></li>
+              <li>
+                <details>
+                  <summary>Tools</summary>
+                  <ul>
+                    <li><a href="/#battery-calculator">Interactive Demonstration Battery Calculator</a></li>
+                    <li><a href="/#roi-calculator">Time &amp; Cost Calculator</a></li>
+                    <li><a href="/#logbook-demo">Live Interactive QR Logbook Demo</a></li>
+                    <li><a href="/#stickers">Printable Sticker &amp; Tag Studio</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#pricing">Pricing</a></li>
+              <li><a href="/#logbook-demo">Interactive Demo</a></li>
+              <li><a href="/#contact-form">Book a Demo</a></li>
+              <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero sub-hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="crumbs"><a href="/">Compliar</a><i>/</i>Intruder alarm battery calculator</div>
+            <div class="eyebrow">Free tool</div>
+            <h1>Intruder alarm battery <span>calculator</span></h1>
+            <p class="hero-sub">Work out the standby battery an intruder alarm control panel or power supply needs. Enter the standby and alarm currents, choose the standby period and sounding time, and get the capacity in Ah plus the next common 12V battery size up.</p>
+            <ul class="hero-bullets">
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>Standby options for Grade 2 and Grade 3 systems</li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>Shows the working, so you can check it and note it on your paperwork</li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>Runs in your browser — nothing you enter is stored</li>
+            </ul>
+            <div class="standards"><span>EN 50131</span></div>
+            <p style="margin-top:18px"><a class="btn btn-primary" href="/#contact-form">Book a demo</a></p>
+          </div>
+          <div class="calc-card">
+            <div class="calc-head"><div class="calc-title">Battery sizing</div><div class="calc-badge">12V</div></div>
+            <div class="calc-desc">Enter your system's currents and periods. Nothing is stored or sent anywhere.</div>
+            <div class="calc-row">
+              <label for="iq">Standby current <span class="val"><span id="iqVal">150</span> mA</span></label>
+              <input type="range" id="iq" min="20" max="1000" step="5" value="150" oninput="calcBattery()" />
+            </div>
+            <div class="calc-row">
+              <label for="ia">Alarm current <span class="val"><span id="iaVal">0.8</span> A</span></label>
+              <input type="range" id="ia" min="0.2" max="5" step="0.1" value="0.8" oninput="calcBattery()" />
+            </div>
+            <div class="calc-row">
+              <label for="sb">Standby period</label>
+              <select id="sb" aria-describedby="standbyContext" onchange="calcBattery()">
+                <option value="12" selected>12 h — Grade 1 or 2</option>
+                <option value="30">30 h — Grade 3, mains failure reported to the ARC</option>
+                <option value="60">60 h — Grade 3, mains failure not reported</option>
+              </select>
+              <p class="calc-context" id="standbyContext">12 h — Grade 1 or 2</p>
+            </div>
+            <div class="calc-row">
+              <label for="al">Sounding time</label>
+              <select id="al" onchange="calcBattery()">
+                <option value="5">5 minutes</option>
+                <option value="15" selected>15 minutes</option>
+                <option value="30">30 minutes</option>
+              </select>
+            </div>
+            <div aria-live="polite" aria-atomic="true">
+              <div class="calc-result">
+                <div class="lbl">Recommended battery<span class="need" id="needOut">Calculated: 2.50 Ah</span></div>
+                <div><span class="out" id="sizeOut">3.2</span><span class="unit">Ah</span></div>
+              </div>
+              <div class="calc-work" id="workOut"></div>
+            </div>
+            <p class="calc-scope">For 12V valve-regulated lead-acid batteries. The 25% margin is a working assumption, not a figure from the standard.</p>
+            <div class="calc-note">Illustrative guide only. Use the manufacturer's current figures for every device, and confirm the result against your design specification and the power supply's data sheet, including its maximum battery size.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="wrap">
+          <div class="prose">
+            <div class="eyebrow" style="color: var(--orange-deep)">How it works</div>
+            <h2>How intruder alarm battery capacity is worked out</h2>
+            <p>If mains power fails, the battery has to run the whole system for the standby period, then still have enough left to sound the alarm. The calculator adds those two loads and applies a margin.</p>
+            <p><strong>Capacity (Ah) = 1.25 × (standby current × standby hours + alarm current × sounding hours)</strong>, with currents in amps.</p>
+            <h3>Standby time by grade</h3>
+            <p>The grade under EN 50131-1 sets how long the system has to run on battery. Power supply manufacturers publish 12 hours for Grade 1 and 2, and 30 or 60 hours for Grade 3, depending on whether a mains failure is reported to the alarm receiving centre. Your specification and the power supply's data sheet have the final word.</p>
+            <h3>Worked example</h3>
+            <p>Standby current 150 mA (0.15 A), Grade 2 standby of 12 hours, alarm current 0.8 A sounding for 15 minutes (0.25 h): 1.25 × (0.15 × 12 + 0.8 × 0.25) = 1.25 × 2.0 = 2.5 Ah. The next common battery size up is 3.2 Ah.</p>
+            <h3>Common battery sizes</h3>
+            <p>The calculator rounds up to 1.2, 2.1, 3.2, 7, 9, 12, 17, 24 or 38 Ah. Check the power supply's maximum battery size and charging current before fitting a bigger one.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" style="background: var(--cream-2)">
+        <div class="wrap">
+          <div class="prose">
+            <div class="eyebrow" style="color: var(--orange-deep)">Limits</div>
+            <h2>What a calculator can't know</h2>
+            <p>The result is only as good as the currents you enter. Add up every load on the supply: keypads, detectors, expanders, the communicator, and anything powered from the auxiliary output. Battery capacity also falls with age and in the cold, which is why the calculator adds a margin. Treat the answer as a check on your design, not a replacement for it.</p>
+            <div class="more-links">
+              <a href="/intruder-alarm-grades-maintenance-guide/">Intruder alarm grades &amp; maintenance guide</a>
+              <a href="/fire-alarm-battery-calculator/">Fire alarm battery calculator</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band faq" id="faq">
+        <div class="wrap">
+          <div class="section-head center">
+            <div class="eyebrow">FAQ</div>
+            <h2>Common questions</h2>
+          </div>
+          <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I calculate the battery size for an intruder alarm?</summary>
+            <p>Multiply the standby current by the standby hours, add the alarm current multiplied by the sounding time in hours, then add a safety margin for battery ageing and temperature. This calculator uses a 25% margin and rounds up to the next common 12V battery size. It shows the working so you can check it.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How many hours of standby does an intruder alarm battery need?</summary>
+            <p>The EN 50131-1 grade sets it. Power supply manufacturers publish 12 hours for Grade 1 and 2, and 30 hours for Grade 3 when a mains failure is reported to the alarm receiving centre, or 60 hours when it is not. Check the grade and the standby time in your own specification and the power supply's data sheet.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What current do I use?</summary>
+            <p>Use the standby current of the whole system from the manufacturer's data sheets: the control panel, keypads, detectors, expanders, communicator and any power the sounder holds in standby. Use the alarm current with the sounders and strobes sounding. Measured figures are better than data sheet figures where you can take them.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is the 25% margin from a standard?</summary>
+            <p>No. It is a working assumption for battery ageing and cold, and you can change the result by choosing a larger battery. Follow the power supply manufacturer's limits on battery size and charging current, and your design specification.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I use this instead of a design calculation?</summary>
+            <p>No. It is a quick guide for engineers and installers. The design calculation, the manufacturer's current figures and the power supply data sheet take priority.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Does Compliar cover security contractors?</summary>
+            <p>Yes. Compliar is built for security contractors alongside electrical and fire protection, and covers intruder alarm systems. See the intruder alarm grades and maintenance guide for what is checked on a visit.</p>
+          </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta band">
+        <div class="wrap">
+          <h2>Intruder alarm maintenance, kept in one place</h2>
+          <p>Compliar keeps your intruder alarm certificates and service records together for security contractors. Request a demo to see it on your own jobs.</p>
+          <div class="final-ctas">
+            <a class="btn btn-primary" href="/contact?subject=Demo+request" data-demo-open>Request a demo</a>
+            <a class="btn btn-ghost-on-navy" href="/pricing/">See pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <footer>
+      <div class="wrap foot-grid">
+        <div>
+          <a class="foot-brand" href="/"
+            ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z"
+                fill="#cf6225"
+              /></svg
+            >Compliar</a
+          >
+          <p class="footer-intro">
+            Less admin. More time for the job.<br />Built for UK electrical, fire protection and life safety, and security contractors.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/getting-started/">Getting started</a></li>
+            <li><a href="/features/">Features</a></li>
+            <li><a href="/fire-log-book-software/">Digital fire log book</a></li>
+            <li><a href="/fire-alarm-maintenance-software/">Fire alarm maintenance</a></li>
+            <li><a href="/fire-alarm-design-software/">Fire alarm design</a></li>
+            <li><a href="/log-book/">Log book</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/faqs/">FAQs</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Guides &amp; tools</h2>
+          <ul>
+            <li>
+              <a href="/fire-alarm-battery-calculator/">Battery calculator</a>
+            </li>
+            <li>
+              <a href="/intruder-alarm-battery-calculator/">Intruder alarm battery calculator</a>
+            </li>
+            <li>
+              <a href="/fire-alarm-certificate-software/"
+                >Fire alarm certificates</a
+              >
+            </li>
+            <li>
+              <a href="/eicr-and-electrical-certificate-software/"
+                >Electrical certificates</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
+                        <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Let's talk</h2>
+          <ul>
+            <li>
+              <a href="mailto:enquiry@compliar.co.uk">enquiry@compliar.co.uk</a>
+            </li>
+            <li>
+              <a href="/contact/">Contact &amp; demos ↗</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap foot-bottom">
+        <span>© 2026 COMPLIAR LTD · Built in the UK</span
+        ><span
+          >COMPLIAR LTD is registered in England and Wales, company number 17519777. Registered
+          office: 11 Wakefield Drive, Endmoor, Kendal, LA8 0BF. ICO registration ZC278853.</span
+        >
+      </div>
+    </footer>
+    <script>
+      function pickSize(c){var s=[1.2,2.1,3.2,7,9,12,17,24,38];for(var i=0;i<s.length;i++){if(s[i]>=c)return s[i];}return null;}
+      function calcBattery() {
+        var iq = parseFloat(document.getElementById("iq").value);
+        var ia = parseFloat(document.getElementById("ia").value);
+        var standby = document.getElementById("sb");
+        var sb = parseFloat(standby.value);
+        var alMin = parseFloat(document.getElementById("al").value);
+        var al = alMin / 60;
+        document.getElementById("iqVal").textContent = iq;
+        document.getElementById("iaVal").textContent = ia.toFixed(1);
+        document.getElementById("standbyContext").textContent = standby.options[standby.selectedIndex].text;
+        var iqA = iq / 1000;
+        var need = 1.25 * (sb * iqA + ia * al);
+        var size = pickSize(need);
+        document.getElementById("needOut").textContent = "Calculated: " + need.toFixed(2) + " Ah";
+        document.getElementById("sizeOut").textContent = size === null ? "Above 38" : size;
+        var work = "Capacity = 1.25 × (" + sb + " h × " + iqA.toFixed(3) + " A + " + ia.toFixed(1) + " A × " + al.toFixed(3) + " h) = " + need.toFixed(2) + " Ah.";
+        if (size === null) { work += " Above 38 Ah: use a larger power supply or split the load."; }
+        document.getElementById("workOut").textContent = work;
+      }
+      calcBattery();
+    </script>
+      <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "abdf47c963bb43d086fd6fa762c45059"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
