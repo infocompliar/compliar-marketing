@@ -7226,3 +7226,86 @@ header.nav .nav-cta a.btn.btn-primary {
 header.nav .nav-cta a.btn.btn-primary:hover {
   background: #f0a776 !important;
 }
+
+/* ---- homepage condensed layout ---- */
+.hero-founder {
+  position: absolute;
+  left: -28px;
+  bottom: -26px;
+  max-width: 400px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px 14px 14px;
+  background: #f7f3ec;
+  color: #1b2430;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+}
+.hero-founder img {
+  width: 76px;
+  height: 76px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex: none;
+}
+.hero-founder strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+.hero-founder span {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #4a5666;
+}
+.hero-founder .hero-founder-line {
+  color: #b4521d;
+  font-weight: 600;
+}
+.v2-hero .hero-showcase { position: relative; margin-bottom: 36px; }
+@media (max-width: 900px) {
+  .hero-founder { position: static; margin-top: 14px; max-width: none; }
+}
+.v2-explore { background: #f4f6f9; }
+.explore-h2 { margin: 0 0 24px; }
+.explore-list { display: grid; gap: 12px; }
+.v2-fold { scroll-margin-top: 70px; background: transparent; }
+.v2-fold.v2-dark, .v2-fold.v2-white { background: transparent; }
+details.fold {
+  background: #fff;
+  border: 1px solid #dde3ea;
+  border-radius: 14px;
+  overflow: hidden;
+}
+details.fold > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 18px 56px 18px 22px;
+  position: relative;
+}
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::after {
+  content: "+";
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #b4521d;
+}
+details.fold[open] > summary::after { content: "\2212"; }
+details.fold > summary:hover { background: #fbf8f3; }
+details.fold > summary:focus-visible { outline: 3px solid #e07b39; outline-offset: -3px; }
+.fold-title { font-size: 1.12rem; font-weight: 700; color: #141d2a; }
+.fold-sub { font-size: 0.92rem; color: #5b6878; }
+.v2-fold.v2-dark details.fold[open] > .fold-body { background: #0d1522; color: #fff; }
+.fold-body { padding: clamp(24px, 4vw, 44px) 0; border-top: 1px solid #dde3ea; }
+details.fold[open] > summary { background: #fbf8f3; }
