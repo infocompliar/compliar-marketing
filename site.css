@@ -4439,6 +4439,15 @@ header.nav .nav-cta .btn-primary:hover {
 .v2-ctas .btn-ghost-on-navy:hover {
   background: rgba(255, 255, 255, 0.06);
 }
+.v2-byline {
+  margin: 14px 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #c4cfdc;
+}
+.v2-byline strong {
+  color: #fff;
+}
 .v2-reassure {
   margin-top: 16px;
   font-size: 0.78rem;
