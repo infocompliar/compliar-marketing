@@ -52,7 +52,7 @@
       <form class="demo-form" novalidate>
         <p class="demo-prefill" ${options.engineers ? "" : "hidden"}>${
           options.engineers
-            ? `Based on your ROI estimate: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}`
+            ? `From the calculator: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}`
             : ""
         }</p>
         <div class="grid2">
@@ -139,7 +139,7 @@
         showThanks();
       } catch (err) {
         error.textContent =
-          "Sorry, that didn’t send. Please try again, or email enquiry@compliar.co.uk and we’ll reply within one business day.";
+          "Sorry, that didn’t send. Please try again, or email enquiry@compliar.co.uk and we’ll get back to you as soon as possible.";
         error.hidden = false;
         button.disabled = false;
         button.textContent = "Book a Demo Walkthrough";
@@ -151,7 +151,7 @@
       card.className = "demo-thanks";
       card.setAttribute("role", "status");
       card.innerHTML =
-        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Walkthrough Request Received</h3><p>Thank you. We\'ll be in touch within one business day to arrange your walkthrough.</p>';
+        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Walkthrough Request Received</h3><p>Thank you. We\'ll get back to you as soon as possible to arrange your walkthrough.</p>';
       form.replaceWith(card);
     }
     return form;
@@ -190,12 +190,18 @@
     if (roiBtn) {
       const eng = parseInt(roiBtn.dataset.engineers, 10);
       const inlineForm = document.querySelector("#contact-form form.demo-form, #demo form.demo-form");
+      if (inlineForm && !eng) {
+        if (inlineForm.dataset.engineers) inlineForm.elements.team_size.value = "";
+        inlineForm.dataset.engineers = "";
+        const stale = inlineForm.querySelector(".demo-prefill");
+        if (stale) stale.hidden = true;
+      }
       if (inlineForm && eng) {
         inlineForm.elements.team_size.value = sizeFor(eng);
         inlineForm.dataset.engineers = String(eng);
         const pre = inlineForm.querySelector(".demo-prefill");
         if (pre) {
-          pre.textContent = `Based on your ROI estimate: ${eng} field engineer${eng === 1 ? "" : "s"}`;
+          pre.textContent = `From the calculator: ${eng} field engineer${eng === 1 ? "" : "s"}`;
           pre.hidden = false;
         }
       }

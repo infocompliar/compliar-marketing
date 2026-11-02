@@ -91,16 +91,11 @@
   }
 
   // ---- 4. Demonstration-Only BS 5839-1 Battery Calculator -------------------
-  const SIZES = [7, 9, 12, 17, 24, 38, 65, 100, 120];
-  function pickSize(ah) {
-    return SIZES.find((size) => size >= ah) ?? null;
-  }
-
   const batT1 = document.getElementById("bat-t1");
   const batT2 = document.getElementById("bat-t2");
   const batI1 = document.getElementById("bat-i1");
   const batI2 = document.getElementById("bat-i2");
-  if (batT1 && batT2 && batI1 && batI2) {
+  if (batT1 && batT2 && batI1 && batI2 && window.CompliarBattery) {
     let voltage = 24;
     let i1Unit = "mA";
     let i2Unit = "A";
@@ -136,24 +131,24 @@
       const i1A = i1Unit === "mA" ? rawI1 / 1000 : rawI1;
       const i2A = i2Unit === "mA" ? rawI2 / 1000 : rawI2;
 
-      // Base formula required by prompt: Ah = 1.25 * [(I1 * T1) + (I2 * T2)]
-      const baseAh = 1.25 * (i1A * t1h + i2A * t2h);
-      // Annex E high-rate check for reference
-      const d = baseAh / 20 >= i2A ? 1.0 : 1.75;
-      const annexAh = d === 1.0 ? baseAh : 1.25 * (i1A * t1h + 1.75 * i2A * t2h);
-      const size = pickSize(baseAh);
-      const annexSize = pickSize(annexAh);
+      // Same tested maths as the standalone calculator (battery.js): BS 5839-1 Annex E.1,
+      // default de-rating factor 1.75 when the high-rate check applies.
+      const calc = window.CompliarBattery.batterySizing({ i1A, t1h, i2A, t2h });
+      const baseAh = calc.c1;
+      const d = calc.d;
+      const capAh = calc.cmin;
+      const size = calc.size;
 
-      document.getElementById("bat-cmin").textContent = `${baseAh.toFixed(2)} Ah`;
+      document.getElementById("bat-cmin").textContent = `${capAh.toFixed(2)} Ah`;
       const voltTag = document.getElementById("bat-volt-tag");
       if (voltTag) voltTag.textContent = `${voltage}V System · 1.25 Aging Factor`;
 
       const annexNote = document.getElementById("bat-annex-note");
       if (annexNote) {
         annexNote.textContent =
-          d === 1.0
-            ? `With Annex E high-rate check (D = 1.0): ${annexAh.toFixed(2)} Ah`
-            : `If Annex E.1.2 high-rate derating (D = 1.75) applies: ${annexAh.toFixed(2)} Ah (example size: ${annexSize ? formatAhSize(annexSize) : ">120Ah"})`;
+          d === 1
+            ? `High-rate check: de-rating factor D = 1 applies (no extra de-rating).`
+            : `High-rate de-rating applies (D = 1.75). Without it the figure would be ${baseAh.toFixed(2)} Ah.`;
       }
 
       const rec = document.getElementById("bat-rec");
@@ -171,7 +166,10 @@
             : `Illustrative 12V unit (e.g. 1× 12V 7.0Ah, 1× 12V 17Ah). Do not use for final selection.`;
       }
 
-      const formulaStr = `Ah = 1.25 × [(I1 × T1) + (I2 × T2)] = 1.25 × [(${i1A.toFixed(3)} A × ${t1h}h) + (${i2A.toFixed(3)} A × ${t2h}h)] = ${baseAh.toFixed(2)} Ah`;
+      const formulaStr =
+        d === 1
+          ? `Ah = 1.25 × [(I1 × T1) + (I2 × T2)] = 1.25 × [(${i1A.toFixed(3)} A × ${t1h}h) + (${i2A.toFixed(3)} A × ${t2h}h)] = ${capAh.toFixed(2)} Ah`
+          : `Ah = 1.25 × [(I1 × T1) + (D × I2 × T2)], D = 1.75 = 1.25 × [(${i1A.toFixed(3)} A × ${t1h}h) + (1.75 × ${i2A.toFixed(3)} A × ${t2h}h)] = ${capAh.toFixed(2)} Ah`;
       document.getElementById("bat-working").textContent = formulaStr;
 
       document.getElementById("bat-derate-exp").textContent =
@@ -191,7 +189,7 @@
         `Full Alarm Load (I2): ${i2A.toFixed(3)} A (${Math.round(i2A * 1000)} mA)`,
         `Alarm Duration (T2): ${t2h} hours (${Math.round(t2h * 60)} mins)`,
         `Formula: ${formulaStr}`,
-        `Illustrative Capacity Result: ${baseAh.toFixed(2)} Ah`,
+        `Illustrative Capacity Result: ${capAh.toFixed(2)} Ah`,
         `Illustrative Battery Pairing (Example Only): ${size ? `${count} × 12V ${formatAhSize(size)} VRLA` : "Exceeds 120Ah single bank"}`,
         "",
         "DISCLAIMER: Demonstration tool only. This calculator provides an illustrative estimate and does not verify compliance or determine the correct battery for an installation. Actual selection depends on the system design, equipment data, applicable standards and guidance, and the manufacturer’s instructions. A competent person must verify all calculations and selections before use.",
@@ -293,49 +291,104 @@
     computeBattery();
   }
 
-  // ---- 5. Grounded ROI & Time Savings Estimator -----------------------------
-  const engineers = document.getElementById("roi-engineers");
-  const jobs = document.getElementById("roi-jobs");
-  const turnaround = document.getElementById("roi-turnaround");
-  if (engineers && jobs && turnaround) {
+  // ---- 5. Time & Cost Calculator (maths in /roi-calc.js) --------------------
+  const roiForm = document.getElementById("roi-form");
+  if (roiForm && window.CompliarRoi) {
+    const { calcRoi } = window.CompliarRoi;
+    const field = (id) => document.getElementById(id);
+    const out = (id, text) => {
+      const el = field(id);
+      if (el) el.textContent = text;
+    };
     const money = new Intl.NumberFormat("en-GB", {
       style: "currency",
       currency: "GBP",
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
-    const cta = document.getElementById("roi-cta");
+    const num = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 1 });
+    // Show negatives with a real minus sign so they are not missed.
+    const signedMoney = (n) => (n < 0 ? `\u2212${money.format(-n)}` : money.format(n));
+    const signedNum = (n) => (n < 0 ? `\u2212${num.format(-n)}` : num.format(n));
+    const cta = field("roi-cta");
 
     function updateRoi() {
-      const e = Number(engineers.value);
-      const j = Number(jobs.value);
-      const t = Number(turnaround.value);
+      const r = calcRoi({
+        engineers: field("roi-engineers").value,
+        officeUsers: field("roi-office").value,
+        certsPerEngineerPerWeek: field("roi-certs").value,
+        minutesToday: field("roi-min-today").value,
+        minutesWithCompliar: field("roi-min-compliar").value,
+        hourlyCost: field("roi-hourly").value,
+        engineerSeat: field("roi-eng-seat").value,
+        officeSeat: field("roi-office-seat").value,
+        billing: field("roi-billing").value,
+      });
 
-      // Credible UK contractor metrics: ~26 mins (0.44h) saved per completed job/cert
-      // At 8 jobs/wk * 4.2 wks = ~33.6 jobs/mo -> ~15 hrs saved per engineer/month
-      const perEngHours = Math.max(6, Math.min(28, Math.round(j * 0.44 * 4.2)));
-      const totalHours = perEngHours * e;
-      const totalCerts = Math.round(e * j * 4.2);
-      // Grounded admin + certificate processing cost reduction (~£32/hr blended admin/engineer processing cost)
-      const monthlySaving = Math.round(totalHours * 32);
-      const annualSaving = monthlySaving * 12;
+      out("roi-hours-out", `${signedNum(r.hoursPerMonth)} hrs`);
+      out("roi-hours-detail", `across ${num.format(r.certsPerMonth)} certificates a month`);
+      out("roi-value-out", `${signedMoney(r.valuePerMonth)} / month`);
+      out("roi-sub-out", `${money.format(r.subscriptionPerMonth)} / month`);
+      out(
+        "roi-sub-detail",
+        r.seatLines.length
+          ? r.seatLines.map((l) => `${l.count} \u00d7 ${l.name}`).join(" + ") +
+              (r.inputs.billing === "yearly" ? `, billed yearly (${money.format(r.subscriptionBilledPerYear)} / year)` : ", billed monthly") +
+              ", ex VAT"
+          : "no seats"
+      );
+      out("roi-net-out", `${signedMoney(r.netPerMonth)} / month`);
+      out("roi-net-year", `${signedMoney(r.netPerYear)} / year`);
+      out(
+        "roi-net-note",
+        r.netPerMonth < 0
+          ? "On these figures the subscription costs more than the time difference is worth."
+          : "Value of time minus subscription. This can be negative."
+      );
 
-      document.getElementById("roi-engineers-out").textContent = `${e} engineer${e === 1 ? "" : "s"}`;
-      document.getElementById("roi-jobs-out").textContent = `${j} jobs / week`;
-      document.getElementById("roi-turnaround-out").textContent = `${t} day${t === 1 ? "" : "s"} (vs. Instant)`;
-
-      document.getElementById("roi-per-eng-hours").textContent = `~${perEngHours} hrs / engineer / month`;
-      document.getElementById("roi-team-hours").textContent = `(~${totalHours} hrs/month across ${e} engineer${e === 1 ? "" : "s"})`;
-      document.getElementById("roi-quote-speed").textContent = "Same-Day Dispatch";
-      document.getElementById("roi-quote-lag").textContent = `(eliminates ${t}-day office certificate & quote lag)`;
-      document.getElementById("roi-admin-saving").textContent = `~${money.format(monthlySaving)} / month`;
-      document.getElementById("roi-annual-note").textContent =
-        `Equivalent to ~${money.format(annualSaving)}/year in reclaimed office & engineer capacity (plus zero per-cert token fees)`;
-      document.getElementById("roi-certs-month").textContent = String(totalCerts);
-
-      if (cta) cta.dataset.engineers = String(e);
+      if (cta) cta.dataset.engineers = String(r.inputs.engineers);
     }
 
-    [engineers, jobs, turnaround].forEach((el) => el.addEventListener("input", updateRoi));
+    const exampleBtn = field("roi-example-btn");
+    const clearBtn = field("roi-clear-btn");
+    const numericIds = ["roi-engineers", "roi-office", "roi-certs", "roi-min-today", "roi-min-compliar", "roi-hourly"];
+    if (exampleBtn) {
+      exampleBtn.addEventListener("click", () => {
+        numericIds.forEach((id) => {
+          const el = field(id);
+          if (el && el.dataset.example !== undefined) el.value = el.dataset.example;
+        });
+        field("roi-eng-seat").value = "lite";
+        field("roi-office-seat").value = "office";
+        field("roi-billing").value = "monthly";
+        updateRoi();
+      });
+    }
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        numericIds.forEach((id) => {
+          const el = field(id);
+          if (el) el.value = "";
+        });
+        field("roi-eng-seat").value = "lite";
+        field("roi-office-seat").value = "office";
+        field("roi-billing").value = "monthly";
+        updateRoi();
+      });
+    }
+
+    roiForm.addEventListener("input", updateRoi);
+    // When a visitor leaves a field, show the value actually used if it was outside the allowed range.
+    roiForm.addEventListener("change", (event) => {
+      const el = event.target;
+      if (el && el.type === "number" && el.value !== "") {
+        const v = Number(el.value);
+        const lo = el.min !== "" ? Number(el.min) : -Infinity;
+        const hi = el.max !== "" ? Number(el.max) : Infinity;
+        if (Number.isFinite(v) && (v > hi || v < lo)) el.value = String(Math.min(hi, Math.max(lo, v)));
+      }
+      updateRoi();
+    });
     updateRoi();
   }
 
