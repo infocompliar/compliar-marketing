@@ -149,3 +149,30 @@ test("inputs are clamped to the same min/max as the form", () => {
   assert.equal(calcRoi({ engineers: 2.7 }).inputs.engineers, 2);
   assert.equal(WEEKS_PER_MONTH, 52 / 12);
 });
+
+test("optional current spend: blank leaves results unchanged, a figure is added back", () => {
+  const without = calcRoi(base);
+  const blank = calcRoi({ ...base, currentSpendPerMonth: "" });
+  assert.equal(blank.netPerMonth, without.netPerMonth);
+  assert.equal(blank.currentSpendPerMonth, 0);
+  assert.equal(blank.spendDifferencePerMonth, -without.subscriptionPerMonth);
+
+  // Pays £300 a month today; Compliar seats cost £240 on the base mix.
+  const r = calcRoi({ ...base, currentSpendPerMonth: 300 });
+  assert.equal(r.currentSpendPerMonth, 300);
+  assert.equal(r.currentSpendPerYear, 3600);
+  assert.equal(r.spendDifferencePerMonth, 60);
+  assert.equal(r.spendDifferencePerYear, 720);
+  assert.equal(r.netPerMonth, toPence(without.netPerMonth + 300));
+  assert.equal(r.netPerYear, toPence(r.netPerMonth * 12));
+
+  // Pays less today than Compliar would cost: difference is negative, net still honest.
+  const cheaper = calcRoi({ ...base, currentSpendPerMonth: 100 });
+  assert.equal(cheaper.spendDifferencePerMonth, -140);
+  assert.equal(cheaper.netPerMonth, toPence(without.netPerMonth + 100));
+
+  // Out-of-range and junk values clamp rather than break.
+  assert.equal(calcRoi({ ...base, currentSpendPerMonth: -50 }).currentSpendPerMonth, 0);
+  assert.equal(calcRoi({ ...base, currentSpendPerMonth: "abc" }).currentSpendPerMonth, 0);
+  assert.equal(calcRoi({ ...base, currentSpendPerMonth: 1e9 }).currentSpendPerMonth, 100000);
+});
