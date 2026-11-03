@@ -21,6 +21,7 @@ const LIMITS = Object.freeze({
   minutesToday: [0, 600],
   minutesWithCompliar: [0, 600],
   hourlyCost: [0, 1000],
+  currentSpendPerMonth: [0, 100000],
 });
 
 function toPence(pounds) {
@@ -50,6 +51,9 @@ function calcRoi(input = {}) {
   const minutesToday = clampNumber(input.minutesToday, LIMITS.minutesToday);
   const minutesWith = clampNumber(input.minutesWithCompliar, LIMITS.minutesWithCompliar);
   const hourlyCost = clampNumber(input.hourlyCost, LIMITS.hourlyCost);
+  // Optional: what the visitor pays now, per month, for the software or
+  // per-certificate fees Compliar would replace. Blank means "not given".
+  const currentSpendPerMonth = clampNumber(input.currentSpendPerMonth, LIMITS.currentSpendPerMonth);
   const engineerSeat = seatKey(input.engineerSeat, "lite");
   const officeSeat = seatKey(input.officeSeat, "office");
   const billing = input.billing === "yearly" ? "yearly" : "monthly";
@@ -88,7 +92,10 @@ function calcRoi(input = {}) {
   const hoursM = toPence(hoursPerMonth);
   const valueM = toPence(valuePerMonth);
   const subM = toPence(subscriptionPerMonth);
-  const netM = toPence(valueM - subM);
+  const spendM = toPence(currentSpendPerMonth);
+  // Positive when the visitor pays more today than the Compliar seats would cost.
+  const spendDiffM = toPence(spendM - subM);
+  const netM = toPence(valueM - subM + spendM);
   const times12 = (n) => toPence(n * 12);
 
   return {
@@ -99,6 +106,7 @@ function calcRoi(input = {}) {
       minutesToday,
       minutesWithCompliar: minutesWith,
       hourlyCost,
+      currentSpendPerMonth,
       engineerSeat,
       officeSeat,
       billing,
@@ -112,6 +120,10 @@ function calcRoi(input = {}) {
     subscriptionPerMonth: subM,
     subscriptionPerYear: times12(subM),
     subscriptionBilledPerYear: toPence(subscriptionPerYear),
+    currentSpendPerMonth: spendM,
+    currentSpendPerYear: times12(spendM),
+    spendDifferencePerMonth: spendDiffM,
+    spendDifferencePerYear: times12(spendDiffM),
     netPerMonth: netM,
     netPerYear: times12(netM),
     seatLines: seatLines.map((l) => ({ ...l, yearly: toPence(l.yearly) })),

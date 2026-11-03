@@ -320,6 +320,7 @@
         minutesToday: field("roi-min-today").value,
         minutesWithCompliar: field("roi-min-compliar").value,
         hourlyCost: field("roi-hourly").value,
+        currentSpendPerMonth: field("roi-current-spend").value,
         engineerSeat: field("roi-eng-seat").value,
         officeSeat: field("roi-office-seat").value,
         billing: field("roi-billing").value,
@@ -337,13 +338,27 @@
               ", ex VAT"
           : "no seats"
       );
+      const hasSpend = r.currentSpendPerMonth > 0;
+      const spendStat = field("roi-spend-stat");
+      if (spendStat) spendStat.hidden = !hasSpend;
+      if (hasSpend) {
+        out("roi-spend-out", `${signedMoney(r.spendDifferencePerMonth)} / month`);
+        out(
+          "roi-spend-detail",
+          `${money.format(r.currentSpendPerMonth)} now, less ${money.format(r.subscriptionPerMonth)} for Compliar (${signedMoney(r.spendDifferencePerYear)} / year)`
+        );
+      }
       out("roi-net-out", `${signedMoney(r.netPerMonth)} / month`);
       out("roi-net-year", `${signedMoney(r.netPerYear)} / year`);
       out(
         "roi-net-note",
         r.netPerMonth < 0
-          ? "On these figures the subscription costs more than the time difference is worth."
-          : "Value of time minus subscription. This can be negative."
+          ? hasSpend
+            ? "On these figures Compliar costs more than the time difference and your current spend together are worth."
+            : "On these figures the subscription costs more than the time difference is worth."
+          : hasSpend
+            ? "Value of time, plus what you pay now, minus the Compliar subscription. This can be negative."
+            : "Value of time minus subscription. This can be negative."
       );
 
       if (cta) cta.dataset.engineers = String(r.inputs.engineers);
@@ -351,7 +366,7 @@
 
     const exampleBtn = field("roi-example-btn");
     const clearBtn = field("roi-clear-btn");
-    const numericIds = ["roi-engineers", "roi-office", "roi-certs", "roi-min-today", "roi-min-compliar", "roi-hourly"];
+    const numericIds = ["roi-engineers", "roi-office", "roi-certs", "roi-min-today", "roi-min-compliar", "roi-hourly", "roi-current-spend"];
     if (exampleBtn) {
       exampleBtn.addEventListener("click", () => {
         numericIds.forEach((id) => {
