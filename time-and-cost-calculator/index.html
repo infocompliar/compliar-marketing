@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier consent choice before the Google tag loads
+      try {
+        var rawPrefs = localStorage.getItem('compliar_cookie_prefs');
+        if (rawPrefs) {
+          var prefs = JSON.parse(rawPrefs);
+          var adState = prefs.marketing ? 'granted' : 'denied';
+          var anState = prefs.analytics ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            'ad_storage': adState,
+            'ad_user_data': adState,
+            'ad_personalization': adState,
+            'analytics_storage': anState
+          });
+        } else if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+    </script>
+    <title>Time and Cost Calculator: Your Own Figures, No Rival Prices | Compliar</title>
+    <meta name="description" content="Work out the admin time and cost of certificates with your own numbers, minus the Compliar subscription for your seats, and compare with what you pay now. Nothing you enter is stored." />
+    <link rel="canonical" href="https://compliar.co.uk/time-and-cost-calculator/" />
+    <meta name="theme-color" content="#1B2430" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Compliar" />
+    <meta property="og:title" content="Time and Cost Calculator: Your Own Figures, No Rival Prices | Compliar" />
+    <meta property="og:description" content="Work out the admin time and cost of certificates with your own numbers, minus the Compliar subscription for your seats, and compare with what you pay now. Nothing you enter is stored." />
+    <meta property="og:url" content="https://compliar.co.uk/time-and-cost-calculator/" />
+    <meta property="og:image" content="https://compliar.co.uk/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
+    <meta name="twitter:title" content="Time and Cost Calculator: Your Own Figures, No Rival Prices | Compliar" />
+    <meta name="twitter:description" content="Work out the admin time and cost of certificates with your own numbers, minus the Compliar subscription for your seats, and compare with what you pay now. Nothing you enter is stored." />
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Compliar","item":"https://compliar.co.uk/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://compliar.co.uk/resources/"},{"@type":"ListItem","position":3,"name":"Time and cost calculator","item":"https://compliar.co.uk/time-and-cost-calculator/"}]}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/site.css?v=0bcd3e013a86" />
+    <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
+    <script src="/demo-form.js" defer></script>
+    <script src="/roi-calc.js" defer></script>
+    <script src="/home.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="/" aria-label="Compliar home">
+          <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#cf6225"/>
+            <path d="M11 10H18V14H11L10 13V11L11 10Z" fill="#e6a98a"/>
+          </svg>
+          <span class="brand-wordmark">
+            <span class="brand-text">Compliar</span>
+            <span class="brand-badge">UK COMPLIANCE</span>
+          </span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <!-- 1. Disciplines & Trades (three disciplines) -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
+                Disciplines &amp; Trades <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-sectors" id="mega-disciplines" hidden>
+                <div class="sector-mega-grid">
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">1</span><strong>Fire Protection &amp; Life Safety</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Fire Detection &amp; Alarm Systems</strong> — Commissioning, servicing &amp; modification <span class="std-badge">BS 5839-1 / 5839-6</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>Voice Alarm &amp; Evacuation Alert Systems</strong> — Periodic servicing records <span class="std-badge">BS 5839-8 / BS 8629</span></a></li>
+                      <li><a href="/emergency-lighting-testing-guide/"><strong>Emergency Lighting</strong> — Periodic &amp; completion records <span class="std-badge">BS 5266-1</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>Fire Extinguishers &amp; Blankets</strong> — Commissioning &amp; annual service <span class="std-badge">BS 5306-3 / BS EN 1869</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>Fire Doors</strong> — Inspection records <span class="std-badge">BS 8214</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>Dampers, Risers &amp; Smoke Ventilation</strong> — Test records</a></li>
+                      <li><a href="/features/#coverage-title"><strong>Sprinklers &amp; Suppression</strong> — Domestic, commercial, gas &amp; kitchen</a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">2</span><strong>Electrical</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EIC</strong> — Electrical Installation Certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EICR</strong> — Electrical Installation Condition Report <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>Minor Works</strong> — Minor Electrical Installation Works Certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/pat-testing-software/"><strong>PAT</strong> — In-service inspection &amp; testing <span class="std-badge">IET Code of Practice</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>EV Charging</strong> — Chargepoint installation records <span class="std-badge">BS 7671 Section 722</span></a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">3</span><strong>Security Systems</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/cctv-commissioning-maintenance-software/"><strong>CCTV</strong> — Commissioning &amp; maintenance <span class="std-badge">BS EN 62676</span></a></li>
+                      <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Intruder &amp; Hold-Up Alarm Systems</strong> — Grades 2 to 4 <span class="std-badge">BS EN 50131 / PD 6662</span></a></li>
+                      <li><a href="/access-control-door-entry-software/"><strong>Access Control &amp; Door Entry</strong> — Controllers, readers &amp; releases <span class="std-badge">BS EN 60839-11</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>Gates, Barriers &amp; Automatic Doors</strong> — Safety checks <span class="std-badge">BS EN 12453 / BS EN 16005</span></a></li>
+                      <li><a href="/features/#coverage-title"><strong>Alarm Signalling &amp; Nurse Call</strong> — Service records</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mega-foot-bar">
+                  <span>32 system types across three disciplines, with over 100 certificate and form templates, under one login. Templates reference the standards; the engineer and scheme remain responsible.</span>
+                  <a class="btn btn-primary btn-sm" href="/features/#coverage-title">See All Certificates &amp; Templates →</a>
+                </div>
+              </div>
+            </li>
+
+            <!-- Solutions -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-solutions">
+                Solutions <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-solutions" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/fire-log-book-software/">
+                      <div class="disc-top"><strong>Digital Fire Log Book</strong><span class="std-badge">£4 + VAT / site / year</span></div>
+                      <span class="disc-desc">QR stickers, missed-test alerts and a log-book-only account for anyone with sites</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-maintenance-software/">
+                      <div class="disc-top"><strong>Fire Detection and Alarm Maintenance &amp; Compliance</strong></div>
+                      <span class="disc-desc">Maintenance plans, certificates, defects to quotes and an offline field app</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-design-software/">
+                      <div class="disc-top"><strong>Fire Detection and Alarm Design</strong><span class="std-badge">Design seat</span></div>
+                      <span class="disc-desc">Zone plans, as-fitted drawings, cable runs and take-offs</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 2. QR Log Books -->
+            <li><a href="/fire-log-book-software/">Log Books</a></li>
+
+            <!-- 3. Stickers & Hardware -->
+            <li><a href="/fire-log-book-software/#stickers">Stickers</a></li>
+
+            <!-- 4. Tools Dropdown -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-tools">
+                Tools <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-tools" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-battery-calculator/">
+                      <div class="disc-top"><strong>Fire Alarm Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
+                      <span class="disc-desc">Standby and alarm capacity for 6, 24 or 72 hours, with the working shown</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/time-and-cost-calculator/">
+                      <div class="disc-top"><strong>Time &amp; Cost Calculator</strong><span class="std-badge">Your Figures</span></div>
+                      <span class="disc-desc">Work out admin time and cost from your own numbers, minus the Compliar subscription</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-log-book-software/">
+                      <div class="disc-top"><strong>The Site Log Book</strong><span class="std-badge">Real Screens</span></div>
+                      <span class="disc-desc">The log book as it is on the phone and at the desk, on sample data</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-log-book-software/#stickers">
+                      <div class="disc-top"><strong>Printable Sticker &amp; Tag Studio</strong><span class="std-badge">300 DPI + Thermal</span></div>
+                      <span class="disc-desc">Preview real Harbourview QR tags, BS 5839-1 false alarm notices &amp; EM failed labels</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 5. About -->
+            <li><a href="/about/">About</a></li>
+
+            <!-- 6. Pricing / ROI -->
+            <li><a href="/pricing/">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-ghost-on-navy btn-sm nav-interactive-cta" href="/#see-it-working">See It Working</a>
+          <a class="btn btn-primary btn-sm" href="/contact/">Book a Demo</a>
+        </div>
+
+        <details class="mobile-menu">
+          <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
+          <nav aria-label="Mobile navigation">
+            <ul>
+              <li>
+                <details>
+                  <summary>Disciplines &amp; Trades</summary>
+                  <ul>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire detection and alarm systems, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS&nbsp;5839&nbsp;/&nbsp;BS&nbsp;5266-1</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS&nbsp;7671&nbsp;/&nbsp;IET&nbsp;Code&nbsp;of&nbsp;Practice</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder and hold-up alarm systems, access control, gates <span class="std-badge-inline">BS&nbsp;EN&nbsp;50131&nbsp;/&nbsp;BS&nbsp;EN&nbsp;62676</span></a></li>
+                    <li><a href="/features/#coverage-title">See All Certificates &amp; Templates →</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Solutions</summary>
+                  <ul>
+                    <li><a href="/fire-log-book-software/">Digital Fire Log Book</a></li>
+                    <li><a href="/fire-alarm-maintenance-software/">Fire Detection and Alarm Maintenance &amp; Compliance</a></li>
+                    <li><a href="/fire-alarm-design-software/">Fire Detection and Alarm Design</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/fire-log-book-software/">Log Books</a></li>
+              <li><a href="/fire-log-book-software/#stickers">Stickers</a></li>
+              <li>
+                <details>
+                  <summary>Tools</summary>
+                  <ul>
+                    <li><a href="/fire-alarm-battery-calculator/">Fire Alarm Battery Calculator</a></li>
+                    <li><a href="/time-and-cost-calculator/">Time &amp; Cost Calculator</a></li>
+                    <li><a href="/fire-log-book-software/">The Site Log Book</a></li>
+                    <li><a href="/fire-log-book-software/#stickers">Printable Sticker &amp; Tag Studio</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/pricing/">Pricing</a></li>
+              <li><a href="/#see-it-working">See It Working</a></li>
+              <li><a href="/contact/">Book a Demo</a></li>
+              <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-intro">
+        <div class="wrap">
+          <div class="crumbs">
+            <a href="/">Compliar</a><i>/</i><a href="/resources/">Resources</a><i>/</i>Time and cost calculator
+          </div>
+          <div class="eyebrow">Running your business · Tool</div>
+          <h1>Time and cost calculator</h1>
+          <p>Your team, your certificate count, your minutes and your hourly cost. The calculator does the arithmetic, takes off the Compliar subscription for the seats you choose and, if you enter it, compares with what you pay for software today. No rival prices, no measured savings claims: every figure is yours.</p>
+        </div>
+      </section>
+      <!-- SECTION 6: TIME & COST CALCULATOR (#roi-calculator). Maths in /roi-calc.js -->
+      <section class="v2-section v2-white" id="roi-calculator" aria-labelledby="roi-title">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">Time &amp; Cost Calculator</span>
+            <h2 class="v2-h2" id="roi-title">Work it out with your own numbers.</h2>
+            <p class="v2-lead">
+              Enter your team size, how many certificates or reports you produce, how long the admin takes you now, how long you expect it to take with Compliar and, if you like, what you pay for software today. The calculator does the arithmetic with your figures and takes off the Compliar subscription for your seats. Nothing you type is stored or sent anywhere.
+            </p>
+          </div>
+
+          <div class="roi-card">
+            <form class="roi-controls" id="roi-form" novalidate onsubmit="return false">
+              <div class="roi-field">
+                <label for="roi-engineers">1. Field engineers</label>
+                <input type="number" id="roi-engineers" name="engineers" inputmode="numeric" min="0" max="500" step="1" data-example="5" placeholder="e.g. 5" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-office">2. Office / desk users</label>
+                <input type="number" id="roi-office" name="officeUsers" inputmode="numeric" min="0" max="500" step="1" data-example="1" placeholder="e.g. 1" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-certs">3. Certificates or reports per engineer per week</label>
+                <input type="number" id="roi-certs" name="certsPerEngineerPerWeek" inputmode="decimal" min="0" max="200" step="0.5" data-example="8" placeholder="e.g. 8" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-min-today">4. Minutes of admin per certificate today</label>
+                <input type="number" id="roi-min-today" name="minutesToday" inputmode="decimal" min="0" max="600" step="1" data-example="30" placeholder="e.g. 30" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-min-compliar">5. Minutes you expect it to take with Compliar (your estimate)</label>
+                <input type="number" id="roi-min-compliar" name="minutesWithCompliar" inputmode="decimal" min="0" max="600" step="1" data-example="15" placeholder="e.g. 15" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-hourly">6. Hourly cost of that time (£, your figure)</label>
+                <input type="number" id="roi-hourly" name="hourlyCost" inputmode="decimal" min="0" max="1000" step="0.5" data-example="25" placeholder="e.g. 25" aria-describedby="roi-example-note" />
+              </div>
+
+              <div class="roi-field">
+                <label for="roi-current-spend">7. What you pay now for software or per-certificate fees, per month (£, optional)</label>
+                <input type="number" id="roi-current-spend" name="currentSpendPerMonth" inputmode="decimal" min="0" max="100000" step="1" placeholder="Leave blank if nothing" aria-describedby="roi-spend-note" />
+                <p class="roi-assume" id="roi-spend-note" style="margin-top:6px">Your own figure for whatever Compliar would replace, excluding VAT. It is added back in the net figure below.</p>
+              </div>
+
+              <fieldset class="roi-field roi-seats">
+                <legend>8. Seats and billing</legend>
+                <div class="roi-seat-row">
+                  <label for="roi-eng-seat">Engineers on</label>
+                  <select id="roi-eng-seat" name="engineerSeat">
+                    <option value="lite" selected>Lite (£35 / month)</option>
+                    <option value="office">Office (£65 / month)</option>
+                    <option value="design">Design (£95 / month)</option>
+                  </select>
+                </div>
+                <div class="roi-seat-row">
+                  <label for="roi-office-seat">Office users on</label>
+                  <select id="roi-office-seat" name="officeSeat">
+                    <option value="lite">Lite (£35 / month)</option>
+                    <option value="office" selected>Office (£65 / month)</option>
+                    <option value="design">Design (£95 / month)</option>
+                  </select>
+                </div>
+                <div class="roi-seat-row">
+                  <label for="roi-billing">Billing</label>
+                  <select id="roi-billing" name="billing">
+                    <option value="monthly" selected>Monthly</option>
+                    <option value="yearly">Yearly (£350 / £650 / £950 per user)</option>
+                  </select>
+                </div>
+              </fieldset>
+
+              <div class="roi-example-row">
+                <button type="button" class="btn btn-ghost-on-cream btn-sm" id="roi-example-btn">Fill in example figures</button>
+                <button type="button" class="roi-clear" id="roi-clear-btn">Clear</button>
+              </div>
+
+              <p class="roi-assume" id="roi-example-note">
+                The fields start blank. The example button fills in illustrative figures, which are not figures we have measured, so replace them with your own. Prices are per user, excluding VAT. A month is taken as 52 weeks ÷ 12. The optional site log book (£4 + VAT per site per year) is not included.
+              </p>
+            </form>
+
+            <div class="roi-results" aria-live="polite" aria-atomic="false">
+              <p class="roi-own-figures"><strong>Your own figures, not a promise or a prediction.</strong></p>
+
+              <div class="roi-stat">
+                <span>Admin time difference per month</span>
+                <strong>
+                  <b id="roi-hours-out">0 hrs</b>
+                  <small id="roi-hours-detail">across 0 certificates</small>
+                </strong>
+              </div>
+
+              <div class="roi-stat">
+                <span>Value of that time at your hourly cost</span>
+                <strong>
+                  <b id="roi-value-out">£0.00 / month</b>
+                </strong>
+              </div>
+
+              <div class="roi-stat">
+                <span>Compliar subscription for your seats</span>
+                <strong>
+                  <b id="roi-sub-out">£0.00 / month</b>
+                  <small id="roi-sub-detail">no seats</small>
+                </strong>
+              </div>
+
+              <div class="roi-stat" id="roi-spend-stat" hidden>
+                <span>What you pay now, less the Compliar subscription</span>
+                <strong>
+                  <b id="roi-spend-out">£0.00 / month</b>
+                  <small id="roi-spend-detail"></small>
+                </strong>
+              </div>
+
+              <div class="roi-stat roi-total">
+                <span>Net, on your figures</span>
+                <strong>
+                  <b id="roi-net-out">£0.00 / month</b>
+                  <small id="roi-net-year">£0.00 / year</small>
+                </strong>
+                <p id="roi-net-note">Value of time minus the Compliar subscription, plus whatever you pay now if you entered it. This can be negative.</p>
+              </div>
+
+              <div class="roi-cta">
+                <a class="btn btn-primary" id="roi-cta" href="/contact?subject=Demo+request" data-demo-open data-engineers="0">
+                  Book a demo with Keiran →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="band">
+        <div class="wrap">
+          <div class="prose">
+            <h2>How to read the result</h2>
+            <p>The time figure is simply certificates per month multiplied by the minutes you expect to save on each, at your hourly cost. If you think Compliar will take longer per certificate than what you do now, enter that and the figure goes negative; the calculator does not argue. The subscription line is the published seat prices for the mix you pick, ex VAT. The optional "what you pay now" line adds back whatever software or per-certificate fees Compliar would replace.</p>
+            <p>For the wider picture, including what paper and spreadsheets cost in time, see <a href="/paper-spreadsheets-or-software-cost-and-time/">Paper, spreadsheets or software?</a>. For the seat prices themselves, see <a href="/pricing/">pricing</a>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap foot-grid">
+        <div>
+          <a class="foot-brand" href="/"
+            ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z"
+                fill="#cf6225"
+              /></svg
+            >Compliar</a
+          >
+          <p class="footer-intro">
+            Less admin. More time for the job.<br />Built for UK electrical, fire protection and life safety, and security contractors.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/getting-started/">Getting started</a></li>
+            <li><a href="/features/">Features</a></li>
+            <li><a href="/fire-log-book-software/">Digital fire log book</a></li>
+            <li><a href="/fire-alarm-maintenance-software/">Fire detection and alarm maintenance</a></li>
+            <li><a href="/fire-alarm-design-software/">Fire detection and alarm design</a></li>
+            <li><a href="/log-book/">Log book</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/faqs/">FAQs</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Guides &amp; tools</h2>
+          <ul>
+            <li>
+              <a href="/fire-alarm-battery-calculator/">Battery calculator</a>
+            </li>
+            <li>
+              <a href="/intruder-alarm-battery-calculator/">Intruder alarm battery calculator</a>
+            </li>
+            <li>
+              <a href="/fire-alarm-certificate-software/"
+                >Fire alarm certificates</a
+              >
+            </li>
+            <li>
+              <a href="/eicr-and-electrical-certificate-software/"
+                >Electrical certificates</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
+                        <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Let's talk</h2>
+          <ul>
+            <li>
+              <a href="mailto:enquiry@compliar.co.uk">enquiry@compliar.co.uk</a>
+            </li>
+            <li>
+              <a href="/contact/">Contact &amp; demos ↗</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap foot-bottom">
+        <span>© 2026 COMPLIAR LTD · Built in the UK</span
+        ><span
+          >COMPLIAR LTD is registered in England and Wales, company number 17519777. Registered
+          office: 11 Wakefield Drive, Endmoor, Kendal, LA8 0BF. ICO registration ZC278853.</span
+        >
+      </div>
+    </footer>
+      <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "abdf47c963bb43d086fd6fa762c45059"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
