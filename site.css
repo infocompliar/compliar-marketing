@@ -7457,3 +7457,31 @@ details.taxonomy-block > .taxonomy-cards {
   display: grid;
   gap: 12px;
 }
+
+/* Hero video: autoplay (muted), enlarge, and a book-a-demo end card */
+.hero-video { position: relative; }
+.hero-video video { width: 100%; height: auto; display: block; background: #0b1220; }
+.hero-video-enlarge {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  background: rgba(11, 18, 32, 0.78); color: #fff; font: inherit; font-size: 0.85rem;
+}
+.hero-video-enlarge:hover, .hero-video-enlarge:focus-visible { background: rgba(11, 18, 32, 0.95); }
+.hero-video-end {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  background: rgba(11, 18, 32, 0.88); color: #fff; text-align: center; padding: 16px;
+}
+.hero-video-end[hidden] { display: none; }
+.hero-video-end p { margin: 0; font-size: clamp(1.1rem, 2.4vw, 1.5rem); font-weight: 700; }
+.hero-video-dialog {
+  position: fixed; inset: 0; margin: auto; padding: 0; border: 0; border-radius: 12px;
+  width: min(1100px, 94vw); max-height: 92vh; background: #0b1220; overflow: hidden;
+}
+.hero-video-dialog::backdrop { background: rgba(0, 0, 0, 0.8); }
+.hero-video-dialog video { width: 100%; height: auto; max-height: 92vh; display: block; }
+.hero-video-close {
+  position: absolute; top: 10px; right: 10px; z-index: 4;
+  border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.92); color: #0b1220; font: inherit; font-size: 0.85rem;
+}

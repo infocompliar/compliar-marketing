@@ -406,10 +406,27 @@
                 <span>One job, start to finish · 36 seconds</span>
                 <span class="device-badge">SAMPLE DATA</span>
               </div>
-              <video controls preload="metadata" playsinline width="1280" height="720" poster="/assets/screens/desk-01-dashboard.webp" style="width:100%;height:auto;display:block" aria-label="A 36 second walk through one job in Compliar, from the enquiry to the invoice, using screens from the Harbourview sample company">
-                <source src="/assets/video/one-job-start-to-finish.mp4" type="video/mp4" />
-                Your browser can't play this video. The same screens are shown further down the page.
-              </video>
+              <div class="hero-video" data-hero-video>
+                <video controls muted autoplay playsinline preload="auto" width="1280" height="720" poster="/assets/screens/desk-01-dashboard.webp" aria-label="A 36 second walk through one job in Compliar, from the enquiry to the invoice, using screens from the Harbourview sample company">
+                  <source src="/assets/video/one-job-start-to-finish.mp4" type="video/mp4" />
+                  Your browser can't play this video. The same screens are shown further down the page.
+                </video>
+                <button type="button" class="hero-video-enlarge" data-hero-video-enlarge aria-label="Enlarge the video">Enlarge ⤢</button>
+                <div class="hero-video-end" data-hero-video-end hidden>
+                  <p>To find out more, book a demo</p>
+                  <a class="btn btn-primary" href="#contact-form">Book a demo with Keiran</a>
+                  <button type="button" class="btn btn-ghost-on-navy" data-hero-video-replay>Watch again</button>
+                </div>
+              </div>
+              <dialog class="hero-video-dialog" data-hero-video-dialog aria-label="One job, start to finish video">
+                <button type="button" class="hero-video-close" data-hero-video-close aria-label="Close the video">Close ✕</button>
+                <video controls playsinline preload="none" width="1280" height="720" poster="/assets/screens/desk-01-dashboard.webp" data-hero-video-big></video>
+                <div class="hero-video-end" data-hero-video-end-big hidden>
+                  <p>To find out more, book a demo</p>
+                  <a class="btn btn-primary" href="#contact-form" data-hero-video-close>Book a demo with Keiran</a>
+                  <button type="button" class="btn btn-ghost-on-navy" data-hero-video-replay-big>Watch again</button>
+                </div>
+              </dialog>
             </figure>
             <div class="hero-floating-cards" aria-hidden="true">
               <div class="hf-card">
