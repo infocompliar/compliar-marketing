@@ -1485,7 +1485,7 @@
             <span class="v2-kicker">Time &amp; Cost Calculator</span>
             <h2 class="v2-h2" id="roi-title">Work it out with your own numbers.</h2>
             <p class="v2-lead">
-              Enter your team size, how many certificates or reports you produce, how long the admin takes you now and how long you expect it to take with Compliar. The calculator does the arithmetic and takes off the Compliar subscription for your seats.
+              Enter your team size, how many certificates or reports you produce, how long the admin takes you now, how long you expect it to take with Compliar and, if you like, what you pay for software today. The calculator does the arithmetic with your figures and takes off the Compliar subscription for your seats. Nothing you type is stored or sent anywhere.
             </p>
           </div>
 
@@ -1521,8 +1521,14 @@
                 <input type="number" id="roi-hourly" name="hourlyCost" inputmode="decimal" min="0" max="1000" step="0.5" data-example="25" placeholder="e.g. 25" aria-describedby="roi-example-note" />
               </div>
 
+              <div class="roi-field">
+                <label for="roi-current-spend">7. What you pay now for software or per-certificate fees, per month (£, optional)</label>
+                <input type="number" id="roi-current-spend" name="currentSpendPerMonth" inputmode="decimal" min="0" max="100000" step="1" placeholder="Leave blank if nothing" aria-describedby="roi-spend-note" />
+                <p class="roi-assume" id="roi-spend-note" style="margin-top:6px">Your own figure for whatever Compliar would replace, excluding VAT. It is added back in the net figure below.</p>
+              </div>
+
               <fieldset class="roi-field roi-seats">
-                <legend>7. Seats and billing</legend>
+                <legend>8. Seats and billing</legend>
                 <div class="roi-seat-row">
                   <label for="roi-eng-seat">Engineers on</label>
                   <select id="roi-eng-seat" name="engineerSeat">
@@ -1584,13 +1590,21 @@
                 </strong>
               </div>
 
+              <div class="roi-stat" id="roi-spend-stat" hidden>
+                <span>What you pay now, less the Compliar subscription</span>
+                <strong>
+                  <b id="roi-spend-out">£0.00 / month</b>
+                  <small id="roi-spend-detail"></small>
+                </strong>
+              </div>
+
               <div class="roi-stat roi-total">
                 <span>Net, on your figures</span>
                 <strong>
                   <b id="roi-net-out">£0.00 / month</b>
                   <small id="roi-net-year">£0.00 / year</small>
                 </strong>
-                <p id="roi-net-note">Value of time minus subscription. This can be negative.</p>
+                <p id="roi-net-note">Value of time minus the Compliar subscription, plus whatever you pay now if you entered it. This can be negative.</p>
               </div>
 
               <div class="roi-cta">
