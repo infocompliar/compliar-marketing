@@ -102,6 +102,38 @@
     },
     {
       "@type": "Question",
+      "name": "Who does the monthly emergency lighting test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually the premises themselves, as a short functional test. Compliar's digital log book lets premises staff log the monthly test for each site, and alerts you when a test is missed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is each luminaire recorded separately?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each fitting is held as an asset on the site, and the annual certificate records a pass, fail or no test per fitting, with photos where needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I print a label for a failed fitting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A FAILED sticker with your logo and space for the date and initials can be printed from the app on a label printer, or ordered printed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Compliar replace the emergency lighting log book?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It gives each site a digital log book for the monthly tests, the annual certificates and the defects, at £4 + VAT per site per year. Whether a paper log book is also kept is up to the premises."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "What does it cost?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -371,7 +403,7 @@
           <div class="lp-proof lp-flip">
             <div>
               <h3>Test every luminaire on the phone, offline</h3>
-              <p>Engineers see today’s jobs and the assets in each visit on their phone, and record pass, fail or no test on tap. The app keeps today’s work on the phone, so it keeps working in a basement or plant room with no signal, and queued changes send when it is back online.</p><p>Assets carry a barcode or QR label, so a luminaire can be found and scanned at the visit.</p>
+              <p>Engineers see today’s jobs and the assets in each visit on their phone, and record pass, fail or no test on tap. The app keeps today’s work on the phone, so it keeps working in a basement or plant room with no signal, and queued changes send when it is back online.</p><p>Each luminaire is an asset on the site with its location and type, so it is found from the asset list at the visit and its history runs from one annual test to the next.</p>
             </div>
             <figure class="lp-proof-fig">
               <a class="shot" href="/assets/screens/desk-calendar.webp"><img src="/assets/screens/desk-calendar.webp" width="800" height="500" loading="lazy" alt="Compliar calendar week view on sample data with engineers in rows and a Jobs to plan list on the right" /></a>
@@ -389,6 +421,40 @@
             </figure>
           </div>
           <p class="lp-note">Screens show sample data. Compliar produces records; the engineer and the scheme remain responsible for the work and for the certificates issued. Compliar is not approved by or affiliated with any standards body or scheme.</p>
+        </div>
+      </section>
+
+      <section class="v2-section" aria-labelledby="depth-h">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">What to check</span>
+            <h2 class="v2-h2" id="depth-h">Monthly, annual and the records in between</h2>
+          </div>
+          <div class="prose">
+            <p><strong>General guidance only.</strong> BS 5266-1 and BS EN 50172 set out the testing and the records; check the edition your contract names. Last reviewed 3 November 2026.</p>
+            <h3>The two tests</h3>
+            <p>Emergency lighting has a short monthly functional test, which the premises can do themselves, and an annual full rated duration test, usually three hours, which is normally done by a contractor. The annual test is the one that produces the periodic inspection and test certificate. Compliar has both: a monthly test record the premises staff can log in the site's <a href="/fire-log-book-software/">digital log book</a>, and the annual certificate the engineer completes fitting by fitting.</p>
+            <h3>What the annual visit records</h3>
+            <ul>
+              <li><strong>Every luminaire, by location.</strong> Each fitting is an asset on the site with its position, type and whether it is maintained or non-maintained, so the certificate lists them in the order the engineer walks the building.</li>
+              <li><strong>The duration test.</strong> The fitting was discharged for its rated duration and still lit at the end. A fitting that dims early is a fail, with the time it lasted recorded.</li>
+              <li><strong>Charging indicator and recovery.</strong> The charge indicator shows on restoration, and the fitting is left to recharge before the building relies on it.</li>
+              <li><strong>Signs and visibility.</strong> Exit signs present, correct pictogram, unobstructed, and illuminated on test.</li>
+              <li><strong>Coverage against the drawing.</strong> Points of emphasis covered: changes of direction, stairs, final exits, fire-fighting equipment and call points, plant rooms and toilets over a certain size. Record anything the layout has changed since the design.</li>
+              <li><strong>Outcome and next test.</strong> A pass or fail per fitting and an overall outcome, with the next monthly and annual dates.</li>
+            </ul>
+            <h3>Worked example</h3>
+            <p>On the Harbourview sample site there are 35 fittings. The engineer starts the discharge, walks the building logging each fitting from the asset list on the phone, and comes back after the rated duration to record the end state. Fitting EL-17 on the first-floor landing is out after 95 minutes: it is marked Fail with a photo, a FAILED sticker is printed from the app and put on the fitting, and the fail becomes a defect with a Needs quoting status. The office quotes a replacement that day. The certificate shows 34 passes, one fail and the open defect, and goes to the customer as a PDF. The monthly tests the duty manager logs in the log book sit alongside it, so the next annual visit starts with a full year's record.</p>
+            <h3>Common mistakes</h3>
+            <ul>
+              <li><strong>Testing in working hours without planning.</strong> After a full discharge the fittings need time to recharge; plan the annual test for when the building can cope.</li>
+              <li><strong>Testing from the key switch and walking away.</strong> The end-of-duration check is the test. Record the end state, not just the start.</li>
+              <li><strong>Missing fittings in cupboards and plant rooms.</strong> Holding every fitting as an asset means a missing result shows as not tested.</li>
+              <li><strong>No monthly record.</strong> An annual certificate with no monthly tests behind it is a gap an assessor will notice. The log book is where the premises keep that record, and it alerts you when a test is missed.</li>
+              <li><strong>Leaving a failed fitting unmarked.</strong> A FAILED sticker on the fitting tells everyone, including the next engineer, which one it is.</li>
+            </ul>
+            <p>See the <a href="/emergency-lighting-testing-guide/">emergency lighting testing guide</a> for the testing routine in full, and the <a href="/fire-log-book-software/">digital log book</a> for the monthly record.</p>
+          </div>
         </div>
       </section>
 
@@ -410,6 +476,22 @@
             <details class="faq-item">
               <summary>Who is responsible for the certificate?</summary>
               <p>The engineer who signs it. Compliar produces the records and is not approved by or affiliated with any standards body or scheme.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Who does the monthly emergency lighting test?</summary>
+              <p>Usually the premises themselves, as a short functional test. Compliar&#x27;s digital log book lets premises staff log the monthly test for each site, and alerts you when a test is missed.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is each luminaire recorded separately?</summary>
+              <p>Yes. Each fitting is held as an asset on the site, and the annual certificate records a pass, fail or no test per fitting, with photos where needed.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can I print a label for a failed fitting?</summary>
+              <p>Yes. A FAILED sticker with your logo and space for the date and initials can be printed from the app on a label printer, or ordered printed.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Does Compliar replace the emergency lighting log book?</summary>
+              <p>It gives each site a digital log book for the monthly tests, the annual certificates and the defects, at £4 + VAT per site per year. Whether a paper log book is also kept is up to the premises.</p>
             </details>
             <details class="faq-item">
               <summary>What does it cost?</summary>
