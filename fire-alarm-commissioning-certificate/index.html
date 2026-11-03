@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google Consent Mode v2 setup -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Default consent to denied for UK GDPR/PECR compliance
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+      // Re-apply an earlier consent choice before the Google tag loads
+      try {
+        var rawPrefs = localStorage.getItem('compliar_cookie_prefs');
+        if (rawPrefs) {
+          var prefs = JSON.parse(rawPrefs);
+          var adState = prefs.marketing ? 'granted' : 'denied';
+          var anState = prefs.analytics ? 'granted' : 'denied';
+          gtag('consent', 'update', {
+            'ad_storage': adState,
+            'ad_user_data': adState,
+            'ad_personalization': adState,
+            'analytics_storage': anState
+          });
+        } else if (localStorage.getItem('compliar_cookie_consent') === 'granted') {
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'analytics_storage': 'granted'
+          });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) for Compliar -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18545152858"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'AW-18545152858');
+
+    </script>
+    <title>Fire Alarm Commissioning Certificate: What It Covers (BS 5839-1) — Compliar</title>
+    <meta name="description" content="What a fire alarm commissioning certificate records under BS 5839-1, who signs it, how it differs from the installation and acceptance certificates, what to check before you sign, and how Compliar lays it out. Guide for UK contractors." />
+    <link rel="canonical" href="https://compliar.co.uk/fire-alarm-commissioning-certificate/" />
+    <meta name="theme-color" content="#1B2430" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%23192c30%22/%3E%3Cg transform=%22translate(64 64) scale(16)%22%3E%3Cpath d=%22M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z%22 fill=%22%23cf6225%22/%3E%3Cpath d=%22M11 10H18V14H11L10 13V11L11 10Z%22 fill=%22%23e6a98a%22/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Compliar" />
+    <meta property="og:title" content="Fire Alarm Commissioning Certificate: What It Covers (BS 5839-1) — Compliar" />
+    <meta property="og:description" content="What a fire alarm commissioning certificate records under BS 5839-1, who signs it, how it differs from the installation and acceptance certificates, what to check before you sign, and how Compliar lays it out. Guide for UK contractors." />
+    <meta property="og:url" content="https://compliar.co.uk/fire-alarm-commissioning-certificate/" />
+    <meta property="og:image" content="https://compliar.co.uk/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Compliar — management software for electrical, fire protection and life safety, and security contractors"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://compliar.co.uk/og.png" />
+    <meta name="twitter:title" content="Fire Alarm Commissioning Certificate: What It Covers (BS 5839-1) — Compliar" />
+    <meta name="twitter:description" content="What a fire alarm commissioning certificate records under BS 5839-1, who signs it, how it differs from the installation and acceptance certificates, what to check before you sign, and how Compliar lays it out. Guide for UK contractors." />
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Compliar",
+        "item": "https://compliar.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Resources",
+        "item": "https://compliar.co.uk/resources/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Fire alarm commissioning certificate",
+        "item": "https://compliar.co.uk/fire-alarm-commissioning-certificate/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who signs a fire alarm commissioning certificate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The organisation that commissioned the system, through a competent commissioning engineer. If the same company designed and installed the system it also signs the design and installation certificates; the customer signs the acceptance certificate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the commissioning certificate the same as the installation certificate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The installation certificate confirms the wiring and equipment were installed to the design and the standard. The commissioning certificate confirms the complete system was tested and works as designed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a commissioning certificate mean the system is compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It records that the system was commissioned and tested, and lists any variations and outstanding work. Whether the design is right for the building is a design responsibility, and the certificate does not replace the fire risk assessment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if there is outstanding work on commissioning day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Record it on the certificate. The standard provides for outstanding items to be listed so that nobody later assumes the system was complete. Commission the completed part and say what is still to do."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a verification certificate as well?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only when a third party is asked to check a system installed by someone else. Verification is a separate certificate and a separate exercise from commissioning."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which edition of BS 5839-1 does Compliar reference?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The templates reference BS 5839-1:2025. Clause numbers on this page are for that edition; check the edition your contract names."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can the certificate be filled in with no signal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The field app runs in the phone's browser and saves the certificate on the phone, sending it when back in range. Opening the PDF of a certificate issued offline needs a connection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Certificates are included with every seat, from £35 + VAT per user per month on Lite. There are no per-certificate fees and no contract."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Fire alarm commissioning certificate: what it covers and who signs it",
+    "description": "What a fire alarm commissioning certificate records under BS 5839-1, who signs it, how it differs from the installation and acceptance certificates, what to check before you sign, and how Compliar lays it out. Guide for UK contractors.",
+    "author": {
+      "@type": "Person",
+      "name": "Keiran Sandham"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Compliar Ltd",
+      "url": "https://compliar.co.uk/"
+    },
+    "datePublished": "2026-11-03",
+    "dateModified": "2026-11-03",
+    "mainEntityOfPage": "https://compliar.co.uk/fire-alarm-commissioning-certificate/",
+    "inLanguage": "en-GB"
+  }
+]
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/site.css?v=aa16ffaa9e86" />
+    <script src="/site.js" defer></script>
+    <script src="/cookie-consent.js" defer></script>
+    <script src="/demo-form.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="/" aria-label="Compliar home">
+          <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z" fill="#cf6225"/>
+            <path d="M11 10H18V14H11L10 13V11L11 10Z" fill="#e6a98a"/>
+          </svg>
+          <span class="brand-wordmark">
+            <span class="brand-text">Compliar</span>
+            <span class="brand-badge">UK COMPLIANCE</span>
+          </span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <!-- 1. Disciplines & Trades (three disciplines) -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-disciplines">
+                Disciplines &amp; Trades <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-sectors" id="mega-disciplines" hidden>
+                <div class="sector-mega-grid">
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">1</span><strong>Fire Protection &amp; Life Safety</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/fire-alarm-certificate-software/"><strong>Fire Detection &amp; Alarm Systems</strong> — Commissioning, servicing &amp; modification <span class="std-badge">BS 5839-1 / 5839-6</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Voice Alarm &amp; Evacuation Alert Systems</strong> — Periodic servicing records <span class="std-badge">BS 5839-8 / BS 8629</span></a></li>
+                      <li><a href="/emergency-lighting-testing-guide/"><strong>Emergency Lighting</strong> — Periodic &amp; completion records <span class="std-badge">BS 5266-1</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Extinguishers &amp; Blankets</strong> — Commissioning &amp; annual service <span class="std-badge">BS 5306-3 / BS EN 1869</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Fire Doors</strong> — Inspection records <span class="std-badge">BS 8214</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Dampers, Risers &amp; Smoke Ventilation</strong> — Test records</a></li>
+                      <li><a href="/#standards-matrix"><strong>Sprinklers &amp; Suppression</strong> — Domestic, commercial, gas &amp; kitchen</a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">2</span><strong>Electrical</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EIC</strong> — Electrical Installation Certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>EICR</strong> — Electrical Installation Condition Report <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/eicr-and-electrical-certificate-software/"><strong>Minor Works</strong> — Minor Electrical Installation Works Certificate <span class="std-badge">BS 7671</span></a></li>
+                      <li><a href="/pat-testing-software/"><strong>PAT</strong> — In-service inspection &amp; testing <span class="std-badge">IET Code of Practice</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>EV Charging</strong> — Chargepoint installation records <span class="std-badge">BS 7671 Section 722</span></a></li>
+                    </ul>
+                  </div>
+                  <div class="sector-col">
+                    <div class="sector-col-head"><span class="sector-letter">3</span><strong>Security Systems</strong></div>
+                    <ul class="sector-list">
+                      <li><a href="/cctv-commissioning-maintenance-software/"><strong>CCTV</strong> — Commissioning &amp; maintenance <span class="std-badge">BS EN 62676</span></a></li>
+                      <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Intruder &amp; Hold-Up Alarm Systems</strong> — Grades 2 to 4 <span class="std-badge">BS EN 50131 / PD 6662</span></a></li>
+                      <li><a href="/access-control-door-entry-software/"><strong>Access Control &amp; Door Entry</strong> — Controllers, readers &amp; releases <span class="std-badge">BS EN 60839-11</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Gates, Barriers &amp; Automatic Doors</strong> — Safety checks <span class="std-badge">BS EN 12453 / BS EN 16005</span></a></li>
+                      <li><a href="/#standards-matrix"><strong>Alarm Signalling &amp; Nurse Call</strong> — Service records</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mega-foot-bar">
+                  <span>32 system types across three disciplines, with over 100 certificate and form templates, under one login. Templates reference the standards; the engineer and scheme remain responsible.</span>
+                  <a class="btn btn-primary btn-sm" href="/#standards-matrix">See All Certificates &amp; Templates →</a>
+                </div>
+              </div>
+            </li>
+
+            <!-- Solutions -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-solutions">
+                Solutions <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-solutions" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/fire-log-book-software/">
+                      <div class="disc-top"><strong>Digital Fire Log Book</strong><span class="std-badge">£4 + VAT / site / year</span></div>
+                      <span class="disc-desc">QR stickers, missed-test alerts and a log-book-only account for anyone with sites</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-maintenance-software/">
+                      <div class="disc-top"><strong>Fire Alarm Maintenance &amp; Compliance</strong></div>
+                      <span class="disc-desc">Maintenance plans, certificates, defects to quotes and an offline field app</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/fire-alarm-design-software/">
+                      <div class="disc-top"><strong>Fire Alarm Design</strong><span class="std-badge">Design seat</span></div>
+                      <span class="disc-desc">Zone plans, as-fitted drawings, cable runs and take-offs</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 2. QR Log Books -->
+            <li><a href="/#logbooks">Log Books</a></li>
+
+            <!-- 3. Stickers & Hardware -->
+            <li><a href="/#stickers">Stickers</a></li>
+
+            <!-- 4. Tools Dropdown -->
+            <li class="has-mega">
+              <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega-tools">
+                Tools <span class="chev" aria-hidden="true">▾</span>
+              </button>
+              <div class="mega mega-tools" id="mega-tools" hidden>
+                <ul class="disc-grid disc-grid-single">
+                  <li>
+                    <a class="disc-item" href="/#battery-calculator">
+                      <div class="disc-top"><strong>Interactive Demonstration Battery Calculator</strong><span class="std-badge">BS 5839-1</span></div>
+                      <span class="disc-desc">Illustrative 12V / 24V standby &amp; alarm capacity calculator with copyable summary</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#roi-calculator">
+                      <div class="disc-top"><strong>Time &amp; Cost Calculator</strong><span class="std-badge">Your Figures</span></div>
+                      <span class="disc-desc">Work out admin time and cost from your own numbers, minus the Compliar subscription</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#logbook-demo">
+                      <div class="disc-top"><strong>Live Interactive QR Logbook Demo</strong><span class="std-badge">Live Preview</span></div>
+                      <span class="disc-desc">See what people with a log book account see when they scan a panel sticker</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="disc-item" href="/#stickers">
+                      <div class="disc-top"><strong>Printable Sticker &amp; Tag Studio</strong><span class="std-badge">300 DPI + Thermal</span></div>
+                      <span class="disc-desc">Preview real Harbourview QR tags, BS 5839-1 false alarm notices &amp; EM failed labels</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- 5. About -->
+            <li><a href="/#about">About</a></li>
+
+            <!-- 6. Pricing / ROI -->
+            <li><a href="/#pricing">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-ghost-on-navy btn-sm nav-interactive-cta" href="/#logbook-demo">Interactive Demo</a>
+          <a class="btn btn-primary btn-sm" href="/#contact-form">Book a Demo</a>
+        </div>
+
+        <details class="mobile-menu">
+          <summary aria-label="Toggle navigation menu">Menu <span aria-hidden="true">☰</span></summary>
+          <nav aria-label="Mobile navigation">
+            <ul>
+              <li>
+                <details>
+                  <summary>Disciplines &amp; Trades</summary>
+                  <ul>
+                    <li><a href="/fire-alarm-certificate-software/"><strong>Fire protection and life safety:</strong> fire detection and alarm systems, emergency lighting, extinguishers, doors, suppression <span class="std-badge-inline">BS&nbsp;5839&nbsp;/&nbsp;BS&nbsp;5266-1</span></a></li>
+                    <li><a href="/eicr-and-electrical-certificate-software/"><strong>Electrical:</strong> EIC, EICR, minor works, PAT, EV charging <span class="std-badge-inline">BS&nbsp;7671&nbsp;/&nbsp;IET&nbsp;Code&nbsp;of&nbsp;Practice</span></a></li>
+                    <li><a href="/intruder-alarm-grades-maintenance-guide/"><strong>Security systems:</strong> CCTV, intruder and hold-up alarm systems, access control, gates <span class="std-badge-inline">BS&nbsp;EN&nbsp;50131&nbsp;/&nbsp;BS&nbsp;EN&nbsp;62676</span></a></li>
+                    <li><a href="/#standards-matrix">See All Certificates &amp; Templates →</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Solutions</summary>
+                  <ul>
+                    <li><a href="/fire-log-book-software/">Digital Fire Log Book</a></li>
+                    <li><a href="/fire-alarm-maintenance-software/">Fire Alarm Maintenance &amp; Compliance</a></li>
+                    <li><a href="/fire-alarm-design-software/">Fire Alarm Design</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/#logbooks">Log Books</a></li>
+              <li><a href="/#stickers">Stickers</a></li>
+              <li>
+                <details>
+                  <summary>Tools</summary>
+                  <ul>
+                    <li><a href="/#battery-calculator">Interactive Demonstration Battery Calculator</a></li>
+                    <li><a href="/#roi-calculator">Time &amp; Cost Calculator</a></li>
+                    <li><a href="/#logbook-demo">Live Interactive QR Logbook Demo</a></li>
+                    <li><a href="/#stickers">Printable Sticker &amp; Tag Studio</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#pricing">Pricing</a></li>
+              <li><a href="/#logbook-demo">Interactive Demo</a></li>
+              <li><a href="/#contact-form">Book a Demo</a></li>
+              <li><a href="https://app.compliar.co.uk" target="_blank" rel="noopener">Log In ↗</a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-intro">
+        <div class="wrap">
+          <div class="crumbs">
+            <a href="/">Compliar</a><i>/</i><a href="/resources/">Resources</a><i>/</i>Fire alarm commissioning certificate
+          </div>
+          <div class="eyebrow">Fire · Guide</div>
+          <h1>Fire alarm commissioning certificate: what it covers and who signs it</h1>
+          <p>BS 5839-1 provides for a certificate at each stage of a new fire detection and alarm system: design, installation, commissioning and acceptance. This guide is about the commissioning one: what it records, how it fits with the others, what to check before you sign it and the mistakes that cause trouble at handover or at a scheme audit.</p>
+        </div>
+      </section>
+      <section class="band">
+        <div class="wrap">
+          <div class="prose">
+            <p><strong>General guidance only. Check the standard itself and take advice from your own competent person for the job in front of you.</strong> Clause and annex references are to BS 5839-1:2025; earlier editions number things differently, so check the edition you are working to. Last reviewed 3 November 2026.</p>
+            <h2>Four certificates, four responsibilities</h2>
+            <p>A new non-domestic fire detection and alarm system is rarely designed, installed and commissioned by one person, and BS 5839-1 keeps the responsibilities apart by providing a model certificate for each stage in Annex G. Each one is signed by the organisation that did that part of the work:</p>
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead>
+                  <tr><th>Certificate</th><th>Who signs</th><th>What it confirms</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th>Design</th><td>The designer</td><td>The system category, the extent of coverage, the design decisions and any agreed variations from the standard.</td></tr>
+                  <tr><th>Installation</th><td>The installer</td><td>That the wiring and equipment were installed to the design and to the standard, with the installer's tests done.</td></tr>
+                  <tr><th>Commissioning</th><td>The commissioning engineer</td><td>That the complete system was tested and works as designed, with any variations and outstanding items recorded.</td></tr>
+                  <tr><th>Acceptance</th><td>The user or purchaser</td><td>That the system, the documentation and the training have been handed over and accepted.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Where one company does everything, it signs all four. Where the installer and commissioning engineer are different companies, each signs its own, and the acceptance certificate is where the customer confirms they received the lot. A separate verification certificate exists for the case where a third party is asked to check an installed system; in Compliar it is a separate template.</p>
+            <h2>What the commissioning certificate records</h2>
+            <p>Commissioning is the point at which someone takes responsibility for saying the system works. BS 5839-1 Section 5 sets out what has to be done, and the model certificate in Annex G reflects it. In practice the certificate records:</p>
+            <ul>
+              <li><strong>The premises and the system.</strong> Site, the designed category (L1 to L5, M, P1 or P2), the panel, the number of zones or loops, and the extent of the system being commissioned, including any part that is not yet complete.</li>
+              <li><strong>Every device tested.</strong> Each detector, manual call point, sounder, visual alarm device and interface operated and shown to work, and the addresses or zone text checked against the zone plan.</li>
+              <li><strong>Cause and effect.</strong> That the programmed cause and effect matches the design: which devices trigger which outputs, delays, staged alarms, plant shutdowns, door releases and lift grounding.</li>
+              <li><strong>Sound and visual alarm levels.</strong> Sound pressure levels at the required points, and visual alarm coverage where it is relied on.</li>
+              <li><strong>Standby power.</strong> The standby battery capacity against the system's quiescent and alarm loads for the required standby and alarm durations. The <a href="/fire-alarm-battery-calculator/">battery calculator</a> shows the arithmetic.</li>
+              <li><strong>Alarm transmission.</strong> That signals reach the alarm receiving centre, where the system is monitored, and that fault signals are received too.</li>
+              <li><strong>Documentation.</strong> That the as-fitted drawings, zone plan, operating instructions, log book and the installer's test results are in place.</li>
+              <li><strong>Variations and outstanding work.</strong> Any agreed departure from the standard, and anything not finished at the date of commissioning, so that nobody later assumes it was.</li>
+              <li><strong>False alarm precautions.</strong> That the measures to limit false alarms were considered and that the user has been told how to manage them.</li>
+            </ul>
+            <p>The exact wording of the model certificate, and the list of items under each heading, is in the standard. Use it as the reference, not this page.</p>
+          </div>
+        </div>
+      </section>
+      <section class="band" style="background: var(--cream-2)">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="eyebrow">Before you sign</div>
+            <h2>What to check on commissioning day</h2>
+          </div>
+          <div class="card-grid">
+            <div class="roadmap-card">
+              <h4>Addressable or conventional</h4>
+              <p>On an addressable system, walk the loop and confirm every address reads at the panel with the right location text. On a conventional system, confirm each zone's devices operate and that the zone text on the panel matches the zone plan.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Zone plan at the panel</h4>
+              <p>The zone plan is part of the system, not an extra. Check it is fixed next to the panel, that it is orientated the way the reader faces, and that it matches the as-fitted drawing. Our <a href="/how-to-create-a-fire-alarm-zone-plan/">zone plan guide</a> covers what it has to show.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Batteries, not just the label</h4>
+              <p>Measure the quiescent and alarm currents rather than copying them from the design. If the as-installed loads are higher than the design assumed, the fitted batteries may be too small.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Interfaces one by one</h4>
+              <p>Door holders, access control releases, lift recall, plant shutdown, gas valves: operate each one from a real alarm, not from the panel's test menu, and record the result for each.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Sound levels where it matters</h4>
+              <p>Take readings in the places people sleep or work with the doors shut, not only in corridors. Record the level and the location.</p>
+            </div>
+            <div class="roadmap-card">
+              <h4>Tell the ARC</h4>
+              <p>Put the system on test with the alarm receiving centre before you start, confirm fire and fault signals both arrive, and take it off test when you finish. Record the time of each.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="band">
+        <div class="wrap">
+          <div class="prose">
+            <h2>Common mistakes</h2>
+            <ul>
+              <li><strong>Commissioning before the installation is finished.</strong> If there is outstanding work, the certificate must say so. A clean certificate on an unfinished system is the thing an auditor, or a fire investigator, will find first.</li>
+              <li><strong>Copying the design loads.</strong> Measured loads are what the standby battery calculation needs.</li>
+              <li><strong>One tick for cause and effect.</strong> Record the matrix item by item. "Cause and effect checked" tells the next engineer nothing about which outputs were operated.</li>
+              <li><strong>Variations that are not written down.</strong> A department store that agreed to keep manual call points off the shop floor has a variation. If it is not on the design and commissioning certificates, the next servicing engineer will raise it as a defect.</li>
+              <li><strong>No handover of the log book.</strong> The log book is where the user records the weekly test and every event afterwards. Hand it over, show them how to use it, and record that you did on the acceptance certificate.</li>
+              <li><strong>Mixing up commissioning and verification.</strong> Verification is an independent check of a system someone else installed. If you are asked to verify, use the verification certificate.</li>
+            </ul>
+            <h2>How Compliar lays it out</h2>
+            <p>Compliar has a template for each of the BS 5839-1:2025 certificates: design, installation, commissioning, acceptance and handover, verification and modification, plus the periodic inspection and servicing certificate for the visits that follow. The commissioning certificate is worked down in sections in the order you do the job: commissioning scope, system operational checks, interfaces and alarm transmission, then documentation, false alarms and any outstanding work.</p>
+            <p>The engineer fills it in on a phone on site, with photos and signatures captured on the device, and it keeps working with no signal. The standby battery readings sit in the certificate next to the panel and PSU readings, with the <a href="/fire-alarm-battery-calculator/">capacity calculation</a> a tap away. When the certificate is issued it is sent to the customer as a branded PDF, held against the site, and visible in the site's <a href="/fire-log-book-software/">digital log book</a> and to the customer's portal login. Issued certificates cannot be deleted, and any later edit needs a reason that is logged.</p>
+            <p>Compliar provides record-keeping and certificate workflows. The templates are laid out to BS 5839-1; the competent commissioning engineer, and your scheme, remain responsible for the work and for what is certified.</p>
+            <div class="more-links">
+              <a href="/fire-alarm-certificate-software/">Fire alarm certificate software</a>
+              <a href="/fire-alarm-as-fitted-drawings/">As-fitted drawings guide</a>
+              <a href="/fire-alarm-om-manual/">O&amp;M manual guide</a>
+              <a href="/fire-alarm-servicing-guide/">Servicing guide</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band faq" id="faq">
+        <div class="wrap">
+          <div class="section-head center">
+            <div class="eyebrow">FAQ</div>
+            <h2>Common questions</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Who signs a fire alarm commissioning certificate?</summary>
+              <p>The organisation that commissioned the system, through a competent commissioning engineer. If the same company designed and installed the system it also signs the design and installation certificates; the customer signs the acceptance certificate.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is the commissioning certificate the same as the installation certificate?</summary>
+              <p>No. The installation certificate confirms the wiring and equipment were installed to the design and the standard. The commissioning certificate confirms the complete system was tested and works as designed.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Does a commissioning certificate mean the system is compliant?</summary>
+              <p>It records that the system was commissioned and tested, and lists any variations and outstanding work. Whether the design is right for the building is a design responsibility, and the certificate does not replace the fire risk assessment.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What if there is outstanding work on commissioning day?</summary>
+              <p>Record it on the certificate. The standard provides for outstanding items to be listed so that nobody later assumes the system was complete. Commission the completed part and say what is still to do.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Do I need a verification certificate as well?</summary>
+              <p>Only when a third party is asked to check a system installed by someone else. Verification is a separate certificate and a separate exercise from commissioning.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Which edition of BS 5839-1 does Compliar reference?</summary>
+              <p>The templates reference BS 5839-1:2025. Clause numbers on this page are for that edition; check the edition your contract names.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can the certificate be filled in with no signal?</summary>
+              <p>Yes. The field app runs in the phone&#x27;s browser and saves the certificate on the phone, sending it when back in range. Opening the PDF of a certificate issued offline needs a connection.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What does it cost?</summary>
+              <p>Certificates are included with every seat, from £35 + VAT per user per month on Lite. There are no per-certificate fees and no contract.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="final-cta band">
+        <div class="wrap">
+          <h2>See the commissioning certificate filled in on a phone</h2>
+          <p>Book a demo on your own jobs and Keiran will walk through commissioning, acceptance and the first service. Certificates are included with every seat, with no per-certificate fees.</p>
+          <div class="final-ctas">
+            <a class="btn btn-primary" href="/contact?subject=Demo+request" data-demo-open>Book a demo with Keiran</a>
+            <a class="btn btn-ghost-on-navy" href="/pricing/">See pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap foot-grid">
+        <div>
+          <a class="foot-brand" href="/"
+            ><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 4H8L4 8V16L8 20H20V16H10L8 14V10L10 8H20V4Z"
+                fill="#cf6225"
+              /></svg
+            >Compliar</a
+          >
+          <p class="footer-intro">
+            Less admin. More time for the job.<br />Built for UK electrical, fire protection and life safety, and security contractors.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/getting-started/">Getting started</a></li>
+            <li><a href="/features/">Features</a></li>
+            <li><a href="/fire-log-book-software/">Digital fire log book</a></li>
+            <li><a href="/fire-alarm-maintenance-software/">Fire alarm maintenance</a></li>
+            <li><a href="/fire-alarm-design-software/">Fire alarm design</a></li>
+            <li><a href="/log-book/">Log book</a></li>
+            <li><a href="/pricing/">Pricing</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/faqs/">FAQs</a></li>
+            <li><a href="/resources/">Resources</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Guides &amp; tools</h2>
+          <ul>
+            <li>
+              <a href="/fire-alarm-battery-calculator/">Battery calculator</a>
+            </li>
+            <li>
+              <a href="/intruder-alarm-battery-calculator/">Intruder alarm battery calculator</a>
+            </li>
+            <li>
+              <a href="/fire-alarm-certificate-software/"
+                >Fire alarm certificates</a
+              >
+            </li>
+            <li>
+              <a href="/eicr-and-electrical-certificate-software/"
+                >Electrical certificates</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Legal</h2>
+          <ul>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy/#security">Security &amp; Data Protection</a></li>
+                        <li><a href="/cookies/">Cookies</a></li>
+            <li hidden><button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h2>Let's talk</h2>
+          <ul>
+            <li>
+              <a href="mailto:enquiry@compliar.co.uk">enquiry@compliar.co.uk</a>
+            </li>
+            <li>
+              <a href="/contact/">Contact &amp; demos ↗</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap foot-bottom">
+        <span>© 2026 COMPLIAR LTD · Built in the UK</span
+        ><span
+          >COMPLIAR LTD is registered in England and Wales, company number 17519777. Registered
+          office: 11 Wakefield Drive, Endmoor, Kendal, LA8 0BF. ICO registration ZC278853.</span
+        >
+      </div>
+    </footer>
+      <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "abdf47c963bb43d086fd6fa762c45059"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
