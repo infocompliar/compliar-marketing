@@ -65,10 +65,6 @@
             <input id="df-email-${id}" name="email" type="email" autocomplete="email" placeholder="david@yourcompany.co.uk" required />
           </div>
           <div>
-            <label for="df-phone-${id}">Phone Number *</label>
-            <input id="df-phone-${id}" name="phone" type="tel" autocomplete="tel" placeholder="07700 900123" required />
-          </div>
-          <div>
             <label for="df-company-${id}">Company Name *</label>
             <input id="df-company-${id}" name="company" type="text" autocomplete="organization" placeholder="Harbourview Fire & Security Ltd" required />
           </div>
@@ -117,7 +113,6 @@
         from_name: "Compliar website",
         name: form.elements.name.value.trim(),
         email: form.elements.email.value.trim(),
-        phone: form.elements.phone.value.trim(),
         company: form.elements.company.value.trim(),
         team_size: form.elements.team_size.value || "Not specified",
         disciplines: disciplines.join(", ") || "Not specified",
