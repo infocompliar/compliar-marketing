@@ -10,11 +10,17 @@
   const PREFS_KEY = "compliar_cookie_prefs";
   const SIZES = ["1–3", "4–10", "11–25", "25+"];
   const DISCIPLINES = [
+    "Fire detection and alarm",
+    "Emergency lighting",
     "Electrical",
-    "Fire Alarms",
-    "Emergency Lighting",
-    "Security & Access",
-    "Passive Fire",
+    "Security systems",
+    "Passive fire",
+  ];
+  const USING_TODAY = [
+    "Paper and spreadsheets",
+    "Certificate-only software",
+    "Job management software",
+    "A mix of the above",
   ];
   let uid = 0;
 
@@ -85,6 +91,13 @@
           </fieldset>
         </div>
         <div>
+          <label for="df-using-${id}">What do you use today?</label>
+          <select id="df-using-${id}" name="using_today">
+            <option value="">Select one…</option>
+            ${USING_TODAY.map((u) => `<option value="${u}">${u}</option>`).join("")}
+          </select>
+        </div>
+        <div>
           <label for="df-message-${id}">Optional Message / Requirements</label>
           <textarea id="df-message-${id}" name="message" rows="3" placeholder="Tell us about your current certificate software, log books, or any specific BS workflows you want to see…"></textarea>
         </div>
@@ -116,6 +129,7 @@
         company: form.elements.company.value.trim(),
         team_size: form.elements.team_size.value || "Not specified",
         disciplines: disciplines.join(", ") || "Not specified",
+        using_today: form.elements.using_today.value || "Not specified",
         message: form.elements.message.value.trim() || "None provided",
         engineers_from_calculator: form.dataset.engineers || (options.engineers ? String(options.engineers) : ""),
         page: location.href,
