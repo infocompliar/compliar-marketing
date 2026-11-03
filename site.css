@@ -7394,3 +7394,53 @@ header.nav .nav-cta a.btn.btn-primary:hover {
 .breadth-badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0 0 20px;padding:0}
 .breadth-badges li{font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;background:#eef3f8;color:#141d2a;border:1px solid #d7e0ea}
 .app-note{margin-top:12px}
+
+/* Disciplines section: each system group collapses to its header (3 Nov 2026) */
+.taxonomy-hint {
+  margin: 0 0 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+details.taxonomy-block {
+  padding: 0;
+}
+details.taxonomy-block > summary.taxonomy-header {
+  margin: 0;
+  padding: 16px clamp(20px, 3vw, 28px);
+  border-bottom: 0;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 52px;
+}
+details.taxonomy-block > summary.taxonomy-header::-webkit-details-marker {
+  display: none;
+}
+details.taxonomy-block > summary.taxonomy-header::after {
+  content: "";
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.15s ease;
+}
+details.taxonomy-block[open] > summary.taxonomy-header {
+  border-bottom: 1px solid #dde3ea;
+}
+details.taxonomy-block[open] > summary.taxonomy-header::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+details.taxonomy-block > summary.taxonomy-header:hover h3 {
+  color: var(--orange-deep);
+}
+details.taxonomy-block > .taxonomy-cards {
+  padding: 18px clamp(20px, 3vw, 28px) clamp(20px, 3vw, 28px);
+}
+.taxonomy-sectors {
+  display: grid;
+  gap: 12px;
+}

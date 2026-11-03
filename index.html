@@ -75,7 +75,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=ff39269f12b4" />
+    <link rel="stylesheet" href="/site.css?v=0bcd3e013a86" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
@@ -488,16 +488,6 @@
             </div>
           </div>
 
-          <ul class="breadth-badges" aria-label="What Compliar covers">
-            <li>Fire alarms</li>
-            <li>Emergency lighting</li>
-            <li>Extinguishers and passive fire</li>
-            <li>Suppression</li>
-            <li>Intruder alarms</li>
-            <li>CCTV</li>
-            <li>Access control</li>
-            <li>Electrical installation and testing</li>
-          </ul>
 
           <div class="sector-filter-bar" role="tablist" aria-label="Filter by discipline">
             <button type="button" class="sector-tab active" data-sector-filter="all" role="tab" aria-selected="true">All three disciplines</button>
@@ -506,15 +496,16 @@
             <button type="button" class="sector-tab" data-sector-filter="security" role="tab" aria-selected="false">Security systems</button>
           </div>
 
+          <p class="taxonomy-hint">Tap a system group to see its templates and the standards they reference.</p>
           <div class="taxonomy-sectors">
-            <article class="taxonomy-block" data-sector="fire">
-              <header class="taxonomy-header">
+            <details class="taxonomy-block" data-sector="fire">
+              <summary class="taxonomy-header">
                 <span class="taxonomy-badge">Fire protection and life safety</span>
                 <div>
                   <h3>Fire detection and alarm systems</h3>
                   <p>Templates for commissioning, servicing and modification records, plus false alarm investigation records.</p>
                 </div>
-              </header>
+              </summary>
               <div class="taxonomy-cards">
                 <div class="tax-card">
                   <div class="tax-card-top"><strong>Fire detection and alarm systems (non-domestic)</strong><span class="tax-std">BS 5839-1</span></div>
@@ -533,15 +524,15 @@
                   <p>Investigation records, and notice stickers you can print for the panel.</p>
                 </div>
               </div>
-            </article>
-            <article class="taxonomy-block" data-sector="fire">
-              <header class="taxonomy-header">
+            </details>
+            <details class="taxonomy-block" data-sector="fire">
+              <summary class="taxonomy-header">
                 <span class="taxonomy-badge">Fire protection and life safety</span>
                 <div>
                   <h3>Emergency lighting</h3>
                   <p>Periodic inspection and completion records, with a FAILED sticker you can print for a failed fitting.</p>
                 </div>
-              </header>
+              </summary>
               <div class="taxonomy-cards">
                 <div class="tax-card">
                   <div class="tax-card-top"><strong>Periodic inspection and discharge test</strong><span class="tax-std">BS 5266-1 · BS EN 50172</span></div>
@@ -552,15 +543,15 @@
                   <p>Completion and commissioning certificates for new installations.</p>
                 </div>
               </div>
-            </article>
-            <article class="taxonomy-block" data-sector="fire">
-              <header class="taxonomy-header">
+            </details>
+            <details class="taxonomy-block" data-sector="fire">
+              <summary class="taxonomy-header">
                 <span class="taxonomy-badge">Fire protection and life safety</span>
                 <div>
                   <h3>Extinguishers, passive fire and suppression</h3>
                   <p>Asset-level records for the systems that sit around the alarm panel.</p>
                 </div>
-              </header>
+              </summary>
               <div class="taxonomy-cards">
                 <div class="tax-card">
                   <div class="tax-card-top"><strong><a href="/fire-extinguisher-servicing-guide/" style="color:inherit">Fire extinguishers</a></strong><span class="tax-std">BS 5306-3</span></div>
@@ -579,15 +570,15 @@
                   <p>Domestic (BS 9251) and commercial (BS EN 12845) sprinklers, pumps, gas and kitchen suppression.</p>
                 </div>
               </div>
-            </article>
-            <article class="taxonomy-block" data-sector="electrical">
-              <header class="taxonomy-header">
+            </details>
+            <details class="taxonomy-block" data-sector="electrical">
+              <summary class="taxonomy-header">
                 <span class="taxonomy-badge">Electrical</span>
                 <div>
                   <h3>Electrical installation and testing</h3>
                   <p>Certificates and reports for installation, periodic inspection and equipment testing.</p>
                 </div>
-              </header>
+              </summary>
               <div class="taxonomy-cards">
                 <div class="tax-card">
                   <div class="tax-card-top"><strong>EIC</strong><span class="tax-std">BS 7671</span></div>
@@ -610,15 +601,15 @@
                   <p>Installation records for electric vehicle charging equipment.</p>
                 </div>
               </div>
-            </article>
-            <article class="taxonomy-block" data-sector="security">
-              <header class="taxonomy-header">
+            </details>
+            <details class="taxonomy-block" data-sector="security">
+              <summary class="taxonomy-header">
                 <span class="taxonomy-badge">Security systems</span>
                 <div>
                   <h3>Security, CCTV and access control</h3>
                   <p>Records for intruder, CCTV, access control and related systems.</p>
                 </div>
-              </header>
+              </summary>
               <div class="taxonomy-cards">
                 <div class="tax-card">
                   <div class="tax-card-top"><strong><a href="/cctv-commissioning-maintenance-software/" style="color:inherit">CCTV</a></strong><span class="tax-std">BS EN 62676</span></div>
@@ -641,7 +632,7 @@
                   <p>Service records for signalling and nurse call systems.</p>
                 </div>
               </div>
-            </article>
+            </details>
           </div>
         </div>
       </section>
