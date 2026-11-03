@@ -102,6 +102,38 @@
     },
     {
       "@type": "Question",
+      "name": "How often should an intruder alarm be maintained?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The usual pattern is two visits a year for a monitored system and one for an audible-only system, with PD 6662 allowing part of the routine to be done remotely for some systems. Check the edition your contract names and your scheme document."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put the ARC on test from the app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The site's monitoring and ARC details are held against the site and shown on the job, so the engineer has the reference and number to hand. Note the on-test and off-test times on the visit; Compliar does not connect to the ARC itself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the certificate show the battery limits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The panel check shows the charge voltage limits beside each reading, so an out-of-range value is visible on the phone, and the standby battery check sits on the same certificate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can engineers see the site's history on the phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The job shows the site's open defects and previous visits, so the engineer knows what was found last time before they start."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "What does it cost?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -392,6 +424,41 @@
         </div>
       </section>
 
+      <section class="v2-section" aria-labelledby="depth-h">
+        <div class="wrap">
+          <div class="v2-head">
+            <span class="v2-kicker">What to check</span>
+            <h2 class="v2-h2" id="depth-h">A maintenance visit, in the order engineers do it</h2>
+          </div>
+          <div class="prose">
+            <p><strong>General guidance only.</strong> PD 6662 and the BS EN 50131 series set the requirements; check the edition your contract names and your scheme document. Last reviewed 3 November 2026.</p>
+            <h3>How often</h3>
+            <p>The usual pattern for a monitored intruder and hold-up alarm system is two maintenance visits a year, and for an audible-only system one. PD 6662 allows part of that routine to be done remotely for some systems, and your contract and scheme may say more. Compliar's maintenance plan holds the frequency per site, generates the routine jobs ahead of time and keeps the due date fixed, so a visit done early or late does not drift the cycle.</p>
+            <h3>What the visit covers</h3>
+            <ul>
+              <li><strong>Panel and power.</strong> Mains present, charger output, standby battery voltage and condition, and the battery's age against its replacement date. The certificate shows the limits beside each reading, so an out-of-range value is obvious on the phone, not back at the office.</li>
+              <li><strong>Standby duration.</strong> The standby time a grade needs depends on the grade and on whether a mains failure is signalled. The <a href="/intruder-alarm-battery-calculator/">intruder alarm battery calculator</a> works the capacity through for Grade 2 and Grade 3.</li>
+              <li><strong>Every detector and contact.</strong> Walk test each zone, check tamper, and confirm masking and anti-masking where the grade requires it. Record a result per device so that a detector that was never walked is shown as not tested, not as a pass.</li>
+              <li><strong>Hold-up devices.</strong> Operate each one and confirm the signal, with the ARC on test.</li>
+              <li><strong>Signalling.</strong> Fire and fault signals both reach the alarm receiving centre; the path fault is reported; the ARC's reference and the keyholders on file are still right.</li>
+              <li><strong>Sounders and strobes.</strong> Internal and external devices operate, and the external sounder's own battery is checked where fitted.</li>
+              <li><strong>Settings and users.</strong> Time and date, user codes still appropriate, no engineer defaults left in, event log reviewed for repeated false activations.</li>
+            </ul>
+            <h3>Worked example</h3>
+            <p>On the Harbourview sample site a Grade 3 system has 14 detectors across six zones, a hold-up button at reception and a dual-path signalling unit. On the six-monthly visit the engineer walks each zone from the phone, marking Pass or Fail per device; the panel readings go in with the limits shown; the ARC is put on test using the monitoring details held against the site; the hold-up button is operated and the signal confirmed. A PIR in the stock room fails its walk test twice. It is marked Fail with a photo, becomes a defect with a Needs quoting status, and the office raises a defect quote that evening. The certificate goes to the customer as a PDF from the job, with the two open defects shown.</p>
+            <h3>Common mistakes</h3>
+            <ul>
+              <li><strong>Copying last visit's readings.</strong> Battery voltage drifts; the point of the record is the trend.</li>
+              <li><strong>Walk-testing from the panel log only.</strong> A detector that reports to the panel can still be misaligned or masked.</li>
+              <li><strong>Forgetting to take the system off test.</strong> Record the on and off times on the visit.</li>
+              <li><strong>Leaving the defect in the notes.</strong> A fault written in free text never becomes a quote. Raise it as a defect so it is tracked to resolved.</li>
+              <li><strong>Certificates that look like scheme certificates.</strong> Compliar's intruder records say plainly that they are your own record and not a certificate issued under an inspectorate scheme.</li>
+            </ul>
+            <p>See also the <a href="/intruder-alarm-grades-maintenance-guide/">grades and maintenance guide</a>, <a href="/what-is-a-grade-3-intruder-alarm/">what a Grade 3 system is</a>, and the <a href="/nsi-ssaib-audit-records-guide/">records a scheme audit asks for</a>.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="v2-section v2-white" aria-labelledby="faq-h">
         <div class="wrap">
           <div class="v2-head">
@@ -410,6 +477,22 @@
             <details class="faq-item">
               <summary>Is the commissioning record an inspectorate certificate?</summary>
               <p>No. It is your own record of the commissioning and says so. Compliar is not approved by or affiliated with any standards body or scheme, and the engineer remains responsible for the work.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How often should an intruder alarm be maintained?</summary>
+              <p>The usual pattern is two visits a year for a monitored system and one for an audible-only system, with PD 6662 allowing part of the routine to be done remotely for some systems. Check the edition your contract names and your scheme document.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can I put the ARC on test from the app?</summary>
+              <p>The site&#x27;s monitoring and ARC details are held against the site and shown on the job, so the engineer has the reference and number to hand. Note the on-test and off-test times on the visit; Compliar does not connect to the ARC itself.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Does the certificate show the battery limits?</summary>
+              <p>Yes. The panel check shows the charge voltage limits beside each reading, so an out-of-range value is visible on the phone, and the standby battery check sits on the same certificate.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can engineers see the site&#x27;s history on the phone?</summary>
+              <p>Yes. The job shows the site&#x27;s open defects and previous visits, so the engineer knows what was found last time before they start.</p>
             </details>
             <details class="faq-item">
               <summary>What does it cost?</summary>

@@ -128,6 +128,30 @@
       },
       {
         "@type": "Question",
+        "name": "How do I record the fire alarm release test for each door?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hold each door as an asset on the site and record the result of the release check per door on the visit. Note the BS 7273-4 category the design gave the door so the next engineer knows what it should do."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can doors and controllers be held separately?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Controllers, readers and door releases can each be assets with their own history, so a fault at one door is recorded against that door."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the service record show open defects?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Defects raised on the visit are listed on the job and shown with the record sent to the customer, and they stay open until resolved."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "What does it cost?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -466,6 +490,39 @@
         </div>
       </section>
 
+      <section class="band" style="background: var(--cream-2)">
+        <div class="wrap">
+          <div class="prose">
+            <div class="eyebrow" style="color: var(--orange-deep)">What to check</div>
+            <h2>Doors that release, doors that hold, and the fire alarm</h2>
+            <p><strong>General guidance only.</strong> BS EN 60839-11-1 covers electronic access control systems; BS 7273-4 covers how electrically locked doors on escape routes release on a fire alarm. Check the editions your specification names and your scheme document. Last reviewed 3 November 2026.</p>
+            <h3>The question that matters most</h3>
+            <p>Every electrically locked door on an escape route has to release when people need to get out, and BS 7273-4 is the standard for how that is arranged with the fire detection and alarm system. It describes categories of actuation, from doors that release on any fire signal to doors that release only on a local one, and the design decides which applies to each door. The commissioning record should name the category for each door and the check that it releases as intended, with the fire alarm actually operated rather than simulated. That is the item a fire risk assessor or a scheme auditor goes straight to.</p>
+            <h3>Commissioning, door by door</h3>
+            <ul>
+              <li><strong>Reader and credential.</strong> Valid credential opens, invalid does not, and the event is logged with the right door name.</li>
+              <li><strong>Release and relock.</strong> The lock, magnet or strike releases on a valid read and on the request-to-exit device, and relocks within the set time.</li>
+              <li><strong>Fail-safe or fail-secure.</strong> What the door does on power loss, and whether that is what the escape route needs.</li>
+              <li><strong>Emergency release.</strong> Break-glass or green box at the door operates the release directly, not through the controller.</li>
+              <li><strong>Fire alarm interface.</strong> Operate the fire alarm and confirm each door releases per its category, then confirm it relocks on reset only where that is intended.</li>
+              <li><strong>Door closer and monitoring.</strong> The door closes and latches on its own, and door-forced and door-held-open alarms report correctly.</li>
+              <li><strong>Controller and power.</strong> Controller location, what it serves, standby battery and the network or cabling it depends on.</li>
+            </ul>
+            <h3>Worked example</h3>
+            <p>On the Harbourview sample site there are eight controlled doors on two controllers. On the annual visit the engineer works down the doors from the asset list on the phone, recording the read, release, relock and emergency-release checks for each. With the site's fire detection and alarm system on test, a call point is operated and each escape-route door is checked for release; the plant room door, which is not on an escape route, is confirmed to hold. The first-floor fire door magnet holds after the alarm: it is marked Fail with a photo and becomes a defect with a Needs quoting status. The service record with the open defect goes to the customer from the job the same day.</p>
+            <h3>Common mistakes</h3>
+            <ul>
+              <li><strong>Testing the fire interface from the controller.</strong> Simulating the input proves the controller logic, not the wiring from the fire alarm panel. Operate the alarm.</li>
+              <li><strong>No category recorded per door.</strong> Without it, nobody can say whether the door behaved correctly.</li>
+              <li><strong>Emergency release wired through the controller.</strong> If the controller fails, so does the way out.</li>
+              <li><strong>Doors not held as assets.</strong> A system-level tick hides the one door that was never tested.</li>
+              <li><strong>Credentials never reviewed.</strong> Leavers still active and engineer defaults still in place are findings waiting to happen.</li>
+            </ul>
+            <p>See also the <a href="/fire-alarm-certificate-software/">fire alarm certificate page</a> for the alarm side of the interface, and the <a href="/nsi-ssaib-audit-records-guide/">records a scheme audit asks for</a>.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="band faq" id="faq">
         <div class="wrap">
           <div class="section-head center">
@@ -484,6 +541,18 @@
             <details class="faq-item">
               <summary>Can a failed reader become a quote?</summary>
               <p>Yes. A fault found on a visit can be raised as a defect and quoted without re-typing.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How do I record the fire alarm release test for each door?</summary>
+              <p>Hold each door as an asset on the site and record the result of the release check per door on the visit. Note the BS 7273-4 category the design gave the door so the next engineer knows what it should do.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can doors and controllers be held separately?</summary>
+              <p>Yes. Controllers, readers and door releases can each be assets with their own history, so a fault at one door is recorded against that door.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Does the service record show open defects?</summary>
+              <p>Yes. Defects raised on the visit are listed on the job and shown with the record sent to the customer, and they stay open until resolved.</p>
             </details>
             <details class="faq-item">
               <summary>What does it cost?</summary>
