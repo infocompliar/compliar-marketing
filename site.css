@@ -7390,3 +7390,7 @@ header.nav .nav-cta a.btn.btn-primary:hover {
 
 /* Light sections: use the deeper orange so small eyebrow text passes contrast */
 .logbook-pricing .eyebrow, .onboarding-box .eyebrow, .coverage-heading .eyebrow { color: #a8480d; }
+
+.breadth-badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0 0 20px;padding:0}
+.breadth-badges li{font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;background:#eef3f8;color:#141d2a;border:1px solid #d7e0ea}
+.app-note{margin-top:12px}
