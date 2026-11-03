@@ -1,7 +1,7 @@
 // Preserve links to sections moved off the original homepage.
 const legacySections = {
   features: "/features/",
-  certificates: "/#standards-matrix",
+  certificates: "/features/#coverage-title",
   faq: "/faqs/",
   roadmap: "/about/#roadmap",
 };
