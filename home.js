@@ -430,3 +430,50 @@
     });
   }
 })();
+
+// ---- Hero video: autoplay (muted), enlarge dialog, book-a-demo end card ----
+(() => {
+  const root = document.querySelector("[data-hero-video]");
+  if (!root) return;
+  const video = root.querySelector("video");
+  const end = root.querySelector("[data-hero-video-end]");
+  const enlarge = root.querySelector("[data-hero-video-enlarge]");
+  const dialog = document.querySelector("[data-hero-video-dialog]");
+  const big = dialog && dialog.querySelector("[data-hero-video-big]");
+  const endBig = dialog && dialog.querySelector("[data-hero-video-end-big]");
+  const src = video.querySelector("source")?.getAttribute("src");
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduce) { video.removeAttribute("autoplay"); video.pause(); }
+  else { const p = video.play(); if (p && p.catch) p.catch(() => {}); }
+
+  video.addEventListener("ended", () => { end.hidden = false; });
+  video.addEventListener("play", () => { end.hidden = true; });
+  root.querySelector("[data-hero-video-replay]")?.addEventListener("click", () => {
+    end.hidden = true; video.currentTime = 0; video.play().catch(() => {});
+  });
+
+  if (enlarge && dialog && big && src && typeof dialog.showModal === "function") {
+    enlarge.addEventListener("click", () => {
+      const t = video.ended ? 0 : video.currentTime;
+      video.pause();
+      if (!big.getAttribute("src")) big.setAttribute("src", src);
+      endBig.hidden = true;
+      dialog.showModal();
+      big.currentTime = t;
+      big.muted = false;
+      big.play().catch(() => {});
+    });
+    big.addEventListener("ended", () => { endBig.hidden = false; });
+    big.addEventListener("play", () => { endBig.hidden = true; });
+    dialog.querySelector("[data-hero-video-replay-big]")?.addEventListener("click", () => {
+      endBig.hidden = true; big.currentTime = 0; big.play().catch(() => {});
+    });
+    const close = () => { big.pause(); if (dialog.open) dialog.close(); };
+    dialog.querySelectorAll("[data-hero-video-close]").forEach((b) => b.addEventListener("click", close));
+    dialog.addEventListener("click", (e) => { if (e.target === dialog) close(); });
+    dialog.addEventListener("close", () => big.pause());
+  } else if (enlarge) {
+    enlarge.addEventListener("click", () => { (video.requestFullscreen || video.webkitEnterFullscreen)?.call(video); });
+  }
+})();
