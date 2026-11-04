@@ -4483,6 +4483,16 @@ header.nav .nav-cta .btn-primary:hover {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
 }
+/* Product-page hero record cards are a single list, not the homepage's two-panel layout. */
+.sub-hero .mock-body {
+  display: block;
+}
+.sub-hero .mock .doc-row {
+  gap: 10px;
+}
+.sub-hero .mock .doc-row .doc-amt {
+  text-align: right;
+}
 .mock-map {
   position: relative;
   min-height: 240px;
