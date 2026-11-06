@@ -504,7 +504,7 @@
             <h3>Worked example</h3>
             <p>Standby current 150 mA (0.15 A), Grade 2 standby of 12 hours, alarm current 0.8 A sounding for 15 minutes (0.25 h): 1.25 × (0.15 × 12 + 0.8 × 0.25) = 1.25 × 2.0 = 2.5 Ah. The next common battery size up is 3.2 Ah.</p>
             <h3>Common battery sizes</h3>
-            <p>The calculator rounds up to 1.2, 2.1, 3.2, 7, 9, 12, 17, 24 or 38 Ah. Check the power supply's maximum battery size and charging current before fitting a bigger one.</p>
+            <p>The calculator rounds up to 1.2, 2.1, 2.3, 3.2, 4, 5, 7, 7.2, 9, 12, 17, 18, 24 or 38 Ah. Check the power supply's maximum battery size and charging current before fitting a bigger one.</p>
           </div>
         </div>
       </section>
@@ -655,7 +655,7 @@
       </div>
     </footer>
     <script>
-      function pickSize(c){var s=[1.2,2.1,3.2,7,9,12,17,24,38];for(var i=0;i<s.length;i++){if(s[i]>=c)return s[i];}return null;}
+      function pickSize(c){var s=[1.2,2.1,2.3,3.2,4,5,7,7.2,9,12,17,18,24,38];for(var i=0;i<s.length;i++){if(s[i]>=c)return s[i];}return null;}
       function calcBattery() {
         var iq = parseFloat(document.getElementById("iq").value);
         var ia = parseFloat(document.getElementById("ia").value);
