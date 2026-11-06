@@ -120,7 +120,7 @@
     }
 
     function formatAhSize(s) {
-      return s < 10 ? `${s}.0Ah` : `${s}Ah`;
+      return s < 10 && Number.isInteger(s) ? `${s}.0Ah` : `${s}Ah`;
     }
 
     function computeBattery() {
