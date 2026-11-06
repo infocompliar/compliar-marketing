@@ -412,16 +412,20 @@
   if (shots.length && typeof HTMLDialogElement === "function") {
     const d = document.createElement("dialog");
     d.className = "shot-viewer";
-    d.innerHTML = '<button type="button" aria-label="Close">\u00d7</button><img alt="" /><p></p>';
+    d.innerHTML = '<button type="button" aria-label="Close">\u00d7</button><p></p>';
     document.body.appendChild(d);
-    const img = d.querySelector("img");
     const cap = d.querySelector("p");
+    let img = null;
     d.addEventListener("click", () => d.close());
     shots.forEach((a) => {
       a.addEventListener("click", (e) => {
         e.preventDefault();
         const src = a.querySelector("img");
         const fc = a.closest("figure") && a.closest("figure").querySelector("figcaption strong");
+        if (!img) {
+          img = document.createElement("img");
+          d.insertBefore(img, cap);
+        }
         img.src = a.getAttribute("href");
         img.alt = src ? src.alt : "";
         cap.textContent = fc ? fc.textContent : src ? src.alt : "Compliar Sticker Studio Dialog";
