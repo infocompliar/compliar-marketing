@@ -7529,3 +7529,259 @@ details.taxonomy-block > .taxonomy-cards {
 .mega {
   background: #0d1522;
 }
+
+/* ==========================================================================
+   Visual polish layer, November 2026
+   One place for the cross-page consistency fixes: headline wrapping, a shared
+   hero treatment for the older page-intro pages, one frame for every product
+   screenshot, list rhythm, the Office plan highlight and phone-width tidying.
+   ========================================================================== */
+:root {
+  --frame-line: #d3dae4;
+  --frame-shadow: 0 1px 2px rgba(13, 21, 34, 0.06), 0 18px 40px -20px rgba(13, 21, 34, 0.28);
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+}
+
+/* --- Older page headers take the homepage hero treatment ----------------- */
+.page-intro {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(48px, 6vw, 84px) clamp(44px, 5.5vw, 76px);
+  background:
+    radial-gradient(900px 480px at 85% 10%, rgba(224, 123, 57, 0.16), transparent 60%),
+    radial-gradient(800px 500px at 0% 0%, rgba(70, 110, 170, 0.2), transparent 60%),
+    #0b1220;
+}
+.page-intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+.page-intro > * {
+  position: relative;
+}
+.page-intro h1 {
+  max-width: 21ch;
+  font-size: clamp(2.2rem, 4.4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.05em;
+}
+.page-intro p {
+  max-width: 58ch;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+.band > .wrap > h2,
+.coverage-heading h2,
+.logbook-pricing-head h2,
+.section-head h2,
+.final-cta h2 {
+  font-weight: 600;
+}
+.final-cta {
+  padding-block: clamp(56px, 7vw, 92px);
+  background:
+    radial-gradient(700px 320px at 50% 0%, rgba(224, 123, 57, 0.14), transparent 65%),
+    #0d1522;
+}
+
+/* --- Product landing pages ------------------------------------------------ */
+main:has(.lp-proof) .v2-hero h1 {
+  font-size: clamp(2rem, 3.15vw, 2.9rem);
+}
+.v2-section:has(> .wrap > .lp-prices) {
+  padding-block: clamp(48px, 6vw, 76px);
+}
+.v2-section:has(> .wrap > .lp-prices) .v2-head {
+  margin-bottom: 28px;
+}
+.lp-proof {
+  gap: clamp(24px, 4.5vw, 64px);
+  padding: clamp(28px, 4vw, 48px) 0;
+}
+.lp-proof h3 {
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+/* --- One frame for every product screenshot on a light background -------- */
+.lp-proof-fig img,
+.screens img {
+  background: #fff;
+  border: 1px solid var(--frame-line);
+  box-shadow: var(--frame-shadow);
+}
+.lp-proof-fig.lp-phone img,
+.screens-phone img {
+  border: 7px solid #0d1522;
+  border-radius: 28px;
+  box-shadow:
+    0 0 0 1px rgba(13, 21, 34, 0.5),
+    0 24px 48px -22px rgba(13, 21, 34, 0.45);
+}
+.screens a.shot,
+.screens-phone a.shot {
+  border-radius: 12px;
+}
+.screens-phone a.shot {
+  border-radius: 28px;
+}
+.screens figcaption,
+.lp-proof-fig figcaption {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.screens-desktop {
+  gap: 2rem 1.75rem;
+}
+.screens-phone {
+  margin-top: 2.5rem;
+}
+.v2-white .desk-frame-card,
+.v2-section:not(.v2-dark) .desk-frame-card {
+  box-shadow: 0 24px 44px -26px rgba(13, 21, 34, 0.5);
+}
+.desk-frame-card figcaption span {
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+/* --- List and card rhythm -------------------------------------------------- */
+.price-list li,
+.feat-list li,
+.coverage-card li,
+.onboarding-list li,
+.v2-points li,
+.hp-card li,
+.price-for {
+  line-height: 1.45;
+}
+.onboarding-list li + li {
+  margin-top: 4px;
+}
+.faq-item summary {
+  line-height: 1.4;
+}
+.feature-card,
+.coverage-card,
+.price-card,
+.tax-card,
+.hp-card {
+  border-color: var(--frame-line);
+}
+
+/* --- Pricing: Office is the highlighted seat, as on the homepage ---------- */
+@media (min-width: 900px) {
+  .price-card .price-for {
+    min-height: 5.9em;
+  }
+}
+.price-card-highlight {
+  border: 2px solid var(--orange);
+  box-shadow: 0 18px 40px rgba(224, 123, 57, 0.1);
+}
+.price-card .plan-cta.btn-ghost-on-cream {
+  border-color: #b7c1ce;
+}
+.price-card .plan-cta.btn-ghost-on-cream:hover {
+  border-color: var(--ink);
+}
+
+/* --- Guides: questions line up with the article column -------------------- */
+main:has(> .band > .wrap > .prose:not(.center)) .band.faq .section-head.center {
+  margin-inline: 0;
+  text-align: left;
+}
+main:has(> .band > .wrap > .prose:not(.center)) .band.faq .faq-list {
+  margin-inline: 0;
+}
+
+/* --- Phone widths ----------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* The eight-card screen grids become swipe rails, so the homepage is not
+     sixteen full-height cards long. The next card peeks in as the cue. */
+  .showcase-desks-4,
+  .showcase-desks-3,
+  .showcase-phones-2 {
+    display: flex;
+    gap: 14px;
+    margin-inline: -16px;
+    padding: 4px 16px 18px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(120, 135, 155, 0.6) transparent;
+  }
+  .showcase-desks-4 > *,
+  .showcase-desks-3 > * {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .showcase-phones-2 > * {
+    flex: 0 0 66%;
+    scroll-snap-align: start;
+  }
+  .showcase-phones-2 {
+    justify-content: flex-start;
+  }
+
+  .cookie-banner {
+    left: 8px;
+    right: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom, 0px));
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .cookie-banner-main {
+    gap: 10px;
+  }
+  .cookie-banner p {
+    flex-basis: 100%;
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+  .cookie-actions {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .cookie-actions > * {
+    flex: 1 1 auto;
+    min-height: 44px;
+    padding-inline: 8px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .page-intro h1 {
+    font-size: clamp(1.95rem, 8.6vw, 2.4rem);
+  }
+  .lp-proof-fig.lp-phone img {
+    max-width: 240px;
+  }
+  .screens-desktop {
+    grid-template-columns: 1fr;
+  }
+}
