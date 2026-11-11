@@ -6358,7 +6358,7 @@ html {
 
 /* 5-Sector Mega-Menu */
 .mega.mega-sectors {
-  width: min(1080px, calc(100vw - 32px));
+  width: min(1080px, calc(100% + 32px));
   /* Sit 140px left of the nav container where there is room; otherwise stop
      16px from the viewport edge. The container is min(1180px, 100vw - 64px)
      wide and centred, so its left edge is max(32px, 50vw - 590px). */
