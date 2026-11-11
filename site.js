@@ -46,15 +46,28 @@ if (menu) {
 
   entries.forEach(({ toggle, panel, item }) => {
     let timer;
+    // True while the panel is open only because the pointer hovered over it.
+    let openedByHover = false;
     function set(open) {
       if (open) closeAll(toggle);
+      else openedByHover = false;
       toggle.setAttribute("aria-expanded", String(open));
       panel.hidden = !open;
     }
-    toggle.addEventListener("click", () => set(panel.hidden));
+    toggle.addEventListener("click", () => {
+      // Hover has already opened the panel, so the first click keeps it open
+      // rather than toggling it shut under the pointer.
+      if (openedByHover && !panel.hidden) {
+        openedByHover = false;
+        return;
+      }
+      set(panel.hidden);
+    });
     item.addEventListener("mouseenter", () => {
       clearTimeout(timer);
-      if (hovers()) set(true);
+      if (!hovers()) return;
+      if (panel.hidden) openedByHover = true;
+      set(true);
     });
     item.addEventListener("mouseleave", () => {
       if (hovers()) timer = setTimeout(() => set(false), 120);

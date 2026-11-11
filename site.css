@@ -7495,3 +7495,38 @@ details.taxonomy-block > .taxonomy-cards {
   border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer;
   background: rgba(255, 255, 255, 0.92); color: #0b1220; font: inherit; font-size: 0.85rem;
 }
+
+/* Mobile drawer menu: solid full-width panel and a centred Menu button */
+@media (max-width: 1100px) {
+  /* Anchor the drawer to the full-width header, not the padded inner row. */
+  header.nav .nav-inner {
+    position: static;
+  }
+  .mobile-menu > summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0 14px;
+    line-height: 1;
+  }
+  .mobile-menu > summary span {
+    margin-left: 0;
+    line-height: 1;
+  }
+  .mobile-menu > nav {
+    background: #0d1522;
+    box-shadow: 0 24px 40px rgba(2, 6, 14, 0.6);
+  }
+  .mobile-menu details > summary {
+    align-items: center;
+    min-height: 44px;
+    border: 0;
+  }
+}
+
+/* Desktop dropdown panels: solid background so page text never shows through */
+.mega {
+  background: #0d1522;
+}
