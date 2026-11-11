@@ -104,7 +104,7 @@
         <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="botcheck" tabindex="-1" autocomplete="off" /></label></div>
         <div class="demo-error" role="alert" hidden></div>
         <div class="demo-submit-row">
-          <button type="submit" class="btn btn-primary">Book a Demo Walkthrough</button>
+          <button type="submit" class="btn btn-primary">Book a demo</button>
           <p class="fine">We use these details only to arrange your walkthrough. See our <a href="/privacy/">Privacy Policy</a>.</p>
         </div>
       </form>`;
@@ -151,7 +151,7 @@
           "Sorry, that didn’t send. Please try again, or email enquiry@compliar.co.uk and we’ll get back to you as soon as possible.";
         error.hidden = false;
         button.disabled = false;
-        button.textContent = "Book a Demo Walkthrough";
+        button.textContent = "Book a demo";
       }
     });
 

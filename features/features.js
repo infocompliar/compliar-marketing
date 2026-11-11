@@ -43,9 +43,10 @@
   if (!links.length || typeof HTMLDialogElement !== "function") return;
   var d = document.createElement("dialog");
   d.className = "shot-viewer";
-  d.innerHTML = '<button type="button" aria-label="Close">\u00d7</button><img alt="" /><p></p>';
+  d.innerHTML = '<button type="button" aria-label="Close">\u00d7</button><p></p>';
   document.body.appendChild(d);
-  var img = d.querySelector("img"), cap = d.querySelector("p");
+  // The image is added on first open, so the page never holds an <img> with no src.
+  var img = document.createElement("img"), cap = d.querySelector("p");
   d.addEventListener("click", function () { d.close(); });
   links.forEach(function (a) {
     a.addEventListener("click", function (e) {
@@ -53,6 +54,7 @@
       var src = a.querySelector("img"), fc = a.closest("figure") && a.closest("figure").querySelector("figcaption");
       img.src = a.getAttribute("href");
       img.alt = src ? src.alt : "";
+      if (!img.isConnected) d.insertBefore(img, cap);
       cap.textContent = fc ? fc.textContent : "";
       d.showModal();
     });
