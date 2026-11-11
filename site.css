@@ -5200,6 +5200,7 @@ header.nav .nav-cta .btn-primary:hover {
 .demo-form input[type="tel"],
 .demo-form select {
   width: 100%;
+  min-height: 44px;
   padding: 11px 12px;
   border: 1px solid #cfd6df;
   border-radius: 10px;
@@ -6349,10 +6350,27 @@ html {
   font-weight: 600;
   letter-spacing: 0.08em;
 }
-@media (max-width: 1120px) {
-  .brand-badge,
+/* The desktop header needs 1232px with everything showing (logo and badge,
+   seven nav items, two buttons, 32px gutters) and 1123px without the badge.
+   Each piece drops out with room to spare, so the row never runs past the
+   viewport between the 1100px drawer breakpoint and full width. */
+@media (max-width: 1260px) {
+  .brand-badge {
+    display: none;
+  }
+}
+@media (max-width: 1160px) {
   .nav-interactive-cta {
     display: none;
+  }
+}
+/* With one button in the header the nav sits further right, so the Tools
+   panel would run past the viewport from its own toggle. Pin it to the right
+   edge of the header row instead; it still opens under the Tools toggle. */
+@media (min-width: 1101px) and (max-width: 1160px) {
+  #mega-tools {
+    left: auto;
+    right: 0;
   }
 }
 
@@ -7523,6 +7541,14 @@ details.taxonomy-block > .taxonomy-cards {
     min-height: 44px;
     border: 0;
   }
+  /* Every drawer link is at least 44px tall. Padding rather than flex, so the
+     links that mix bold text and a standards badge still wrap as one line of
+     text. */
+  .mobile-menu a,
+  .mobile-menu details a {
+    line-height: 1.4;
+    padding-block: calc((44px - 1.4em) / 2);
+  }
 }
 
 /* Desktop dropdown panels: solid background so page text never shows through */
@@ -7776,7 +7802,7 @@ main:has(> .band > .wrap > .prose:not(.center)) .band.faq .faq-list {
     font-size: 0.78rem;
     line-height: 1.4;
   }
-  /* One row where the three buttons fit (about 375px up); below that
+  /* One row where the three buttons fit (about 390px up); below that
      Preferences drops to its own row instead of running off the screen. */
   .cookie-banner,
   .cookie-banner-main,
@@ -7819,5 +7845,19 @@ main:has(> .band > .wrap > .prose:not(.center)) .band.faq .faq-list {
   }
   .screens-desktop {
     grid-template-columns: 1fr;
+  }
+}
+
+/* --- Touch widths: calculator fields are at least 44px tall --------------- */
+@media (max-width: 1100px) {
+  .roi-field input[type="number"],
+  .roi-seats select,
+  .roi-clear {
+    min-height: 44px;
+  }
+}
+@media (max-width: 1100px) {
+  .demo-checks label {
+    min-height: 44px;
   }
 }
