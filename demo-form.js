@@ -1,11 +1,30 @@
 // Demo request & contact form: embedded on the homepage (#contact-form) and
 // /contact/ page, plus available as a modal when any [data-demo-open] button is
-// clicked. Submissions go to Web3Forms (enquiry@compliar.co.uk). Google Ads
+// clicked. Pages with [data-sample-offer] also get a short free sample form
+// (separate request type, own event). Submissions go to Web3Forms (enquiry@compliar.co.uk). Google Ads
 // conversion fires when marketing consent is granted.
 (() => {
   const ENDPOINT = "https://api.web3forms.com/submit";
   const ACCESS_KEY = "00a6f18c-3054-40ab-8342-6d7598f91c09";
   const ADS_CONVERSION = "AW-18545152858/mXfZCOGjwq4dENqmgotF";
+  // Free sample request: a separate request type from the demo. Create a
+  // separate Google Ads conversion action for it, then paste its
+  // "AW-.../label" here. Until then only the gtag event "sample_request" fires.
+  const SAMPLE_ADS_CONVERSION = "";
+  const SAMPLES = {
+    battery: {
+      label: "Sample fire alarm servicing certificate (with standby battery record)",
+      file: "/assets/documents/fire-alarm-periodic-inspection-servicing-certificate-sample.pdf",
+    },
+    certificate: {
+      label: "Sample fire alarm servicing certificate",
+      file: "/assets/documents/fire-alarm-periodic-inspection-servicing-certificate-sample.pdf",
+    },
+    logbook: {
+      label: "Sample fire alarm servicing certificate (for the log book page)",
+      file: "/assets/documents/fire-alarm-periodic-inspection-servicing-certificate-sample.pdf",
+    },
+  };
   const CONSENT_KEY = "compliar_cookie_consent";
   const PREFS_KEY = "compliar_cookie_prefs";
   const SIZES = ["1–3", "4–10", "11–25", "25+"];
@@ -49,6 +68,79 @@
     gtag("event", "conversion", {
       send_to: ADS_CONVERSION,
     });
+  }
+
+  function trackSample(key) {
+    if (!hasMarketingConsent() || typeof gtag !== "function") return;
+    gtag("event", "sample_request", { sample_type: key });
+    if (SAMPLE_ADS_CONVERSION) gtag("event", "conversion", { send_to: SAMPLE_ADS_CONVERSION });
+  }
+
+  function buildSampleForm(key) {
+    const sample = SAMPLES[key] || SAMPLES.certificate;
+    const id = ++uid;
+    const wrap = document.createElement("div");
+    wrap.innerHTML = `
+      <form class="demo-form sample-form" novalidate>
+        <div>
+          <label for="sf-email-${id}">Your email *</label>
+          <input id="sf-email-${id}" name="email" type="email" autocomplete="email" placeholder="you@yourcompany.co.uk" required />
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="botcheck" tabindex="-1" autocomplete="off" /></label></div>
+        <div class="demo-error" role="alert" hidden></div>
+        <button type="submit" class="btn btn-primary">Get the free sample</button>
+        <p class="fine">Free, no card needed. This is a sample request, not a demo booking. We use your email only to follow up on this request. See our <a href="/privacy/">Privacy Policy</a>.</p>
+      </form>`;
+    const form = wrap.firstElementChild;
+    const error = form.querySelector(".demo-error");
+    const button = form.querySelector("button[type=submit]");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      error.hidden = true;
+      if (!form.reportValidity()) return;
+      if (form.elements.botcheck.value) return showSample();
+      button.disabled = true;
+      button.textContent = "Sending…";
+      try {
+        const response = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: ACCESS_KEY,
+            subject: "Compliar FREE SAMPLE request (not a demo): " + key,
+            from_name: "Compliar website",
+            request_type: "free_sample",
+            sample_requested: sample.label,
+            email: form.elements.email.value.trim(),
+            message: "Free sample request from a landing page. Not a demo request.",
+            page: location.href,
+          }),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.message || "Request failed");
+        trackSample(key);
+        showSample();
+      } catch (err) {
+        error.textContent =
+          "Sorry, that didn’t send. Please try again, or email enquiry@compliar.co.uk and we’ll get back to you as soon as possible.";
+        error.hidden = false;
+        button.disabled = false;
+        button.textContent = "Get the free sample";
+      }
+    });
+
+    function showSample() {
+      const card = document.createElement("div");
+      card.className = "demo-thanks sample-thanks";
+      card.setAttribute("role", "status");
+      card.innerHTML =
+        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Thanks. Your sample is ready.</h3>' +
+        '<p><a class="btn btn-primary" href="' + sample.file + '" target="_blank" rel="noopener">Open the sample PDF</a></p>' +
+        '<p class="sample-next">Want to see how it runs a whole company? <a href="/contact/?subject=Demo+request" data-demo-open>Book a demo</a></p>';
+      form.replaceWith(card);
+    }
+    return form;
   }
 
   function buildForm(options = {}) {
@@ -222,6 +314,11 @@
     event.preventDefault();
     const engineers = parseInt(opener.dataset.engineers, 10);
     openModal(engineers ? { engineers } : {});
+  });
+
+  document.querySelectorAll("[data-sample-form]").forEach((mount) => {
+    const host = mount.closest("[data-sample-offer]");
+    mount.replaceChildren(buildSampleForm(host ? host.dataset.sampleOffer : "certificate"));
   });
 
   document.querySelectorAll("[data-demo-form]").forEach((mount) => {
