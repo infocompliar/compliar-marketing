@@ -7,10 +7,9 @@
   const ENDPOINT = "https://api.web3forms.com/submit";
   const ACCESS_KEY = "00a6f18c-3054-40ab-8342-6d7598f91c09";
   const ADS_CONVERSION = "AW-18545152858/mXfZCOGjwq4dENqmgotF";
-  // Free sample request: a separate request type from the demo. Create a
-  // separate Google Ads conversion action for it, then paste its
-  // "AW-.../label" here. Until then only the gtag event "sample_request" fires.
-  const SAMPLE_ADS_CONVERSION = "";
+  // Free sample request: a separate request type from the demo, with its own
+  // Google Ads conversion action ("Sample request"). Fires with marketing consent only.
+  const SAMPLE_ADS_CONVERSION = "AW-18545152858/3C2GCKaj-7YdENqmgotF";
   const SAMPLES = {
     battery: {
       label: "Sample fire detection and alarm servicing certificate (with standby battery record)",
