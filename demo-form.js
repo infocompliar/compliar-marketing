@@ -13,15 +13,15 @@
   const SAMPLE_ADS_CONVERSION = "";
   const SAMPLES = {
     battery: {
-      label: "Sample fire alarm servicing certificate (with standby battery record)",
+      label: "Sample fire detection and alarm servicing certificate (with standby battery record)",
       file: "/assets/documents/fire-alarm-periodic-inspection-servicing-certificate-sample.pdf",
     },
     certificate: {
-      label: "Sample fire alarm servicing certificate",
+      label: "Sample fire detection and alarm servicing certificate",
       file: "/assets/documents/fire-alarm-periodic-inspection-servicing-certificate-sample.pdf",
     },
     logbook: {
-      label: "Sample fire alarm servicing certificate (for the log book page)",
+      label: "Sample fire detection and alarm servicing certificate (for the log book page)",
       file: "/assets/documents/fire-alarm-periodic-inspection-servicing-certificate-sample.pdf",
     },
   };
@@ -137,6 +137,7 @@
       card.innerHTML =
         '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Thanks. Your sample is ready.</h3>' +
         '<p><a class="btn btn-primary" href="' + sample.file + '" target="_blank" rel="noopener">Open the sample PDF</a></p>' +
+        '<p class="sample-more">Also on our <a href="/sample-documents/">Sample documents</a> page.</p>' +
         '<p class="sample-next">Want to see how it runs a whole company? <a href="/contact/?subject=Demo+request" data-demo-open>Book a demo</a></p>';
       form.replaceWith(card);
     }

@@ -7914,3 +7914,10 @@ main:has(> .band > .wrap > .prose:not(.center)) .band.faq .faq-list {
     gap: 22px;
   }
 }
+.sample-thanks .sample-more {
+  font-size: 0.88rem;
+}
+.sample-thanks .sample-more a {
+  color: var(--orange-deep);
+  font-weight: 600;
+}
