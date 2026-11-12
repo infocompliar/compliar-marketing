@@ -7861,3 +7861,63 @@ main:has(> .band > .wrap > .prose:not(.center)) .band.faq .faq-list {
     min-height: 44px;
   }
 }
+
+/* Free sample offer (landing pages) */
+.sample-offer {
+  background: var(--cream-2);
+  border-block: 1px solid var(--line);
+}
+.sample-offer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+.sample-offer h2 {
+  font-size: clamp(1.35rem, 1rem + 1.4vw, 1.9rem);
+  letter-spacing: -0.03em;
+  margin-top: 8px;
+}
+.sample-offer-copy p {
+  margin-top: 12px;
+  max-width: 56ch;
+}
+.sample-offer-copy .sample-by {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.sample-offer-box {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+}
+.sample-thanks {
+  padding: 8px 0 0;
+  background: none;
+  color: var(--ink);
+}
+.sample-thanks .demo-thanks-icon {
+  background: #e5f3ea;
+  color: #1d4a2f;
+}
+.sample-thanks .sample-next {
+  font-size: 0.92rem;
+}
+.sample-thanks .sample-next a {
+  color: var(--orange-deep);
+  font-weight: 600;
+}
+@media (max-width: 800px) {
+  .sample-offer-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+.sample-thanks .sample-more {
+  font-size: 0.88rem;
+}
+.sample-thanks .sample-more a {
+  color: var(--orange-deep);
+  font-weight: 600;
+}

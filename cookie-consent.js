@@ -61,8 +61,8 @@
     <div class="cookie-banner-main">
       <p>
         We use essential cookies to make our site work, and optional analytics &amp;
-        marketing cookies (Google Consent Mode v2) to measure site usage and demo
-        conversions. <a href="/cookies/">Cookie policy</a>
+        marketing cookies (Google Consent Mode v2) to measure site usage and demo and sample
+        request conversions. <a href="/cookies/">Cookie policy</a>
       </p>
       <div class="cookie-actions">
         <button type="button" class="btn btn-primary btn-sm" data-consent-action="accept-all">Accept All</button>
