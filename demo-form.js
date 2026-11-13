@@ -189,6 +189,13 @@
             ${USING_TODAY.map((u) => `<option value="${u}">${u}</option>`).join("")}
           </select>
         </div>
+        <fieldset class="demo-fieldset demo-logbook-only">
+          <legend>Only need the site log book?</legend>
+          <div class="demo-checks">
+            <label><input type="checkbox" name="site_log_book_only" value="yes" /> <span>Site log book only (no seats)</span></label>
+          </div>
+          <p class="fine">For any business holding multiple properties, such as estate agents, housing providers and property developers.</p>
+        </fieldset>
         <div>
           <label for="df-message-${id}">Optional Message / Requirements</label>
           <textarea id="df-message-${id}" name="message" rows="3" placeholder="Tell us about your current certificate software, log books, or any specific BS workflows you want to see…"></textarea>
@@ -212,9 +219,10 @@
       if (!form.reportValidity()) return;
       if (form.elements.botcheck.value) return showThanks();
       const disciplines = [...form.querySelectorAll("input[name=disciplines]:checked")].map((c) => c.value);
+      const logBookOnly = form.elements.site_log_book_only.checked;
       const payload = {
         access_key: ACCESS_KEY,
-        subject: "Compliar demo walkthrough request",
+        subject: "Compliar demo walkthrough request" + (logBookOnly ? " (site log book only, no seats)" : ""),
         from_name: "Compliar website",
         name: form.elements.name.value.trim(),
         email: form.elements.email.value.trim(),
@@ -222,6 +230,7 @@
         team_size: form.elements.team_size.value || "Not specified",
         disciplines: disciplines.join(", ") || "Not specified",
         using_today: form.elements.using_today.value || "Not specified",
+        site_log_book_only: logBookOnly ? "Yes: site log book only, no seats" : "No",
         message: form.elements.message.value.trim() || "None provided",
         engineers_from_calculator: form.dataset.engineers || (options.engineers ? String(options.engineers) : ""),
         page: location.href,
