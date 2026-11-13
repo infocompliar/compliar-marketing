@@ -252,7 +252,7 @@
       card.className = "demo-thanks";
       card.setAttribute("role", "status");
       card.innerHTML =
-        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Thanks. Your demo request is in.</h3><p>Thank you. We\'ll get back to you as soon as possible to arrange your walkthrough.</p><p><a href="/sample-documents/">Open the sample certificates</a><br /><a href="/#see-it-working">Watch one job start to finish (36 seconds)</a></p>';
+        '<div class="demo-thanks-icon" aria-hidden="true">✓</div><h3>Thanks. Your demo request is in.</h3><p>We\'ll get back to you as soon as possible to arrange your walkthrough.</p><p><a href="/sample-documents/">Open the sample certificates</a><br /><a href="/#see-it-working">Watch one job start to finish (36 seconds)</a></p>';
       form.replaceWith(card);
     }
     return form;
