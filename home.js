@@ -336,7 +336,7 @@
           ? r.seatLines.map((l) => `${l.count} \u00d7 ${l.name}`).join(" + ") +
               (r.inputs.billing === "yearly" ? `, billed yearly (${money.format(r.subscriptionBilledPerYear)} / year)` : ", billed monthly") +
               ", ex VAT"
-          : "no seats"
+          : "no per-user plan"
       );
       const hasSpend = r.currentSpendPerMonth > 0;
       const spendStat = field("roi-spend-stat");

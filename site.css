@@ -7921,3 +7921,8 @@ main:has(> .band > .wrap > .prose:not(.center)) .band.faq .faq-list {
   color: var(--orange-deep);
   font-weight: 600;
 }
+
+/* Demo form: log book only variant hides contractor-only fields */
+.demo-form [hidden] {
+  display: none !important;
+}

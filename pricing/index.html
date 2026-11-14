@@ -75,7 +75,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=7791e56d1f1f" />
+    <link rel="stylesheet" href="/site.css?v=e36efde3ab3d" />
     <script src="/site.js" defer></script>
     <script src="/cookie-consent.js" defer></script>
     <script src="/demo-form.js" defer></script>
@@ -95,11 +95,11 @@
           "highPrice": "95.00",
           "priceCurrency": "GBP",
           "offerCount": "4",
-          "description": "Plus VAT. Seats per user per month: Lite £35, Office £65, Design £95. Two months free when paid yearly. Site log book £4 + VAT per site per year, added to any plan or taken on its own with no seats. Request a demo.",
+          "description": "Plus VAT. Per user per month: Lite £35, Office £65, Design £95. Two months free when paid yearly. Site log book £4 + VAT per site per year, added to any plan or taken on its own with no per-user plan. Request a demo.",
           "offers": [
             {
               "@type": "Offer",
-              "name": "Lite seat",
+              "name": "Lite plan",
               "priceCurrency": "GBP",
               "price": "35.00",
               "priceSpecification": {
@@ -112,7 +112,7 @@
             },
             {
               "@type": "Offer",
-              "name": "Office seat",
+              "name": "Office plan",
               "priceCurrency": "GBP",
               "price": "65.00",
               "priceSpecification": {
@@ -125,7 +125,7 @@
             },
             {
               "@type": "Offer",
-              "name": "Design seat",
+              "name": "Design plan",
               "priceCurrency": "GBP",
               "price": "95.00",
               "priceSpecification": {
@@ -394,10 +394,10 @@
       <section class="page-intro">
         <div class="wrap">
           <div class="eyebrow">Pricing</div>
-          <h1>The right seat for every role.</h1>
+          <h1>The right plan for every role.</h1>
           <p>
-            Three seats, one team: Lite for engineers, Office for the office,
-            Design for designers. Mix them however you like. No minimum seats.
+            Three plans, one team: Lite for engineers, Office for the office,
+            Design for designers. Mix them however you like. No minimum number of users.
             Pay yearly for two months free. The site log book is priced
             separately, per site.
           </p>
@@ -785,16 +785,16 @@
               <div class="eyebrow">SITE LOG BOOK</div>
               <h2 id="logbook-price-title">The site log book, priced per site.</h2>
               <p>
-                The digital fire log book is not part of the seat
+                The digital fire log book is not part of the user plans
                 prices. It is £4 + VAT per site per year, and you can add it to
-                any plan. Or take it on its own, with no seats.
+                any plan. Or take it on its own, with no per-user plan.
               </p>
             </div>
             <div class="price-grid price-grid-pair">
               <div class="price-card">
                 <div class="price-name">Site log book</div>
                 <div class="price-for">
-                  Add to any plan. The same price whichever seats you have.
+                  Add to any plan. The same price whichever plans you have.
                 </div>
                 <div class="price-cta-line">
                   <span class="plan-amount">£4</span
@@ -848,14 +848,14 @@
               <div class="price-card">
                 <div class="price-name">Log book only</div>
                 <div class="price-for">
-                  For any business that looks after several properties, such as estate agents, landlords, developers and facilities managers, and only wants the digital site log book. No seats needed.
+                  For any business that looks after several properties, such as estate agents, landlords, developers and facilities managers, and only wants the digital site log book. No per-user plan needed.
                 </div>
                 <div class="price-cta-line">
                   <span class="plan-amount">£4</span
                   ><span class="plan-period"> + VAT /site/year</span>
                 </div>
                 <div class="price-cta-sub">
-                  No seats needed. Charged per site, once a year.
+                  No per-user plan needed. Charged per site, once a year.
                 </div>
                 <ul class="price-list">
                 <li>
@@ -900,7 +900,7 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     /></svg
-                  >No seats needed. UK sites only, working to British Standards
+                  >No per-user plan needed. UK sites only, working to British Standards
                 </li>
                 </ul>
                 <a
@@ -949,14 +949,14 @@
               <p>
                 Onboarding is hands-on help to get you set up and working in
                 Compliar. It is open to everyone, whatever plan you choose and
-                however many seats you have, including a single Lite seat. You
+                however many users you have, including a single Lite user. You
                 don't need any experience with this kind of software. It is
-                separate from the seat prices. Onboarding fees start from
+                separate from the prices. Onboarding fees start from
                 £195. Every onboarding is quoted individually, so the price
                 is fair for your business and agreed before anything starts.
               </p>
               <ul class="onboarding-list">
-                <li>Setting up your account, users and seats, and showing you around</li>
+                <li>Setting up your account, users and plans, and showing you around</li>
                 <li>Bringing across your customers, sites and assets from your current system</li>
                 <li>Setting up your certificate templates and job types</li>
                 <li>Getting your engineers started on the field app</li>
@@ -981,20 +981,20 @@
           <div class="seat-calc" id="seatCalc" aria-label="Work out your price">
             <h2>Build your team’s plan.</h2>
             <p class="estimator-intro">
-              Mix seats across your team: engineers on Lite, the office on
-              Office, a designer on Design. Totals cover seats only and
+              Mix plans across your team: engineers on Lite, the office on
+              Office, a designer on Design. Totals cover user plans only and
               exclude VAT. The site log book is £4 + VAT per site per year on
               top.
             </p>
             <noscript
               ><p>
-                Enable JavaScript to update the estimate. Use the per-seat
+                Enable JavaScript to update the estimate. Use the per-user
                 prices above to calculate your total.
               </p></noscript
             >
             <div class="seat-calc-grid">
               <label
-                >Lite seats<input
+                >Lite plans<input
                   type="number"
                   inputmode="numeric"
                   min="0"
@@ -1003,7 +1003,7 @@
                   data-price="35"
               /></label>
               <label
-                >Office seats<input
+                >Office plans<input
                   type="number"
                   inputmode="numeric"
                   min="0"
@@ -1012,7 +1012,7 @@
                   data-price="65"
               /></label>
               <label
-                >Design seats<input
+                >Design plans<input
                   type="number"
                   inputmode="numeric"
                   min="0"
@@ -1043,20 +1043,19 @@
           </div>
 
           <div class="plan-help">
-            <span>Not sure which seats you need?</span
+            <span>Not sure which plan you need?</span
             ><a class="text-link" href="/contact/"
               >Talk through your setup ↗</a
             >
           </div>
           <p class="price-note">
-            <strong>From as little as £1 a day (Lite, billed yearly, plus VAT).</strong> A Lite seat paid
-            yearly is £350 + VAT. Yearly totals compare twelve months at the monthly price with the yearly price, and seat totals are the prices above multiplied by the number of seats.
+            <strong>From as little as £1 a day (Lite, billed yearly, plus VAT).</strong> A Lite plan paid
+            yearly is £350 + VAT. Yearly totals compare twelve months at the monthly price with the yearly price, and user totals are the prices above multiplied by the number of users.
           </p>
           <p class="price-note early-adopter-note">
             <strong>Early adopters keep their price for 3 years.</strong>
-            Join by 31 October 2027 and your seat prices are
-            locked in for three years. It is not a contract: you are free to
-            leave at any time. Cancel from the billing settings and access
+            Sign up by 31 October 2027 and your price is locked in for 3
+            years. It is not a contract and you are free to leave. Cancel from the billing settings and access
             continues to the end of the period you have paid for.
           </p>
           <p class="price-note">
