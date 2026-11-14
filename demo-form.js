@@ -6,6 +6,41 @@
 (() => {
   const ENDPOINT = "https://api.web3forms.com/submit";
   const ACCESS_KEY = "00a6f18c-3054-40ab-8342-6d7598f91c09";
+  // Each demo request is also saved as a contact in our CRM (HubSpot, EU data centre).
+  // Fire and forget: a CRM failure must never stop the enquiry reaching us by email.
+  const CRM_ENDPOINT =
+    "https://api-eu1.hsforms.com/submissions/v3/integration/submit/149777494/0c40e3b2-d662-416a-b557-8b60f871a58c";
+  function saveToCrm(payload) {
+    try {
+      const parts = (payload.name || "").trim().split(/\s+/);
+      const firstname = parts.shift() || "";
+      const lastname = parts.join(" ");
+      const note = [
+        payload.site_log_book_only !== "No" ? payload.site_log_book_only : "",
+        "Disciplines: " + payload.disciplines,
+        "Using today: " + payload.using_today,
+        payload.message,
+        "Page: " + payload.page,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      const fields = [
+        { name: "firstname", value: firstname },
+        { name: "lastname", value: lastname },
+        { name: "email", value: payload.email },
+        { name: "company", value: payload.company },
+        { name: "message", value: note },
+      ];
+      fetch(CRM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields, context: { pageUri: payload.page, pageName: document.title } }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {
+      /* ignore */
+    }
+  }
   const ADS_CONVERSION = "AW-18545152858/mXfZCOGjwq4dENqmgotF";
   // Free sample request: a separate request type from the demo, with its own
   // Google Ads conversion action ("Sample request"). Fires with marketing consent only.
@@ -271,6 +306,7 @@
         });
         const result = await response.json();
         if (!response.ok || !result.success) throw new Error(result.message || "Request failed");
+        saveToCrm(payload);
         trackConversion();
         showThanks();
       } catch (err) {
