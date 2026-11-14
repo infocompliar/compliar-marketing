@@ -153,6 +153,14 @@
             ? `From the calculator: ${options.engineers} field engineer${options.engineers === 1 ? "" : "s"}`
             : ""
         }</p>
+        <fieldset class="demo-fieldset demo-need">
+          <legend>What do you need?</legend>
+          <div class="demo-checks">
+            <label><input type="radio" name="need" value="full" checked /> <span>Compliar for my engineers and office</span></label>
+            <label><input type="radio" name="need" value="logbook" /> <span>Log book only (no engineers)</span></label>
+          </div>
+          <p class="fine demo-need-note" hidden>For any business holding several properties, such as estate agents, housing providers and property developers. UK sites only, working to British Standards. £4 + VAT per site per year.</p>
+        </fieldset>
         <div class="grid2">
           <div>
             <label for="df-name-${id}">Full Name *</label>
@@ -167,7 +175,7 @@
             <input id="df-company-${id}" name="company" type="text" autocomplete="organization" placeholder="Harbourview Fire & Security Ltd" required />
           </div>
         </div>
-        <div class="grid2">
+        <div class="grid2 demo-contractor-only">
           <div>
             <label for="df-size-${id}">Number of Field Engineers</label>
             <select id="df-size-${id}" name="team_size">
@@ -182,20 +190,13 @@
             </div>
           </fieldset>
         </div>
-        <div>
+        <div class="demo-contractor-only">
           <label for="df-using-${id}">What do you use today?</label>
           <select id="df-using-${id}" name="using_today">
             <option value="">Select one…</option>
             ${USING_TODAY.map((u) => `<option value="${u}">${u}</option>`).join("")}
           </select>
         </div>
-        <fieldset class="demo-fieldset demo-logbook-only">
-          <legend>Only need the site log book?</legend>
-          <div class="demo-checks">
-            <label><input type="checkbox" name="site_log_book_only" value="yes" /> <span>Site log book only (no seats)</span></label>
-          </div>
-          <p class="fine">For any business holding multiple properties, such as estate agents, housing providers and property developers.</p>
-        </fieldset>
         <div>
           <label for="df-message-${id}">Optional Message / Requirements</label>
           <textarea id="df-message-${id}" name="message" rows="3" placeholder="Tell us about your current certificate software, log books, or any specific BS workflows you want to see…"></textarea>
@@ -210,6 +211,28 @@
     const form = wrap.firstElementChild;
     if (options.engineers) form.elements.team_size.value = sizeFor(options.engineers);
 
+    // Log book only: hide the contractor-only fields and show a shorter form.
+    const message = form.elements.message;
+    const fullPlaceholder = message.placeholder;
+    function applyNeed() {
+      const logBook = form.elements.need.value === "logbook";
+      form.querySelectorAll(".demo-contractor-only").forEach((el) => {
+        el.hidden = logBook;
+        el.querySelectorAll("input, select").forEach((f) => (f.disabled = logBook));
+      });
+      form.querySelector(".demo-need-note").hidden = !logBook;
+      const prefill = form.querySelector(".demo-prefill");
+      if (prefill && logBook) prefill.hidden = true;
+      message.placeholder = logBook
+        ? "Roughly how many properties do you look after?"
+        : fullPlaceholder;
+    }
+    form.querySelectorAll("input[name=need]").forEach((r) => r.addEventListener("change", applyNeed));
+    if (options.logBookOnly) {
+      form.elements.need.value = "logbook";
+      applyNeed();
+    }
+
     const error = form.querySelector(".demo-error");
     const button = form.querySelector("button[type=submit]");
 
@@ -218,20 +241,23 @@
       error.hidden = true;
       if (!form.reportValidity()) return;
       if (form.elements.botcheck.value) return showThanks();
-      const disciplines = [...form.querySelectorAll("input[name=disciplines]:checked")].map((c) => c.value);
-      const logBookOnly = form.elements.site_log_book_only.checked;
+      const logBookOnly = form.elements.need.value === "logbook";
+      const disciplines = logBookOnly
+        ? []
+        : [...form.querySelectorAll("input[name=disciplines]:checked")].map((c) => c.value);
       const payload = {
         access_key: ACCESS_KEY,
-        subject: "Compliar demo walkthrough request" + (logBookOnly ? " (site log book only, no seats)" : ""),
+        subject: "Compliar demo walkthrough request" + (logBookOnly ? " (log book only, no engineers)" : ""),
         from_name: "Compliar website",
         name: form.elements.name.value.trim(),
         email: form.elements.email.value.trim(),
         company: form.elements.company.value.trim(),
-        team_size: form.elements.team_size.value || "Not specified",
-        disciplines: disciplines.join(", ") || "Not specified",
-        using_today: form.elements.using_today.value || "Not specified",
-        site_log_book_only: logBookOnly ? "Yes: site log book only, no seats" : "No",
-        message: form.elements.message.value.trim() || "None provided",
+        team_size: logBookOnly ? "Not applicable" : form.elements.team_size.value || "Not specified",
+        disciplines: logBookOnly ? "Not applicable" : disciplines.join(", ") || "Not specified",
+        using_today: logBookOnly ? "Not applicable" : form.elements.using_today.value || "Not specified",
+        site_log_book_only: logBookOnly ? "Yes: log book only, no engineers" : "No",
+        message:
+          (logBookOnly ? "Log book only (no engineers). " : "") + (form.elements.message.value.trim() || "None provided"),
         engineers_from_calculator: form.dataset.engineers || (options.engineers ? String(options.engineers) : ""),
         page: location.href,
       };
@@ -322,7 +348,7 @@
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
     event.preventDefault();
     const engineers = parseInt(opener.dataset.engineers, 10);
-    openModal(engineers ? { engineers } : {});
+    openModal({ ...(engineers ? { engineers } : {}), logBookOnly: opener.hasAttribute("data-logbook-only") });
   });
 
   document.querySelectorAll("[data-sample-form]").forEach((mount) => {
@@ -331,7 +357,7 @@
   });
 
   document.querySelectorAll("[data-demo-form]").forEach((mount) => {
-    mount.replaceChildren(buildForm());
+    mount.replaceChildren(buildForm({ logBookOnly: new URLSearchParams(location.search).get("need") === "logbook" }));
   });
 
   const card = document.getElementById("book-a-demo") || document.getElementById("contact-form");
